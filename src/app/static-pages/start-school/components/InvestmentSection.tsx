@@ -118,20 +118,7 @@ export function InvestmentSection({ initialData }: { initialData?: any }) {
           tagline,
           headline,
           subtitle,
-          heads, // dynamic array object!
-          // Backward compatibility:
-          inv1Title: heads[0]?.title ?? "",
-          inv1Desc: heads[0]?.desc ?? "",
-          inv1Image: heads[0]?.image ?? "",
-          inv2Title: heads[1]?.title ?? "",
-          inv2Desc: heads[1]?.desc ?? "",
-          inv2Image: heads[1]?.image ?? "",
-          inv3Title: heads[2]?.title ?? "",
-          inv3Desc: heads[2]?.desc ?? "",
-          inv3Image: heads[2]?.image ?? "",
-          inv4Title: heads[3]?.title ?? "",
-          inv4Desc: heads[3]?.desc ?? "",
-          inv4Image: heads[3]?.image ?? "",
+          heads,
         },
       };
 

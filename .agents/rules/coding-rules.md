@@ -6,3 +6,4 @@
 4. **Rich Text**: Use `react-quill-new` for long descriptions and chapter narratives.
 5. **Database**: Use Prisma Client singleton (`@/lib/prisma`).
 6. **Revalidation**: On successful PUT/POST mutations, trigger `revalidateWebsite()` to update frontend cache.
+7. **Empty Value Fallbacks (`||` / `??` & `<option>`)**: Always supply an empty value (`""`, `[]`, or `{}`) at logical OR (`||`) and nullish coalescing (`??`) fallback options (e.g., `initialData?.field || ""` or `initialData?.field ?? ""`) rather than hardcoded fallback strings. In dropdown select menus, always include an empty value option (`<option value="">Select...</option>`).

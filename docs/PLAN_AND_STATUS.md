@@ -124,20 +124,36 @@
   - All 9 pages and their modular sections fully seeded into PostgreSQL (`prisma/static-pages-seed.json` & `prisma/seed.js`).
   - Added "Photo Gallery" under `Pages` in `Sidebar.tsx` and in `PageStructure.tsx`.
 
-- [x] **UI Polish & Dynamic Array Architecture (100% Kokalachi Fidelity)**:
-  - **Dynamic Card & Pillar Arrays**:
-    - `WelcomeSection`: Replaced fixed 3-card structure with dynamic `cards: Array<{ title: string; desc: string; image: string }>` allowing admins to add more than 3 cards with `+ Add Card`, delete cards with trash icon, and edit Title, Description, and full-width Cloudinary Image.
-    - `HeroSection`: Replaced fixed 4-stat metrics with dynamic `stats: Array<{ value: string; label: string }>` (`+ Add Metric`, delete, edit).
-    - `HowWeEducateSection`: Replaced fixed 4 pillars with dynamic `pillars: Array<{ title: string; desc: string }>` (`+ Add Pillar`, delete, edit).
-    - `OurApproachSection`: Replaced fixed 4 life skill cards with dynamic `cards: Array<{ title: string; desc: string; image: string }>` (`+ Add Skill Card`, delete, edit).
-    - `AcademicFacilitiesSection`: Replaced fixed 4 facilities with dynamic `facilities: Array<{ title: string; desc: string; image: string }>` (`+ Add Facility`, delete, edit).
-    - `OurGrowthSection`: Replaced fixed 4 milestones with dynamic `milestones: Array<{ year: string; title: string; desc: string; image: string }>` (`+ Add Milestone`, delete, edit).
-    - `WhyPartnerSection`: Replaced fixed 4 advantages with dynamic `advantages: Array<{ title: string; desc: string; image: string }>` (`+ Add Advantage`, delete, edit).
-    - `StartSchoolFaqSection`: Replaced fixed 4 FAQs with dynamic `faqs: Array<{ question: string; answer: string }>` (`+ Add Question`, delete, edit).
-    - `SetupProcessSection`: Replaced fixed 8 steps with dynamic `steps: Array<{ title: string; desc?: string }>` (`+ Add Step`, delete, edit).
-  - All updated components maintain 100% backward compatibility (saving both the array object and legacy keys) so no existing database record or consumer breaks.
-  - `ImagePickerField.tsx`: Takes full width (`w-full`) and displays only ONE state for single images (active preview card with prominent **Replace CTA** when image exists, or upload dropzone when no image exists; both only show when `multiple` mode is enabled).
-  - SaveButton takes full width across all forms (`w-full` on container, removing restrictive `sm:w-64` / `max-w-xs` widths).
+### ✅ Phase 5: UI & Structural Polish (COMPLETED)
+
+- [x] **Full-width `ImagePickerField`**:
+  - In single image mode: when an image exists, displays ONLY the preview card with a prominent **`Replace`** CTA button (and clear `X`). Does NOT render the dashed dropzone simultaneously.
+  - When no image exists, displays the dashed drag-and-drop dropzone (or direct URL input if toggled).
+  - Both dropzone and image list display simultaneously ONLY when `multiple={true}`.
+  - Takes 100% full width (`w-full`) across all forms.
+- [x] **Vertical 3-Row Card Architecture**:
+  - All cards with Title, Description, and Image are structured vertically across full-width rows:
+    - **Row 1**: Title
+    - **Row 2**: Description
+    - **Row 3**: Image (full-width via `ImagePickerField`)
+  - No side-by-side cramped 2-column layouts inside cards.
+- [x] **Full-width 1-Column Card Stacks Across All Modules**:
+  - Replaced all 2-column card layouts (`grid grid-cols-2` or `sm:grid-cols-2`) with clean full-width vertical stacks (`space-y-4`), matching `kokalachi-cms`.
+  - Every card/pillar has: Row 1: Title & Grades/Designation, Row 2: Description/Quote, Row 3: Image (full width with single-state Replace CTA).
+  - Cleaned up `EducationalApproachSection` (Approach Pillars), `AdmissionClassesSection`, `WhyWorkWithUsSection`, `NoteOfSupportSection`, `CTABanners`, and `ExperienceSection`.
+- [x] **Elimination of Duplicate Flat Seed Data & Clean Array Schema**:
+  - Cleaned up `prisma/static-pages-seed.json` across all sections, removing duplicate flat numbered keys (`stat1Value`, `stat1Label`, `pillar1Title`, `feature1Title`, `m1Year`, etc.) and storing strictly clean dynamic arrays (`stats: [...]`, `pillars: [...]`, `cards: [...]`, `milestones: [...]`, etc.).
+  - Updated component `handleSave` routines across all static-page editors to save only clean array objects without re-injecting flat duplicate keys.
+  - Added `@@unique([pageId, type])` to `model Section` in `prisma/schema.prisma` preventing duplicate section creation.
+  - Fixed duplicate `main()` invocation in `prisma/seed.js` and cleaned PostgreSQL database to exactly 53 unique sections.
+- [x] **Single Narrative Textarea with White Line Breaks**:
+  - Replaced separate "Part 1" and "Part 2" textareas in narrative sections (`OurStorySection`, `AdmissionOverviewSection`) with a single textarea where paragraphs are separated by hitting Enter twice (`\n\n`), rendered via `.split(/\n\s*\n/)` to mirror Kokalachi website architecture.
+- [x] **Single Photo Gallery Navigation**:
+  - Removed duplicate top-level Photo Gallery link in `Sidebar.tsx`; `Photo Gallery` is cleanly organized under the **Pages** dropdown (`/static-pages/gallery`).
+- [x] **Full-Width Save Buttons**:
+  - All `SaveButton` wrappers throughout the CMS use `w-full` inside `<div className="pt-4 border-t border-gray-100 w-full">`, removing restrictive `sm:w-64` / `max-w-xs` containers.
+- [x] **Build Verification**:
+  - `npm run build` passes with **0 errors** across all **46 App Router routes**.
   - Clean descriptive placeholders used across all inputs (never identical to values).
   - Core components styled to 100% Kokalachi parity (`PageHeader`, `SectionHeader`, `InputField`, `TextAreaField`, `SaveButton`, `OverviewStats`, `PageStructure`).
 

@@ -111,18 +111,7 @@ export function SchoolModelSection({ initialData }: { initialData?: any }) {
           headline,
           scriptAccent,
           subtitle,
-          areas, // dynamic array object!
-          // Backward compatibility:
-          area1Title: areas[0]?.title ?? "",
-          area1Desc: areas[0]?.desc ?? "",
-          area2Title: areas[1]?.title ?? "",
-          area2Desc: areas[1]?.desc ?? "",
-          area3Title: areas[2]?.title ?? "",
-          area3Desc: areas[2]?.desc ?? "",
-          area4Title: areas[3]?.title ?? "",
-          area4Desc: areas[3]?.desc ?? "",
-          area5Title: areas[4]?.title ?? "",
-          area5Desc: areas[4]?.desc ?? "",
+          areas,
         },
       };
 

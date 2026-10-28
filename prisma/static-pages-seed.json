@@ -19,95 +19,148 @@
       "tagline": "HONOURS & RECOGNITION",
       "headline": "Awards That Inspire Us",
       "subtitle": "Celebrating excellence recognized at state, national, and international summits.",
-      "award1Title": "International Academic Recognition",
-      "award1Desc": "Representation at the 1st International & 31st Annual Conference of Sahodaya School Complexes in Dubai, UAE.",
-      "award1Image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170013/lfcs-school/logo-unveiling_1793170013232.webp",
-      "award2Title": "National Leadership Award",
-      "award2Desc": "Honoured with the Award for Leading School Chain of Uttar Pradesh at the Education Summit in Lucknow.",
-      "award2Image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170009/lfcs-school/anand-kumar-toi-profile_1793170009223.webp",
-      "award3Title": "Prestigious Media Recognition",
-      "award3Desc": "Recipient of the Dainik Jagran Award for being one of the Most Credible Educational Brands in UP.",
-      "award3Image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170010/lfcs-school/anand-kumar-felicitation_1793170010248.webp"
+      "awards": [
+        {
+          "title": "International Academic Recognition",
+          "desc": "Representation at the 1st International & 31st Annual Conference of Sahodaya School Complexes in Dubai, UAE.",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170013/lfcs-school/logo-unveiling_1793170013232.webp"
+        },
+        {
+          "title": "National Leadership Award",
+          "desc": "Honoured with the Award for Leading School Chain of Uttar Pradesh at the Education Summit in Lucknow.",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170009/lfcs-school/anand-kumar-toi-profile_1793170009223.webp"
+        },
+        {
+          "title": "Prestigious Media Recognition",
+          "desc": "Recipient of the Dainik Jagran Award for being one of the Most Credible Educational Brands in UP.",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170010/lfcs-school/anand-kumar-felicitation_1793170010248.webp"
+        }
+      ]
     },
     "EducationalApproachSection": {
       "tagline": "OUR PHILOSOPHY",
       "headline": "A Thoughtful Educational Approach",
       "description": "Our academic paradigm integrates modern cognitive science with time-tested values.",
-      "app1Title": "Child-Centered Learning",
-      "app1Desc": "We focus on nurturing curiosity and encouraging exploration tailored to each learner.",
-      "app1Image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170030/lfcs-school/independent_1793170030545.webp",
-      "app2Title": "Experiential Learning",
-      "app2Desc": "Hands-on experiences that make learning meaningful, relevant, and lasting.",
-      "app2Image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170028/lfcs-school/practical_1793170027731.webp",
-      "app3Title": "Holistic Development",
-      "app3Desc": "We nurture academics, creativity, athletics, and life skills equally.",
-      "app3Image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170034/lfcs-school/activity_1793170034132.webp",
-      "app4Title": "Values & Character",
-      "app4Desc": "Building strong moral compass, empathy, and respect for a better tomorrow.",
-      "app4Image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170022/lfcs-school/collabrative_1793170021825.webp"
+      "pillars": [
+        {
+          "title": "Child-Centered Learning",
+          "desc": "We focus on nurturing curiosity and encouraging exploration tailored to each learner.",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170030/lfcs-school/independent_1793170030545.webp"
+        },
+        {
+          "title": "Experiential Learning",
+          "desc": "Hands-on experiences that make learning meaningful, relevant, and lasting.",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170028/lfcs-school/practical_1793170027731.webp"
+        },
+        {
+          "title": "Holistic Development",
+          "desc": "We nurture academics, creativity, athletics, and life skills equally.",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170034/lfcs-school/activity_1793170034132.webp"
+        },
+        {
+          "title": "Values & Character",
+          "desc": "Building strong moral compass, empathy, and respect for a better tomorrow.",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170022/lfcs-school/collabrative_1793170021825.webp"
+        }
+      ]
     },
     "LeadershipSection": {
       "tagline": "LEADERSHIP / MANAGEMENT",
       "headline": "Guiding the Institution",
       "subtitle": "Little Flower's growth has been guided by visionary management committed to quality education and character formation.",
-      "founderName": "Late Shri Vijay Shankar Yadav",
-      "founderTitle": "Founder & Visionary",
-      "founderQuote": "Education is not merely the transmission of information; it is the ignition of character, curiosity, and compassion.",
-      "founderBio": "A dedicated educator whose unwavering belief in the potential of rural and semi-urban children gave birth to Little Flower in 1993.",
-      "founderImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170014/lfcs-school/journey-lfis-mau_1793170014137.webp",
-      "directorName": "Shri Vivek Yadav",
-      "directorTitle": "Managing Director",
-      "directorQuote": "Our mission is to prepare children not just for examinations, but for life — equipped with ethics, logic, and global awareness.",
-      "directorBio": "Spearheading modern curriculum integration, Olympic-standard sports facilities, and the LFCS Associate School expansion across Uttar Pradesh.",
-      "directorImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170010/lfcs-school/anand-kumar-felicitation_1793170010248.webp"
+      "leaders": [
+        {
+          "name": "Late Shri Vijay Shankar Yadav",
+          "role": "Founder & Visionary",
+          "quote": "Education is not merely the transmission of information; it is the ignition of character, curiosity, and compassion.",
+          "bio": "A dedicated educator whose unwavering belief in the potential of rural and semi-urban children gave birth to Little Flower in 1993.",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170014/lfcs-school/journey-lfis-mau_1793170014137.webp"
+        },
+        {
+          "name": "Shri Vivek Yadav",
+          "role": "Managing Director",
+          "quote": "Our mission is to prepare children not just for examinations, but for life — equipped with ethics, logic, and global awareness.",
+          "bio": "Spearheading modern curriculum integration, Olympic-standard sports facilities, and the LFCS Associate School expansion across Uttar Pradesh.",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170010/lfcs-school/anand-kumar-felicitation_1793170010248.webp"
+        }
+      ]
     },
     "OurGrowthSection": {
       "tagline": "TIMELINE OF EXCELLENCE",
       "headline": "Milestones in Our Journey",
       "subtitle": "Key historical moments that shaped our growth and expansion across Eastern Uttar Pradesh.",
-      "m1Year": "1993",
-      "m1Title": "The Beginning",
-      "m1Desc": "Founded by Late Shri Vijay Shankar Yadav in Mau with just 30 students and a vision for holistic schooling.",
-      "m1Image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170045/lfcs-school/logo1_1793170045264.webp",
-      "m2Year": "2012",
-      "m2Title": "LFCS Kiriharapur, Ballia",
-      "m2Desc": "Flagship expansion into Ballia district with modern laboratories and lush sports grounds.",
-      "m2Image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170004/lfcs-school/Khalispur-Balia_1793170003677.webp",
-      "m3Year": "2014",
-      "m3Title": "LFIS Khalishpur, Mau",
-      "m3Desc": "International-standard campus with Olympic-grade swimming pool, amphitheater, and smart classrooms.",
-      "m3Image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170014/lfcs-school/journey-lfis-mau_1793170014137.webp",
-      "m4Year": "2024",
-      "m4Title": "School Associate Program",
-      "m4Desc": "Nationwide expansion model inaugurated by Anand Kumar and Sharman Joshi to scale quality education.",
-      "m4Image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170008/lfcs-school/school-associate-launch_1793170008299.webp"
+      "milestones": [
+        {
+          "year": "1993",
+          "title": "The Beginning",
+          "desc": "Founded by Late Shri Vijay Shankar Yadav in Mau with just 30 students and a vision for holistic schooling.",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170045/lfcs-school/logo1_1793170045264.webp"
+        },
+        {
+          "year": "2012",
+          "title": "LFCS Kiriharapur, Ballia",
+          "desc": "Flagship expansion into Ballia district with modern laboratories and lush sports grounds.",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170004/lfcs-school/Khalispur-Balia_1793170003677.webp"
+        },
+        {
+          "year": "2014",
+          "title": "LFIS Khalishpur, Mau",
+          "desc": "International-standard campus with Olympic-grade swimming pool, amphitheater, and smart classrooms.",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170014/lfcs-school/journey-lfis-mau_1793170014137.webp"
+        },
+        {
+          "year": "2024",
+          "title": "School Associate Program",
+          "desc": "Nationwide expansion model inaugurated by Anand Kumar and Sharman Joshi to scale quality education.",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170008/lfcs-school/school-associate-launch_1793170008299.webp"
+        }
+      ]
     },
     "OurStorySection": {
       "tagline": "Our Story",
       "headline": "A Journey of",
       "scriptAccent": "Dedication",
-      "paragraph1": "Founded in 1993 by Late Shri Vijay Shankar Yadav in a temporary space with just 30 students and a big dream, Little Flower School began its journey with a simple mission: to provide quality, value-based education that goes beyond textbooks.",
-      "paragraph2": "Over the past three decades, we have grown from a modest neighborhood school into a network of CBSE-affiliated schools across Uttar Pradesh. What hasn't changed is our commitment to fostering a nurturing environment where every child feels valued, encouraged, and challenged.",
-      "stat1Number": "1993",
-      "stat1Text": "Year Founded with 30 Students",
-      "stat2Number": "30+",
-      "stat2Text": "Years of Transformative Growth"
+      "story": "Founded in 1993 by Late Shri Vijay Shankar Yadav in a temporary space with just 30 students and a big dream, Little Flower School began its journey with a simple mission: to provide quality, value-based education that goes beyond textbooks.\n\nOver the past three decades, we have grown from a modest neighborhood school into a network of CBSE-affiliated schools across Uttar Pradesh. What hasn't changed is our commitment to fostering a nurturing environment where every child feels valued, encouraged, and challenged.",
+      "stats": [
+        {
+          "value": "1993",
+          "label": "Year Founded with 30 Students"
+        },
+        {
+          "value": "30+",
+          "label": "Years of Transformative Growth"
+        }
+      ]
     },
     "OurValuesSection": {
       "tagline": "OUR VALUES",
       "headline": "Principles That Define Little Flower",
-      "val1Title": "Integrity",
-      "val1Desc": "We do the right thing at all times, even when no one is watching.",
-      "val2Title": "Respect",
-      "val2Desc": "We value every single individual and treat everyone with empathy and kindness.",
-      "val3Title": "Excellence",
-      "val3Desc": "We consistently strive for the highest academic and moral standards in all that we do.",
-      "val4Title": "Innovation",
-      "val4Desc": "We embrace modern ideas, critical thinking, and creativity to solve real-world challenges.",
-      "val5Title": "Compassion",
-      "val5Desc": "We foster empathy, active community service, and sincere care for all living things.",
-      "val6Title": "Perseverance",
-      "val6Desc": "We build grit, resilience, and quiet determination to overcome challenges."
+      "values": [
+        {
+          "title": "Integrity",
+          "desc": "We do the right thing at all times, even when no one is watching."
+        },
+        {
+          "title": "Respect",
+          "desc": "We value every single individual and treat everyone with empathy and kindness."
+        },
+        {
+          "title": "Excellence",
+          "desc": "We consistently strive for the highest academic and moral standards in all that we do."
+        },
+        {
+          "title": "Innovation",
+          "desc": "We embrace modern ideas, critical thinking, and creativity to solve real-world challenges."
+        },
+        {
+          "title": "Compassion",
+          "desc": "We foster empathy, active community service, and sincere care for all living things."
+        },
+        {
+          "title": "Perseverance",
+          "desc": "We build grit, resilience, and quiet determination to overcome challenges."
+        }
+      ]
     },
     "VisionMissionSection": {
       "visionTitle": "Our Vision",
@@ -120,38 +173,58 @@
     "AcademicFacilitiesSection": {
       "tagline": "CAMPUS INFRASTRUCTURE",
       "headline": "Modern Academic Facilities",
-      "f1Title": "Smart / Digital Classrooms",
-      "f1Desc": "Interactive flat panels, multimedia audio-visual aids, and high-speed broadband supporting dynamic visual learning.",
-      "f1Image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170019/lfcs-school/digital-classroom_1793170018820.webp",
-      "f2Title": "Advanced Science Laboratories",
-      "f2Desc": "Fully equipped Physics, Chemistry, and Biology laboratories adhering strictly to CBSE safety guidelines.",
-      "f2Image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170032/lfcs-school/Experience4_1793170032205.webp",
-      "f3Title": "High-Tech Computer Labs",
-      "f3Desc": "Modern terminals with coding IDEs, AI workstations, robotics kits, and digital literacy modules.",
-      "f3Image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170016/lfcs-school/computer-lab_1793170016129.webp",
-      "f4Title": "Knowledge Resource Center & Library",
-      "f4Desc": "Vast catalog of 10,000+ fiction, reference volumes, periodicals, and quiet reading pods.",
-      "f4Image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170015/lfcs-school/library_1793170015178.webp"
+      "facilities": [
+        {
+          "title": "Smart / Digital Classrooms",
+          "desc": "Interactive flat panels, multimedia audio-visual aids, and high-speed broadband supporting dynamic visual learning.",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170019/lfcs-school/digital-classroom_1793170018820.webp"
+        },
+        {
+          "title": "Advanced Science Laboratories",
+          "desc": "Fully equipped Physics, Chemistry, and Biology laboratories adhering strictly to CBSE safety guidelines.",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170032/lfcs-school/Experience4_1793170032205.webp"
+        },
+        {
+          "title": "High-Tech Computer Labs",
+          "desc": "Modern terminals with coding IDEs, AI workstations, robotics kits, and digital literacy modules.",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170016/lfcs-school/computer-lab_1793170016129.webp"
+        },
+        {
+          "title": "Knowledge Resource Center & Library",
+          "desc": "Vast catalog of 10,000+ fiction, reference volumes, periodicals, and quiet reading pods.",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170015/lfcs-school/library_1793170015178.webp"
+        }
+      ]
     },
     "AcademicJourneySection": {
       "tagline": "LEARNING PATHWAYS",
       "headline": "The Academic Journey at Little Flower",
-      "s1Title": "Early Years",
-      "s1Grades": "[Nursery – UKG]",
-      "s1Desc": "Play-based exploration, sensory development, phonics, and foundational social skills.",
-      "s1Image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170030/lfcs-school/independent_1793170030545.webp",
-      "s2Title": "Primary School",
-      "s2Grades": "[Classes I – V]",
-      "s2Desc": "Building conceptual numeracy, bilingual literacy, environmental science, and structured habits.",
-      "s2Image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170034/lfcs-school/activity_1793170034132.webp",
-      "s3Title": "Middle School",
-      "s3Grades": "[Classes VI – VIII]",
-      "s3Desc": "Transitioning into rigorous subject disciplines, computer science, and creative projects.",
-      "s3Image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170020/lfcs-school/Experience6_1793170019770.webp",
-      "s4Title": "Secondary & Senior Secondary",
-      "s4Grades": "[Classes IX – XII]",
-      "s4Desc": "Board examination mastery in Science, Commerce, and Humanities with IIT-JEE and NEET coaching support.",
-      "s4Image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170019/lfcs-school/digital-classroom_1793170018820.webp"
+      "stages": [
+        {
+          "title": "Early Years",
+          "grades": "[Nursery – UKG]",
+          "desc": "Play-based exploration, sensory development, phonics, and foundational social skills.",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170030/lfcs-school/independent_1793170030545.webp"
+        },
+        {
+          "title": "Primary School",
+          "grades": "[Classes I – V]",
+          "desc": "Building conceptual numeracy, bilingual literacy, environmental science, and structured habits.",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170034/lfcs-school/activity_1793170034132.webp"
+        },
+        {
+          "title": "Middle School",
+          "grades": "[Classes VI – VIII]",
+          "desc": "Transitioning into rigorous subject disciplines, computer science, and creative projects.",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170020/lfcs-school/Experience6_1793170019770.webp"
+        },
+        {
+          "title": "Secondary & Senior Secondary",
+          "grades": "[Classes IX – XII]",
+          "desc": "Board examination mastery in Science, Commerce, and Humanities with IIT-JEE and NEET coaching support.",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170019/lfcs-school/digital-classroom_1793170018820.webp"
+        }
+      ]
     },
     "AcademicResultsSection": {
       "tagline": "ACADEMIC EXCELLENCE",
@@ -178,14 +251,24 @@
       "headline": "A Curriculum Designed for Deep Conceptual Understanding",
       "subtitle": "Affiliated with the Central Board of Secondary Education (CBSE), New Delhi, our curriculum integrates NCERT guidelines with modern experiential inquiry.",
       "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170028/lfcs-school/practical_1793170027731.webp",
-      "subj1Title": "Language & Literature",
-      "subj1Desc": "English and Hindi articulation, grammar fluency, and comprehension.",
-      "subj2Title": "Mathematics & Logic",
-      "subj2Desc": "Conceptual problem-solving, mental arithmetic, and geometry.",
-      "subj3Title": "Science & Inquiry",
-      "subj3Desc": "Physics, Chemistry, and Biology hands-on lab experimentation.",
-      "subj4Title": "Social Sciences & Civics",
-      "subj4Desc": "History, Geography, and Democratic Politics understanding."
+      "subjects": [
+        {
+          "title": "Language & Literature",
+          "desc": "English and Hindi articulation, grammar fluency, and comprehension."
+        },
+        {
+          "title": "Mathematics & Logic",
+          "desc": "Conceptual problem-solving, mental arithmetic, and geometry."
+        },
+        {
+          "title": "Science & Inquiry",
+          "desc": "Physics, Chemistry, and Biology hands-on lab experimentation."
+        },
+        {
+          "title": "Social Sciences & Civics",
+          "desc": "History, Geography, and Democratic Politics understanding."
+        }
+      ]
     },
     "FacultySection": {
       "tagline": "OUR FACULTY",
@@ -197,18 +280,28 @@
       "tagline": "TEACHING & LEARNING",
       "headline": "From Concepts to Applying Them",
       "subtitle": "Learning at LFCS moves beyond books. Our skilled educators make classroom learning interactive, exploratory, and memorable.",
-      "m1Title": "Collaborative Group Inquiry",
-      "m1Desc": "Peer-to-peer discussions, group projects, and team presentations that reinforce communication.",
-      "m1Image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170022/lfcs-school/collabrative_1793170021825.webp",
-      "m2Title": "Practical Demonstrations",
-      "m2Desc": "Laboratory experiments, real-world models, and tactile math tools to cement abstract formulas.",
-      "m2Image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170028/lfcs-school/practical_1793170027731.webp",
-      "m3Title": "Independent Research",
-      "m3Desc": "Self-guided library reading, science fair displays, and research essays fostering intellectual autonomy.",
-      "m3Image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170030/lfcs-school/independent_1793170030545.webp",
-      "m4Title": "Active Remediation & Mentorship",
-      "m4Desc": "Targeted one-on-one doubt resolution and tailored guidance to leave no child behind.",
-      "m4Image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170034/lfcs-school/activity_1793170034132.webp"
+      "methodologies": [
+        {
+          "title": "Collaborative Group Inquiry",
+          "desc": "Peer-to-peer discussions, group projects, and team presentations that reinforce communication.",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170022/lfcs-school/collabrative_1793170021825.webp"
+        },
+        {
+          "title": "Practical Demonstrations",
+          "desc": "Laboratory experiments, real-world models, and tactile math tools to cement abstract formulas.",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170028/lfcs-school/practical_1793170027731.webp"
+        },
+        {
+          "title": "Independent Research",
+          "desc": "Self-guided library reading, science fair displays, and research essays fostering intellectual autonomy.",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170030/lfcs-school/independent_1793170030545.webp"
+        },
+        {
+          "title": "Active Remediation & Mentorship",
+          "desc": "Targeted one-on-one doubt resolution and tailored guidance to leave no child behind.",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170034/lfcs-school/activity_1793170034132.webp"
+        }
+      ]
     }
   },
   "admissions": {
@@ -217,36 +310,57 @@
       "headline": "Find the Right Learning Stage",
       "scriptAccent": "for Your Child",
       "subtitle": "Little Flower Group of Schools offers admissions across foundational pre-primary, primary, middle, and senior secondary grades.",
-      "c1Name": "Pre-Primary Foundation",
-      "c1Grades": "Nursery, LKG, UKG",
-      "c1Desc": "Play-based motor skills, phonics, socialization, and storytelling.",
-      "c2Name": "Primary School",
-      "c2Grades": "Classes I to V",
-      "c2Desc": "Foundational numeracy, literacy, hindi, environmental studies, and co-curriculars.",
-      "c3Name": "Middle School",
-      "c3Grades": "Classes VI to VIII",
-      "c3Desc": "Subject specialization, science labs, computer technology, and sports.",
-      "c4Name": "Secondary School",
-      "c4Grades": "Classes IX and X",
-      "c4Desc": "Rigorous CBSE Board syllabus, practical experiments, and academic remediation.",
-      "c5Name": "Senior Secondary",
-      "c5Grades": "Classes XI and XII",
-      "c5Desc": "Science (PCM/PCB), Commerce, and Humanities with integrated competitive coaching."
+      "classes": [
+        {
+          "name": "Pre-Primary Foundation",
+          "grades": "Nursery, LKG, UKG",
+          "desc": "Play-based motor skills, phonics, socialization, and storytelling."
+        },
+        {
+          "name": "Primary School",
+          "grades": "Classes I to V",
+          "desc": "Foundational numeracy, literacy, hindi, environmental studies, and co-curriculars."
+        },
+        {
+          "name": "Middle School",
+          "grades": "Classes VI to VIII",
+          "desc": "Subject specialization, science labs, computer technology, and sports."
+        },
+        {
+          "name": "Secondary School",
+          "grades": "Classes IX and X",
+          "desc": "Rigorous CBSE Board syllabus, practical experiments, and academic remediation."
+        },
+        {
+          "name": "Senior Secondary",
+          "grades": "Classes XI and XII",
+          "desc": "Science (PCM/PCB), Commerce, and Humanities with integrated competitive coaching."
+        }
+      ]
     },
     "AdmissionOverviewSection": {
       "tagline": "ADMISSION OVERVIEW",
       "headline": "Begin Your Child's Learning",
       "scriptAccent": "Journey with LFCS",
-      "paragraph1": "Choosing the right school is an important decision for every family. At Little Flower Group of Schools, we believe that education should prepare children not only for academic success but also for the opportunities and responsibilities ahead.",
-      "paragraph2": "Our approach combines structured learning, value-based education and opportunities for students to discover their abilities, develop confidence and grow into responsible individuals across our 8 campuses.",
-      "p1Title": "Structured Learning",
-      "p1Text": "A strong academic base built step by step.",
-      "p2Title": "Value-Based Education",
-      "p2Text": "Character, ethics, and civic responsibility alongside academics.",
-      "p3Title": "Room to Discover",
-      "p3Text": "Opportunities to find passions and build genuine self-confidence.",
-      "p4Title": "8 Premier Campuses",
-      "p4Text": "Quality education accessible for more families and communities."
+      "overview": "Choosing the right school is an important decision for every family. At Little Flower Group of Schools, we believe that education should prepare children not only for academic success but also for the opportunities and responsibilities ahead.\n\nOur approach combines structured learning, value-based education and opportunities for students to discover their abilities, develop confidence and grow into responsible individuals across our 8 campuses.",
+      "pillars": [
+        {
+          "title": "Structured Learning",
+          "text": "A strong academic base built step by step."
+        },
+        {
+          "title": "Value-Based Education",
+          "text": "Character, ethics, and civic responsibility alongside academics."
+        },
+        {
+          "title": "Room to Discover",
+          "text": "Opportunities to find passions and build genuine self-confidence."
+        },
+        {
+          "title": "8 Premier Campuses",
+          "text": "Quality education accessible for more families and communities."
+        }
+      ]
     },
     "AdmissionsHeroSection": {
       "tagline": "Admissions at Little Flower Group of Schools",
@@ -287,14 +401,24 @@
       "headline": "Be Part of Something",
       "scriptAccent": "Meaningful",
       "paragraph": "Working in education is an opportunity to make a difference that extends far beyond the classroom. At LFCS, every role contributes to creating a supportive learning environment.",
-      "b1Title": "Purpose-Driven Work",
-      "b1Text": "Directly shape the character and future trajectories of over 15,000 students.",
-      "b2Title": "Collaborative Environment",
-      "b2Text": "Work alongside supportive peer educators and seasoned mentors.",
-      "b3Title": "Continuous Learning",
-      "b3Text": "Regular pedagogical workshops, digital tool training, and CBSE seminars.",
-      "b4Title": "Fair Compensation & Stability",
-      "b4Text": "Competitive compensation packages, performance recognition, and provident fund security."
+      "benefits": [
+        {
+          "title": "Purpose-Driven Work",
+          "text": "Directly shape the character and future trajectories of over 15,000 students."
+        },
+        {
+          "title": "Collaborative Environment",
+          "text": "Work alongside supportive peer educators and seasoned mentors."
+        },
+        {
+          "title": "Continuous Learning",
+          "text": "Regular pedagogical workshops, digital tool training, and CBSE seminars."
+        },
+        {
+          "title": "Fair Compensation & Stability",
+          "text": "Competitive compensation packages, performance recognition, and provident fund security."
+        }
+      ]
     },
     "WorkCultureSection": {
       "tagline": "OUR WORK CULTURE",
@@ -338,12 +462,26 @@
       "tagline": "CLUBS & SOCIETIES",
       "headline": "Student Clubs & Active Co-Curriculars",
       "description": "Student-led clubs encourage teamwork, passion exploration, and leadership outside standard periods.",
-      "c1Name": "Academic Competitions & Olympiads",
-      "c2Name": "Quiz & General Knowledge Club",
-      "c3Name": "Technology & STEM Coding Lab",
-      "c4Name": "Debate & Model United Nations",
-      "c5Name": "Literary & Creative Writing Guild",
-      "c6Name": "Fine Arts & Craft Studio"
+      "clubs": [
+        {
+          "name": "Academic Competitions & Olympiads"
+        },
+        {
+          "name": "Quiz & General Knowledge Club"
+        },
+        {
+          "name": "Technology & STEM Coding Lab"
+        },
+        {
+          "name": "Debate & Model United Nations"
+        },
+        {
+          "name": "Literary & Creative Writing Guild"
+        },
+        {
+          "name": "Fine Arts & Craft Studio"
+        }
+      ]
     },
     "ExperienceCTASection": {
       "tagline": "TAKE THE NEXT STEP",
@@ -383,12 +521,22 @@
   },
   "home": {
     "CTABanners": {
-      "banner1CtaText": "Learn About Admissions",
-      "banner1CtaLink": "/admissions",
-      "banner1Image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170041/lfcs-school/life2_1793170041503.webp",
-      "banner2CtaText": "Partner With Us",
-      "banner2CtaLink": "/start-school",
-      "banner2Image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170008/lfcs-school/school-associate-launch_1793170008299.webp"
+      "banners": [
+        {
+          "title": "Admissions Open",
+          "subtitle": "Begin your child's journey of excellence and endless possibilities across our 8 campuses.",
+          "ctaText": "Learn About Admissions",
+          "ctaLink": "/admissions",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170041/lfcs-school/life2_1793170041503.webp"
+        },
+        {
+          "title": "Start a School",
+          "subtitle": "Partner with our 40-year legacy to bring quality, values-based CBSE education to your city.",
+          "ctaText": "Partner With Us",
+          "ctaLink": "/start-school",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170008/lfcs-school/school-associate-launch_1793170008299.webp"
+        }
+      ]
     },
     "ExperienceSection": {
       "tagline": "CAMPUS LIFE",
@@ -397,9 +545,20 @@
       "subtitle": "Beyond classrooms, our campuses buzz with sporting tournaments, science fairs, performing arts, and joyful discovery.",
       "ctaText": "Explore Student Life",
       "ctaLink": "/experience",
-      "col1Image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170031/lfcs-school/Experience1_1793170031351.webp",
-      "col2Image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170032/lfcs-school/Experience4_1793170032205.webp",
-      "col3Image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170033/lfcs-school/Experience7_1793170033133.webp"
+      "photos": [
+        {
+          "label": "Sports & Outdoors",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170031/lfcs-school/Experience1_1793170031351.webp"
+        },
+        {
+          "label": "Labs & Tech Integration",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170032/lfcs-school/Experience4_1793170032205.webp"
+        },
+        {
+          "label": "Arts & Performing Culture",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170033/lfcs-school/Experience7_1793170033133.webp"
+        }
+      ]
     },
     "HeroSection": {
       "headline": "Rooted in Values.",
@@ -410,14 +569,6 @@
       "primaryCtaLink": "/our-school",
       "secondaryCtaText": "Start a School",
       "secondaryCtaLink": "/start-school",
-      "stat1Value": "40000+",
-      "stat1Label": "Students Enrolled",
-      "stat2Value": "40+",
-      "stat2Label": "Years of Excellence",
-      "stat3Value": "8",
-      "stat3Label": "Schools Across UP",
-      "stat4Value": "100%",
-      "stat4Label": "Pass Rate (CBSE Board)",
       "stats": [
         {
           "value": "40000+",
@@ -443,14 +594,6 @@
       "scriptAccent": "Classrooms",
       "subtitle": "We blend strong academics with innovation and creativity to nurture curious minds and confident hearts.",
       "mainImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170022/lfcs-school/collabrative_1793170021825.webp",
-      "pillar1Title": "Experiential Learning",
-      "pillar1Desc": "Hands-on learning that builds curiosity.",
-      "pillar2Title": "Academic Excellence",
-      "pillar2Desc": "Strong foundation with personalized support.",
-      "pillar3Title": "Technology & Innovation",
-      "pillar3Desc": "Smart classrooms and digital integration.",
-      "pillar4Title": "Holistic Growth",
-      "pillar4Desc": "Sports, arts and life skills for total development.",
       "pillars": [
         {
           "title": "Experiential Learning",
@@ -473,16 +616,22 @@
     "NoteOfSupportSection": {
       "tagline": "Notes of Support",
       "headline": "Voices That Believe in Our Journey",
-      "person1Name": "Sharman Joshi",
-      "person1Role": "Actor & LFCS Supporter",
-      "person1Headline": "Some journeys are worth supporting because of the trust behind them.",
-      "person1Quote": "I am happy to extend my support to Little Flower Children School and its journey towards making quality education accessible to more children and families.",
-      "person1Image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170012/lfcs-school/sharman-joshi_1793170012349.webp",
-      "person2Name": "Mr. Anand Kumar",
-      "person2Role": "Mathematician & Founder, Super 30",
-      "person2Headline": "Education can change the direction of a child's life.",
-      "person2Quote": "Quality education must reach the children who need it most. I wish LFCS the very best as it takes this important vision across India.",
-      "person2Image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170011/lfcs-school/anand-kumar_1793170011282.webp"
+      "endorsements": [
+        {
+          "name": "Sharman Joshi",
+          "role": "Actor & LFCS Supporter",
+          "headline": "Some journeys are worth supporting because of the trust behind them.",
+          "quote": "I am happy to extend my support to Little Flower Children School and its journey towards making quality education accessible to more children and families.",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170012/lfcs-school/sharman-joshi_1793170012349.webp"
+        },
+        {
+          "name": "Mr. Anand Kumar",
+          "role": "Mathematician & Founder, Super 30",
+          "headline": "Education can change the direction of a child's life.",
+          "quote": "Quality education must reach the children who need it most. I wish LFCS the very best as it takes this important vision across India.",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170011/lfcs-school/anand-kumar_1793170011282.webp"
+        }
+      ]
     },
     "OurApproachSection": {
       "tagline": "OUR APPROACH",
@@ -491,18 +640,6 @@
       "subtitle": "Not just academics we prepare children for life, with knowledge, character and curiosity.",
       "ctaText": "Explore Academics",
       "ctaLink": "/academics",
-      "card1Title": "Communication Skills",
-      "card1Desc": "Public speaking, debate, and bilingual articulate expression.",
-      "card1Image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170018/lfcs-school/skills1_1793170017926.webp",
-      "card2Title": "Problem Solving & Logic",
-      "card2Desc": "STEM-oriented scientific enquiry and analytical reasoning.",
-      "card2Image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170029/lfcs-school/skills2_1793170028638.webp",
-      "card3Title": "Emotional Resilience",
-      "card3Desc": "Mindfulness, self-awareness, and value-based moral balance.",
-      "card3Image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170036/lfcs-school/skills3_1793170036462.webp",
-      "card4Title": "Leadership & Ethics",
-      "card4Desc": "Student council, community outreach, and peer mentorship.",
-      "card4Image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170039/lfcs-school/skills4_1793170038535.webp",
       "cards": [
         {
           "title": "Communication Skills",
@@ -540,15 +677,6 @@
       "description": "Our schools are places where children discover their potential, nurture their dreams and grow into confident, compassionate and responsible global citizens.",
       "ctaText": "Know More About Us",
       "ctaLink": "/about",
-      "feature1Title": "Strong Academics",
-      "feature1Desc": "CBSE curriculum with future ready learning.",
-      "feature1Image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170028/lfcs-school/practical_1793170027731.webp",
-      "feature2Title": "Holistic Growth",
-      "feature2Desc": "Sports, arts, life skills and leadership opportunities.",
-      "feature2Image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170040/lfcs-school/life1_1793170040339.webp",
-      "feature3Title": "Future Ready",
-      "feature3Desc": "Innovation, technology and 21st century skills.",
-      "feature3Image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170019/lfcs-school/digital-classroom_1793170018820.webp",
       "cards": [
         {
           "title": "Strong Academics",
@@ -573,76 +701,138 @@
       "tagline": "INFRASTRUCTURE & CAPITAL PLANNING",
       "headline": "Planning the Resources for Your School",
       "subtitle": "Capital allocation is phased to ensure fiscal sustainability, aligned with CBSE minimum campus norms and student intake velocity.",
-      "inv1Title": "Land & Site Acquisition",
-      "inv1Desc": "1.5 to 3+ acres with safe, accessible road connectivity, clear non-agricultural title, and playground space.",
-      "inv1Image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170001/lfcs-school/Nizamuddinpura-Mau_1793169999785.webp",
-      "inv2Title": "Academic Building & Classrooms",
-      "inv2Desc": "Spacious, well-ventilated 500 sq.ft classrooms, administrative wing, staff rooms, and infirmary.",
-      "inv2Image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170002/lfcs-school/Sikatia-Mau_1793170001648.webp",
-      "inv3Title": "Laboratories & Technology Integration",
-      "inv3Desc": "Physics, Chemistry, Biology, Mathematics, and Computer labs with digital interactive flat panels.",
-      "inv3Image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170016/lfcs-school/computer-lab_1793170016129.webp",
-      "inv4Title": "Sports Complexes & Working Capital",
-      "inv4Desc": "Outdoor athletic field, basketball court, indoor games room, school buses, and preliminary operating reserve.",
-      "inv4Image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170017/lfcs-school/sports1_1793170017007.webp"
+      "heads": [
+        {
+          "title": "Land & Site Acquisition",
+          "desc": "1.5 to 3+ acres with safe, accessible road connectivity, clear non-agricultural title, and playground space.",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170001/lfcs-school/Nizamuddinpura-Mau_1793169999785.webp"
+        },
+        {
+          "title": "Academic Building & Classrooms",
+          "desc": "Spacious, well-ventilated 500 sq.ft classrooms, administrative wing, staff rooms, and infirmary.",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170002/lfcs-school/Sikatia-Mau_1793170001648.webp"
+        },
+        {
+          "title": "Laboratories & Technology Integration",
+          "desc": "Physics, Chemistry, Biology, Mathematics, and Computer labs with digital interactive flat panels.",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170016/lfcs-school/computer-lab_1793170016129.webp"
+        },
+        {
+          "title": "Sports Complexes & Working Capital",
+          "desc": "Outdoor athletic field, basketball court, indoor games room, school buses, and preliminary operating reserve.",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170017/lfcs-school/sports1_1793170017007.webp"
+        }
+      ]
     },
     "PartnerRequirementsSection": {
       "tagline": "PARTNER PROFILE & ELIGIBILITY",
       "headline": "Who Can Explore an",
       "scriptAccent": "LFCS Partnership?",
       "subtitle": "We welcome visionary individuals, trusts, corporate CSR bodies, and educational societies dedicated to uplifting local educational standards.",
-      "req1Title": "Commitment to Education",
-      "req1Desc": "A sincere interest in contributing to children's character, academic growth, and regional development.",
-      "req2Title": "Management & Leadership Capability",
-      "req2Desc": "Capacity to organize, recruit, and supervise daily administrative and operational personnel.",
-      "req3Title": "Infrastructure & Land Readiness",
-      "req3Desc": "Access to 1.5 to 3+ acres of suitable land or constructed school premises adhering to CBSE affiliation norms.",
-      "req4Title": "Financial Preparedness",
-      "req4Desc": "Adequate investment capability for phase-wise campus construction, lab setup, and working capital.",
-      "req5Title": "Long-Term Vision",
-      "req5Desc": "A multi-year commitment to maintaining high educational integrity, discipline, and community standing."
+      "requirements": [
+        {
+          "title": "Commitment to Education",
+          "desc": "A sincere interest in contributing to children's character, academic growth, and regional development."
+        },
+        {
+          "title": "Management & Leadership Capability",
+          "desc": "Capacity to organize, recruit, and supervise daily administrative and operational personnel."
+        },
+        {
+          "title": "Infrastructure & Land Readiness",
+          "desc": "Access to 1.5 to 3+ acres of suitable land or constructed school premises adhering to CBSE affiliation norms."
+        },
+        {
+          "title": "Financial Preparedness",
+          "desc": "Adequate investment capability for phase-wise campus construction, lab setup, and working capital."
+        },
+        {
+          "title": "Long-Term Vision",
+          "desc": "A multi-year commitment to maintaining high educational integrity, discipline, and community standing."
+        }
+      ]
     },
     "SchoolModelSection": {
       "tagline": "LFCS SCHOOL MODEL",
       "headline": "A Partnership Built Around",
       "scriptAccent": "Education",
       "subtitle": "A transparent institutional framework designed to align academic excellence, school administration, and sustainable local community impact.",
-      "area1Title": "Educational Framework",
-      "area1Desc": "Full alignment with the LFCS pedagogical approach, student evaluations, and school values.",
-      "area2Title": "School Management System",
-      "area2Desc": "Clear delineation of operational responsibilities, ERP deployment, and administration.",
-      "area3Title": "Academic Structure",
-      "area3Desc": "Continuous guidance on CBSE curriculum rollout, teacher training, and timetable management.",
-      "area4Title": "Brand Identity Standards",
-      "area4Desc": "Authorized usage of LFCS logos, school uniforms, signage, and marketing collaterals.",
-      "area5Title": "Campus Development Coordination",
-      "area5Desc": "Architectural blueprints, laboratory layouts, safety clearances, and sports ground setup."
+      "areas": [
+        {
+          "title": "Educational Framework",
+          "desc": "Full alignment with the LFCS pedagogical approach, student evaluations, and school values."
+        },
+        {
+          "title": "School Management System",
+          "desc": "Clear delineation of operational responsibilities, ERP deployment, and administration."
+        },
+        {
+          "title": "Academic Structure",
+          "desc": "Continuous guidance on CBSE curriculum rollout, teacher training, and timetable management."
+        },
+        {
+          "title": "Brand Identity Standards",
+          "desc": "Authorized usage of LFCS logos, school uniforms, signage, and marketing collaterals."
+        },
+        {
+          "title": "Campus Development Coordination",
+          "desc": "Architectural blueprints, laboratory layouts, safety clearances, and sports ground setup."
+        }
+      ]
     },
     "SetupProcessSection": {
       "tagline": "SCHOOL SETUP ROADMAP",
       "headline": "From Initial Planning to",
       "scriptAccent": "Grand Opening",
       "subtitle": "Establishing a CBSE school requires disciplined milestone planning. Our structured 8-step roadmap guides your project smoothly from proposal to student admissions.",
-      "step1": "01. Initial Enquiry & Location Feasibility",
-      "step2": "02. Leadership Evaluation & Preliminary Discussions",
-      "step3": "03. Site Survey & Infrastructure Blueprints",
-      "step4": "04. Associate Agreement & Territory Finalisation",
-      "step5": "05. Campus Civil Construction & Lab Setup",
-      "step6": "06. Principal & Faculty Recruitment & Training",
-      "step7": "07. Admissions Campaign Launch & School Readiness Audit",
-      "step8": "08. Inaugural Opening & Commencement of Classes"
+      "steps": [
+        {
+          "title": "01. Initial Enquiry & Location Feasibility"
+        },
+        {
+          "title": "02. Leadership Evaluation & Preliminary Discussions"
+        },
+        {
+          "title": "03. Site Survey & Infrastructure Blueprints"
+        },
+        {
+          "title": "04. Associate Agreement & Territory Finalisation"
+        },
+        {
+          "title": "05. Campus Civil Construction & Lab Setup"
+        },
+        {
+          "title": "06. Principal & Faculty Recruitment & Training"
+        },
+        {
+          "title": "07. Admissions Campaign Launch & School Readiness Audit"
+        },
+        {
+          "title": "08. Inaugural Opening & Commencement of Classes"
+        }
+      ]
     },
     "StartSchoolFaqSection": {
       "tagline": "FREQUENTLY ASKED QUESTIONS",
       "headline": "Everything You Need to Know About Starting an LFCS School",
-      "faq1Q": "Who can apply to start an LFCS school?",
-      "faq1A": "Individual entrepreneurs, registered charitable trusts, educational societies, and corporate CSR entities with dedicated resources for establishing educational institutions.",
-      "faq2Q": "What is the minimum land requirement?",
-      "faq2A": "Typically 1.5 to 3 acres depending on city classification, following CBSE affiliation bylaws for playground and built-up area.",
-      "faq3Q": "Does LFCS assist with teacher recruitment and principal onboarding?",
-      "faq3A": "Yes. LFCS central academic council conducts principal search interviews, teacher screening tests, and intensive initial training bootcamps.",
-      "faq4Q": "How long does the entire setup process take?",
-      "faq4A": "Depending on existing infrastructure readiness, setup typically spans 6 to 12 months from agreement signing to the commencement of the academic session."
+      "faqs": [
+        {
+          "question": "Who can apply to start an LFCS school?",
+          "answer": "Individual entrepreneurs, registered charitable trusts, educational societies, and corporate CSR entities with dedicated resources for establishing educational institutions."
+        },
+        {
+          "question": "What is the minimum land requirement?",
+          "answer": "Typically 1.5 to 3 acres depending on city classification, following CBSE affiliation bylaws for playground and built-up area."
+        },
+        {
+          "question": "Does LFCS assist with teacher recruitment and principal onboarding?",
+          "answer": "Yes. LFCS central academic council conducts principal search interviews, teacher screening tests, and intensive initial training bootcamps."
+        },
+        {
+          "question": "How long does the entire setup process take?",
+          "answer": "Depending on existing infrastructure readiness, setup typically spans 6 to 12 months from agreement signing to the commencement of the academic session."
+        }
+      ]
     },
     "StartSchoolFinalCTASection": {
       "heading": "Build a School With a Shared Educational Purpose",
@@ -661,28 +851,46 @@
       "tagline": "PARTNERSHIP LIFECYCLE",
       "headline": "Comprehensive Support Across All Setup Stages",
       "subtitle": "From initial land layout through grand opening and ongoing annual academic audits, LFCS supports your school at every step.",
-      "stage1Title": "Stage 1: Pre-Launch Support",
-      "stage1Items": "School Planning & Architectural Layouts, Academic Structure & Timetable Blueprint, Brand Identity Guidelines, Faculty Recruitment & Induction Workshops",
-      "stage2Title": "Stage 2: Launch Support",
-      "stage2Items": "Admissions Planning & Outreach Strategy, School Readiness Inspection, Marketing Campaigns & Launch Collaterals, Press Announcements",
-      "stage3Title": "Stage 3: Post-Launch & Ongoing Support",
-      "stage3Items": "Annual Academic Quality Audits, Regular Teacher Training Programs, Curriculum Updates, Inter-School Sports & Cultural Leagues Participation"
+      "stages": [
+        {
+          "title": "Stage 1: Pre-Launch Support",
+          "items": "School Planning & Architectural Layouts, Academic Structure & Timetable Blueprint, Brand Identity Guidelines, Faculty Recruitment & Induction Workshops"
+        },
+        {
+          "title": "Stage 2: Launch Support",
+          "items": "Admissions Planning & Outreach Strategy, School Readiness Inspection, Marketing Campaigns & Launch Collaterals, Press Announcements"
+        },
+        {
+          "title": "Stage 3: Post-Launch & Ongoing Support",
+          "items": "Annual Academic Quality Audits, Regular Teacher Training Programs, Curriculum Updates, Inter-School Sports & Cultural Leagues Participation"
+        }
+      ]
     },
     "WhyPartnerSection": {
       "tagline": "WHY PARTNER WITH US",
       "headline": "A Partnership Built on Trust & Academic Prestige",
-      "r1Title": "Established Brand Heritage",
-      "r1Desc": "40+ years of parental trust, recognizable emblem, and alumni network.",
-      "r1Image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170014/lfcs-school/journey-lfis-mau_1793170014137.webp",
-      "r2Title": "Turnkey Curriculum Framework",
-      "r2Desc": "NCERT/CBSE lesson plans, pedagogical handbooks, teacher guides, and assessment schemes.",
-      "r2Image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170028/lfcs-school/practical_1793170027731.webp",
-      "r3Title": "Operational Guidance",
-      "r3Desc": "End-to-end guidance across school architecture, lab design, bus transport, and regulatory compliance.",
-      "r3Image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170008/lfcs-school/school-associate-launch_1793170008299.webp",
-      "r4Title": "Marketing & Admissions Engine",
-      "r4Desc": "High-visibility launch PR campaigns, digital lead generation, and Anand Kumar endorsement collaterals.",
-      "r4Image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170010/lfcs-school/anand-kumar-felicitation_1793170010248.webp"
+      "advantages": [
+        {
+          "title": "Established Brand Heritage",
+          "desc": "40+ years of parental trust, recognizable emblem, and alumni network.",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170014/lfcs-school/journey-lfis-mau_1793170014137.webp"
+        },
+        {
+          "title": "Turnkey Curriculum Framework",
+          "desc": "NCERT/CBSE lesson plans, pedagogical handbooks, teacher guides, and assessment schemes.",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170028/lfcs-school/practical_1793170027731.webp"
+        },
+        {
+          "title": "Operational Guidance",
+          "desc": "End-to-end guidance across school architecture, lab design, bus transport, and regulatory compliance.",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170008/lfcs-school/school-associate-launch_1793170008299.webp"
+        },
+        {
+          "title": "Marketing & Admissions Engine",
+          "desc": "High-visibility launch PR campaigns, digital lead generation, and Anand Kumar endorsement collaterals.",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170010/lfcs-school/anand-kumar-felicitation_1793170010248.webp"
+        }
+      ]
     }
   },
   "gallery": {

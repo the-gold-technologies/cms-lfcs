@@ -105,19 +105,8 @@ export function AdmissionOverviewSection({ initialData }: { initialData?: any })
           tagline,
           headline,
           scriptAccent,
-          overview, // Single narrative with white line space between paragraphs!
-          // Backward compatibility:
-          paragraph1: paragraphs[0] ?? "",
-          paragraph2: paragraphs[1] ?? "",
+          overview,
           pillars,
-          p1Title: pillars[0]?.title ?? "",
-          p1Text: pillars[0]?.desc ?? "",
-          p2Title: pillars[1]?.title ?? "",
-          p2Text: pillars[1]?.desc ?? "",
-          p3Title: pillars[2]?.title ?? "",
-          p3Text: pillars[2]?.desc ?? "",
-          p4Title: pillars[3]?.title ?? "",
-          p4Text: pillars[3]?.desc ?? "",
         },
       };
 

@@ -114,18 +114,7 @@ export function LeadershipSection({ initialData }: { initialData?: any }) {
           tagline,
           headline,
           subtitle,
-          leaders, // dynamic array object!
-          // Backward compatibility:
-          founderName: leaders[0]?.name ?? "",
-          founderTitle: leaders[0]?.role ?? "",
-          founderQuote: leaders[0]?.quote ?? "",
-          founderBio: leaders[0]?.bio ?? "",
-          founderImage: leaders[0]?.image ?? "",
-          directorName: leaders[1]?.name ?? "",
-          directorTitle: leaders[1]?.role ?? "",
-          directorQuote: leaders[1]?.quote ?? "",
-          directorBio: leaders[1]?.bio ?? "",
-          directorImage: leaders[1]?.image ?? "",
+          leaders,
         },
       };
 

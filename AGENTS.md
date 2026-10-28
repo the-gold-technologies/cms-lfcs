@@ -12,3 +12,4 @@ It is built strictly adhering to the architectural patterns established in `koka
 3. **Preserve Resilient Fallback**: Always maintain zero-downtime static fallbacks in `lfcs-school/src/lib/content.ts` so the live school website never breaks if the CMS is offline.
 4. **Sharp Image Optimization**: Never upload uncompressed image buffers directly to Cloudinary. Always process through `sharp` (WebP conversion + max 2000px downscale).
 5. **Component Parity**: Any changes to frontend sections in `lfcs-school` must be mirrored in `src/app/static-pages/` editors in `lfcs-school-cms`.
+6. **Empty Value Fallbacks**: Always provide an empty value (`""`, `[]`, or `{}`) at logical OR (`||` / `??`) fallback options (e.g. `initialData?.field || ""` or `?? ""`) and include empty `<option value="">` in select elements.

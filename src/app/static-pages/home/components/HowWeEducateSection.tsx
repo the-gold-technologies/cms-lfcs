@@ -100,16 +100,7 @@ export function HowWeEducateSection({ initialData }: { initialData?: any }) {
           scriptAccent,
           subtitle,
           mainImage,
-          pillars, // Array object!
-          // Backward compatibility:
-          pillar1Title: pillars[0]?.title ?? "",
-          pillar1Desc: pillars[0]?.desc ?? "",
-          pillar2Title: pillars[1]?.title ?? "",
-          pillar2Desc: pillars[1]?.desc ?? "",
-          pillar3Title: pillars[2]?.title ?? "",
-          pillar3Desc: pillars[2]?.desc ?? "",
-          pillar4Title: pillars[3]?.title ?? "",
-          pillar4Desc: pillars[3]?.desc ?? "",
+          pillars,
         },
       };
 

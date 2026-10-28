@@ -113,20 +113,7 @@ export function WhyPartnerSection({ initialData }: { initialData?: any }) {
         content: {
           tagline,
           headline,
-          advantages, // Array object!
-          // Backward compatibility:
-          r1Title: advantages[0]?.title ?? "",
-          r1Desc: advantages[0]?.desc ?? "",
-          r1Image: advantages[0]?.image ?? "",
-          r2Title: advantages[1]?.title ?? "",
-          r2Desc: advantages[1]?.desc ?? "",
-          r2Image: advantages[1]?.image ?? "",
-          r3Title: advantages[2]?.title ?? "",
-          r3Desc: advantages[2]?.desc ?? "",
-          r3Image: advantages[2]?.image ?? "",
-          r4Title: advantages[3]?.title ?? "",
-          r4Desc: advantages[3]?.desc ?? "",
-          r4Image: advantages[3]?.image ?? "",
+          advantages,
         },
       };
 

@@ -2,10 +2,16 @@
 
 import React, { useState, useEffect } from "react";
 import toast from "react-hot-toast";
+import { Plus, Trash2 } from "lucide-react";
 import { SectionHeader } from "@/components/SectionHeader";
 import { InputField } from "@/components/InputField";
 import { TextAreaField } from "@/components/TextAreaField";
 import { SaveButton } from "@/components/SaveButton";
+
+interface WorkBenefit {
+  title: string;
+  text: string;
+}
 
 export function WhyWorkWithUsSection({ initialData }: { initialData?: any }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,14 +23,7 @@ export function WhyWorkWithUsSection({ initialData }: { initialData?: any }) {
   const [scriptAccent, setScriptAccent] = useState("");
   const [paragraph, setParagraph] = useState("");
 
-  const [b1Title, setB1Title] = useState("");
-  const [b1Text, setB1Text] = useState("");
-  const [b2Title, setB2Title] = useState("");
-  const [b2Text, setB2Text] = useState("");
-  const [b3Title, setB3Title] = useState("");
-  const [b3Text, setB3Text] = useState("");
-  const [b4Title, setB4Title] = useState("");
-  const [b4Text, setB4Text] = useState("");
+  const [benefits, setBenefits] = useState<WorkBenefit[]>([]);
 
   useEffect(() => {
     if (initialData) {
@@ -36,27 +35,65 @@ export function WhyWorkWithUsSection({ initialData }: { initialData?: any }) {
           "Working in education is an opportunity to make a difference that extends far beyond the classroom. At LFCS, every role contributes to creating a supportive learning environment.",
       );
 
-      setB1Title(initialData.b1Title ?? "Purpose-Driven Work");
-      setB1Text(
-        initialData.b1Text ??
-          "Directly shape the character and future trajectories of over 15,000 students.",
-      );
-      setB2Title(initialData.b2Title ?? "Collaborative Environment");
-      setB2Text(
-        initialData.b2Text ?? "Work alongside supportive peer educators and seasoned mentors.",
-      );
-      setB3Title(initialData.b3Title ?? "Continuous Learning");
-      setB3Text(
-        initialData.b3Text ??
-          "Regular pedagogical workshops, digital tool training, and CBSE seminars.",
-      );
-      setB4Title(initialData.b4Title ?? "Fair Compensation & Stability");
-      setB4Text(
-        initialData.b4Text ??
-          "Competitive compensation packages, performance recognition, and provident fund security.",
-      );
+      if (Array.isArray(initialData.benefits) && initialData.benefits.length > 0) {
+        setBenefits(
+          initialData.benefits.map((b: any) => ({
+            title: b.title ?? "",
+            text: b.text ?? "",
+          })),
+        );
+      } else {
+        setBenefits([
+          {
+            title: initialData.b1Title ?? "Purpose-Driven Work",
+            text:
+              initialData.b1Text ??
+              "Directly shape the character and future trajectories of over 15,000 students.",
+          },
+          {
+            title: initialData.b2Title ?? "Collaborative Environment",
+            text:
+              initialData.b2Text ??
+              "Work alongside supportive peer educators and seasoned mentors.",
+          },
+          {
+            title: initialData.b3Title ?? "Continuous Learning",
+            text:
+              initialData.b3Text ??
+              "Regular pedagogical workshops, digital tool training, and CBSE seminars.",
+          },
+          {
+            title: initialData.b4Title ?? "Fair Compensation & Stability",
+            text:
+              initialData.b4Text ??
+              "Competitive compensation packages, performance recognition, and provident fund security.",
+          },
+        ]);
+      }
     }
   }, [initialData]);
+
+  const handleAddBenefit = () => {
+    setBenefits((prev) => [
+      ...prev,
+      {
+        title: "",
+        text: "",
+      },
+    ]);
+  };
+
+  const handleRemoveBenefit = (index: number) => {
+    setBenefits((prev) => prev.filter((_, i) => i !== index));
+  };
+
+  const handleUpdateBenefit = (index: number, field: keyof WorkBenefit, val: string) => {
+    setBenefits((prev) => {
+      const copy = [...prev];
+      copy[index] = { ...copy[index], [field]: val };
+      return copy;
+    });
+  };
 
   const handleSave = async () => {
     setLoading(true);
@@ -68,14 +105,7 @@ export function WhyWorkWithUsSection({ initialData }: { initialData?: any }) {
           headline,
           scriptAccent,
           paragraph,
-          b1Title,
-          b1Text,
-          b2Title,
-          b2Text,
-          b3Title,
-          b3Text,
-          b4Title,
-          b4Text,
+          benefits,
         },
       };
 
@@ -103,7 +133,7 @@ export function WhyWorkWithUsSection({ initialData }: { initialData?: any }) {
   return (
     <div className="bg-white rounded-3xl p-6 shadow-sm ring-1 ring-gray-100 flex flex-col gap-6">
       <SectionHeader
-        title="2. Why Work With LFCS (4 Professional Advantages)"
+        title="2. Why Work With LFCS (Professional Advantages)"
         description="Highlights workplace benefits: Purpose-Driven Work, Collaborative Culture, Professional Development, and Stability."
         badge="Live Section"
         isOpen={isOpen}
@@ -137,79 +167,81 @@ export function WhyWorkWithUsSection({ initialData }: { initialData?: any }) {
             label="Section Narrative"
             value={paragraph}
             onChange={(e) => setParagraph(e.target.value)}
-            rows={2}
-            placeholder="e.g. Value proposition for teachers and staff..."
+            rows={3}
+            placeholder="e.g. Workplace philosophy and impact overview..."
           />
 
-          <div className="border-t border-gray-100 pt-5">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-4">
-              4 Professional Highlights
-            </h4>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="p-4 bg-gray-50/70 rounded-2xl border border-gray-100 space-y-2">
-                <InputField
-                  label="Highlight 1 Title"
-                  value={b1Title}
-                  onChange={(e) => setB1Title(e.target.value)}
-                  placeholder="e.g. Purpose-Driven Work"
-                />
-                <TextAreaField
-                  label="Description"
-                  value={b1Text}
-                  onChange={(e) => setB1Text(e.target.value)}
-                  rows={2}
-                  placeholder="e.g. Impact details..."
-                />
+          {/* DYNAMIC BENEFITS ARRAY */}
+          <div className="border-t border-gray-100 pt-5 space-y-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <h4 className="text-xs font-bold uppercase tracking-wider text-gray-700 flex items-center gap-2">
+                  Workplace Benefits ({benefits.length})
+                </h4>
+                <p className="text-[11px] text-gray-400 mt-0.5">
+                  Professional development and cultural perks. Can add more perks.
+                </p>
               </div>
-
-              <div className="p-4 bg-gray-50/70 rounded-2xl border border-gray-100 space-y-2">
-                <InputField
-                  label="Highlight 2 Title"
-                  value={b2Title}
-                  onChange={(e) => setB2Title(e.target.value)}
-                  placeholder="e.g. Collaborative Culture"
-                />
-                <TextAreaField
-                  label="Description"
-                  value={b2Text}
-                  onChange={(e) => setB2Text(e.target.value)}
-                  rows={2}
-                  placeholder="e.g. Teamwork details..."
-                />
-              </div>
-
-              <div className="p-4 bg-gray-50/70 rounded-2xl border border-gray-100 space-y-2">
-                <InputField
-                  label="Highlight 3 Title"
-                  value={b3Title}
-                  onChange={(e) => setB3Title(e.target.value)}
-                  placeholder="e.g. Continuous Learning"
-                />
-                <TextAreaField
-                  label="Description"
-                  value={b3Text}
-                  onChange={(e) => setB3Text(e.target.value)}
-                  rows={2}
-                  placeholder="e.g. Training workshops..."
-                />
-              </div>
-
-              <div className="p-4 bg-gray-50/70 rounded-2xl border border-gray-100 space-y-2">
-                <InputField
-                  label="Highlight 4 Title"
-                  value={b4Title}
-                  onChange={(e) => setB4Title(e.target.value)}
-                  placeholder="e.g. Compensation & Stability"
-                />
-                <TextAreaField
-                  label="Description"
-                  value={b4Text}
-                  onChange={(e) => setB4Text(e.target.value)}
-                  rows={2}
-                  placeholder="e.g. Salary, PF, and stability..."
-                />
-              </div>
+              <button
+                type="button"
+                onClick={handleAddBenefit}
+                className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0E5A60] hover:text-[#061C29] bg-[#0E5A60]/10 hover:bg-[#0E5A60]/20 px-3.5 py-1.5 rounded-xl transition-all cursor-pointer shadow-2xs"
+              >
+                <Plus className="w-3.5 h-3.5" />
+                <span>Add Benefit</span>
+              </button>
             </div>
+
+            {benefits.length === 0 ? (
+              <div
+                onClick={handleAddBenefit}
+                className="p-8 rounded-2xl bg-gray-50/70 border border-dashed border-gray-200 text-center text-xs text-gray-400 cursor-pointer hover:bg-gray-100/70 hover:border-gray-300 transition-all flex flex-col items-center justify-center gap-2"
+              >
+                <Plus className="w-5 h-5 text-gray-400" />
+                <span>No perks added yet. Click to add your first advantage.</span>
+              </div>
+            ) : (
+              <div className="space-y-4">
+                {benefits.map((b, idx) => (
+                  <div
+                    key={idx}
+                    className="p-5 bg-gray-50/70 hover:bg-gray-50 rounded-2xl border border-gray-200/80 space-y-3.5 relative transition-all group"
+                  >
+                    <div className="flex items-center justify-between border-b border-gray-200/60 pb-2">
+                      <span className="text-xs font-bold text-[#0E5A60] flex items-center gap-2">
+                        <span className="w-5 h-5 rounded-full bg-[#0E5A60]/10 flex items-center justify-center text-[10px] font-black">
+                          {idx + 1}
+                        </span>
+                        Advantage #{idx + 1}: {b.title || "Untitled Advantage"}
+                      </span>
+                      <button
+                        type="button"
+                        onClick={() => handleRemoveBenefit(idx)}
+                        className="p-1 text-gray-400 hover:text-red-600 rounded-lg hover:bg-red-50 transition-colors cursor-pointer"
+                        title="Delete Advantage"
+                      >
+                        <Trash2 className="w-3.5 h-3.5" />
+                      </button>
+                    </div>
+
+                    <InputField
+                      label="Benefit Title"
+                      value={b.title}
+                      onChange={(e) => handleUpdateBenefit(idx, "title", e.target.value)}
+                      placeholder="e.g. Purpose-Driven Work"
+                    />
+
+                    <TextAreaField
+                      label="Benefit Description"
+                      value={b.text}
+                      onChange={(e) => handleUpdateBenefit(idx, "text", e.target.value)}
+                      rows={2}
+                      placeholder="e.g. Directly shape character and learning outcomes..."
+                    />
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
 
           <div className="pt-4 border-t border-gray-100 w-full">

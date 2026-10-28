@@ -91,15 +91,8 @@ export function OurStorySection({ initialData }: { initialData?: any }) {
           tagline,
           headline,
           scriptAccent,
-          story, // Single narrative with white line space between paragraphs!
-          // Backward compatibility:
-          paragraph1: paragraphs[0] ?? "",
-          paragraph2: paragraphs[1] ?? "",
+          story,
           stats,
-          stat1Number: stats[0]?.value ?? "",
-          stat1Text: stats[0]?.label ?? "",
-          stat2Number: stats[1]?.value ?? "",
-          stat2Text: stats[1]?.label ?? "",
         },
       };
 

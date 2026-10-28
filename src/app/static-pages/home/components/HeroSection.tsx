@@ -116,16 +116,7 @@ export function HeroSection({ initialData }: { initialData?: any }) {
           primaryCtaLink,
           secondaryCtaText,
           secondaryCtaLink,
-          stats, // Array object!
-          // Backward compatibility:
-          stat1Value: stats[0]?.value ?? "",
-          stat1Label: stats[0]?.label ?? "",
-          stat2Value: stats[1]?.value ?? "",
-          stat2Label: stats[1]?.label ?? "",
-          stat3Value: stats[2]?.value ?? "",
-          stat3Label: stats[2]?.label ?? "",
-          stat4Value: stats[3]?.value ?? "",
-          stat4Label: stats[3]?.label ?? "",
+          stats,
         },
       };
 

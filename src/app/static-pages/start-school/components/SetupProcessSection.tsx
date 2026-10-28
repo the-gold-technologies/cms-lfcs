@@ -85,16 +85,7 @@ export function SetupProcessSection({ initialData }: { initialData?: any }) {
           headline,
           scriptAccent,
           subtitle,
-          steps, // Array object!
-          // Backward compatibility:
-          step1: steps[0]?.title ?? "",
-          step2: steps[1]?.title ?? "",
-          step3: steps[2]?.title ?? "",
-          step4: steps[3]?.title ?? "",
-          step5: steps[4]?.title ?? "",
-          step6: steps[5]?.title ?? "",
-          step7: steps[6]?.title ?? "",
-          step8: steps[7]?.title ?? "",
+          steps,
         },
       };
 

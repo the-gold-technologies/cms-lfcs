@@ -111,16 +111,7 @@ export function CurriculumSection({ initialData }: { initialData?: any }) {
           headline,
           subtitle,
           image,
-          subjects, // dynamic array object!
-          // Backward compatibility:
-          subj1Title: subjects[0]?.title ?? "",
-          subj1Desc: subjects[0]?.desc ?? "",
-          subj2Title: subjects[1]?.title ?? "",
-          subj2Desc: subjects[1]?.desc ?? "",
-          subj3Title: subjects[2]?.title ?? "",
-          subj3Desc: subjects[2]?.desc ?? "",
-          subj4Title: subjects[3]?.title ?? "",
-          subj4Desc: subjects[3]?.desc ?? "",
+          subjects,
         },
       };
 

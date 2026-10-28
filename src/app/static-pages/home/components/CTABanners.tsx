@@ -2,60 +2,95 @@
 
 import React, { useState, useEffect } from "react";
 import toast from "react-hot-toast";
+import { Plus, Trash2 } from "lucide-react";
 import { SectionHeader } from "@/components/SectionHeader";
 import { InputField } from "@/components/InputField";
 import { TextAreaField } from "@/components/TextAreaField";
 import { ImagePickerField } from "@/components/ImagePickerField";
 import { SaveButton } from "@/components/SaveButton";
 
+interface BannerItem {
+  title: string;
+  subtitle: string;
+  ctaText: string;
+  ctaLink: string;
+  image: string;
+}
+
 export function CTABanners({ initialData }: { initialData?: any }) {
   const [isOpen, setIsOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [saved, setSaved] = useState(false);
 
-  const [banner1Title, setBanner1Title] = useState("");
-  const [banner1Subtitle, setBanner1Subtitle] = useState("");
-  const [banner1CtaText, setBanner1CtaText] = useState("");
-  const [banner1CtaLink, setBanner1CtaLink] = useState("");
-  const [banner1Image, setBanner1Image] = useState("");
-
-  const [banner2Title, setBanner2Title] = useState("");
-  const [banner2Subtitle, setBanner2Subtitle] = useState("");
-  const [banner2CtaText, setBanner2CtaText] = useState("");
-  const [banner2CtaLink, setBanner2CtaLink] = useState("");
-  const [banner2Image, setBanner2Image] = useState("");
+  const [banners, setBanners] = useState<BannerItem[]>([]);
 
   useEffect(() => {
     if (initialData) {
-      setBanner1Title(
-        initialData.banner1Title ?? initialData.admissionsCtaTitle ?? "Admissions Open",
-      );
-      setBanner1Subtitle(
-        initialData.banner1Subtitle ??
-          initialData.admissionsCtaSubtitle ??
-          "Begin your child's journey of excellence and endless possibilities across our 8 campuses.",
-      );
-      setBanner1CtaText(initialData.banner1CtaText ?? "Learn About Admissions");
-      setBanner1CtaLink(initialData.banner1CtaLink ?? "/admissions");
-      setBanner1Image(
-        initialData.banner1Image ??
-          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170041/lfcs-school/life2_1793170041503.webp",
-      );
-
-      setBanner2Title(initialData.banner2Title ?? initialData.partnerCtaTitle ?? "Start a School");
-      setBanner2Subtitle(
-        initialData.banner2Subtitle ??
-          initialData.partnerCtaSubtitle ??
-          "Partner with our 40-year legacy to bring quality, values-based CBSE education to your city.",
-      );
-      setBanner2CtaText(initialData.banner2CtaText ?? "Partner With Us");
-      setBanner2CtaLink(initialData.banner2CtaLink ?? "/start-school");
-      setBanner2Image(
-        initialData.banner2Image ??
-          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170008/lfcs-school/school-associate-launch_1793170008299.webp",
-      );
+      if (Array.isArray(initialData.banners) && initialData.banners.length > 0) {
+        setBanners(
+          initialData.banners.map((b: any) => ({
+            title: b.title ?? "",
+            subtitle: b.subtitle ?? "",
+            ctaText: b.ctaText ?? "",
+            ctaLink: b.ctaLink ?? "",
+            image: b.image ?? "",
+          })),
+        );
+      } else {
+        setBanners([
+          {
+            title: initialData.banner1Title ?? initialData.admissionsCtaTitle ?? "Admissions Open",
+            subtitle:
+              initialData.banner1Subtitle ??
+              initialData.admissionsCtaSubtitle ??
+              "Begin your child's journey of excellence and endless possibilities across our 8 campuses.",
+            ctaText: initialData.banner1CtaText ?? "Learn About Admissions",
+            ctaLink: initialData.banner1CtaLink ?? "/admissions",
+            image:
+              initialData.banner1Image ??
+              "https://res.cloudinary.com/dpa93copz/image/upload/v1793170041/lfcs-school/life2_1793170041503.webp",
+          },
+          {
+            title: initialData.banner2Title ?? initialData.partnerCtaTitle ?? "Start a School",
+            subtitle:
+              initialData.banner2Subtitle ??
+              initialData.partnerCtaSubtitle ??
+              "Partner with our 40-year legacy to bring quality, values-based CBSE education to your city.",
+            ctaText: initialData.banner2CtaText ?? "Partner With Us",
+            ctaLink: initialData.banner2CtaLink ?? "/start-school",
+            image:
+              initialData.banner2Image ??
+              "https://res.cloudinary.com/dpa93copz/image/upload/v1793170008/lfcs-school/school-associate-launch_1793170008299.webp",
+          },
+        ]);
+      }
     }
   }, [initialData]);
+
+  const handleAddBanner = () => {
+    setBanners((prev) => [
+      ...prev,
+      {
+        title: "",
+        subtitle: "",
+        ctaText: "",
+        ctaLink: "",
+        image: "",
+      },
+    ]);
+  };
+
+  const handleRemoveBanner = (index: number) => {
+    setBanners((prev) => prev.filter((_, i) => i !== index));
+  };
+
+  const handleUpdateBanner = (index: number, field: keyof BannerItem, val: string) => {
+    setBanners((prev) => {
+      const copy = [...prev];
+      copy[index] = { ...copy[index], [field]: val };
+      return copy;
+    });
+  };
 
   const handleSave = async () => {
     setLoading(true);
@@ -63,16 +98,7 @@ export function CTABanners({ initialData }: { initialData?: any }) {
       const payload = {
         section: "CTABanners",
         content: {
-          banner1Title,
-          banner1Subtitle,
-          banner1CtaText,
-          banner1CtaLink,
-          banner1Image,
-          banner2Title,
-          banner2Subtitle,
-          banner2CtaText,
-          banner2CtaLink,
-          banner2Image,
+          banners,
         },
       };
 
@@ -100,8 +126,8 @@ export function CTABanners({ initialData }: { initialData?: any }) {
   return (
     <div className="bg-white rounded-3xl p-6 shadow-sm ring-1 ring-gray-100 flex flex-col gap-6">
       <SectionHeader
-        title="8. Dual Action Banners (Admissions & School Associate)"
-        description="Two side-by-side high-conversion promo banners directing prospective parents to admissions and entrepreneurs to partnership."
+        title="8. Action Promotional Banners"
+        description="High-conversion promo banners directing prospective parents to admissions and entrepreneurs to partnership."
         badge="Live Section"
         isOpen={isOpen}
         onToggle={() => setIsOpen(!isOpen)}
@@ -109,90 +135,102 @@ export function CTABanners({ initialData }: { initialData?: any }) {
 
       {isOpen && (
         <div className="space-y-6 pt-2">
-          {/* Banner 1 */}
-          <div className="p-5 bg-red-50/40 rounded-2xl border border-red-100 space-y-4">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-[#6a2238] flex items-center gap-2">
-              <span className="w-2.5 h-2.5 rounded-full bg-[#6a2238]" />
-              Left Banner: Admissions Open
-            </h4>
-            <div className="space-y-3.5">
-              <InputField
-                label="Banner Title"
-                value={banner1Title}
-                onChange={(e) => setBanner1Title(e.target.value)}
-                placeholder="e.g. Admissions Open for Session 2026-27"
-              />
-              <TextAreaField
-                label="Banner Subtitle"
-                value={banner1Subtitle}
-                onChange={(e) => setBanner1Subtitle(e.target.value)}
-                rows={2}
-                placeholder="e.g. Invite parents to enroll their children..."
-              />
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <InputField
-                  label="Button Text"
-                  value={banner1CtaText}
-                  onChange={(e) => setBanner1CtaText(e.target.value)}
-                  placeholder="e.g. Learn About Admissions"
-                />
-                <InputField
-                  label="Button Link"
-                  value={banner1CtaLink}
-                  onChange={(e) => setBanner1CtaLink(e.target.value)}
-                  placeholder="e.g. /admissions"
-                />
+          {/* DYNAMIC BANNERS ARRAY */}
+          <div className="space-y-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <h4 className="text-xs font-bold uppercase tracking-wider text-gray-700 flex items-center gap-2">
+                  Call to Action Banners ({banners.length})
+                </h4>
+                <p className="text-[11px] text-gray-400 mt-0.5">
+                  Promotional banners for key conversions. Can add more banners.
+                </p>
               </div>
-              <ImagePickerField
-                label="Banner Background Image"
-                value={banner1Image}
-                onChange={(url) => setBanner1Image(url)}
-                placeholder="e.g. Cloudinary student banner image"
-              />
+              <button
+                type="button"
+                onClick={handleAddBanner}
+                className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0E5A60] hover:text-[#061C29] bg-[#0E5A60]/10 hover:bg-[#0E5A60]/20 px-3.5 py-1.5 rounded-xl transition-all cursor-pointer shadow-2xs"
+              >
+                <Plus className="w-3.5 h-3.5" />
+                <span>Add Banner</span>
+              </button>
             </div>
-          </div>
 
-          {/* Banner 2 */}
-          <div className="p-5 bg-amber-50/40 rounded-2xl border border-amber-100 space-y-4">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-amber-800 flex items-center gap-2">
-              <span className="w-2.5 h-2.5 rounded-full bg-amber-600" />
-              Right Banner: Start a School (Associate Program)
-            </h4>
-            <div className="space-y-3.5">
-              <InputField
-                label="Banner Title"
-                value={banner2Title}
-                onChange={(e) => setBanner2Title(e.target.value)}
-                placeholder="e.g. Start an LFCS Associate School"
-              />
-              <TextAreaField
-                label="Banner Subtitle"
-                value={banner2Subtitle}
-                onChange={(e) => setBanner2Subtitle(e.target.value)}
-                rows={2}
-                placeholder="e.g. Invite partners to bring quality education to their city..."
-              />
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <InputField
-                  label="Button Text"
-                  value={banner2CtaText}
-                  onChange={(e) => setBanner2CtaText(e.target.value)}
-                  placeholder="e.g. Partner With Us"
-                />
-                <InputField
-                  label="Button Link"
-                  value={banner2CtaLink}
-                  onChange={(e) => setBanner2CtaLink(e.target.value)}
-                  placeholder="e.g. /start-school"
-                />
+            {banners.length === 0 ? (
+              <div
+                onClick={handleAddBanner}
+                className="p-8 rounded-2xl bg-gray-50/70 border border-dashed border-gray-200 text-center text-xs text-gray-400 cursor-pointer hover:bg-gray-100/70 hover:border-gray-300 transition-all flex flex-col items-center justify-center gap-2"
+              >
+                <Plus className="w-5 h-5 text-gray-400" />
+                <span>No banners added yet. Click to add your first promo banner.</span>
               </div>
-              <ImagePickerField
-                label="Banner Background Image"
-                value={banner2Image}
-                onChange={(url) => setBanner2Image(url)}
-                placeholder="e.g. Cloudinary school building image"
-              />
-            </div>
+            ) : (
+              <div className="space-y-4">
+                {banners.map((b, idx) => (
+                  <div
+                    key={idx}
+                    className="p-5 bg-gray-50/70 hover:bg-gray-50 rounded-2xl border border-gray-200/80 space-y-3.5 relative transition-all group"
+                  >
+                    <div className="flex items-center justify-between border-b border-gray-200/60 pb-2">
+                      <span className="text-xs font-bold text-[#0E5A60] flex items-center gap-2">
+                        <span className="w-5 h-5 rounded-full bg-[#0E5A60]/10 flex items-center justify-center text-[10px] font-black">
+                          {idx + 1}
+                        </span>
+                        Banner #{idx + 1}: {b.title || "Untitled Banner"}
+                      </span>
+                      <button
+                        type="button"
+                        onClick={() => handleRemoveBanner(idx)}
+                        className="p-1 text-gray-400 hover:text-red-600 rounded-lg hover:bg-red-50 transition-colors cursor-pointer"
+                        title="Delete Banner"
+                      >
+                        <Trash2 className="w-3.5 h-3.5" />
+                      </button>
+                    </div>
+
+                    {/* Row 1: Title and Subtitle */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <InputField
+                        label="Banner Title"
+                        value={b.title}
+                        onChange={(e) => handleUpdateBanner(idx, "title", e.target.value)}
+                        placeholder="e.g. Admissions Open"
+                      />
+                      <InputField
+                        label="Banner Subtitle"
+                        value={b.subtitle}
+                        onChange={(e) => handleUpdateBanner(idx, "subtitle", e.target.value)}
+                        placeholder="e.g. Begin your child's journey of excellence..."
+                      />
+                    </div>
+
+                    {/* Row 2: CTA Text and CTA Link */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <InputField
+                        label="CTA Button Label"
+                        value={b.ctaText}
+                        onChange={(e) => handleUpdateBanner(idx, "ctaText", e.target.value)}
+                        placeholder="e.g. Learn About Admissions"
+                      />
+                      <InputField
+                        label="CTA Target Route / Link"
+                        value={b.ctaLink}
+                        onChange={(e) => handleUpdateBanner(idx, "ctaLink", e.target.value)}
+                        placeholder="e.g. /admissions"
+                      />
+                    </div>
+
+                    {/* Row 3: Banner Image (full width) */}
+                    <ImagePickerField
+                      label="Banner Background Photo"
+                      value={b.image}
+                      onChange={(url) => handleUpdateBanner(idx, "image", url)}
+                      placeholder="e.g. Cloudinary background image URL"
+                    />
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
 
           <div className="pt-4 border-t border-gray-100 w-full">

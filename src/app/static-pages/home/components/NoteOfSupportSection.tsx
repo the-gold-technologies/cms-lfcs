@@ -2,11 +2,20 @@
 
 import React, { useState, useEffect } from "react";
 import toast from "react-hot-toast";
+import { Plus, Trash2 } from "lucide-react";
 import { SectionHeader } from "@/components/SectionHeader";
 import { InputField } from "@/components/InputField";
 import { TextAreaField } from "@/components/TextAreaField";
 import { ImagePickerField } from "@/components/ImagePickerField";
 import { SaveButton } from "@/components/SaveButton";
+
+interface EndorsementItem {
+  name: string;
+  role: string;
+  headline: string;
+  quote: string;
+  image: string;
+}
 
 export function NoteOfSupportSection({ initialData }: { initialData?: any }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -16,53 +25,84 @@ export function NoteOfSupportSection({ initialData }: { initialData?: any }) {
   const [tagline, setTagline] = useState("");
   const [headline, setHeadline] = useState("");
 
-  const [person1Name, setPerson1Name] = useState("");
-  const [person1Role, setPerson1Role] = useState("");
-  const [person1Headline, setPerson1Headline] = useState("");
-  const [person1Quote, setPerson1Quote] = useState("");
-  const [person1Image, setPerson1Image] = useState("");
-
-  const [person2Name, setPerson2Name] = useState("");
-  const [person2Role, setPerson2Role] = useState("");
-  const [person2Headline, setPerson2Headline] = useState("");
-  const [person2Quote, setPerson2Quote] = useState("");
-  const [person2Image, setPerson2Image] = useState("");
+  const [endorsements, setEndorsements] = useState<EndorsementItem[]>([]);
 
   useEffect(() => {
     if (initialData) {
       setTagline(initialData.tagline ?? "Notes of Support");
       setHeadline(initialData.headline ?? "Voices That Believe in Our Journey");
 
-      setPerson1Name(initialData.person1Name ?? "Sharman Joshi");
-      setPerson1Role(initialData.person1Role ?? "Actor & LFCS Supporter");
-      setPerson1Headline(
-        initialData.person1Headline ??
-          "Some journeys are worth supporting because of the trust behind them.",
-      );
-      setPerson1Quote(
-        initialData.person1Quote ??
-          "I am happy to extend my support to Little Flower Children School and its journey towards making quality education accessible to more children and families.",
-      );
-      setPerson1Image(
-        initialData.person1Image ??
-          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170012/lfcs-school/sharman-joshi_1793170012349.webp",
-      );
-
-      setPerson2Name(initialData.person2Name ?? "Mr. Anand Kumar");
-      setPerson2Role(initialData.person2Role ?? "Mathematician & Founder, Super 30");
-      setPerson2Headline(
-        initialData.person2Headline ?? "Education can change the direction of a child's life.",
-      );
-      setPerson2Quote(
-        initialData.person2Quote ??
-          "Quality education must reach the children who need it most. I wish LFCS the very best as it takes this important vision across India.",
-      );
-      setPerson2Image(
-        initialData.person2Image ??
-          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170011/lfcs-school/anand-kumar_1793170011282.webp",
-      );
+      if (Array.isArray(initialData.endorsements) && initialData.endorsements.length > 0) {
+        setEndorsements(
+          initialData.endorsements.map((e: any) => ({
+            name: e.name ?? "",
+            role: e.role ?? "",
+            headline: e.headline ?? "",
+            quote: e.quote ?? "",
+            image: e.image ?? "",
+          })),
+        );
+      } else {
+        setEndorsements([
+          {
+            name: initialData.person1Name ?? "Sharman Joshi",
+            role: initialData.person1Role ?? "Actor & LFCS Supporter",
+            headline:
+              initialData.person1Headline ??
+              "Some journeys are worth supporting because of the trust behind them.",
+            quote:
+              initialData.person1Quote ??
+              "I am happy to extend my support to Little Flower Children School and its journey towards making quality education accessible to more children and families.",
+            image:
+              initialData.person1Image ??
+              "https://res.cloudinary.com/dpa93copz/image/upload/v1793170012/lfcs-school/sharman-joshi_1793170012349.webp",
+          },
+          {
+            name: initialData.person2Name ?? "Mr. Anand Kumar",
+            role: initialData.person2Role ?? "Mathematician & Founder, Super 30",
+            headline:
+              initialData.person2Headline ??
+              "Education can change the direction of a child's life.",
+            quote:
+              initialData.person2Quote ??
+              "Quality education must reach the children who need it most. I wish LFCS the very best as it takes this important vision across India.",
+            image:
+              initialData.person2Image ??
+              "https://res.cloudinary.com/dpa93copz/image/upload/v1793170011/lfcs-school/anand-kumar_1793170011282.webp",
+          },
+        ]);
+      }
     }
   }, [initialData]);
+
+  const handleAddEndorsement = () => {
+    setEndorsements((prev) => [
+      ...prev,
+      {
+        name: "",
+        role: "",
+        headline: "",
+        quote: "",
+        image: "",
+      },
+    ]);
+  };
+
+  const handleRemoveEndorsement = (index: number) => {
+    setEndorsements((prev) => prev.filter((_, i) => i !== index));
+  };
+
+  const handleUpdateEndorsement = (
+    index: number,
+    field: keyof EndorsementItem,
+    val: string,
+  ) => {
+    setEndorsements((prev) => {
+      const copy = [...prev];
+      copy[index] = { ...copy[index], [field]: val };
+      return copy;
+    });
+  };
 
   const handleSave = async () => {
     setLoading(true);
@@ -72,16 +112,7 @@ export function NoteOfSupportSection({ initialData }: { initialData?: any }) {
         content: {
           tagline,
           headline,
-          person1Name,
-          person1Role,
-          person1Headline,
-          person1Quote,
-          person1Image,
-          person2Name,
-          person2Role,
-          person2Headline,
-          person2Quote,
-          person2Image,
+          endorsements,
         },
       };
 
@@ -120,99 +151,116 @@ export function NoteOfSupportSection({ initialData }: { initialData?: any }) {
         <div className="space-y-6 pt-2">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <InputField
-              label="Tagline Eyebrow"
+              label="Eyebrow Tag"
               value={tagline}
               onChange={(e) => setTagline(e.target.value)}
-              placeholder="e.g. Section category tag (e.g. Notes of Support)"
+              placeholder="e.g. Notes of Support"
             />
             <InputField
-              label="Main Heading"
+              label="Section Headline"
               value={headline}
               onChange={(e) => setHeadline(e.target.value)}
-              placeholder="e.g. Section header (e.g. Voices That Believe in Our Journey)"
+              placeholder="e.g. Voices That Believe in Our Journey"
             />
           </div>
 
-          <div className="border-t border-gray-100 pt-5">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-4">
-              Endorser 1: Sharman Joshi
-            </h4>
-            <div className="space-y-3.5">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <InputField
-                  label="Full Name"
-                  value={person1Name}
-                  onChange={(e) => setPerson1Name(e.target.value)}
-                  placeholder="e.g. Public figure's name (e.g. Sharman Joshi)"
-                />
-                <InputField
-                  label="Title / Credential"
-                  value={person1Role}
-                  onChange={(e) => setPerson1Role(e.target.value)}
-                  placeholder="e.g. Role or credentials (e.g. Actor & LFCS Supporter)"
-                />
+          {/* DYNAMIC ENDORSEMENTS ARRAY */}
+          <div className="border-t border-gray-100 pt-5 space-y-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <h4 className="text-xs font-bold uppercase tracking-wider text-gray-700 flex items-center gap-2">
+                  Endorsement Profiles ({endorsements.length})
+                </h4>
+                <p className="text-[11px] text-gray-400 mt-0.5">
+                  Public figures, educators, and supporters. Can add more endorsements.
+                </p>
               </div>
-              <InputField
-                label="Callout Headline"
-                value={person1Headline}
-                onChange={(e) => setPerson1Headline(e.target.value)}
-                placeholder="e.g. Punchy one-sentence key quote headline"
-              />
-              <TextAreaField
-                label="Full Endorsement Quote"
-                value={person1Quote}
-                onChange={(e) => setPerson1Quote(e.target.value)}
-                rows={3}
-                placeholder="e.g. Complete quote or testimonial text..."
-              />
-              <ImagePickerField
-                label="Endorser Photo"
-                value={person1Image}
-                onChange={(url) => setPerson1Image(url)}
-                placeholder="e.g. Select Cloudinary portrait photo"
-              />
+              <button
+                type="button"
+                onClick={handleAddEndorsement}
+                className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0E5A60] hover:text-[#061C29] bg-[#0E5A60]/10 hover:bg-[#0E5A60]/20 px-3.5 py-1.5 rounded-xl transition-all cursor-pointer shadow-2xs"
+              >
+                <Plus className="w-3.5 h-3.5" />
+                <span>Add Endorsement</span>
+              </button>
             </div>
-          </div>
 
-          <div className="border-t border-gray-100 pt-5">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-4">
-              Endorser 2: Mr. Anand Kumar (Super 30)
-            </h4>
-            <div className="space-y-3.5">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <InputField
-                  label="Full Name"
-                  value={person2Name}
-                  onChange={(e) => setPerson2Name(e.target.value)}
-                  placeholder="e.g. Public figure's name (e.g. Mr. Anand Kumar)"
-                />
-                <InputField
-                  label="Title / Credential"
-                  value={person2Role}
-                  onChange={(e) => setPerson2Role(e.target.value)}
-                  placeholder="e.g. Role or credentials (e.g. Founder, Super 30)"
-                />
+            {endorsements.length === 0 ? (
+              <div
+                onClick={handleAddEndorsement}
+                className="p-8 rounded-2xl bg-gray-50/70 border border-dashed border-gray-200 text-center text-xs text-gray-400 cursor-pointer hover:bg-gray-100/70 hover:border-gray-300 transition-all flex flex-col items-center justify-center gap-2"
+              >
+                <Plus className="w-5 h-5 text-gray-400" />
+                <span>No endorsements added yet. Click to add your first note of support.</span>
               </div>
-              <InputField
-                label="Callout Headline"
-                value={person2Headline}
-                onChange={(e) => setPerson2Headline(e.target.value)}
-                placeholder="e.g. Punchy one-sentence key quote headline"
-              />
-              <TextAreaField
-                label="Full Endorsement Quote"
-                value={person2Quote}
-                onChange={(e) => setPerson2Quote(e.target.value)}
-                rows={3}
-                placeholder="e.g. Complete quote or testimonial text..."
-              />
-              <ImagePickerField
-                label="Endorser Photo"
-                value={person2Image}
-                onChange={(url) => setPerson2Image(url)}
-                placeholder="e.g. Select Cloudinary portrait photo"
-              />
-            </div>
+            ) : (
+              <div className="space-y-4">
+                {endorsements.map((item, idx) => (
+                  <div
+                    key={idx}
+                    className="p-5 bg-gray-50/70 hover:bg-gray-50 rounded-2xl border border-gray-200/80 space-y-3.5 relative transition-all group"
+                  >
+                    <div className="flex items-center justify-between border-b border-gray-200/60 pb-2">
+                      <span className="text-xs font-bold text-[#0E5A60] flex items-center gap-2">
+                        <span className="w-5 h-5 rounded-full bg-[#0E5A60]/10 flex items-center justify-center text-[10px] font-black">
+                          {idx + 1}
+                        </span>
+                        Endorsement #{idx + 1}: {item.name || "Untitled Profile"}
+                      </span>
+                      <button
+                        type="button"
+                        onClick={() => handleRemoveEndorsement(idx)}
+                        className="p-1 text-gray-400 hover:text-red-600 rounded-lg hover:bg-red-50 transition-colors cursor-pointer"
+                        title="Delete Profile"
+                      >
+                        <Trash2 className="w-3.5 h-3.5" />
+                      </button>
+                    </div>
+
+                    {/* Row 1: Name and Role */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <InputField
+                        label="Supporter Name"
+                        value={item.name}
+                        onChange={(e) => handleUpdateEndorsement(idx, "name", e.target.value)}
+                        placeholder="e.g. Sharman Joshi"
+                      />
+                      <InputField
+                        label="Title / Designation"
+                        value={item.role}
+                        onChange={(e) => handleUpdateEndorsement(idx, "role", e.target.value)}
+                        placeholder="e.g. Actor & LFCS Supporter"
+                      />
+                    </div>
+
+                    {/* Row 2: Headline */}
+                    <InputField
+                      label="Highlighted Headline Quote"
+                      value={item.headline}
+                      onChange={(e) => handleUpdateEndorsement(idx, "headline", e.target.value)}
+                      placeholder="e.g. Some journeys are worth supporting..."
+                    />
+
+                    {/* Row 3: Full Quote */}
+                    <TextAreaField
+                      label="Full Testimonial Quote"
+                      value={item.quote}
+                      onChange={(e) => handleUpdateEndorsement(idx, "quote", e.target.value)}
+                      rows={3}
+                      placeholder="e.g. I am happy to extend my support to Little Flower..."
+                    />
+
+                    {/* Row 4: Image (full width) */}
+                    <ImagePickerField
+                      label="Supporter Portrait Photo"
+                      value={item.image}
+                      onChange={(url) => handleUpdateEndorsement(idx, "image", url)}
+                      placeholder="e.g. Cloudinary portrait photo URL"
+                    />
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
 
           <div className="pt-4 border-t border-gray-100 w-full">

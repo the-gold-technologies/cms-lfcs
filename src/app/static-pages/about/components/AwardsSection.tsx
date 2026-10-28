@@ -109,17 +109,7 @@ export function AwardsSection({ initialData }: { initialData?: any }) {
           tagline,
           headline,
           subtitle,
-          awards, // dynamic array object!
-          // Backward compatibility:
-          award1Title: awards[0]?.title ?? "",
-          award1Desc: awards[0]?.desc ?? "",
-          award1Image: awards[0]?.image ?? "",
-          award2Title: awards[1]?.title ?? "",
-          award2Desc: awards[1]?.desc ?? "",
-          award2Image: awards[1]?.image ?? "",
-          award3Title: awards[2]?.title ?? "",
-          award3Desc: awards[2]?.desc ?? "",
-          award3Image: awards[2]?.image ?? "",
+          awards,
         },
       };
 

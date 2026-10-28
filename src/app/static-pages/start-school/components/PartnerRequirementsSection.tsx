@@ -111,18 +111,7 @@ export function PartnerRequirementsSection({ initialData }: { initialData?: any 
           headline,
           scriptAccent,
           subtitle,
-          requirements, // dynamic array object!
-          // Backward compatibility:
-          req1Title: requirements[0]?.title ?? "",
-          req1Desc: requirements[0]?.desc ?? "",
-          req2Title: requirements[1]?.title ?? "",
-          req2Desc: requirements[1]?.desc ?? "",
-          req3Title: requirements[2]?.title ?? "",
-          req3Desc: requirements[2]?.desc ?? "",
-          req4Title: requirements[3]?.title ?? "",
-          req4Desc: requirements[3]?.desc ?? "",
-          req5Title: requirements[4]?.title ?? "",
-          req5Desc: requirements[4]?.desc ?? "",
+          requirements,
         },
       };
 

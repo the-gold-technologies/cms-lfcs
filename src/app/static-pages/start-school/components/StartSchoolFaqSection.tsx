@@ -95,16 +95,7 @@ export function StartSchoolFaqSection({ initialData }: { initialData?: any }) {
         content: {
           tagline,
           headline,
-          faqs, // Array object!
-          // Backward compatibility:
-          faq1Q: faqs[0]?.question ?? "",
-          faq1A: faqs[0]?.answer ?? "",
-          faq2Q: faqs[1]?.question ?? "",
-          faq2A: faqs[1]?.answer ?? "",
-          faq3Q: faqs[2]?.question ?? "",
-          faq3A: faqs[2]?.answer ?? "",
-          faq4Q: faqs[3]?.question ?? "",
-          faq4A: faqs[3]?.answer ?? "",
+          faqs,
         },
       };
 

@@ -119,24 +119,7 @@ export function AcademicJourneySection({ initialData }: { initialData?: any }) {
         content: {
           tagline,
           headline,
-          stages, // dynamic array object!
-          // Backward compatibility:
-          s1Title: stages[0]?.title ?? "",
-          s1Grades: stages[0]?.grades ?? "",
-          s1Desc: stages[0]?.desc ?? "",
-          s1Image: stages[0]?.image ?? "",
-          s2Title: stages[1]?.title ?? "",
-          s2Grades: stages[1]?.grades ?? "",
-          s2Desc: stages[1]?.desc ?? "",
-          s2Image: stages[1]?.image ?? "",
-          s3Title: stages[2]?.title ?? "",
-          s3Grades: stages[2]?.grades ?? "",
-          s3Desc: stages[2]?.desc ?? "",
-          s3Image: stages[2]?.image ?? "",
-          s4Title: stages[3]?.title ?? "",
-          s4Grades: stages[3]?.grades ?? "",
-          s4Desc: stages[3]?.desc ?? "",
-          s4Image: stages[3]?.image ?? "",
+          stages,
         },
       };
 

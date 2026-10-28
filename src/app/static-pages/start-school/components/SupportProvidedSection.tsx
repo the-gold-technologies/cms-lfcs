@@ -96,14 +96,7 @@ export function SupportProvidedSection({ initialData }: { initialData?: any }) {
           tagline,
           headline,
           subtitle,
-          stages, // dynamic array object!
-          // Backward compatibility:
-          stage1Title: stages[0]?.title ?? "",
-          stage1Items: stages[0]?.items ?? "",
-          stage2Title: stages[1]?.title ?? "",
-          stage2Items: stages[1]?.items ?? "",
-          stage3Title: stages[2]?.title ?? "",
-          stage3Items: stages[2]?.items ?? "",
+          stages,
         },
       };
 

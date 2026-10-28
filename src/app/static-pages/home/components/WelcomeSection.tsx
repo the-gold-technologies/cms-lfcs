@@ -126,17 +126,7 @@ export function WelcomeSection({ initialData }: { initialData?: any }) {
           description,
           ctaText,
           ctaLink,
-          cards, // array object!
-          // Backward compatibility:
-          feature1Title: cards[0]?.title ?? "",
-          feature1Desc: cards[0]?.desc ?? "",
-          feature1Image: cards[0]?.image ?? "",
-          feature2Title: cards[1]?.title ?? "",
-          feature2Desc: cards[1]?.desc ?? "",
-          feature2Image: cards[1]?.image ?? "",
-          feature3Title: cards[2]?.title ?? "",
-          feature3Desc: cards[2]?.desc ?? "",
-          feature3Image: cards[2]?.image ?? "",
+          cards,
         },
       };
 

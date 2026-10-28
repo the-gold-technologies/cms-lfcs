@@ -108,20 +108,7 @@ export function OurValuesSection({ initialData }: { initialData?: any }) {
         content: {
           tagline,
           headline,
-          values, // dynamic array object!
-          // Backward compatibility:
-          val1Title: values[0]?.title ?? "",
-          val1Desc: values[0]?.desc ?? "",
-          val2Title: values[1]?.title ?? "",
-          val2Desc: values[1]?.desc ?? "",
-          val3Title: values[2]?.title ?? "",
-          val3Desc: values[2]?.desc ?? "",
-          val4Title: values[3]?.title ?? "",
-          val4Desc: values[3]?.desc ?? "",
-          val5Title: values[4]?.title ?? "",
-          val5Desc: values[4]?.desc ?? "",
-          val6Title: values[5]?.title ?? "",
-          val6Desc: values[5]?.desc ?? "",
+          values,
         },
       };
 

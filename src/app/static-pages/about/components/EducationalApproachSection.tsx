@@ -118,20 +118,7 @@ export function EducationalApproachSection({ initialData }: { initialData?: any 
           tagline,
           headline,
           description,
-          pillars, // dynamic array object!
-          // Backward compatibility:
-          app1Title: pillars[0]?.title ?? "",
-          app1Desc: pillars[0]?.desc ?? "",
-          app1Image: pillars[0]?.image ?? "",
-          app2Title: pillars[1]?.title ?? "",
-          app2Desc: pillars[1]?.desc ?? "",
-          app2Image: pillars[1]?.image ?? "",
-          app3Title: pillars[2]?.title ?? "",
-          app3Desc: pillars[2]?.desc ?? "",
-          app3Image: pillars[2]?.image ?? "",
-          app4Title: pillars[3]?.title ?? "",
-          app4Desc: pillars[3]?.desc ?? "",
-          app4Image: pillars[3]?.image ?? "",
+          pillars,
         },
       };
 

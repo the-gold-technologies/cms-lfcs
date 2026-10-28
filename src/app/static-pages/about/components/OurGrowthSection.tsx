@@ -126,24 +126,7 @@ export function OurGrowthSection({ initialData }: { initialData?: any }) {
           tagline,
           headline,
           subtitle,
-          milestones, // Array object!
-          // Backward compatibility:
-          m1Year: milestones[0]?.year ?? "",
-          m1Title: milestones[0]?.title ?? "",
-          m1Desc: milestones[0]?.desc ?? "",
-          m1Image: milestones[0]?.image ?? "",
-          m2Year: milestones[1]?.year ?? "",
-          m2Title: milestones[1]?.title ?? "",
-          m2Desc: milestones[1]?.desc ?? "",
-          m2Image: milestones[1]?.image ?? "",
-          m3Year: milestones[2]?.year ?? "",
-          m3Title: milestones[2]?.title ?? "",
-          m3Desc: milestones[2]?.desc ?? "",
-          m3Image: milestones[2]?.image ?? "",
-          m4Year: milestones[3]?.year ?? "",
-          m4Title: milestones[3]?.title ?? "",
-          m4Desc: milestones[3]?.desc ?? "",
-          m4Image: milestones[3]?.image ?? "",
+          milestones,
         },
       };
 

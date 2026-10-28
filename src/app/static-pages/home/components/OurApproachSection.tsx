@@ -136,20 +136,7 @@ export function OurApproachSection({ initialData }: { initialData?: any }) {
           subtitle,
           ctaText,
           ctaLink,
-          cards, // Array object!
-          // Backward compatibility:
-          card1Title: cards[0]?.title ?? "",
-          card1Desc: cards[0]?.desc ?? "",
-          card1Image: cards[0]?.image ?? "",
-          card2Title: cards[1]?.title ?? "",
-          card2Desc: cards[1]?.desc ?? "",
-          card2Image: cards[1]?.image ?? "",
-          card3Title: cards[2]?.title ?? "",
-          card3Desc: cards[2]?.desc ?? "",
-          card3Image: cards[2]?.image ?? "",
-          card4Title: cards[3]?.title ?? "",
-          card4Desc: cards[3]?.desc ?? "",
-          card4Image: cards[3]?.image ?? "",
+          cards,
         },
       };
 

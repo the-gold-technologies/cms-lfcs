@@ -76,14 +76,7 @@ export function ClubsActivitiesSection({ initialData }: { initialData?: any }) {
           tagline,
           headline,
           description,
-          clubs, // dynamic array object!
-          // Backward compatibility:
-          c1Name: clubs[0]?.name ?? "",
-          c2Name: clubs[1]?.name ?? "",
-          c3Name: clubs[2]?.name ?? "",
-          c4Name: clubs[3]?.name ?? "",
-          c5Name: clubs[4]?.name ?? "",
-          c6Name: clubs[5]?.name ?? "",
+          clubs,
         },
       };
 

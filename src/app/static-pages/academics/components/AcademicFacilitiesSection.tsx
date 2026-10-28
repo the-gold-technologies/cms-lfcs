@@ -113,20 +113,7 @@ export function AcademicFacilitiesSection({ initialData }: { initialData?: any }
         content: {
           tagline,
           headline,
-          facilities, // Array object!
-          // Backward compatibility:
-          f1Title: facilities[0]?.title ?? "",
-          f1Desc: facilities[0]?.desc ?? "",
-          f1Image: facilities[0]?.image ?? "",
-          f2Title: facilities[1]?.title ?? "",
-          f2Desc: facilities[1]?.desc ?? "",
-          f2Image: facilities[1]?.image ?? "",
-          f3Title: facilities[2]?.title ?? "",
-          f3Desc: facilities[2]?.desc ?? "",
-          f3Image: facilities[2]?.image ?? "",
-          f4Title: facilities[3]?.title ?? "",
-          f4Desc: facilities[3]?.desc ?? "",
-          f4Image: facilities[3]?.image ?? "",
+          facilities,
         },
       };
 

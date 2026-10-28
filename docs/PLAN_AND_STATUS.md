@@ -109,25 +109,48 @@
   - `/submissions/careers`: Job candidate profiles with CV download.
   - `/submissions/contact`: General inquiries.
   - Asynchronous SMTP alerts dispatched via Nodemailer.
-- [x] **Static Pages (1-to-1 Component Parity)**:
-  - Generic page API: `src/app/api/pages/[slug]/route.ts`.
-  - Home Page Editor: `src/app/static-pages/home/page.tsx` (`HeroSection`, `WelcomeSection`, `NoteOfSupportSection`, `CTABanners` with clean descriptive placeholders).
-- [x] **Global Brand, Navigation & SEO**:
-  - `src/app/api/seo/global/route.ts`.
-  - `src/app/seo/global/page.tsx` (Site Title, Meta Description, GA4, GTM, robots.txt).
-  - `src/app/navigation/social-media/page.tsx` (Helpline phone, email, address, socials).
-  - `src/app/settings/profile/page.tsx` & `src/app/api/settings/password/route.ts`.
+- [x] **Static Pages (1-to-1 Component Parity Across All 9 Pages)**:
+  - Route handlers & factory: `src/lib/page-route-factory.ts` with Cloudinary asset cleanup and tag revalidation.
+  - Dedicated API endpoints: `/api/home`, `/api/about`, `/api/academics`, `/api/admissions`, `/api/experience`, `/api/start-school`, `/api/careers`, `/api/contact`, `/api/gallery-page`.
+  - All 9 modular component editors built under `src/app/static-pages/[page]/components/`:
+    1. **Home** (8 sections: Hero, Welcome, Note of Support, How We Educate, Our Approach, Experience, Our Schools, CTA Banners).
+    2. **About Us** (9 sections: About Hero, Founding Story, Vision & Mission, Educational Approach, Core Values, Leadership, Growth, Awards, About CTA).
+    3. **Academics** (8 sections: Hero, Curriculum, Journey, Teaching & Learning, Faculty, Results, Facilities, CTA).
+    4. **Admissions** (3 sections: Hero, Overview, Classes & Entry Points).
+    5. **Student Experience** (7 sections: Hero, Life at LFCS, Sports & Fitness, Arts & Culture, Clubs, Gallery Preview, CTA).
+    6. **Start a School** (9 sections: Hero, Why Partner, School Model, Support Provided, Partner Requirements, Setup Process, Investment, FAQs, Final CTA).
+    7. **Careers** (5 sections: Hero, Why Work With Us, Work Culture, Opportunities, Final CTA).
+    8. **Contact Us** (3 sections: Hero, Contact Form Info, Campus Directory).
+  - All 9 pages and their modular sections fully seeded into PostgreSQL (`prisma/static-pages-seed.json` & `prisma/seed.js`).
+  - Added "Photo Gallery" under `Pages` in `Sidebar.tsx` and in `PageStructure.tsx`.
+
+- [x] **UI Polish & Dynamic Array Architecture (100% Kokalachi Fidelity)**:
+  - **Dynamic Card & Pillar Arrays**:
+    - `WelcomeSection`: Replaced fixed 3-card structure with dynamic `cards: Array<{ title: string; desc: string; image: string }>` allowing admins to add more than 3 cards with `+ Add Card`, delete cards with trash icon, and edit Title, Description, and full-width Cloudinary Image.
+    - `HeroSection`: Replaced fixed 4-stat metrics with dynamic `stats: Array<{ value: string; label: string }>` (`+ Add Metric`, delete, edit).
+    - `HowWeEducateSection`: Replaced fixed 4 pillars with dynamic `pillars: Array<{ title: string; desc: string }>` (`+ Add Pillar`, delete, edit).
+    - `OurApproachSection`: Replaced fixed 4 life skill cards with dynamic `cards: Array<{ title: string; desc: string; image: string }>` (`+ Add Skill Card`, delete, edit).
+    - `AcademicFacilitiesSection`: Replaced fixed 4 facilities with dynamic `facilities: Array<{ title: string; desc: string; image: string }>` (`+ Add Facility`, delete, edit).
+    - `OurGrowthSection`: Replaced fixed 4 milestones with dynamic `milestones: Array<{ year: string; title: string; desc: string; image: string }>` (`+ Add Milestone`, delete, edit).
+    - `WhyPartnerSection`: Replaced fixed 4 advantages with dynamic `advantages: Array<{ title: string; desc: string; image: string }>` (`+ Add Advantage`, delete, edit).
+    - `StartSchoolFaqSection`: Replaced fixed 4 FAQs with dynamic `faqs: Array<{ question: string; answer: string }>` (`+ Add Question`, delete, edit).
+    - `SetupProcessSection`: Replaced fixed 8 steps with dynamic `steps: Array<{ title: string; desc?: string }>` (`+ Add Step`, delete, edit).
+  - All updated components maintain 100% backward compatibility (saving both the array object and legacy keys) so no existing database record or consumer breaks.
+  - `ImagePickerField.tsx`: Takes full width (`w-full`) and displays only ONE state for single images (active preview card with prominent **Replace CTA** when image exists, or upload dropzone when no image exists; both only show when `multiple` mode is enabled).
+  - SaveButton takes full width across all forms (`w-full` on container, removing restrictive `sm:w-64` / `max-w-xs` widths).
+  - Clean descriptive placeholders used across all inputs (never identical to values).
+  - Core components styled to 100% Kokalachi parity (`PageHeader`, `SectionHeader`, `InputField`, `TextAreaField`, `SaveButton`, `OverviewStats`, `PageStructure`).
 
 ---
 
 ## 🔄 Next Steps / Remaining Roadmap
 
-### Phase 6: Frontend Integration (`lfcs-school`)
+### Phase 6: Frontend Integration (`lfcs-school`) _(Paused per user request - to be connected later)_
 
-1. Create `src/lib/cms.ts` and `src/lib/content.ts` in `lfcs-school`.
+1. Create `src/lib/cms.ts` and `src/lib/content.ts` in `lfcs-school` (ready for when connection is enabled).
 2. Add `/api/revalidate/route.ts` to `lfcs-school` using the dedicated `CMS_SHARED_SECRET`.
 3. Connect form server actions in `src/app/actions/enquiries.ts` to forward submissions to `POST /api/submissions` in the CMS.
-4. Connect frontend sections (campuses, news, gallery, testimonials) to read from CMS data with fallback to existing local files.
+4. Connect frontend sections (campuses, news, gallery, testimonials, static pages) to read from CMS data with fallback to existing local files.
 
 ---
 

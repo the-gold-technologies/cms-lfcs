@@ -132,10 +132,8 @@ export function WorkCultureSection({ initialData }: { initialData?: any }) {
             placeholder="e.g. Cloudinary staff photo URL"
           />
 
-          <div className="pt-4 border-t border-gray-100 flex justify-end">
-            <div className="w-full sm:w-64">
-              <SaveButton onClick={handleSave} loading={loading} saved={saved} />
-            </div>
+          <div className="pt-4 border-t border-gray-100 w-full">
+            <SaveButton onClick={handleSave} loading={loading} saved={saved} />
           </div>
         </div>
       )}

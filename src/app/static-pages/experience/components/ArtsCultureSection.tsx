@@ -117,7 +117,7 @@ export function ArtsCultureSection({ initialData }: { initialData?: any }) {
             placeholder="e.g. Arts and culture curriculum narrative..."
           />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="space-y-4">
             <ImagePickerField
               label="Creative Arts Photo 1"
               value={image1}
@@ -132,10 +132,8 @@ export function ArtsCultureSection({ initialData }: { initialData?: any }) {
             />
           </div>
 
-          <div className="pt-4 border-t border-gray-100 flex justify-end">
-            <div className="w-full sm:w-64">
-              <SaveButton onClick={handleSave} loading={loading} saved={saved} />
-            </div>
+          <div className="pt-4 border-t border-gray-100 w-full">
+            <SaveButton onClick={handleSave} loading={loading} saved={saved} />
           </div>
         </div>
       )}

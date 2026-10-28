@@ -2,11 +2,19 @@
 
 import React, { useState, useEffect } from "react";
 import toast from "react-hot-toast";
+import { Plus, Trash2 } from "lucide-react";
 import { SectionHeader } from "@/components/SectionHeader";
 import { InputField } from "@/components/InputField";
 import { TextAreaField } from "@/components/TextAreaField";
 import { ImagePickerField } from "@/components/ImagePickerField";
 import { SaveButton } from "@/components/SaveButton";
+
+interface JourneyStage {
+  title: string;
+  grades: string;
+  desc: string;
+  image: string;
+}
 
 export function AcademicJourneySection({ initialData }: { initialData?: any }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -16,76 +24,92 @@ export function AcademicJourneySection({ initialData }: { initialData?: any }) {
   const [tagline, setTagline] = useState("");
   const [headline, setHeadline] = useState("");
 
-  const [s1Title, setS1Title] = useState("");
-  const [s1Grades, setS1Grades] = useState("");
-  const [s1Desc, setS1Desc] = useState("");
-  const [s1Image, setS1Image] = useState("");
-
-  const [s2Title, setS2Title] = useState("");
-  const [s2Grades, setS2Grades] = useState("");
-  const [s2Desc, setS2Desc] = useState("");
-  const [s2Image, setS2Image] = useState("");
-
-  const [s3Title, setS3Title] = useState("");
-  const [s3Grades, setS3Grades] = useState("");
-  const [s3Desc, setS3Desc] = useState("");
-  const [s3Image, setS3Image] = useState("");
-
-  const [s4Title, setS4Title] = useState("");
-  const [s4Grades, setS4Grades] = useState("");
-  const [s4Desc, setS4Desc] = useState("");
-  const [s4Image, setS4Image] = useState("");
+  const [stages, setStages] = useState<JourneyStage[]>([]);
 
   useEffect(() => {
     if (initialData) {
       setTagline(initialData.tagline ?? "LEARNING PATHWAYS");
       setHeadline(initialData.headline ?? "The Academic Journey at Little Flower");
 
-      setS1Title(initialData.s1Title ?? "Early Years");
-      setS1Grades(initialData.s1Grades ?? "[Nursery – UKG]");
-      setS1Desc(
-        initialData.s1Desc ??
-          "Play-based exploration, sensory development, phonics, and foundational social skills.",
-      );
-      setS1Image(
-        initialData.s1Image ??
-          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170030/lfcs-school/independent_1793170030545.webp",
-      );
-
-      setS2Title(initialData.s2Title ?? "Primary School");
-      setS2Grades(initialData.s2Grades ?? "[Classes I – V]");
-      setS2Desc(
-        initialData.s2Desc ??
-          "Building conceptual numeracy, bilingual literacy, environmental science, and structured habits.",
-      );
-      setS2Image(
-        initialData.s2Image ??
-          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170034/lfcs-school/activity_1793170034132.webp",
-      );
-
-      setS3Title(initialData.s3Title ?? "Middle School");
-      setS3Grades(initialData.s3Grades ?? "[Classes VI – VIII]");
-      setS3Desc(
-        initialData.s3Desc ??
-          "Transitioning into rigorous subject disciplines, computer science, and creative projects.",
-      );
-      setS3Image(
-        initialData.s3Image ??
-          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170020/lfcs-school/Experience6_1793170019770.webp",
-      );
-
-      setS4Title(initialData.s4Title ?? "Secondary & Senior Secondary");
-      setS4Grades(initialData.s4Grades ?? "[Classes IX – XII]");
-      setS4Desc(
-        initialData.s4Desc ??
-          "Board examination mastery in Science, Commerce, and Humanities with IIT-JEE and NEET coaching support.",
-      );
-      setS4Image(
-        initialData.s4Image ??
-          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170019/lfcs-school/digital-classroom_1793170018820.webp",
-      );
+      if (Array.isArray(initialData.stages) && initialData.stages.length > 0) {
+        setStages(
+          initialData.stages.map((s: any) => ({
+            title: s.title ?? "",
+            grades: s.grades ?? "",
+            desc: s.desc ?? "",
+            image: s.image ?? "",
+          })),
+        );
+      } else {
+        setStages([
+          {
+            title: initialData.s1Title ?? "Early Years",
+            grades: initialData.s1Grades ?? "[Nursery – UKG]",
+            desc:
+              initialData.s1Desc ??
+              "Play-based exploration, sensory development, phonics, and foundational social skills.",
+            image:
+              initialData.s1Image ??
+              "https://res.cloudinary.com/dpa93copz/image/upload/v1793170030/lfcs-school/independent_1793170030545.webp",
+          },
+          {
+            title: initialData.s2Title ?? "Primary School",
+            grades: initialData.s2Grades ?? "[Classes I – V]",
+            desc:
+              initialData.s2Desc ??
+              "Building conceptual numeracy, bilingual literacy, environmental science, and structured habits.",
+            image:
+              initialData.s2Image ??
+              "https://res.cloudinary.com/dpa93copz/image/upload/v1793170034/lfcs-school/activity_1793170034132.webp",
+          },
+          {
+            title: initialData.s3Title ?? "Middle School",
+            grades: initialData.s3Grades ?? "[Classes VI – VIII]",
+            desc:
+              initialData.s3Desc ??
+              "Transitioning into rigorous subject disciplines, computer science, and creative projects.",
+            image:
+              initialData.s3Image ??
+              "https://res.cloudinary.com/dpa93copz/image/upload/v1793170020/lfcs-school/Experience6_1793170019770.webp",
+          },
+          {
+            title: initialData.s4Title ?? "Secondary & Senior Secondary",
+            grades: initialData.s4Grades ?? "[Classes IX – XII]",
+            desc:
+              initialData.s4Desc ??
+              "Board examination mastery in Science, Commerce, and Humanities with IIT-JEE and NEET coaching support.",
+            image:
+              initialData.s4Image ??
+              "https://res.cloudinary.com/dpa93copz/image/upload/v1793170019/lfcs-school/digital-classroom_1793170018820.webp",
+          },
+        ]);
+      }
     }
   }, [initialData]);
+
+  const handleAddStage = () => {
+    setStages((prev) => [
+      ...prev,
+      {
+        title: "",
+        grades: "",
+        desc: "",
+        image: "",
+      },
+    ]);
+  };
+
+  const handleRemoveStage = (index: number) => {
+    setStages((prev) => prev.filter((_, i) => i !== index));
+  };
+
+  const handleUpdateStage = (index: number, field: keyof JourneyStage, val: string) => {
+    setStages((prev) => {
+      const copy = [...prev];
+      copy[index] = { ...copy[index], [field]: val };
+      return copy;
+    });
+  };
 
   const handleSave = async () => {
     setLoading(true);
@@ -95,22 +119,24 @@ export function AcademicJourneySection({ initialData }: { initialData?: any }) {
         content: {
           tagline,
           headline,
-          s1Title,
-          s1Grades,
-          s1Desc,
-          s1Image,
-          s2Title,
-          s2Grades,
-          s2Desc,
-          s2Image,
-          s3Title,
-          s3Grades,
-          s3Desc,
-          s3Image,
-          s4Title,
-          s4Grades,
-          s4Desc,
-          s4Image,
+          stages, // dynamic array object!
+          // Backward compatibility:
+          s1Title: stages[0]?.title ?? "",
+          s1Grades: stages[0]?.grades ?? "",
+          s1Desc: stages[0]?.desc ?? "",
+          s1Image: stages[0]?.image ?? "",
+          s2Title: stages[1]?.title ?? "",
+          s2Grades: stages[1]?.grades ?? "",
+          s2Desc: stages[1]?.desc ?? "",
+          s2Image: stages[1]?.image ?? "",
+          s3Title: stages[2]?.title ?? "",
+          s3Grades: stages[2]?.grades ?? "",
+          s3Desc: stages[2]?.desc ?? "",
+          s3Image: stages[2]?.image ?? "",
+          s4Title: stages[3]?.title ?? "",
+          s4Grades: stages[3]?.grades ?? "",
+          s4Desc: stages[3]?.desc ?? "",
+          s4Image: stages[3]?.image ?? "",
         },
       };
 
@@ -152,147 +178,109 @@ export function AcademicJourneySection({ initialData }: { initialData?: any }) {
               label="Eyebrow Tag"
               value={tagline}
               onChange={(e) => setTagline(e.target.value)}
-              placeholder="e.g. LEARNING PATHWAYS"
+              placeholder="e.g. Eyebrow badge (e.g. LEARNING PATHWAYS)"
             />
             <InputField
               label="Section Headline"
               value={headline}
               onChange={(e) => setHeadline(e.target.value)}
-              placeholder="e.g. The Academic Journey at Little Flower"
+              placeholder="e.g. Section title (e.g. The Academic Journey at Little Flower)"
             />
           </div>
 
-          <div className="border-t border-gray-100 pt-5">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-4">
-              4 Developmental Stages
-            </h4>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-              <div className="p-4 bg-gray-50/70 rounded-2xl border border-gray-100 space-y-3">
-                <div className="grid grid-cols-2 gap-2">
-                  <InputField
-                    label="Stage 1 Title"
-                    value={s1Title}
-                    onChange={(e) => setS1Title(e.target.value)}
-                    placeholder="e.g. Early Years"
-                  />
-                  <InputField
-                    label="Grades"
-                    value={s1Grades}
-                    onChange={(e) => setS1Grades(e.target.value)}
-                    placeholder="e.g. [Nursery – UKG]"
-                  />
-                </div>
-                <TextAreaField
-                  label="Curricular Focus"
-                  value={s1Desc}
-                  onChange={(e) => setS1Desc(e.target.value)}
-                  rows={2}
-                  placeholder="e.g. Play-based learning details..."
-                />
-                <ImagePickerField
-                  label="Stage Photo"
-                  value={s1Image}
-                  onChange={(url) => setS1Image(url)}
-                  placeholder="e.g. Cloudinary early years photo URL"
-                />
+          {/* DYNAMIC ACADEMIC STAGES ARRAY */}
+          <div className="border-t border-gray-100 pt-5 space-y-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <h4 className="text-xs font-bold uppercase tracking-wider text-gray-700 flex items-center gap-2">
+                  Academic Stages ({stages.length})
+                </h4>
+                <p className="text-[11px] text-gray-400 mt-0.5">
+                  Educational journey levels. Can add more than 4 stages.
+                </p>
               </div>
-
-              <div className="p-4 bg-gray-50/70 rounded-2xl border border-gray-100 space-y-3">
-                <div className="grid grid-cols-2 gap-2">
-                  <InputField
-                    label="Stage 2 Title"
-                    value={s2Title}
-                    onChange={(e) => setS2Title(e.target.value)}
-                    placeholder="e.g. Primary School"
-                  />
-                  <InputField
-                    label="Grades"
-                    value={s2Grades}
-                    onChange={(e) => setS2Grades(e.target.value)}
-                    placeholder="e.g. [Classes I – V]"
-                  />
-                </div>
-                <TextAreaField
-                  label="Curricular Focus"
-                  value={s2Desc}
-                  onChange={(e) => setS2Desc(e.target.value)}
-                  rows={2}
-                  placeholder="e.g. Primary school numeracy & literacy..."
-                />
-                <ImagePickerField
-                  label="Stage Photo"
-                  value={s2Image}
-                  onChange={(url) => setS2Image(url)}
-                  placeholder="e.g. Cloudinary primary school photo URL"
-                />
-              </div>
-
-              <div className="p-4 bg-gray-50/70 rounded-2xl border border-gray-100 space-y-3">
-                <div className="grid grid-cols-2 gap-2">
-                  <InputField
-                    label="Stage 3 Title"
-                    value={s3Title}
-                    onChange={(e) => setS3Title(e.target.value)}
-                    placeholder="e.g. Middle School"
-                  />
-                  <InputField
-                    label="Grades"
-                    value={s3Grades}
-                    onChange={(e) => setS3Grades(e.target.value)}
-                    placeholder="e.g. [Classes VI – VIII]"
-                  />
-                </div>
-                <TextAreaField
-                  label="Curricular Focus"
-                  value={s3Desc}
-                  onChange={(e) => setS3Desc(e.target.value)}
-                  rows={2}
-                  placeholder="e.g. Middle school sciences & lab work..."
-                />
-                <ImagePickerField
-                  label="Stage Photo"
-                  value={s3Image}
-                  onChange={(url) => setS3Image(url)}
-                  placeholder="e.g. Cloudinary middle school photo URL"
-                />
-              </div>
-
-              <div className="p-4 bg-gray-50/70 rounded-2xl border border-gray-100 space-y-3">
-                <div className="grid grid-cols-2 gap-2">
-                  <InputField
-                    label="Stage 4 Title"
-                    value={s4Title}
-                    onChange={(e) => setS4Title(e.target.value)}
-                    placeholder="e.g. Senior Secondary"
-                  />
-                  <InputField
-                    label="Grades"
-                    value={s4Grades}
-                    onChange={(e) => setS4Grades(e.target.value)}
-                    placeholder="e.g. [Classes IX – XII]"
-                  />
-                </div>
-                <TextAreaField
-                  label="Curricular Focus"
-                  value={s4Desc}
-                  onChange={(e) => setS4Desc(e.target.value)}
-                  rows={2}
-                  placeholder="e.g. Senior secondary board preparation..."
-                />
-                <ImagePickerField
-                  label="Stage Photo"
-                  value={s4Image}
-                  onChange={(url) => setS4Image(url)}
-                  placeholder="e.g. Cloudinary senior school photo URL"
-                />
-              </div>
+              <button
+                type="button"
+                onClick={handleAddStage}
+                className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0E5A60] hover:text-[#061C29] bg-[#0E5A60]/10 hover:bg-[#0E5A60]/20 px-3.5 py-1.5 rounded-xl transition-all cursor-pointer shadow-2xs"
+              >
+                <Plus className="w-3.5 h-3.5" />
+                <span>Add Stage</span>
+              </button>
             </div>
+
+            {stages.length === 0 ? (
+              <div
+                onClick={handleAddStage}
+                className="p-8 rounded-2xl bg-gray-50/70 border border-dashed border-gray-200 text-center text-xs text-gray-400 cursor-pointer hover:bg-gray-100/70 hover:border-gray-300 transition-all flex flex-col items-center justify-center gap-2"
+              >
+                <Plus className="w-5 h-5 text-gray-400" />
+                <span>No stages added yet. Click to add your first stage.</span>
+              </div>
+            ) : (
+              <div className="space-y-4">
+                {stages.map((stage, idx) => (
+                  <div
+                    key={idx}
+                    className="p-5 bg-gray-50/70 hover:bg-gray-50 rounded-2xl border border-gray-200/80 space-y-3.5 relative transition-all group"
+                  >
+                    <div className="flex items-center justify-between border-b border-gray-200/60 pb-2">
+                      <span className="text-xs font-bold text-[#0E5A60] flex items-center gap-2">
+                        <span className="w-5 h-5 rounded-full bg-[#0E5A60]/10 flex items-center justify-center text-[10px] font-black">
+                          {idx + 1}
+                        </span>
+                        Stage #{idx + 1}: {stage.title || "Untitled Stage"}
+                      </span>
+                      <button
+                        type="button"
+                        onClick={() => handleRemoveStage(idx)}
+                        className="p-1 text-gray-400 hover:text-red-600 rounded-lg hover:bg-red-50 transition-colors cursor-pointer"
+                        title="Delete Stage"
+                      >
+                        <Trash2 className="w-3.5 h-3.5" />
+                      </button>
+                    </div>
+
+                    {/* Row 1: Title and Grades */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <InputField
+                        label="Stage Title"
+                        value={stage.title}
+                        onChange={(e) => handleUpdateStage(idx, "title", e.target.value)}
+                        placeholder="e.g. Early Years"
+                      />
+                      <InputField
+                        label="Grades Included"
+                        value={stage.grades}
+                        onChange={(e) => handleUpdateStage(idx, "grades", e.target.value)}
+                        placeholder="e.g. [Nursery – UKG]"
+                      />
+                    </div>
+
+                    {/* Row 2: Description */}
+                    <TextAreaField
+                      label="Curricular Focus"
+                      value={stage.desc}
+                      onChange={(e) => handleUpdateStage(idx, "desc", e.target.value)}
+                      rows={2}
+                      placeholder="e.g. Play-based learning details, curriculum outcomes..."
+                    />
+
+                    {/* Row 3: Image (full width) */}
+                    <ImagePickerField
+                      label="Stage Photo"
+                      value={stage.image}
+                      onChange={(url) => handleUpdateStage(idx, "image", url)}
+                      placeholder="e.g. Cloudinary early years photo URL"
+                    />
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
 
-          <div className="pt-4 border-t border-gray-100 flex justify-end">
-            <div className="w-full sm:w-64">
-              <SaveButton onClick={handleSave} loading={loading} saved={saved} />
-            </div>
+          <div className="pt-4 border-t border-gray-100 w-full">
+            <SaveButton onClick={handleSave} loading={loading} saved={saved} />
           </div>
         </div>
       )}

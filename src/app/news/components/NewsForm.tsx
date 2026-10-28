@@ -142,7 +142,7 @@ export function NewsForm({ initialData, isEdit = false }: NewsFormProps) {
         </label>
       </div>
 
-      <div className="pt-4 max-w-xs">
+      <div className="pt-4 w-full">
         <SaveButton
           loading={loading}
           saved={saved}

@@ -7,6 +7,13 @@ import { InputField } from "@/components/InputField";
 import { TextAreaField } from "@/components/TextAreaField";
 import { ImagePickerField } from "@/components/ImagePickerField";
 import { SaveButton } from "@/components/SaveButton";
+import { Plus, Trash2 } from "lucide-react";
+
+export interface SkillCard {
+  title: string;
+  desc: string;
+  image: string;
+}
 
 export function OurApproachSection({ initialData }: { initialData?: any }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -20,21 +27,7 @@ export function OurApproachSection({ initialData }: { initialData?: any }) {
   const [ctaText, setCtaText] = useState("");
   const [ctaLink, setCtaLink] = useState("");
 
-  const [card1Title, setCard1Title] = useState("");
-  const [card1Desc, setCard1Desc] = useState("");
-  const [card1Image, setCard1Image] = useState("");
-
-  const [card2Title, setCard2Title] = useState("");
-  const [card2Desc, setCard2Desc] = useState("");
-  const [card2Image, setCard2Image] = useState("");
-
-  const [card3Title, setCard3Title] = useState("");
-  const [card3Desc, setCard3Desc] = useState("");
-  const [card3Image, setCard3Image] = useState("");
-
-  const [card4Title, setCard4Title] = useState("");
-  const [card4Desc, setCard4Desc] = useState("");
-  const [card4Image, setCard4Image] = useState("");
+  const [cards, setCards] = useState<SkillCard[]>([]);
 
   useEffect(() => {
     if (initialData) {
@@ -48,46 +41,91 @@ export function OurApproachSection({ initialData }: { initialData?: any }) {
       setCtaText(initialData.ctaText ?? "Explore Academics");
       setCtaLink(initialData.ctaLink ?? "/academics");
 
-      setCard1Title(initialData.card1Title ?? "Communication Skills");
-      setCard1Desc(
-        initialData.card1Desc ?? "Public speaking, debate, and bilingual articulate expression.",
-      );
-      setCard1Image(
-        initialData.card1Image ??
-          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170018/lfcs-school/skills1_1793170017926.webp",
-      );
-
-      setCard2Title(initialData.card2Title ?? "Problem Solving & Logic");
-      setCard2Desc(
-        initialData.card2Desc ?? "STEM-oriented scientific enquiry and analytical reasoning.",
-      );
-      setCard2Image(
-        initialData.card2Image ??
-          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170029/lfcs-school/skills2_1793170028638.webp",
-      );
-
-      setCard3Title(initialData.card3Title ?? "Emotional Resilience");
-      setCard3Desc(
-        initialData.card3Desc ?? "Mindfulness, self-awareness, and value-based moral balance.",
-      );
-      setCard3Image(
-        initialData.card3Image ??
-          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170036/lfcs-school/skills3_1793170036462.webp",
-      );
-
-      setCard4Title(initialData.card4Title ?? "Leadership & Ethics");
-      setCard4Desc(
-        initialData.card4Desc ?? "Student council, community outreach, and peer mentorship.",
-      );
-      setCard4Image(
-        initialData.card4Image ??
-          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170039/lfcs-school/skills4_1793170038535.webp",
-      );
+      if (Array.isArray(initialData.cards) && initialData.cards.length > 0) {
+        setCards(
+          initialData.cards.map((c: any) => ({
+            title: c.title ?? "",
+            desc: c.desc ?? c.description ?? "",
+            image: c.image ?? "",
+          })),
+        );
+      } else if (Array.isArray(initialData.skills) && initialData.skills.length > 0) {
+        setCards(
+          initialData.skills.map((c: any) => ({
+            title: c.title ?? "",
+            desc: c.desc ?? c.description ?? "",
+            image: c.image ?? "",
+          })),
+        );
+      } else {
+        setCards([
+          {
+            title: initialData.card1Title ?? "Communication Skills",
+            desc:
+              initialData.card1Desc ??
+              "Public speaking, debate, and bilingual articulate expression.",
+            image:
+              initialData.card1Image ??
+              "https://res.cloudinary.com/dpa93copz/image/upload/v1793170018/lfcs-school/skills1_1793170017926.webp",
+          },
+          {
+            title: initialData.card2Title ?? "Problem Solving & Logic",
+            desc:
+              initialData.card2Desc ??
+              "STEM-oriented scientific enquiry and analytical reasoning.",
+            image:
+              initialData.card2Image ??
+              "https://res.cloudinary.com/dpa93copz/image/upload/v1793170029/lfcs-school/skills2_1793170028638.webp",
+          },
+          {
+            title: initialData.card3Title ?? "Emotional Resilience",
+            desc:
+              initialData.card3Desc ??
+              "Mindfulness, self-awareness, and value-based moral balance.",
+            image:
+              initialData.card3Image ??
+              "https://res.cloudinary.com/dpa93copz/image/upload/v1793170036/lfcs-school/skills3_1793170036462.webp",
+          },
+          {
+            title: initialData.card4Title ?? "Leadership & Ethics",
+            desc:
+              initialData.card4Desc ??
+              "Student council, community outreach, and peer mentorship.",
+            image:
+              initialData.card4Image ??
+              "https://res.cloudinary.com/dpa93copz/image/upload/v1793170039/lfcs-school/skills4_1793170038535.webp",
+          },
+        ]);
+      }
     }
   }, [initialData]);
 
+  const handleAddCard = () => {
+    setCards((prev) => [
+      ...prev,
+      {
+        title: "",
+        desc: "",
+        image: "",
+      },
+    ]);
+  };
+
+  const handleRemoveCard = (index: number) => {
+    setCards((prev) => prev.filter((_, i) => i !== index));
+  };
+
+  const handleUpdateCard = (index: number, field: keyof SkillCard, value: string) => {
+    setCards((prev) => {
+      const copy = [...prev];
+      copy[index] = { ...copy[index], [field]: value };
+      return copy;
+    });
+  };
+
   const handleSave = async () => {
     setLoading(true);
+    setSaved(false);
     try {
       const payload = {
         section: "OurApproachSection",
@@ -98,18 +136,20 @@ export function OurApproachSection({ initialData }: { initialData?: any }) {
           subtitle,
           ctaText,
           ctaLink,
-          card1Title,
-          card1Desc,
-          card1Image,
-          card2Title,
-          card2Desc,
-          card2Image,
-          card3Title,
-          card3Desc,
-          card3Image,
-          card4Title,
-          card4Desc,
-          card4Image,
+          cards, // Array object!
+          // Backward compatibility:
+          card1Title: cards[0]?.title ?? "",
+          card1Desc: cards[0]?.desc ?? "",
+          card1Image: cards[0]?.image ?? "",
+          card2Title: cards[1]?.title ?? "",
+          card2Desc: cards[1]?.desc ?? "",
+          card2Image: cards[1]?.image ?? "",
+          card3Title: cards[2]?.title ?? "",
+          card3Desc: cards[2]?.desc ?? "",
+          card3Image: cards[2]?.image ?? "",
+          card4Title: cards[3]?.title ?? "",
+          card4Desc: cards[3]?.desc ?? "",
+          card4Image: cards[3]?.image ?? "",
         },
       };
 
@@ -137,8 +177,8 @@ export function OurApproachSection({ initialData }: { initialData?: any }) {
   return (
     <div className="bg-white rounded-3xl p-6 shadow-sm ring-1 ring-gray-100 flex flex-col gap-6">
       <SectionHeader
-        title="5. Our Approach (Life Skills Dark Banner & Carousel)"
-        description="Dark navy banner showcasing how LFCS develops foundational life skills with a horizontal carousel of interactive cards."
+        title="5. Our Approach (Life Skills & Carousel)"
+        description="Showcases the holistic curriculum focus on 21st century competencies and dynamic life skill carousel cards."
         badge="Live Section"
         isOpen={isOpen}
         onToggle={() => setIsOpen(!isOpen)}
@@ -154,7 +194,7 @@ export function OurApproachSection({ initialData }: { initialData?: any }) {
               placeholder="e.g. Eyebrow badge (e.g. OUR APPROACH)"
             />
             <InputField
-              label="Headline"
+              label="Heading Lead"
               value={headline}
               onChange={(e) => setHeadline(e.target.value)}
               placeholder="e.g. Primary title (e.g. Learning That Builds)"
@@ -163,21 +203,21 @@ export function OurApproachSection({ initialData }: { initialData?: any }) {
               label="Script Accent"
               value={scriptAccent}
               onChange={(e) => setScriptAccent(e.target.value)}
-              placeholder="e.g. Gold script word (e.g. Life Skills)"
+              placeholder="e.g. Cursive word flourish (e.g. Life Skills)"
             />
           </div>
 
           <TextAreaField
-            label="Banner Description"
+            label="Approach Summary"
             value={subtitle}
             onChange={(e) => setSubtitle(e.target.value)}
             rows={2}
-            placeholder="e.g. Summary describing the preparation of children for future life challenges..."
+            placeholder="e.g. Expand on building character and emotional resilience..."
           />
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <InputField
-              label="CTA Button Label"
+              label="CTA Button Text"
               value={ctaText}
               onChange={(e) => setCtaText(e.target.value)}
               placeholder="e.g. Button label (e.g. Explore Academics)"
@@ -190,105 +230,88 @@ export function OurApproachSection({ initialData }: { initialData?: any }) {
             />
           </div>
 
-          <div className="border-t border-gray-100 pt-5">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-4">
-              Life Skill Carousel Cards
-            </h4>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-              <div className="p-4 bg-gray-50/70 rounded-2xl border border-gray-100 space-y-3">
-                <InputField
-                  label="Skill Card 1 Title"
-                  value={card1Title}
-                  onChange={(e) => setCard1Title(e.target.value)}
-                  placeholder="e.g. Communication Skills"
-                />
-                <TextAreaField
-                  label="Skill Card 1 Description"
-                  value={card1Desc}
-                  onChange={(e) => setCard1Desc(e.target.value)}
-                  rows={2}
-                  placeholder="e.g. Public speaking and articulacy..."
-                />
-                <ImagePickerField
-                  label="Card 1 Photo"
-                  value={card1Image}
-                  onChange={(url) => setCard1Image(url)}
-                  placeholder="e.g. Select Cloudinary skill card photo"
-                />
+          {/* DYNAMIC LIFE SKILL CARDS ARRAY */}
+          <div className="border-t border-gray-100 pt-5 space-y-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <h4 className="text-xs font-bold uppercase tracking-wider text-gray-700 flex items-center gap-2">
+                  Life Skill Carousel Cards ({cards.length})
+                </h4>
+                <p className="text-[11px] text-gray-400 mt-0.5">
+                  Interactive carousel cards highlighting character and competencies. Can add more than 4 cards.
+                </p>
               </div>
-
-              <div className="p-4 bg-gray-50/70 rounded-2xl border border-gray-100 space-y-3">
-                <InputField
-                  label="Skill Card 2 Title"
-                  value={card2Title}
-                  onChange={(e) => setCard2Title(e.target.value)}
-                  placeholder="e.g. Problem Solving & Logic"
-                />
-                <TextAreaField
-                  label="Skill Card 2 Description"
-                  value={card2Desc}
-                  onChange={(e) => setCard2Desc(e.target.value)}
-                  rows={2}
-                  placeholder="e.g. Analytical and reasoning focus..."
-                />
-                <ImagePickerField
-                  label="Card 2 Photo"
-                  value={card2Image}
-                  onChange={(url) => setCard2Image(url)}
-                  placeholder="e.g. Select Cloudinary skill card photo"
-                />
-              </div>
-
-              <div className="p-4 bg-gray-50/70 rounded-2xl border border-gray-100 space-y-3">
-                <InputField
-                  label="Skill Card 3 Title"
-                  value={card3Title}
-                  onChange={(e) => setCard3Title(e.target.value)}
-                  placeholder="e.g. Emotional Resilience"
-                />
-                <TextAreaField
-                  label="Skill Card 3 Description"
-                  value={card3Desc}
-                  onChange={(e) => setCard3Desc(e.target.value)}
-                  rows={2}
-                  placeholder="e.g. Mindfulness and moral compass..."
-                />
-                <ImagePickerField
-                  label="Card 3 Photo"
-                  value={card3Image}
-                  onChange={(url) => setCard3Image(url)}
-                  placeholder="e.g. Select Cloudinary skill card photo"
-                />
-              </div>
-
-              <div className="p-4 bg-gray-50/70 rounded-2xl border border-gray-100 space-y-3">
-                <InputField
-                  label="Skill Card 4 Title"
-                  value={card4Title}
-                  onChange={(e) => setCard4Title(e.target.value)}
-                  placeholder="e.g. Leadership & Ethics"
-                />
-                <TextAreaField
-                  label="Skill Card 4 Description"
-                  value={card4Desc}
-                  onChange={(e) => setCard4Desc(e.target.value)}
-                  rows={2}
-                  placeholder="e.g. Student leadership and peer initiatives..."
-                />
-                <ImagePickerField
-                  label="Card 4 Photo"
-                  value={card4Image}
-                  onChange={(url) => setCard4Image(url)}
-                  placeholder="e.g. Select Cloudinary skill card photo"
-                />
-              </div>
+              <button
+                type="button"
+                onClick={handleAddCard}
+                className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0E5A60] hover:text-[#061C29] bg-[#0E5A60]/10 hover:bg-[#0E5A60]/20 px-3.5 py-1.5 rounded-xl transition-all cursor-pointer shadow-2xs"
+              >
+                <Plus className="w-3.5 h-3.5" />
+                <span>Add Skill Card</span>
+              </button>
             </div>
+
+            {cards.length === 0 ? (
+              <div
+                onClick={handleAddCard}
+                className="p-8 rounded-2xl bg-gray-50/70 border border-dashed border-gray-200 text-center text-xs text-gray-400 cursor-pointer hover:bg-gray-100/70 hover:border-gray-300 transition-all flex flex-col items-center justify-center gap-2"
+              >
+                <Plus className="w-5 h-5 text-gray-400" />
+                <span>No skill cards added yet. Click to add your first skill card.</span>
+              </div>
+            ) : (
+              <div className="space-y-4">
+                {cards.map((card, idx) => (
+                  <div
+                    key={idx}
+                    className="p-5 bg-gray-50/70 hover:bg-gray-50 rounded-2xl border border-gray-200/80 space-y-3.5 relative transition-all group"
+                  >
+                    <div className="flex items-center justify-between border-b border-gray-200/60 pb-2">
+                      <span className="text-xs font-bold text-[#0E5A60] flex items-center gap-2">
+                        <span className="w-5 h-5 rounded-full bg-[#0E5A60]/10 flex items-center justify-center text-[10px] font-black">
+                          {idx + 1}
+                        </span>
+                        Skill Card #{idx + 1}: {card.title || "Untitled Skill"}
+                      </span>
+                      <button
+                        type="button"
+                        onClick={() => handleRemoveCard(idx)}
+                        className="p-1 text-gray-400 hover:text-red-600 rounded-lg hover:bg-red-50 transition-colors cursor-pointer"
+                        title="Delete Skill Card"
+                      >
+                        <Trash2 className="w-3.5 h-3.5" />
+                      </button>
+                    </div>
+
+                    <InputField
+                      label="Skill Card Title"
+                      value={card.title}
+                      onChange={(e) => handleUpdateCard(idx, "title", e.target.value)}
+                      placeholder="e.g. Communication Skills"
+                    />
+
+                    <TextAreaField
+                      label="Skill Card Description"
+                      value={card.desc}
+                      onChange={(e) => handleUpdateCard(idx, "desc", e.target.value)}
+                      rows={2}
+                      placeholder="e.g. Public speaking and articulacy..."
+                    />
+
+                    <ImagePickerField
+                      label="Card Photo"
+                      value={card.image}
+                      onChange={(url) => handleUpdateCard(idx, "image", url)}
+                      placeholder="e.g. Select Cloudinary skill card photo"
+                    />
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
 
-          <div className="pt-4 border-t border-gray-100 flex justify-end">
-            <div className="w-full sm:w-64">
-              <SaveButton onClick={handleSave} loading={loading} saved={saved} />
-            </div>
+          <div className="pt-4 border-t border-gray-100 w-full">
+            <SaveButton onClick={handleSave} loading={loading} saved={saved} />
           </div>
         </div>
       )}

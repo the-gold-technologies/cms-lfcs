@@ -154,7 +154,7 @@ export default function GlobalSeoPage() {
           />
         </div>
 
-        <div className="pt-2 max-w-xs">
+        <div className="pt-2 w-full">
           <SaveButton loading={saving} label="Save SEO Settings" />
         </div>
       </form>

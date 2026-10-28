@@ -130,7 +130,7 @@ export function SportsFitnessSection({ initialData }: { initialData?: any }) {
             placeholder="e.g. Teamwork, discipline, and fair play on every field."
           />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="space-y-4">
             <ImagePickerField
               label="Sports Photo 1"
               value={image1}
@@ -145,10 +145,8 @@ export function SportsFitnessSection({ initialData }: { initialData?: any }) {
             />
           </div>
 
-          <div className="pt-4 border-t border-gray-100 flex justify-end">
-            <div className="w-full sm:w-64">
-              <SaveButton onClick={handleSave} loading={loading} saved={saved} />
-            </div>
+          <div className="pt-4 border-t border-gray-100 w-full">
+            <SaveButton onClick={handleSave} loading={loading} saved={saved} />
           </div>
         </div>
       )}

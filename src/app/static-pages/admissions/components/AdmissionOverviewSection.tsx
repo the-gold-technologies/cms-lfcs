@@ -6,6 +6,12 @@ import { SectionHeader } from "@/components/SectionHeader";
 import { InputField } from "@/components/InputField";
 import { TextAreaField } from "@/components/TextAreaField";
 import { SaveButton } from "@/components/SaveButton";
+import { Plus, Trash2 } from "lucide-react";
+
+export interface AdmissionPillar {
+  title: string;
+  desc: string;
+}
 
 export function AdmissionOverviewSection({ initialData }: { initialData?: any }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -15,68 +21,103 @@ export function AdmissionOverviewSection({ initialData }: { initialData?: any })
   const [tagline, setTagline] = useState("");
   const [headline, setHeadline] = useState("");
   const [scriptAccent, setScriptAccent] = useState("");
-  const [paragraph1, setParagraph1] = useState("");
-  const [paragraph2, setParagraph2] = useState("");
+  const [overview, setOverview] = useState("");
 
-  const [p1Title, setP1Title] = useState("");
-  const [p1Text, setP1Text] = useState("");
-  const [p2Title, setP2Title] = useState("");
-  const [p2Text, setP2Text] = useState("");
-  const [p3Title, setP3Title] = useState("");
-  const [p3Text, setP3Text] = useState("");
-  const [p4Title, setP4Title] = useState("");
-  const [p4Text, setP4Text] = useState("");
+  const [pillars, setPillars] = useState<AdmissionPillar[]>([]);
 
   useEffect(() => {
     if (initialData) {
       setTagline(initialData.tagline ?? "ADMISSION OVERVIEW");
       setHeadline(initialData.headline ?? "Begin Your Child's Learning");
       setScriptAccent(initialData.scriptAccent ?? "Journey with LFCS");
-      setParagraph1(
-        initialData.paragraph1 ??
-          "Choosing the right school is an important decision for every family. At Little Flower Group of Schools, we believe that education should prepare children not only for academic success but also for the opportunities and responsibilities ahead.",
-      );
-      setParagraph2(
-        initialData.paragraph2 ??
-          "Our approach combines structured learning, value-based education and opportunities for students to discover their abilities, develop confidence and grow into responsible individuals across our 8 campuses.",
-      );
 
-      setP1Title(initialData.p1Title ?? "Structured Learning");
-      setP1Text(initialData.p1Text ?? "A strong academic base built step by step.");
-      setP2Title(initialData.p2Title ?? "Value-Based Education");
-      setP2Text(
-        initialData.p2Text ?? "Character, ethics, and civic responsibility alongside academics.",
-      );
-      setP3Title(initialData.p3Title ?? "Room to Discover");
-      setP3Text(
-        initialData.p3Text ?? "Opportunities to find passions and build genuine self-confidence.",
-      );
-      setP4Title(initialData.p4Title ?? "8 Premier Campuses");
-      setP4Text(
-        initialData.p4Text ?? "Quality education accessible for more families and communities.",
-      );
+      if (initialData.overview) {
+        setOverview(initialData.overview);
+      } else if (initialData.paragraph1 || initialData.paragraph2) {
+        setOverview([initialData.paragraph1, initialData.paragraph2].filter(Boolean).join("\n\n"));
+      } else {
+        setOverview(
+          "Choosing the right school is an important decision for every family. At Little Flower Group of Schools, we believe that education should prepare children not only for academic success but also for the opportunities and responsibilities ahead.\n\nOur approach combines structured learning, value-based education and opportunities for students to discover their abilities, develop confidence and grow into responsible individuals across our 8 campuses.",
+        );
+      }
+
+      if (Array.isArray(initialData.pillars) && initialData.pillars.length > 0) {
+        setPillars(
+          initialData.pillars.map((p: any) => ({
+            title: p.title ?? "",
+            desc: p.desc ?? p.description ?? p.text ?? "",
+          })),
+        );
+      } else {
+        setPillars([
+          {
+            title: initialData.p1Title ?? "Structured Learning",
+            desc: initialData.p1Text ?? "A strong academic base built step by step.",
+          },
+          {
+            title: initialData.p2Title ?? "Value-Based Education",
+            desc:
+              initialData.p2Text ??
+              "Character, ethics, and civic responsibility alongside academics.",
+          },
+          {
+            title: initialData.p3Title ?? "Room to Discover",
+            desc:
+              initialData.p3Text ??
+              "Opportunities to find passions and build genuine self-confidence.",
+          },
+          {
+            title: initialData.p4Title ?? "8 Premier Campuses",
+            desc:
+              initialData.p4Text ??
+              "Quality education accessible for more families and communities.",
+          },
+        ]);
+      }
     }
   }, [initialData]);
 
+  const handleAddPillar = () => {
+    setPillars((prev) => [...prev, { title: "", desc: "" }]);
+  };
+
+  const handleRemovePillar = (index: number) => {
+    setPillars((prev) => prev.filter((_, i) => i !== index));
+  };
+
+  const handleUpdatePillar = (index: number, field: keyof AdmissionPillar, value: string) => {
+    setPillars((prev) => {
+      const copy = [...prev];
+      copy[index] = { ...copy[index], [field]: value };
+      return copy;
+    });
+  };
+
   const handleSave = async () => {
     setLoading(true);
+    setSaved(false);
     try {
+      const paragraphs = overview.split(/\n\s*\n/).map((p) => p.trim()).filter(Boolean);
+
       const payload = {
         section: "AdmissionOverviewSection",
         content: {
           tagline,
           headline,
           scriptAccent,
-          paragraph1,
-          paragraph2,
-          p1Title,
-          p1Text,
-          p2Title,
-          p2Text,
-          p3Title,
-          p3Text,
-          p4Title,
-          p4Text,
+          overview, // Single narrative with white line space between paragraphs!
+          // Backward compatibility:
+          paragraph1: paragraphs[0] ?? "",
+          paragraph2: paragraphs[1] ?? "",
+          pillars,
+          p1Title: pillars[0]?.title ?? "",
+          p1Text: pillars[0]?.desc ?? "",
+          p2Title: pillars[1]?.title ?? "",
+          p2Text: pillars[1]?.desc ?? "",
+          p3Title: pillars[2]?.title ?? "",
+          p3Text: pillars[2]?.desc ?? "",
+          p4Title: pillars[3]?.title ?? "",
+          p4Text: pillars[3]?.desc ?? "",
         },
       };
 
@@ -104,8 +145,8 @@ export function AdmissionOverviewSection({ initialData }: { initialData?: any })
   return (
     <div className="bg-white rounded-3xl p-6 shadow-sm ring-1 ring-gray-100 flex flex-col gap-6">
       <SectionHeader
-        title="2. Admission Overview & 4 Selection Pillars"
-        description="Comprehensive narrative on selecting Little Flower along with the 4 pillars of parent consideration."
+        title="2. Admission Overview & Selection Pillars"
+        description="Comprehensive narrative on selecting Little Flower along with the pillars of parent consideration."
         badge="Live Section"
         isOpen={isOpen}
         onToggle={() => setIsOpen(!isOpen)}
@@ -134,94 +175,89 @@ export function AdmissionOverviewSection({ initialData }: { initialData?: any })
             />
           </div>
 
-          <div className="space-y-4">
-            <TextAreaField
-              label="Overview Narrative (Paragraph 1)"
-              value={paragraph1}
-              onChange={(e) => setParagraph1(e.target.value)}
-              rows={3}
-              placeholder="e.g. Family decision-making and institutional values..."
-            />
-            <TextAreaField
-              label="Overview Narrative (Paragraph 2)"
-              value={paragraph2}
-              onChange={(e) => setParagraph2(e.target.value)}
-              rows={3}
-              placeholder="e.g. Campus footprint and accessibility..."
-            />
+          {/* SINGLE OVERVIEW NARRATIVE TEXTAREA WITH WHITE LINE SPACE */}
+          <TextAreaField
+            label="Overview Narrative"
+            value={overview}
+            onChange={(e) => setOverview(e.target.value)}
+            rows={6}
+            tooltip="Separate paragraphs with a blank line (hit Enter twice)."
+            helperText="Hit Enter twice between paragraphs to create clean white line spaces just like on the live website."
+            placeholder="Write the admission overview narrative here. Separate multiple paragraphs by hitting Enter twice..."
+          />
+
+          {/* DYNAMIC PILLARS ARRAY */}
+          <div className="border-t border-gray-100 pt-5 space-y-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <h4 className="text-xs font-bold uppercase tracking-wider text-gray-700 flex items-center gap-2">
+                  Pillars of Admission ({pillars.length})
+                </h4>
+                <p className="text-[11px] text-gray-400 mt-0.5">
+                  Key reasons families choose Little Flower. Can add more than 4 pillars.
+                </p>
+              </div>
+              <button
+                type="button"
+                onClick={handleAddPillar}
+                className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0E5A60] hover:text-[#061C29] bg-[#0E5A60]/10 hover:bg-[#0E5A60]/20 px-3.5 py-1.5 rounded-xl transition-all cursor-pointer shadow-2xs"
+              >
+                <Plus className="w-3.5 h-3.5" />
+                <span>Add Pillar</span>
+              </button>
+            </div>
+
+            {pillars.length === 0 ? (
+              <div
+                onClick={handleAddPillar}
+                className="p-8 rounded-2xl bg-gray-50/70 border border-dashed border-gray-200 text-center text-xs text-gray-400 cursor-pointer hover:bg-gray-100/70 hover:border-gray-300 transition-all flex flex-col items-center justify-center gap-2"
+              >
+                <Plus className="w-5 h-5 text-gray-400" />
+                <span>No pillars added yet. Click to add your first admission pillar.</span>
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {pillars.map((pillar, idx) => (
+                  <div
+                    key={idx}
+                    className="p-4 bg-gray-50/70 hover:bg-gray-50 rounded-2xl border border-gray-200/80 space-y-2 relative transition-all group"
+                  >
+                    <div className="flex items-center justify-between border-b border-gray-200/60 pb-1.5">
+                      <span className="text-[11px] font-bold text-[#0E5A60]">
+                        Pillar #{idx + 1}
+                      </span>
+                      <button
+                        type="button"
+                        onClick={() => handleRemovePillar(idx)}
+                        className="p-1 text-gray-400 hover:text-red-600 rounded-lg hover:bg-red-50 transition-colors cursor-pointer"
+                        title="Delete Pillar"
+                      >
+                        <Trash2 className="w-3 h-3" />
+                      </button>
+                    </div>
+
+                    <InputField
+                      label="Pillar Title"
+                      value={pillar.title}
+                      onChange={(e) => handleUpdatePillar(idx, "title", e.target.value)}
+                      placeholder="e.g. Structured Learning"
+                    />
+
+                    <TextAreaField
+                      label="Pillar Subtext"
+                      value={pillar.desc}
+                      onChange={(e) => handleUpdatePillar(idx, "desc", e.target.value)}
+                      rows={2}
+                      placeholder="e.g. Step by step academic growth..."
+                    />
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
 
-          <div className="border-t border-gray-100 pt-5">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-4">
-              4 Pillars of Admission
-            </h4>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="p-4 bg-gray-50/70 rounded-2xl border border-gray-100 space-y-2">
-                <InputField
-                  label="Pillar 1 Title"
-                  value={p1Title}
-                  onChange={(e) => setP1Title(e.target.value)}
-                  placeholder="e.g. Structured Learning"
-                />
-                <InputField
-                  label="Pillar 1 Subtext"
-                  value={p1Text}
-                  onChange={(e) => setP1Text(e.target.value)}
-                  placeholder="e.g. Step by step academic growth..."
-                />
-              </div>
-
-              <div className="p-4 bg-gray-50/70 rounded-2xl border border-gray-100 space-y-2">
-                <InputField
-                  label="Pillar 2 Title"
-                  value={p2Title}
-                  onChange={(e) => setP2Title(e.target.value)}
-                  placeholder="e.g. Value-Based Education"
-                />
-                <InputField
-                  label="Pillar 2 Subtext"
-                  value={p2Text}
-                  onChange={(e) => setP2Text(e.target.value)}
-                  placeholder="e.g. Character alongside academics..."
-                />
-              </div>
-
-              <div className="p-4 bg-gray-50/70 rounded-2xl border border-gray-100 space-y-2">
-                <InputField
-                  label="Pillar 3 Title"
-                  value={p3Title}
-                  onChange={(e) => setP3Title(e.target.value)}
-                  placeholder="e.g. Room to Discover"
-                />
-                <InputField
-                  label="Pillar 3 Subtext"
-                  value={p3Text}
-                  onChange={(e) => setP3Text(e.target.value)}
-                  placeholder="e.g. Building confidence..."
-                />
-              </div>
-
-              <div className="p-4 bg-gray-50/70 rounded-2xl border border-gray-100 space-y-2">
-                <InputField
-                  label="Pillar 4 Title"
-                  value={p4Title}
-                  onChange={(e) => setP4Title(e.target.value)}
-                  placeholder="e.g. 8 Premier Campuses"
-                />
-                <InputField
-                  label="Pillar 4 Subtext"
-                  value={p4Text}
-                  onChange={(e) => setP4Text(e.target.value)}
-                  placeholder="e.g. Accessible quality education..."
-                />
-              </div>
-            </div>
-          </div>
-
-          <div className="pt-4 border-t border-gray-100 flex justify-end">
-            <div className="w-full sm:w-64">
-              <SaveButton onClick={handleSave} loading={loading} saved={saved} />
-            </div>
+          <div className="pt-4 border-t border-gray-100 w-full">
+            <SaveButton onClick={handleSave} loading={loading} saved={saved} />
           </div>
         </div>
       )}

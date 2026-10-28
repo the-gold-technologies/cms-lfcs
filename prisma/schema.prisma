@@ -193,6 +193,8 @@ model Section {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   page      Page     @relation(fields: [pageId], references: [id], onDelete: Cascade)
+
+  @@unique([pageId, type])
 }
 
 model NavLink {

@@ -2,11 +2,18 @@
 
 import React, { useState, useEffect } from "react";
 import toast from "react-hot-toast";
+import { Plus, Trash2 } from "lucide-react";
 import { SectionHeader } from "@/components/SectionHeader";
 import { InputField } from "@/components/InputField";
 import { TextAreaField } from "@/components/TextAreaField";
 import { ImagePickerField } from "@/components/ImagePickerField";
 import { SaveButton } from "@/components/SaveButton";
+
+interface AwardItem {
+  title: string;
+  desc: string;
+  image: string;
+}
 
 export function AwardsSection({ initialData }: { initialData?: any }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,17 +24,7 @@ export function AwardsSection({ initialData }: { initialData?: any }) {
   const [headline, setHeadline] = useState("");
   const [subtitle, setSubtitle] = useState("");
 
-  const [award1Title, setAward1Title] = useState("");
-  const [award1Desc, setAward1Desc] = useState("");
-  const [award1Image, setAward1Image] = useState("");
-
-  const [award2Title, setAward2Title] = useState("");
-  const [award2Desc, setAward2Desc] = useState("");
-  const [award2Image, setAward2Image] = useState("");
-
-  const [award3Title, setAward3Title] = useState("");
-  const [award3Desc, setAward3Desc] = useState("");
-  const [award3Image, setAward3Image] = useState("");
+  const [awards, setAwards] = useState<AwardItem[]>([]);
 
   useEffect(() => {
     if (initialData) {
@@ -38,37 +35,70 @@ export function AwardsSection({ initialData }: { initialData?: any }) {
           "Celebrating excellence recognized at state, national, and international summits.",
       );
 
-      setAward1Title(initialData.award1Title ?? "International Academic Recognition");
-      setAward1Desc(
-        initialData.award1Desc ??
-          "Representation at the 1st International & 31st Annual Conference of Sahodaya School Complexes in Dubai, UAE.",
-      );
-      setAward1Image(
-        initialData.award1Image ??
-          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170013/lfcs-school/logo-unveiling_1793170013232.webp",
-      );
-
-      setAward2Title(initialData.award2Title ?? "National Leadership Award");
-      setAward2Desc(
-        initialData.award2Desc ??
-          "Honoured with the Award for Leading School Chain of Uttar Pradesh at the Education Summit in Lucknow.",
-      );
-      setAward2Image(
-        initialData.award2Image ??
-          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170009/lfcs-school/anand-kumar-toi-profile_1793170009223.webp",
-      );
-
-      setAward3Title(initialData.award3Title ?? "Prestigious Media Recognition");
-      setAward3Desc(
-        initialData.award3Desc ??
-          "Recipient of the Dainik Jagran Award for being one of the Most Credible Educational Brands in UP.",
-      );
-      setAward3Image(
-        initialData.award3Image ??
-          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170010/lfcs-school/anand-kumar-felicitation_1793170010248.webp",
-      );
+      if (Array.isArray(initialData.awards) && initialData.awards.length > 0) {
+        setAwards(
+          initialData.awards.map((a: any) => ({
+            title: a.title ?? "",
+            desc: a.desc ?? "",
+            image: a.image ?? "",
+          })),
+        );
+      } else {
+        setAwards([
+          {
+            title: initialData.award1Title ?? "International Academic Recognition",
+            desc:
+              initialData.award1Desc ??
+              "Representation at the 1st International & 31st Annual Conference of Sahodaya School Complexes in Dubai, UAE.",
+            image:
+              initialData.award1Image ??
+              "https://res.cloudinary.com/dpa93copz/image/upload/v1793170013/lfcs-school/logo-unveiling_1793170013232.webp",
+          },
+          {
+            title: initialData.award2Title ?? "National Leadership Award",
+            desc:
+              initialData.award2Desc ??
+              "Honoured with the Award for Leading School Chain of Uttar Pradesh at the Education Summit in Lucknow.",
+            image:
+              initialData.award2Image ??
+              "https://res.cloudinary.com/dpa93copz/image/upload/v1793170009/lfcs-school/anand-kumar-toi-profile_1793170009223.webp",
+          },
+          {
+            title: initialData.award3Title ?? "Prestigious Media Recognition",
+            desc:
+              initialData.award3Desc ??
+              "Recipient of the Dainik Jagran Award for being one of the Most Credible Educational Brands in UP.",
+            image:
+              initialData.award3Image ??
+              "https://res.cloudinary.com/dpa93copz/image/upload/v1793170010/lfcs-school/anand-kumar-felicitation_1793170010248.webp",
+          },
+        ]);
+      }
     }
   }, [initialData]);
+
+  const handleAddAward = () => {
+    setAwards((prev) => [
+      ...prev,
+      {
+        title: "",
+        desc: "",
+        image: "",
+      },
+    ]);
+  };
+
+  const handleRemoveAward = (index: number) => {
+    setAwards((prev) => prev.filter((_, i) => i !== index));
+  };
+
+  const handleUpdateAward = (index: number, field: keyof AwardItem, val: string) => {
+    setAwards((prev) => {
+      const copy = [...prev];
+      copy[index] = { ...copy[index], [field]: val };
+      return copy;
+    });
+  };
 
   const handleSave = async () => {
     setLoading(true);
@@ -79,15 +109,17 @@ export function AwardsSection({ initialData }: { initialData?: any }) {
           tagline,
           headline,
           subtitle,
-          award1Title,
-          award1Desc,
-          award1Image,
-          award2Title,
-          award2Desc,
-          award2Image,
-          award3Title,
-          award3Desc,
-          award3Image,
+          awards, // dynamic array object!
+          // Backward compatibility:
+          award1Title: awards[0]?.title ?? "",
+          award1Desc: awards[0]?.desc ?? "",
+          award1Image: awards[0]?.image ?? "",
+          award2Title: awards[1]?.title ?? "",
+          award2Desc: awards[1]?.desc ?? "",
+          award2Image: awards[1]?.image ?? "",
+          award3Title: awards[2]?.title ?? "",
+          award3Desc: awards[2]?.desc ?? "",
+          award3Image: awards[2]?.image ?? "",
         },
       };
 
@@ -147,83 +179,91 @@ export function AwardsSection({ initialData }: { initialData?: any }) {
             placeholder="e.g. Introduction to school accolades..."
           />
 
-          <div className="border-t border-gray-100 pt-5">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-4">
-              3 Featured Honours
-            </h4>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-              <div className="p-4 bg-gray-50/70 rounded-2xl border border-gray-100 space-y-3">
-                <InputField
-                  label="Award 1 Title"
-                  value={award1Title}
-                  onChange={(e) => setAward1Title(e.target.value)}
-                  placeholder="e.g. Sahodaya Dubai Recognition"
-                />
-                <TextAreaField
-                  label="Description"
-                  value={award1Desc}
-                  onChange={(e) => setAward1Desc(e.target.value)}
-                  rows={3}
-                  placeholder="e.g. Citation details..."
-                />
-                <ImagePickerField
-                  label="Award Photo"
-                  value={award1Image}
-                  onChange={(url) => setAward1Image(url)}
-                  placeholder="e.g. Cloudinary trophy/award photo URL"
-                />
+          {/* DYNAMIC AWARDS ARRAY */}
+          <div className="border-t border-gray-100 pt-5 space-y-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <h4 className="text-xs font-bold uppercase tracking-wider text-gray-700 flex items-center gap-2">
+                  Featured Honours & Awards ({awards.length})
+                </h4>
+                <p className="text-[11px] text-gray-400 mt-0.5">
+                  State, national and international recognitions. Can add more than 3 awards.
+                </p>
               </div>
-
-              <div className="p-4 bg-gray-50/70 rounded-2xl border border-gray-100 space-y-3">
-                <InputField
-                  label="Award 2 Title"
-                  value={award2Title}
-                  onChange={(e) => setAward2Title(e.target.value)}
-                  placeholder="e.g. National Leadership Award"
-                />
-                <TextAreaField
-                  label="Description"
-                  value={award2Desc}
-                  onChange={(e) => setAward2Desc(e.target.value)}
-                  rows={3}
-                  placeholder="e.g. Citation details..."
-                />
-                <ImagePickerField
-                  label="Award Photo"
-                  value={award2Image}
-                  onChange={(url) => setAward2Image(url)}
-                  placeholder="e.g. Cloudinary trophy/award photo URL"
-                />
-              </div>
-
-              <div className="p-4 bg-gray-50/70 rounded-2xl border border-gray-100 space-y-3">
-                <InputField
-                  label="Award 3 Title"
-                  value={award3Title}
-                  onChange={(e) => setAward3Title(e.target.value)}
-                  placeholder="e.g. Dainik Jagran Most Credible Brand"
-                />
-                <TextAreaField
-                  label="Description"
-                  value={award3Desc}
-                  onChange={(e) => setAward3Desc(e.target.value)}
-                  rows={3}
-                  placeholder="e.g. Citation details..."
-                />
-                <ImagePickerField
-                  label="Award Photo"
-                  value={award3Image}
-                  onChange={(url) => setAward3Image(url)}
-                  placeholder="e.g. Cloudinary trophy/award photo URL"
-                />
-              </div>
+              <button
+                type="button"
+                onClick={handleAddAward}
+                className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0E5A60] hover:text-[#061C29] bg-[#0E5A60]/10 hover:bg-[#0E5A60]/20 px-3.5 py-1.5 rounded-xl transition-all cursor-pointer shadow-2xs"
+              >
+                <Plus className="w-3.5 h-3.5" />
+                <span>Add Award</span>
+              </button>
             </div>
+
+            {awards.length === 0 ? (
+              <div
+                onClick={handleAddAward}
+                className="p-8 rounded-2xl bg-gray-50/70 border border-dashed border-gray-200 text-center text-xs text-gray-400 cursor-pointer hover:bg-gray-100/70 hover:border-gray-300 transition-all flex flex-col items-center justify-center gap-2"
+              >
+                <Plus className="w-5 h-5 text-gray-400" />
+                <span>No awards added yet. Click to add your first honour.</span>
+              </div>
+            ) : (
+              <div className="space-y-4">
+                {awards.map((award, idx) => (
+                  <div
+                    key={idx}
+                    className="p-5 bg-gray-50/70 hover:bg-gray-50 rounded-2xl border border-gray-200/80 space-y-3.5 relative transition-all group"
+                  >
+                    <div className="flex items-center justify-between border-b border-gray-200/60 pb-2">
+                      <span className="text-xs font-bold text-[#0E5A60] flex items-center gap-2">
+                        <span className="w-5 h-5 rounded-full bg-[#0E5A60]/10 flex items-center justify-center text-[10px] font-black">
+                          {idx + 1}
+                        </span>
+                        Award #{idx + 1}: {award.title || "Untitled Award"}
+                      </span>
+                      <button
+                        type="button"
+                        onClick={() => handleRemoveAward(idx)}
+                        className="p-1 text-gray-400 hover:text-red-600 rounded-lg hover:bg-red-50 transition-colors cursor-pointer"
+                        title="Delete Award"
+                      >
+                        <Trash2 className="w-3.5 h-3.5" />
+                      </button>
+                    </div>
+
+                    {/* Row 1: Title */}
+                    <InputField
+                      label="Award Title"
+                      value={award.title}
+                      onChange={(e) => handleUpdateAward(idx, "title", e.target.value)}
+                      placeholder="e.g. Sahodaya Dubai Recognition"
+                    />
+
+                    {/* Row 2: Description */}
+                    <TextAreaField
+                      label="Award Description"
+                      value={award.desc}
+                      onChange={(e) => handleUpdateAward(idx, "desc", e.target.value)}
+                      rows={2}
+                      placeholder="e.g. Citation details, presenting body..."
+                    />
+
+                    {/* Row 3: Image (full width) */}
+                    <ImagePickerField
+                      label="Award Photo"
+                      value={award.image}
+                      onChange={(url) => handleUpdateAward(idx, "image", url)}
+                      placeholder="e.g. Cloudinary trophy/award photo URL"
+                    />
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
 
-          <div className="pt-4 border-t border-gray-100 flex justify-end">
-            <div className="w-full sm:w-64">
-              <SaveButton onClick={handleSave} loading={loading} saved={saved} />
-            </div>
+          <div className="pt-4 border-t border-gray-100 w-full">
+            <SaveButton onClick={handleSave} loading={loading} saved={saved} />
           </div>
         </div>
       )}

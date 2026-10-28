@@ -417,7 +417,25 @@
       "stat3Value": "8",
       "stat3Label": "Schools Across UP",
       "stat4Value": "100%",
-      "stat4Label": "Pass Rate (CBSE Board)"
+      "stat4Label": "Pass Rate (CBSE Board)",
+      "stats": [
+        {
+          "value": "40000+",
+          "label": "Students Enrolled"
+        },
+        {
+          "value": "40+",
+          "label": "Years of Excellence"
+        },
+        {
+          "value": "8",
+          "label": "Schools Across UP"
+        },
+        {
+          "value": "100%",
+          "label": "Pass Rate (CBSE Board)"
+        }
+      ]
     },
     "HowWeEducateSection": {
       "tagline": "HOW WE EDUCATE",
@@ -432,7 +450,25 @@
       "pillar3Title": "Technology & Innovation",
       "pillar3Desc": "Smart classrooms and digital integration.",
       "pillar4Title": "Holistic Growth",
-      "pillar4Desc": "Sports, arts and life skills for total development."
+      "pillar4Desc": "Sports, arts and life skills for total development.",
+      "pillars": [
+        {
+          "title": "Experiential Learning",
+          "desc": "Hands-on learning that builds curiosity."
+        },
+        {
+          "title": "Academic Excellence",
+          "desc": "Strong foundation with personalized support."
+        },
+        {
+          "title": "Technology & Innovation",
+          "desc": "Smart classrooms and digital integration."
+        },
+        {
+          "title": "Holistic Growth",
+          "desc": "Sports, arts and life skills for total development."
+        }
+      ]
     },
     "NoteOfSupportSection": {
       "tagline": "Notes of Support",
@@ -466,7 +502,29 @@
       "card3Image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170036/lfcs-school/skills3_1793170036462.webp",
       "card4Title": "Leadership & Ethics",
       "card4Desc": "Student council, community outreach, and peer mentorship.",
-      "card4Image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170039/lfcs-school/skills4_1793170038535.webp"
+      "card4Image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170039/lfcs-school/skills4_1793170038535.webp",
+      "cards": [
+        {
+          "title": "Communication Skills",
+          "desc": "Public speaking, debate, and bilingual articulate expression.",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170018/lfcs-school/skills1_1793170017926.webp"
+        },
+        {
+          "title": "Problem Solving & Logic",
+          "desc": "STEM-oriented scientific enquiry and analytical reasoning.",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170029/lfcs-school/skills2_1793170028638.webp"
+        },
+        {
+          "title": "Emotional Resilience",
+          "desc": "Mindfulness, self-awareness, and value-based moral balance.",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170036/lfcs-school/skills3_1793170036462.webp"
+        },
+        {
+          "title": "Leadership & Ethics",
+          "desc": "Student council, community outreach, and peer mentorship.",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170039/lfcs-school/skills4_1793170038535.webp"
+        }
+      ]
     },
     "OurSchoolsSection": {
       "tagline": "OUR CAMPUSES",
@@ -490,7 +548,24 @@
       "feature2Image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170040/lfcs-school/life1_1793170040339.webp",
       "feature3Title": "Future Ready",
       "feature3Desc": "Innovation, technology and 21st century skills.",
-      "feature3Image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170019/lfcs-school/digital-classroom_1793170018820.webp"
+      "feature3Image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170019/lfcs-school/digital-classroom_1793170018820.webp",
+      "cards": [
+        {
+          "title": "Strong Academics",
+          "desc": "CBSE curriculum with future ready learning.",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170028/lfcs-school/practical_1793170027731.webp"
+        },
+        {
+          "title": "Holistic Growth",
+          "desc": "Sports, arts, life skills and leadership opportunities.",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170040/lfcs-school/life1_1793170040339.webp"
+        },
+        {
+          "title": "Future Ready",
+          "desc": "Innovation, technology and 21st century skills.",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170019/lfcs-school/digital-classroom_1793170018820.webp"
+        }
+      ]
     }
   },
   "start-school": {
@@ -608,6 +683,14 @@
       "r4Title": "Marketing & Admissions Engine",
       "r4Desc": "High-visibility launch PR campaigns, digital lead generation, and Anand Kumar endorsement collaterals.",
       "r4Image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170010/lfcs-school/anand-kumar-felicitation_1793170010248.webp"
+    }
+  },
+  "gallery": {
+    "GalleryHeroSection": {
+      "tagline": "Photo Gallery",
+      "headline": "Moments from",
+      "scriptAccent": "Our Campuses.",
+      "description": "A look inside Little Flower schools: our classrooms, labs, early years, sports, culture and the events that make school life memorable."
     }
   }
 }

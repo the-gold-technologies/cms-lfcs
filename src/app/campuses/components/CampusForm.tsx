@@ -202,7 +202,7 @@ export function CampusForm({ initialData, isEdit = false }: CampusFormProps) {
         </label>
       </div>
 
-      <div className="pt-4 max-w-xs">
+      <div className="pt-4 w-full">
         <SaveButton
           loading={loading}
           saved={saved}

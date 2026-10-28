@@ -140,7 +140,7 @@ export default function SocialMediaPage() {
           </div>
         </div>
 
-        <div className="pt-2 max-w-xs">
+        <div className="pt-2 w-full">
           <SaveButton loading={saving} label="Save Social & Contact Info" />
         </div>
       </form>

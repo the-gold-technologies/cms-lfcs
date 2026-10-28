@@ -2,10 +2,16 @@
 
 import React, { useState, useEffect } from "react";
 import toast from "react-hot-toast";
+import { Plus, Trash2 } from "lucide-react";
 import { SectionHeader } from "@/components/SectionHeader";
 import { InputField } from "@/components/InputField";
 import { TextAreaField } from "@/components/TextAreaField";
 import { SaveButton } from "@/components/SaveButton";
+
+interface ModelArea {
+  title: string;
+  desc: string;
+}
 
 export function SchoolModelSection({ initialData }: { initialData?: any }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,16 +23,7 @@ export function SchoolModelSection({ initialData }: { initialData?: any }) {
   const [scriptAccent, setScriptAccent] = useState("");
   const [subtitle, setSubtitle] = useState("");
 
-  const [area1Title, setArea1Title] = useState("");
-  const [area1Desc, setArea1Desc] = useState("");
-  const [area2Title, setArea2Title] = useState("");
-  const [area2Desc, setArea2Desc] = useState("");
-  const [area3Title, setArea3Title] = useState("");
-  const [area3Desc, setArea3Desc] = useState("");
-  const [area4Title, setArea4Title] = useState("");
-  const [area4Desc, setArea4Desc] = useState("");
-  const [area5Title, setArea5Title] = useState("");
-  const [area5Desc, setArea5Desc] = useState("");
+  const [areas, setAreas] = useState<ModelArea[]>([]);
 
   useEffect(() => {
     if (initialData) {
@@ -38,37 +35,71 @@ export function SchoolModelSection({ initialData }: { initialData?: any }) {
           "A transparent institutional framework designed to align academic excellence, school administration, and sustainable local community impact.",
       );
 
-      setArea1Title(initialData.area1Title ?? "Educational Framework");
-      setArea1Desc(
-        initialData.area1Desc ??
-          "Full alignment with the LFCS pedagogical approach, student evaluations, and school values.",
-      );
-
-      setArea2Title(initialData.area2Title ?? "School Management System");
-      setArea2Desc(
-        initialData.area2Desc ??
-          "Clear delineation of operational responsibilities, ERP deployment, and administration.",
-      );
-
-      setArea3Title(initialData.area3Title ?? "Academic Structure");
-      setArea3Desc(
-        initialData.area3Desc ??
-          "Continuous guidance on CBSE curriculum rollout, teacher training, and timetable management.",
-      );
-
-      setArea4Title(initialData.area4Title ?? "Brand Identity Standards");
-      setArea4Desc(
-        initialData.area4Desc ??
-          "Authorized usage of LFCS logos, school uniforms, signage, and marketing collaterals.",
-      );
-
-      setArea5Title(initialData.area5Title ?? "Campus Development Coordination");
-      setArea5Desc(
-        initialData.area5Desc ??
-          "Architectural blueprints, laboratory layouts, safety clearances, and sports ground setup.",
-      );
+      if (Array.isArray(initialData.areas) && initialData.areas.length > 0) {
+        setAreas(
+          initialData.areas.map((a: any) => ({
+            title: a.title ?? "",
+            desc: a.desc ?? "",
+          })),
+        );
+      } else {
+        setAreas([
+          {
+            title: initialData.area1Title ?? "Educational Framework",
+            desc:
+              initialData.area1Desc ??
+              "Full alignment with the LFCS pedagogical approach, student evaluations, and school values.",
+          },
+          {
+            title: initialData.area2Title ?? "School Management System",
+            desc:
+              initialData.area2Desc ??
+              "Clear delineation of operational responsibilities, ERP deployment, and administration.",
+          },
+          {
+            title: initialData.area3Title ?? "Academic Structure",
+            desc:
+              initialData.area3Desc ??
+              "Continuous guidance on CBSE curriculum rollout, teacher training, and timetable management.",
+          },
+          {
+            title: initialData.area4Title ?? "Brand Identity Standards",
+            desc:
+              initialData.area4Desc ??
+              "Authorized usage of LFCS logos, school uniforms, signage, and marketing collaterals.",
+          },
+          {
+            title: initialData.area5Title ?? "Campus Development Coordination",
+            desc:
+              initialData.area5Desc ??
+              "Architectural blueprints, laboratory layouts, safety clearances, and sports ground setup.",
+          },
+        ]);
+      }
     }
   }, [initialData]);
+
+  const handleAddArea = () => {
+    setAreas((prev) => [
+      ...prev,
+      {
+        title: "",
+        desc: "",
+      },
+    ]);
+  };
+
+  const handleRemoveArea = (index: number) => {
+    setAreas((prev) => prev.filter((_, i) => i !== index));
+  };
+
+  const handleUpdateArea = (index: number, field: keyof ModelArea, val: string) => {
+    setAreas((prev) => {
+      const copy = [...prev];
+      copy[index] = { ...copy[index], [field]: val };
+      return copy;
+    });
+  };
 
   const handleSave = async () => {
     setLoading(true);
@@ -80,16 +111,18 @@ export function SchoolModelSection({ initialData }: { initialData?: any }) {
           headline,
           scriptAccent,
           subtitle,
-          area1Title,
-          area1Desc,
-          area2Title,
-          area2Desc,
-          area3Title,
-          area3Desc,
-          area4Title,
-          area4Desc,
-          area5Title,
-          area5Desc,
+          areas, // dynamic array object!
+          // Backward compatibility:
+          area1Title: areas[0]?.title ?? "",
+          area1Desc: areas[0]?.desc ?? "",
+          area2Title: areas[1]?.title ?? "",
+          area2Desc: areas[1]?.desc ?? "",
+          area3Title: areas[2]?.title ?? "",
+          area3Desc: areas[2]?.desc ?? "",
+          area4Title: areas[3]?.title ?? "",
+          area4Desc: areas[3]?.desc ?? "",
+          area5Title: areas[4]?.title ?? "",
+          area5Desc: areas[4]?.desc ?? "",
         },
       };
 
@@ -117,7 +150,7 @@ export function SchoolModelSection({ initialData }: { initialData?: any }) {
   return (
     <div className="bg-white rounded-3xl p-6 shadow-sm ring-1 ring-gray-100 flex flex-col gap-6">
       <SectionHeader
-        title="3. LFCS School Operating Model (5 Pillars)"
+        title="3. LFCS School Operating Model Pillars"
         description="Core operational framework: Educational, Management, Academic Structure, Brand Identity, and Development."
         badge="Live Section"
         isOpen={isOpen}
@@ -155,97 +188,81 @@ export function SchoolModelSection({ initialData }: { initialData?: any }) {
             placeholder="e.g. Operating model summary..."
           />
 
-          <div className="border-t border-gray-100 pt-5">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-4">
-              5 Model Focus Areas
-            </h4>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-              <div className="p-4 bg-gray-50/70 rounded-2xl border border-gray-100 space-y-2">
-                <InputField
-                  label="Area 1 Title"
-                  value={area1Title}
-                  onChange={(e) => setArea1Title(e.target.value)}
-                  placeholder="e.g. Educational Framework"
-                />
-                <TextAreaField
-                  label="Description"
-                  value={area1Desc}
-                  onChange={(e) => setArea1Desc(e.target.value)}
-                  rows={2}
-                  placeholder="e.g. Learning approach..."
-                />
+          {/* DYNAMIC MODEL AREAS ARRAY */}
+          <div className="border-t border-gray-100 pt-5 space-y-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <h4 className="text-xs font-bold uppercase tracking-wider text-gray-700 flex items-center gap-2">
+                  Model Focus Pillars ({areas.length})
+                </h4>
+                <p className="text-[11px] text-gray-400 mt-0.5">
+                  Core operational pillars. Can add more than 5 pillars.
+                </p>
               </div>
-
-              <div className="p-4 bg-gray-50/70 rounded-2xl border border-gray-100 space-y-2">
-                <InputField
-                  label="Area 2 Title"
-                  value={area2Title}
-                  onChange={(e) => setArea2Title(e.target.value)}
-                  placeholder="e.g. School Management"
-                />
-                <TextAreaField
-                  label="Description"
-                  value={area2Desc}
-                  onChange={(e) => setArea2Desc(e.target.value)}
-                  rows={2}
-                  placeholder="e.g. Operations and ERP..."
-                />
-              </div>
-
-              <div className="p-4 bg-gray-50/70 rounded-2xl border border-gray-100 space-y-2">
-                <InputField
-                  label="Area 3 Title"
-                  value={area3Title}
-                  onChange={(e) => setArea3Title(e.target.value)}
-                  placeholder="e.g. Academic Structure"
-                />
-                <TextAreaField
-                  label="Description"
-                  value={area3Desc}
-                  onChange={(e) => setArea3Desc(e.target.value)}
-                  rows={2}
-                  placeholder="e.g. Curriculum guidance..."
-                />
-              </div>
-
-              <div className="p-4 bg-gray-50/70 rounded-2xl border border-gray-100 space-y-2">
-                <InputField
-                  label="Area 4 Title"
-                  value={area4Title}
-                  onChange={(e) => setArea4Title(e.target.value)}
-                  placeholder="e.g. Brand Identity"
-                />
-                <TextAreaField
-                  label="Description"
-                  value={area4Desc}
-                  onChange={(e) => setArea4Desc(e.target.value)}
-                  rows={2}
-                  placeholder="e.g. Brand usage guidelines..."
-                />
-              </div>
-
-              <div className="p-4 bg-gray-50/70 rounded-2xl border border-gray-100 space-y-2">
-                <InputField
-                  label="Area 5 Title"
-                  value={area5Title}
-                  onChange={(e) => setArea5Title(e.target.value)}
-                  placeholder="e.g. School Development"
-                />
-                <TextAreaField
-                  label="Description"
-                  value={area5Desc}
-                  onChange={(e) => setArea5Desc(e.target.value)}
-                  rows={2}
-                  placeholder="e.g. Campus blueprints..."
-                />
-              </div>
+              <button
+                type="button"
+                onClick={handleAddArea}
+                className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0E5A60] hover:text-[#061C29] bg-[#0E5A60]/10 hover:bg-[#0E5A60]/20 px-3.5 py-1.5 rounded-xl transition-all cursor-pointer shadow-2xs"
+              >
+                <Plus className="w-3.5 h-3.5" />
+                <span>Add Pillar</span>
+              </button>
             </div>
+
+            {areas.length === 0 ? (
+              <div
+                onClick={handleAddArea}
+                className="p-8 rounded-2xl bg-gray-50/70 border border-dashed border-gray-200 text-center text-xs text-gray-400 cursor-pointer hover:bg-gray-100/70 hover:border-gray-300 transition-all flex flex-col items-center justify-center gap-2"
+              >
+                <Plus className="w-5 h-5 text-gray-400" />
+                <span>No model pillars added yet. Click to add your first pillar.</span>
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                {areas.map((area, idx) => (
+                  <div
+                    key={idx}
+                    className="p-4 bg-gray-50/70 hover:bg-gray-50 rounded-2xl border border-gray-200/80 space-y-3 relative transition-all group"
+                  >
+                    <div className="flex items-center justify-between border-b border-gray-200/60 pb-2">
+                      <span className="text-xs font-bold text-[#0E5A60] flex items-center gap-2">
+                        <span className="w-5 h-5 rounded-full bg-[#0E5A60]/10 flex items-center justify-center text-[10px] font-black">
+                          {idx + 1}
+                        </span>
+                        Pillar #{idx + 1}: {area.title || "Untitled"}
+                      </span>
+                      <button
+                        type="button"
+                        onClick={() => handleRemoveArea(idx)}
+                        className="p-1 text-gray-400 hover:text-red-600 rounded-lg hover:bg-red-50 transition-colors cursor-pointer"
+                        title="Delete Pillar"
+                      >
+                        <Trash2 className="w-3.5 h-3.5" />
+                      </button>
+                    </div>
+
+                    <InputField
+                      label="Pillar Title"
+                      value={area.title}
+                      onChange={(e) => handleUpdateArea(idx, "title", e.target.value)}
+                      placeholder="e.g. Educational Framework"
+                    />
+
+                    <TextAreaField
+                      label="Description"
+                      value={area.desc}
+                      onChange={(e) => handleUpdateArea(idx, "desc", e.target.value)}
+                      rows={2}
+                      placeholder="e.g. Learning approach, evaluation standards..."
+                    />
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
 
-          <div className="pt-4 border-t border-gray-100 flex justify-end">
-            <div className="w-full sm:w-64">
-              <SaveButton onClick={handleSave} loading={loading} saved={saved} />
-            </div>
+          <div className="pt-4 border-t border-gray-100 w-full">
+            <SaveButton onClick={handleSave} loading={loading} saved={saved} />
           </div>
         </div>
       )}

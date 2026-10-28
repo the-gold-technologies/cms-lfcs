@@ -115,35 +115,33 @@ export function CTABanners({ initialData }: { initialData?: any }) {
               <span className="w-2.5 h-2.5 rounded-full bg-[#6a2238]" />
               Left Banner: Admissions Open
             </h4>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="space-y-3">
+            <div className="space-y-3.5">
+              <InputField
+                label="Banner Title"
+                value={banner1Title}
+                onChange={(e) => setBanner1Title(e.target.value)}
+                placeholder="e.g. Admissions Open for Session 2026-27"
+              />
+              <TextAreaField
+                label="Banner Subtitle"
+                value={banner1Subtitle}
+                onChange={(e) => setBanner1Subtitle(e.target.value)}
+                rows={2}
+                placeholder="e.g. Invite parents to enroll their children..."
+              />
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <InputField
-                  label="Banner Title"
-                  value={banner1Title}
-                  onChange={(e) => setBanner1Title(e.target.value)}
-                  placeholder="e.g. Admissions Open for Session 2026-27"
+                  label="Button Text"
+                  value={banner1CtaText}
+                  onChange={(e) => setBanner1CtaText(e.target.value)}
+                  placeholder="e.g. Learn About Admissions"
                 />
-                <TextAreaField
-                  label="Banner Subtitle"
-                  value={banner1Subtitle}
-                  onChange={(e) => setBanner1Subtitle(e.target.value)}
-                  rows={2}
-                  placeholder="e.g. Invite parents to enroll their children..."
+                <InputField
+                  label="Button Link"
+                  value={banner1CtaLink}
+                  onChange={(e) => setBanner1CtaLink(e.target.value)}
+                  placeholder="e.g. /admissions"
                 />
-                <div className="grid grid-cols-2 gap-3">
-                  <InputField
-                    label="Button Text"
-                    value={banner1CtaText}
-                    onChange={(e) => setBanner1CtaText(e.target.value)}
-                    placeholder="e.g. Learn About Admissions"
-                  />
-                  <InputField
-                    label="Button Link"
-                    value={banner1CtaLink}
-                    onChange={(e) => setBanner1CtaLink(e.target.value)}
-                    placeholder="e.g. /admissions"
-                  />
-                </div>
               </div>
               <ImagePickerField
                 label="Banner Background Image"
@@ -160,35 +158,33 @@ export function CTABanners({ initialData }: { initialData?: any }) {
               <span className="w-2.5 h-2.5 rounded-full bg-amber-600" />
               Right Banner: Start a School (Associate Program)
             </h4>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="space-y-3">
+            <div className="space-y-3.5">
+              <InputField
+                label="Banner Title"
+                value={banner2Title}
+                onChange={(e) => setBanner2Title(e.target.value)}
+                placeholder="e.g. Start an LFCS Associate School"
+              />
+              <TextAreaField
+                label="Banner Subtitle"
+                value={banner2Subtitle}
+                onChange={(e) => setBanner2Subtitle(e.target.value)}
+                rows={2}
+                placeholder="e.g. Invite partners to bring quality education to their city..."
+              />
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <InputField
-                  label="Banner Title"
-                  value={banner2Title}
-                  onChange={(e) => setBanner2Title(e.target.value)}
-                  placeholder="e.g. Start an LFCS Associate School"
+                  label="Button Text"
+                  value={banner2CtaText}
+                  onChange={(e) => setBanner2CtaText(e.target.value)}
+                  placeholder="e.g. Partner With Us"
                 />
-                <TextAreaField
-                  label="Banner Subtitle"
-                  value={banner2Subtitle}
-                  onChange={(e) => setBanner2Subtitle(e.target.value)}
-                  rows={2}
-                  placeholder="e.g. Invite partners to bring quality education to their city..."
+                <InputField
+                  label="Button Link"
+                  value={banner2CtaLink}
+                  onChange={(e) => setBanner2CtaLink(e.target.value)}
+                  placeholder="e.g. /start-school"
                 />
-                <div className="grid grid-cols-2 gap-3">
-                  <InputField
-                    label="Button Text"
-                    value={banner2CtaText}
-                    onChange={(e) => setBanner2CtaText(e.target.value)}
-                    placeholder="e.g. Partner With Us"
-                  />
-                  <InputField
-                    label="Button Link"
-                    value={banner2CtaLink}
-                    onChange={(e) => setBanner2CtaLink(e.target.value)}
-                    placeholder="e.g. /start-school"
-                  />
-                </div>
               </div>
               <ImagePickerField
                 label="Banner Background Image"
@@ -199,10 +195,8 @@ export function CTABanners({ initialData }: { initialData?: any }) {
             </div>
           </div>
 
-          <div className="pt-4 border-t border-gray-100 flex justify-end">
-            <div className="w-full sm:w-64">
-              <SaveButton onClick={handleSave} loading={loading} saved={saved} />
-            </div>
+          <div className="pt-4 border-t border-gray-100 w-full">
+            <SaveButton onClick={handleSave} loading={loading} saved={saved} />
           </div>
         </div>
       )}

@@ -7,6 +7,12 @@ import { InputField } from "@/components/InputField";
 import { TextAreaField } from "@/components/TextAreaField";
 import { ImagePickerField } from "@/components/ImagePickerField";
 import { SaveButton } from "@/components/SaveButton";
+import { Plus, Trash2 } from "lucide-react";
+
+export interface MetricItem {
+  value: string;
+  label: string;
+}
 
 export function HeroSection({ initialData }: { initialData?: any }) {
   const [isOpen, setIsOpen] = useState(true);
@@ -22,14 +28,7 @@ export function HeroSection({ initialData }: { initialData?: any }) {
   const [secondaryCtaText, setSecondaryCtaText] = useState("");
   const [secondaryCtaLink, setSecondaryCtaLink] = useState("");
 
-  const [stat1Value, setStat1Value] = useState("");
-  const [stat1Label, setStat1Label] = useState("");
-  const [stat2Value, setStat2Value] = useState("");
-  const [stat2Label, setStat2Label] = useState("");
-  const [stat3Value, setStat3Value] = useState("");
-  const [stat3Label, setStat3Label] = useState("");
-  const [stat4Value, setStat4Value] = useState("");
-  const [stat4Label, setStat4Label] = useState("");
+  const [stats, setStats] = useState<MetricItem[]>([]);
 
   useEffect(() => {
     if (initialData) {
@@ -48,19 +47,63 @@ export function HeroSection({ initialData }: { initialData?: any }) {
       setSecondaryCtaText(initialData.secondaryCtaText ?? "Start a School");
       setSecondaryCtaLink(initialData.secondaryCtaLink ?? "/start-school");
 
-      setStat1Value(initialData.stat1Value ?? "40000+");
-      setStat1Label(initialData.stat1Label ?? "Students Enrolled");
-      setStat2Value(initialData.stat2Value ?? "40+");
-      setStat2Label(initialData.stat2Label ?? "Years of Excellence");
-      setStat3Value(initialData.stat3Value ?? "8");
-      setStat3Label(initialData.stat3Label ?? "Schools Across UP");
-      setStat4Value(initialData.stat4Value ?? "100%");
-      setStat4Label(initialData.stat4Label ?? "Pass Rate (CBSE Board)");
+      // Load stats from array or fallback to individual stat keys
+      if (Array.isArray(initialData.stats) && initialData.stats.length > 0) {
+        setStats(
+          initialData.stats.map((s: any) => ({
+            value: s.value ?? "",
+            label: s.label ?? "",
+          })),
+        );
+      } else if (Array.isArray(initialData.metrics) && initialData.metrics.length > 0) {
+        setStats(
+          initialData.metrics.map((s: any) => ({
+            value: s.value ?? "",
+            label: s.label ?? "",
+          })),
+        );
+      } else {
+        setStats([
+          {
+            value: initialData.stat1Value ?? "40000+",
+            label: initialData.stat1Label ?? "Students Enrolled",
+          },
+          {
+            value: initialData.stat2Value ?? "40+",
+            label: initialData.stat2Label ?? "Years of Excellence",
+          },
+          {
+            value: initialData.stat3Value ?? "8",
+            label: initialData.stat3Label ?? "Schools Across UP",
+          },
+          {
+            value: initialData.stat4Value ?? "100%",
+            label: initialData.stat4Label ?? "Pass Rate (CBSE Board)",
+          },
+        ]);
+      }
     }
   }, [initialData]);
 
+  const handleAddStat = () => {
+    setStats((prev) => [...prev, { value: "", label: "" }]);
+  };
+
+  const handleRemoveStat = (index: number) => {
+    setStats((prev) => prev.filter((_, i) => i !== index));
+  };
+
+  const handleUpdateStat = (index: number, field: keyof MetricItem, value: string) => {
+    setStats((prev) => {
+      const copy = [...prev];
+      copy[index] = { ...copy[index], [field]: value };
+      return copy;
+    });
+  };
+
   const handleSave = async () => {
     setLoading(true);
+    setSaved(false);
     try {
       const payload = {
         section: "HeroSection",
@@ -73,14 +116,16 @@ export function HeroSection({ initialData }: { initialData?: any }) {
           primaryCtaLink,
           secondaryCtaText,
           secondaryCtaLink,
-          stat1Value,
-          stat1Label,
-          stat2Value,
-          stat2Label,
-          stat3Value,
-          stat3Label,
-          stat4Value,
-          stat4Label,
+          stats, // Array object!
+          // Backward compatibility:
+          stat1Value: stats[0]?.value ?? "",
+          stat1Label: stats[0]?.label ?? "",
+          stat2Value: stats[1]?.value ?? "",
+          stat2Label: stats[1]?.label ?? "",
+          stat3Value: stats[2]?.value ?? "",
+          stat3Label: stats[2]?.label ?? "",
+          stat4Value: stats[3]?.value ?? "",
+          stat4Label: stats[3]?.label ?? "",
         },
       };
 
@@ -126,17 +171,16 @@ export function HeroSection({ initialData }: { initialData?: any }) {
               placeholder="e.g. Enter a bold opening statement (e.g. Rooted in Values.)"
             />
             <InputField
-              label="Script Accent Text"
-              tooltip="Golden handwritten script flourish text with an underline wave"
+              label="Script Flourish Accent"
+              tooltip="The cursive text with the golden accent curve"
               value={scriptAccent}
               onChange={(e) => setScriptAccent(e.target.value)}
-              placeholder="e.g. Enter the handwritten script tagline (e.g. Rising with Excellence.)"
+              placeholder="e.g. Elegant script highlight (e.g. Rising with Excellence.)"
             />
           </div>
 
           <TextAreaField
-            label="Hero Subtitle / Description"
-            tooltip="Sub-paragraph summarizing the school network's core mission"
+            label="Hero Subtitle"
             value={subtitle}
             onChange={(e) => setSubtitle(e.target.value)}
             rows={2}
@@ -183,74 +227,77 @@ export function HeroSection({ initialData }: { initialData?: any }) {
             </div>
           </div>
 
-          <div className="border-t border-gray-100 pt-5">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-4">
-              Key Metrics Bar (Floating 4-Column Proofs)
-            </h4>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
-              <div className="space-y-2">
-                <InputField
-                  label="Stat 1 Metric"
-                  value={stat1Value}
-                  onChange={(e) => setStat1Value(e.target.value)}
-                  placeholder="e.g. Numeric metric (e.g. 40,000+)"
-                />
-                <InputField
-                  label="Stat 1 Label"
-                  value={stat1Label}
-                  onChange={(e) => setStat1Label(e.target.value)}
-                  placeholder="e.g. Descriptive label (e.g. Students Enrolled)"
-                />
+          {/* DYNAMIC METRICS ARRAY */}
+          <div className="border-t border-gray-100 pt-5 space-y-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <h4 className="text-xs font-bold uppercase tracking-wider text-gray-700 flex items-center gap-2">
+                  Key Metrics Bar ({stats.length})
+                </h4>
+                <p className="text-[11px] text-gray-400 mt-0.5">
+                  Floating statistics bar displayed prominently under the hero section. Can add more than 4 metrics.
+                </p>
               </div>
-              <div className="space-y-2">
-                <InputField
-                  label="Stat 2 Metric"
-                  value={stat2Value}
-                  onChange={(e) => setStat2Value(e.target.value)}
-                  placeholder="e.g. Numeric metric (e.g. 40+)"
-                />
-                <InputField
-                  label="Stat 2 Label"
-                  value={stat2Label}
-                  onChange={(e) => setStat2Label(e.target.value)}
-                  placeholder="e.g. Descriptive label (e.g. Years of Excellence)"
-                />
-              </div>
-              <div className="space-y-2">
-                <InputField
-                  label="Stat 3 Metric"
-                  value={stat3Value}
-                  onChange={(e) => setStat3Value(e.target.value)}
-                  placeholder="e.g. Numeric metric (e.g. 8)"
-                />
-                <InputField
-                  label="Stat 3 Label"
-                  value={stat3Label}
-                  onChange={(e) => setStat3Label(e.target.value)}
-                  placeholder="e.g. Descriptive label (e.g. Schools Across UP)"
-                />
-              </div>
-              <div className="space-y-2">
-                <InputField
-                  label="Stat 4 Metric"
-                  value={stat4Value}
-                  onChange={(e) => setStat4Value(e.target.value)}
-                  placeholder="e.g. Numeric metric (e.g. 100%)"
-                />
-                <InputField
-                  label="Stat 4 Label"
-                  value={stat4Label}
-                  onChange={(e) => setStat4Label(e.target.value)}
-                  placeholder="e.g. Descriptive label (e.g. CBSE Board Pass Rate)"
-                />
-              </div>
+              <button
+                type="button"
+                onClick={handleAddStat}
+                className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0E5A60] hover:text-[#061C29] bg-[#0E5A60]/10 hover:bg-[#0E5A60]/20 px-3.5 py-1.5 rounded-xl transition-all cursor-pointer shadow-2xs"
+              >
+                <Plus className="w-3.5 h-3.5" />
+                <span>Add Metric</span>
+              </button>
             </div>
+
+            {stats.length === 0 ? (
+              <div
+                onClick={handleAddStat}
+                className="p-8 rounded-2xl bg-gray-50/70 border border-dashed border-gray-200 text-center text-xs text-gray-400 cursor-pointer hover:bg-gray-100/70 hover:border-gray-300 transition-all flex flex-col items-center justify-center gap-2"
+              >
+                <Plus className="w-5 h-5 text-gray-400" />
+                <span>No metrics added yet. Click to add your first metric.</span>
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+                {stats.map((stat, idx) => (
+                  <div
+                    key={idx}
+                    className="p-4 bg-gray-50/70 hover:bg-gray-50 rounded-2xl border border-gray-200/80 space-y-2 relative transition-all group"
+                  >
+                    <div className="flex items-center justify-between border-b border-gray-200/60 pb-1.5">
+                      <span className="text-[11px] font-bold text-[#0E5A60]">
+                        Metric #{idx + 1}
+                      </span>
+                      <button
+                        type="button"
+                        onClick={() => handleRemoveStat(idx)}
+                        className="p-1 text-gray-400 hover:text-red-600 rounded-lg hover:bg-red-50 transition-colors cursor-pointer"
+                        title="Delete Metric"
+                      >
+                        <Trash2 className="w-3 h-3" />
+                      </button>
+                    </div>
+
+                    <InputField
+                      label="Value / Metric"
+                      value={stat.value}
+                      onChange={(e) => handleUpdateStat(idx, "value", e.target.value)}
+                      placeholder="e.g. 40000+"
+                    />
+
+                    <InputField
+                      label="Label"
+                      value={stat.label}
+                      onChange={(e) => handleUpdateStat(idx, "label", e.target.value)}
+                      placeholder="e.g. Students Enrolled"
+                    />
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
 
-          <div className="pt-4 border-t border-gray-100 flex justify-end">
-            <div className="w-full sm:w-64">
-              <SaveButton onClick={handleSave} loading={loading} saved={saved} />
-            </div>
+          <div className="pt-4 border-t border-gray-100 w-full">
+            <SaveButton onClick={handleSave} loading={loading} saved={saved} />
           </div>
         </div>
       )}

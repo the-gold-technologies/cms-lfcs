@@ -7,6 +7,14 @@ import { InputField } from "@/components/InputField";
 import { TextAreaField } from "@/components/TextAreaField";
 import { ImagePickerField } from "@/components/ImagePickerField";
 import { SaveButton } from "@/components/SaveButton";
+import { Plus, Trash2 } from "lucide-react";
+
+export interface MilestoneItem {
+  year: string;
+  title: string;
+  desc: string;
+  image: string;
+}
 
 export function OurGrowthSection({ initialData }: { initialData?: any }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,25 +25,7 @@ export function OurGrowthSection({ initialData }: { initialData?: any }) {
   const [headline, setHeadline] = useState("");
   const [subtitle, setSubtitle] = useState("");
 
-  const [m1Year, setM1Year] = useState("");
-  const [m1Title, setM1Title] = useState("");
-  const [m1Desc, setM1Desc] = useState("");
-  const [m1Image, setM1Image] = useState("");
-
-  const [m2Year, setM2Year] = useState("");
-  const [m2Title, setM2Title] = useState("");
-  const [m2Desc, setM2Desc] = useState("");
-  const [m2Image, setM2Image] = useState("");
-
-  const [m3Year, setM3Year] = useState("");
-  const [m3Title, setM3Title] = useState("");
-  const [m3Desc, setM3Desc] = useState("");
-  const [m3Image, setM3Image] = useState("");
-
-  const [m4Year, setM4Year] = useState("");
-  const [m4Title, setM4Title] = useState("");
-  const [m4Desc, setM4Desc] = useState("");
-  const [m4Image, setM4Image] = useState("");
+  const [milestones, setMilestones] = useState<MilestoneItem[]>([]);
 
   useEffect(() => {
     if (initialData) {
@@ -46,54 +36,89 @@ export function OurGrowthSection({ initialData }: { initialData?: any }) {
           "Key historical moments that shaped our growth and expansion across Eastern Uttar Pradesh.",
       );
 
-      setM1Year(initialData.m1Year ?? "1993");
-      setM1Title(initialData.m1Title ?? "The Beginning");
-      setM1Desc(
-        initialData.m1Desc ??
-          "Founded by Late Shri Vijay Shankar Yadav in Mau with just 30 students and a vision for holistic schooling.",
-      );
-      setM1Image(
-        initialData.m1Image ??
-          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170045/lfcs-school/logo1_1793170045264.webp",
-      );
-
-      setM2Year(initialData.m2Year ?? "2012");
-      setM2Title(initialData.m2Title ?? "LFCS Kiriharapur, Ballia");
-      setM2Desc(
-        initialData.m2Desc ??
-          "Flagship expansion into Ballia district with modern laboratories and lush sports grounds.",
-      );
-      setM2Image(
-        initialData.m2Image ??
-          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170004/lfcs-school/Khalispur-Balia_1793170003677.webp",
-      );
-
-      setM3Year(initialData.m3Year ?? "2014");
-      setM3Title(initialData.m3Title ?? "LFIS Khalishpur, Mau");
-      setM3Desc(
-        initialData.m3Desc ??
-          "International-standard campus with Olympic-grade swimming pool, amphitheater, and smart classrooms.",
-      );
-      setM3Image(
-        initialData.m3Image ??
-          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170014/lfcs-school/journey-lfis-mau_1793170014137.webp",
-      );
-
-      setM4Year(initialData.m4Year ?? "2024");
-      setM4Title(initialData.m4Title ?? "School Associate Program");
-      setM4Desc(
-        initialData.m4Desc ??
-          "Nationwide expansion model inaugurated by Anand Kumar and Sharman Joshi to scale quality education.",
-      );
-      setM4Image(
-        initialData.m4Image ??
-          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170008/lfcs-school/school-associate-launch_1793170008299.webp",
-      );
+      if (Array.isArray(initialData.milestones) && initialData.milestones.length > 0) {
+        setMilestones(
+          initialData.milestones.map((m: any) => ({
+            year: m.year ?? "",
+            title: m.title ?? "",
+            desc: m.desc ?? m.description ?? "",
+            image: m.image ?? "",
+          })),
+        );
+      } else {
+        setMilestones([
+          {
+            year: initialData.m1Year ?? "1993",
+            title: initialData.m1Title ?? "The Beginning",
+            desc:
+              initialData.m1Desc ??
+              "Founded by Late Shri Vijay Shankar Yadav in Mau with just 30 students and a vision for holistic schooling.",
+            image:
+              initialData.m1Image ??
+              "https://res.cloudinary.com/dpa93copz/image/upload/v1793170045/lfcs-school/logo1_1793170045264.webp",
+          },
+          {
+            year: initialData.m2Year ?? "2012",
+            title: initialData.m2Title ?? "LFCS Kiriharapur, Ballia",
+            desc:
+              initialData.m2Desc ??
+              "Flagship expansion into Ballia district with modern laboratories and lush sports grounds.",
+            image:
+              initialData.m2Image ??
+              "https://res.cloudinary.com/dpa93copz/image/upload/v1793170004/lfcs-school/Khalispur-Balia_1793170003677.webp",
+          },
+          {
+            year: initialData.m3Year ?? "2014",
+            title: initialData.m3Title ?? "LFIS Khalishpur, Mau",
+            desc:
+              initialData.m3Desc ??
+              "International-standard campus with Olympic-grade swimming pool, amphitheater, and smart classrooms.",
+            image:
+              initialData.m3Image ??
+              "https://res.cloudinary.com/dpa93copz/image/upload/v1793170014/lfcs-school/journey-lfis-mau_1793170014137.webp",
+          },
+          {
+            year: initialData.m4Year ?? "2024",
+            title: initialData.m4Title ?? "School Associate Program",
+            desc:
+              initialData.m4Desc ??
+              "Nationwide expansion model inaugurated by Anand Kumar and Sharman Joshi to scale quality education.",
+            image:
+              initialData.m4Image ??
+              "https://res.cloudinary.com/dpa93copz/image/upload/v1793170008/lfcs-school/school-associate-launch_1793170008299.webp",
+          },
+        ]);
+      }
     }
   }, [initialData]);
 
+  const handleAddMilestone = () => {
+    setMilestones((prev) => [
+      ...prev,
+      {
+        year: "",
+        title: "",
+        desc: "",
+        image: "",
+      },
+    ]);
+  };
+
+  const handleRemoveMilestone = (index: number) => {
+    setMilestones((prev) => prev.filter((_, i) => i !== index));
+  };
+
+  const handleUpdateMilestone = (index: number, field: keyof MilestoneItem, value: string) => {
+    setMilestones((prev) => {
+      const copy = [...prev];
+      copy[index] = { ...copy[index], [field]: value };
+      return copy;
+    });
+  };
+
   const handleSave = async () => {
     setLoading(true);
+    setSaved(false);
     try {
       const payload = {
         section: "OurGrowthSection",
@@ -101,22 +126,24 @@ export function OurGrowthSection({ initialData }: { initialData?: any }) {
           tagline,
           headline,
           subtitle,
-          m1Year,
-          m1Title,
-          m1Desc,
-          m1Image,
-          m2Year,
-          m2Title,
-          m2Desc,
-          m2Image,
-          m3Year,
-          m3Title,
-          m3Desc,
-          m3Image,
-          m4Year,
-          m4Title,
-          m4Desc,
-          m4Image,
+          milestones, // Array object!
+          // Backward compatibility:
+          m1Year: milestones[0]?.year ?? "",
+          m1Title: milestones[0]?.title ?? "",
+          m1Desc: milestones[0]?.desc ?? "",
+          m1Image: milestones[0]?.image ?? "",
+          m2Year: milestones[1]?.year ?? "",
+          m2Title: milestones[1]?.title ?? "",
+          m2Desc: milestones[1]?.desc ?? "",
+          m2Image: milestones[1]?.image ?? "",
+          m3Year: milestones[2]?.year ?? "",
+          m3Title: milestones[2]?.title ?? "",
+          m3Desc: milestones[2]?.desc ?? "",
+          m3Image: milestones[2]?.image ?? "",
+          m4Year: milestones[3]?.year ?? "",
+          m4Title: milestones[3]?.title ?? "",
+          m4Desc: milestones[3]?.desc ?? "",
+          m4Image: milestones[3]?.image ?? "",
         },
       };
 
@@ -129,7 +156,7 @@ export function OurGrowthSection({ initialData }: { initialData?: any }) {
       const json = await res.json();
       if (json.success) {
         setSaved(true);
-        toast.success("Growth Milestones section saved successfully!");
+        toast.success("Our Growth timeline section saved successfully!");
         setTimeout(() => setSaved(false), 2500);
       } else {
         toast.error(json.error || "Failed to save section");
@@ -144,8 +171,8 @@ export function OurGrowthSection({ initialData }: { initialData?: any }) {
   return (
     <div className="bg-white rounded-3xl p-6 shadow-sm ring-1 ring-gray-100 flex flex-col gap-6">
       <SectionHeader
-        title="7. Growth Milestones (Timeline of Expansion)"
-        description="Chronological milestones from founding in 1993 to contemporary campus launches and the Associate network."
+        title="7. Our Growth & Journey Milestones"
+        description="Historical timeline showcasing expansion milestones from founding in 1993 to modern campuses and Associate School initiatives."
         badge="Live Section"
         isOpen={isOpen}
         onToggle={() => setIsOpen(!isOpen)}
@@ -176,145 +203,98 @@ export function OurGrowthSection({ initialData }: { initialData?: any }) {
             placeholder="e.g. Introductory summary of organizational expansion..."
           />
 
-          <div className="border-t border-gray-100 pt-5">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-4">
-              Historical Milestones
-            </h4>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-              <div className="p-4 bg-gray-50/70 rounded-2xl border border-gray-100 space-y-3">
-                <div className="grid grid-cols-3 gap-2">
-                  <InputField
-                    label="Year"
-                    value={m1Year}
-                    onChange={(e) => setM1Year(e.target.value)}
-                    placeholder="e.g. 1993"
-                  />
-                  <div className="col-span-2">
-                    <InputField
-                      label="Milestone Title"
-                      value={m1Title}
-                      onChange={(e) => setM1Title(e.target.value)}
-                      placeholder="e.g. The Beginning"
-                    />
-                  </div>
-                </div>
-                <TextAreaField
-                  label="Description"
-                  value={m1Desc}
-                  onChange={(e) => setM1Desc(e.target.value)}
-                  rows={2}
-                  placeholder="e.g. Brief history..."
-                />
-                <ImagePickerField
-                  label="Milestone Photo"
-                  value={m1Image}
-                  onChange={(url) => setM1Image(url)}
-                  placeholder="e.g. Cloudinary photo URL"
-                />
+          {/* DYNAMIC MILESTONES ARRAY */}
+          <div className="border-t border-gray-100 pt-5 space-y-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <h4 className="text-xs font-bold uppercase tracking-wider text-gray-700 flex items-center gap-2">
+                  Historical Milestones ({milestones.length})
+                </h4>
+                <p className="text-[11px] text-gray-400 mt-0.5">
+                  Timeline milestones marking key years and achievements. Can add more than 4 milestones.
+                </p>
               </div>
-
-              <div className="p-4 bg-gray-50/70 rounded-2xl border border-gray-100 space-y-3">
-                <div className="grid grid-cols-3 gap-2">
-                  <InputField
-                    label="Year"
-                    value={m2Year}
-                    onChange={(e) => setM2Year(e.target.value)}
-                    placeholder="e.g. 2012"
-                  />
-                  <div className="col-span-2">
-                    <InputField
-                      label="Milestone Title"
-                      value={m2Title}
-                      onChange={(e) => setM2Title(e.target.value)}
-                      placeholder="e.g. LFCS Kiriharapur, Ballia"
-                    />
-                  </div>
-                </div>
-                <TextAreaField
-                  label="Description"
-                  value={m2Desc}
-                  onChange={(e) => setM2Desc(e.target.value)}
-                  rows={2}
-                  placeholder="e.g. Campus launch details..."
-                />
-                <ImagePickerField
-                  label="Milestone Photo"
-                  value={m2Image}
-                  onChange={(url) => setM2Image(url)}
-                  placeholder="e.g. Cloudinary photo URL"
-                />
-              </div>
-
-              <div className="p-4 bg-gray-50/70 rounded-2xl border border-gray-100 space-y-3">
-                <div className="grid grid-cols-3 gap-2">
-                  <InputField
-                    label="Year"
-                    value={m3Year}
-                    onChange={(e) => setM3Year(e.target.value)}
-                    placeholder="e.g. 2014"
-                  />
-                  <div className="col-span-2">
-                    <InputField
-                      label="Milestone Title"
-                      value={m3Title}
-                      onChange={(e) => setM3Title(e.target.value)}
-                      placeholder="e.g. LFIS Khalishpur, Mau"
-                    />
-                  </div>
-                </div>
-                <TextAreaField
-                  label="Description"
-                  value={m3Desc}
-                  onChange={(e) => setM3Desc(e.target.value)}
-                  rows={2}
-                  placeholder="e.g. Flagship launch..."
-                />
-                <ImagePickerField
-                  label="Milestone Photo"
-                  value={m3Image}
-                  onChange={(url) => setM3Image(url)}
-                  placeholder="e.g. Cloudinary photo URL"
-                />
-              </div>
-
-              <div className="p-4 bg-gray-50/70 rounded-2xl border border-gray-100 space-y-3">
-                <div className="grid grid-cols-3 gap-2">
-                  <InputField
-                    label="Year"
-                    value={m4Year}
-                    onChange={(e) => setM4Year(e.target.value)}
-                    placeholder="e.g. 2024"
-                  />
-                  <div className="col-span-2">
-                    <InputField
-                      label="Milestone Title"
-                      value={m4Title}
-                      onChange={(e) => setM4Title(e.target.value)}
-                      placeholder="e.g. Associate Program"
-                    />
-                  </div>
-                </div>
-                <TextAreaField
-                  label="Description"
-                  value={m4Desc}
-                  onChange={(e) => setM4Desc(e.target.value)}
-                  rows={2}
-                  placeholder="e.g. Program details..."
-                />
-                <ImagePickerField
-                  label="Milestone Photo"
-                  value={m4Image}
-                  onChange={(url) => setM4Image(url)}
-                  placeholder="e.g. Cloudinary photo URL"
-                />
-              </div>
+              <button
+                type="button"
+                onClick={handleAddMilestone}
+                className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0E5A60] hover:text-[#061C29] bg-[#0E5A60]/10 hover:bg-[#0E5A60]/20 px-3.5 py-1.5 rounded-xl transition-all cursor-pointer shadow-2xs"
+              >
+                <Plus className="w-3.5 h-3.5" />
+                <span>Add Milestone</span>
+              </button>
             </div>
+
+            {milestones.length === 0 ? (
+              <div
+                onClick={handleAddMilestone}
+                className="p-8 rounded-2xl bg-gray-50/70 border border-dashed border-gray-200 text-center text-xs text-gray-400 cursor-pointer hover:bg-gray-100/70 hover:border-gray-300 transition-all flex flex-col items-center justify-center gap-2"
+              >
+                <Plus className="w-5 h-5 text-gray-400" />
+                <span>No milestones added yet. Click to add your first milestone.</span>
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                {milestones.map((m, idx) => (
+                  <div
+                    key={idx}
+                    className="p-5 bg-gray-50/70 hover:bg-gray-50 rounded-2xl border border-gray-200/80 space-y-3.5 relative transition-all group"
+                  >
+                    <div className="flex items-center justify-between border-b border-gray-200/60 pb-2">
+                      <span className="text-xs font-bold text-[#0E5A60] flex items-center gap-2">
+                        <span className="w-5 h-5 rounded-full bg-[#0E5A60]/10 flex items-center justify-center text-[10px] font-black">
+                          {idx + 1}
+                        </span>
+                        Milestone #{idx + 1}: {m.year || "Year"}
+                      </span>
+                      <button
+                        type="button"
+                        onClick={() => handleRemoveMilestone(idx)}
+                        className="p-1 text-gray-400 hover:text-red-600 rounded-lg hover:bg-red-50 transition-colors cursor-pointer"
+                        title="Delete Milestone"
+                      >
+                        <Trash2 className="w-3.5 h-3.5" />
+                      </button>
+                    </div>
+
+                    <div className="grid grid-cols-3 gap-2">
+                      <InputField
+                        label="Year"
+                        value={m.year}
+                        onChange={(e) => handleUpdateMilestone(idx, "year", e.target.value)}
+                        placeholder="e.g. 1993"
+                      />
+                      <div className="col-span-2">
+                        <InputField
+                          label="Milestone Title"
+                          value={m.title}
+                          onChange={(e) => handleUpdateMilestone(idx, "title", e.target.value)}
+                          placeholder="e.g. The Beginning"
+                        />
+                      </div>
+                    </div>
+
+                    <TextAreaField
+                      label="Description"
+                      value={m.desc}
+                      onChange={(e) => handleUpdateMilestone(idx, "desc", e.target.value)}
+                      rows={2}
+                      placeholder="e.g. Brief history..."
+                    />
+
+                    <ImagePickerField
+                      label="Milestone Photo"
+                      value={m.image}
+                      onChange={(url) => handleUpdateMilestone(idx, "image", url)}
+                      placeholder="e.g. Cloudinary photo URL"
+                    />
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
 
-          <div className="pt-4 border-t border-gray-100 flex justify-end">
-            <div className="w-full sm:w-64">
-              <SaveButton onClick={handleSave} loading={loading} saved={saved} />
-            </div>
+          <div className="pt-4 border-t border-gray-100 w-full">
+            <SaveButton onClick={handleSave} loading={loading} saved={saved} />
           </div>
         </div>
       )}

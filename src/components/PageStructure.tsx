@@ -77,6 +77,14 @@ const LFCS_PAGES: PageListItem[] = [
     type: "Enquiry & Campus Map",
     sectionsCount: 3,
   },
+  {
+    title: "Photo Gallery",
+    slug: "gallery",
+    route: "/gallery",
+    editorUrl: "/static-pages/gallery",
+    type: "Media & Campus Life",
+    sectionsCount: 2,
+  },
 ];
 
 export function PageStructure() {

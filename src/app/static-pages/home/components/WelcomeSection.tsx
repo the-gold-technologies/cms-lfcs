@@ -7,6 +7,13 @@ import { InputField } from "@/components/InputField";
 import { TextAreaField } from "@/components/TextAreaField";
 import { ImagePickerField } from "@/components/ImagePickerField";
 import { SaveButton } from "@/components/SaveButton";
+import { Plus, Trash2 } from "lucide-react";
+
+export interface PillarCard {
+  title: string;
+  desc: string;
+  image: string;
+}
 
 export function WelcomeSection({ initialData }: { initialData?: any }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -20,17 +27,7 @@ export function WelcomeSection({ initialData }: { initialData?: any }) {
   const [ctaText, setCtaText] = useState("");
   const [ctaLink, setCtaLink] = useState("");
 
-  const [feature1Title, setFeature1Title] = useState("");
-  const [feature1Desc, setFeature1Desc] = useState("");
-  const [feature1Image, setFeature1Image] = useState("");
-
-  const [feature2Title, setFeature2Title] = useState("");
-  const [feature2Desc, setFeature2Desc] = useState("");
-  const [feature2Image, setFeature2Image] = useState("");
-
-  const [feature3Title, setFeature3Title] = useState("");
-  const [feature3Desc, setFeature3Desc] = useState("");
-  const [feature3Image, setFeature3Image] = useState("");
+  const [cards, setCards] = useState<PillarCard[]>([]);
 
   useEffect(() => {
     if (initialData) {
@@ -44,35 +41,81 @@ export function WelcomeSection({ initialData }: { initialData?: any }) {
       setCtaText(initialData.ctaText ?? "Know More About Us");
       setCtaLink(initialData.ctaLink ?? "/about");
 
-      setFeature1Title(initialData.feature1Title ?? "Strong Academics");
-      setFeature1Desc(initialData.feature1Desc ?? "CBSE curriculum with future ready learning.");
-      setFeature1Image(
-        initialData.feature1Image ??
-          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170028/lfcs-school/practical_1793170027731.webp",
-      );
-
-      setFeature2Title(initialData.feature2Title ?? "Holistic Growth");
-      setFeature2Desc(
-        initialData.feature2Desc ?? "Sports, arts, life skills and leadership opportunities.",
-      );
-      setFeature2Image(
-        initialData.feature2Image ??
-          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170040/lfcs-school/life1_1793170040339.webp",
-      );
-
-      setFeature3Title(initialData.feature3Title ?? "Future Ready");
-      setFeature3Desc(
-        initialData.feature3Desc ?? "Innovation, technology and 21st century skills.",
-      );
-      setFeature3Image(
-        initialData.feature3Image ??
-          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170019/lfcs-school/digital-classroom_1793170018820.webp",
-      );
+      // Load cards from array or fallback to legacy feature1/2/3 keys
+      if (Array.isArray(initialData.cards) && initialData.cards.length > 0) {
+        setCards(
+          initialData.cards.map((c: any) => ({
+            title: c.title ?? "",
+            desc: c.desc ?? c.description ?? "",
+            image: c.image ?? "",
+          })),
+        );
+      } else if (Array.isArray(initialData.pillars) && initialData.pillars.length > 0) {
+        setCards(
+          initialData.pillars.map((c: any) => ({
+            title: c.title ?? "",
+            desc: c.desc ?? c.description ?? "",
+            image: c.image ?? "",
+          })),
+        );
+      } else {
+        setCards([
+          {
+            title: initialData.feature1Title ?? "Strong Academics",
+            desc: initialData.feature1Desc ?? "CBSE curriculum with future ready learning.",
+            image:
+              initialData.feature1Image ??
+              "https://res.cloudinary.com/dpa93copz/image/upload/v1793170028/lfcs-school/practical_1793170027731.webp",
+          },
+          {
+            title: initialData.feature2Title ?? "Holistic Growth",
+            desc:
+              initialData.feature2Desc ??
+              "Sports, arts, life skills and leadership opportunities.",
+            image:
+              initialData.feature2Image ??
+              "https://res.cloudinary.com/dpa93copz/image/upload/v1793170040/lfcs-school/life1_1793170040339.webp",
+          },
+          {
+            title: initialData.feature3Title ?? "Future Ready",
+            desc:
+              initialData.feature3Desc ??
+              "Innovation, technology and 21st century skills.",
+            image:
+              initialData.feature3Image ??
+              "https://res.cloudinary.com/dpa93copz/image/upload/v1793170019/lfcs-school/digital-classroom_1793170018820.webp",
+          },
+        ]);
+      }
     }
   }, [initialData]);
 
+  const handleAddCard = () => {
+    setCards((prev) => [
+      ...prev,
+      {
+        title: "",
+        desc: "",
+        image: "",
+      },
+    ]);
+  };
+
+  const handleRemoveCard = (index: number) => {
+    setCards((prev) => prev.filter((_, i) => i !== index));
+  };
+
+  const handleUpdateCard = (index: number, field: keyof PillarCard, value: string) => {
+    setCards((prev) => {
+      const copy = [...prev];
+      copy[index] = { ...copy[index], [field]: value };
+      return copy;
+    });
+  };
+
   const handleSave = async () => {
     setLoading(true);
+    setSaved(false);
     try {
       const payload = {
         section: "WelcomeSection",
@@ -83,15 +126,17 @@ export function WelcomeSection({ initialData }: { initialData?: any }) {
           description,
           ctaText,
           ctaLink,
-          feature1Title,
-          feature1Desc,
-          feature1Image,
-          feature2Title,
-          feature2Desc,
-          feature2Image,
-          feature3Title,
-          feature3Desc,
-          feature3Image,
+          cards, // array object!
+          // Backward compatibility:
+          feature1Title: cards[0]?.title ?? "",
+          feature1Desc: cards[0]?.desc ?? "",
+          feature1Image: cards[0]?.image ?? "",
+          feature2Title: cards[1]?.title ?? "",
+          feature2Desc: cards[1]?.desc ?? "",
+          feature2Image: cards[1]?.image ?? "",
+          feature3Title: cards[2]?.title ?? "",
+          feature3Desc: cards[2]?.desc ?? "",
+          feature3Image: cards[2]?.image ?? "",
         },
       };
 
@@ -107,20 +152,20 @@ export function WelcomeSection({ initialData }: { initialData?: any }) {
         toast.success("Welcome section saved successfully!");
         setTimeout(() => setSaved(false), 2500);
       } else {
-        toast.error(json.error || "Failed to save Welcome section");
+        toast.error(json.error || "Failed to save");
       }
-    } catch (err: any) {
-      toast.error(err?.message || "Network error while saving");
+    } catch {
+      toast.error("Network error saving Welcome section");
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="bg-white rounded-3xl p-6 shadow-sm ring-1 ring-gray-100 flex flex-col gap-6">
+    <div className="bg-white rounded-3xl p-6 shadow-sm ring-1 ring-gray-100">
       <SectionHeader
-        title="2. Welcome & Core Focus Pillars"
-        description="Introductory narrative showcasing the 3 signature focus cards: Strong Academics, Holistic Growth, and Future Ready."
+        title="2. Welcome & Introduction Narrative"
+        description="Introductory narrative showcasing the signature focus cards (Strong Academics, Holistic Growth, Future Ready) with expandable card array."
         badge="Live Section"
         isOpen={isOpen}
         onToggle={() => setIsOpen(!isOpen)}
@@ -136,25 +181,25 @@ export function WelcomeSection({ initialData }: { initialData?: any }) {
               placeholder="e.g. Small eyebrow tag (e.g. Welcome To)"
             />
             <InputField
-              label="Main Heading"
+              label="Main Headline"
               value={headline}
               onChange={(e) => setHeadline(e.target.value)}
-              placeholder="e.g. Primary title (e.g. Little Flower Group)"
+              placeholder="e.g. Main serif headline (e.g. Little Flower Group)"
             />
             <InputField
               label="Script Accent"
               value={scriptAccent}
               onChange={(e) => setScriptAccent(e.target.value)}
-              placeholder="e.g. Golden cursive highlight (e.g. of Schools)"
+              placeholder="e.g. Cursive burgundy accent (e.g. of Schools)"
             />
           </div>
 
           <TextAreaField
-            label="Welcome Description"
+            label="Narrative Description"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             rows={3}
-            placeholder="e.g. Elaborate on the vision and community ethos of Little Flower Group..."
+            placeholder="e.g. Narrative text outlining LFCS's educational vision..."
           />
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -162,7 +207,7 @@ export function WelcomeSection({ initialData }: { initialData?: any }) {
               label="CTA Button Text"
               value={ctaText}
               onChange={(e) => setCtaText(e.target.value)}
-              placeholder="e.g. Call to action label (e.g. Know More About Us)"
+              placeholder="e.g. Button label (e.g. Know More About Us)"
             />
             <InputField
               label="CTA Button Link"
@@ -172,97 +217,88 @@ export function WelcomeSection({ initialData }: { initialData?: any }) {
             />
           </div>
 
-          <div className="border-t border-gray-100 pt-5">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-4">
-              Pillar Card 1: Strong Academics
-            </h4>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="space-y-3">
-                <InputField
-                  label="Card Title"
-                  value={feature1Title}
-                  onChange={(e) => setFeature1Title(e.target.value)}
-                  placeholder="e.g. Pillar title (e.g. Strong Academics)"
-                />
-                <TextAreaField
-                  label="Card Description"
-                  value={feature1Desc}
-                  onChange={(e) => setFeature1Desc(e.target.value)}
-                  rows={2}
-                  placeholder="e.g. Brief curriculum overview..."
-                />
+          {/* DYNAMIC PILLAR CARDS ARRAY */}
+          <div className="border-t border-gray-100 pt-5 space-y-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <h4 className="text-xs font-bold uppercase tracking-wider text-gray-700 flex items-center gap-2">
+                  Signature Pillar Cards ({cards.length})
+                </h4>
+                <p className="text-[11px] text-gray-400 mt-0.5">
+                  Add, edit, or remove signature cards showcasing LFCS educational focus. Can add more than 3 cards.
+                </p>
               </div>
-              <ImagePickerField
-                label="Card Image"
-                value={feature1Image}
-                onChange={(url) => setFeature1Image(url)}
-                placeholder="e.g. Select or paste Cloudinary image URL"
-              />
+              <button
+                type="button"
+                onClick={handleAddCard}
+                className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0E5A60] hover:text-[#061C29] bg-[#0E5A60]/10 hover:bg-[#0E5A60]/20 px-3.5 py-1.5 rounded-xl transition-all cursor-pointer shadow-2xs"
+              >
+                <Plus className="w-3.5 h-3.5" />
+                <span>Add Card</span>
+              </button>
             </div>
+
+            {cards.length === 0 ? (
+              <div
+                onClick={handleAddCard}
+                className="p-8 rounded-2xl bg-gray-50/70 border border-dashed border-gray-200 text-center text-xs text-gray-400 cursor-pointer hover:bg-gray-100/70 hover:border-gray-300 transition-all flex flex-col items-center justify-center gap-2"
+              >
+                <Plus className="w-5 h-5 text-gray-400" />
+                <span>No cards added yet. Click to add your first pillar card.</span>
+              </div>
+            ) : (
+              <div className="space-y-4">
+                {cards.map((card, idx) => (
+                  <div
+                    key={idx}
+                    className="p-5 bg-gray-50/70 hover:bg-gray-50 rounded-2xl border border-gray-200/80 space-y-3.5 relative transition-all group"
+                  >
+                    <div className="flex items-center justify-between border-b border-gray-200/60 pb-2">
+                      <span className="text-xs font-bold text-[#0E5A60] flex items-center gap-2">
+                        <span className="w-5 h-5 rounded-full bg-[#0E5A60]/10 flex items-center justify-center text-[10px] font-black">
+                          {idx + 1}
+                        </span>
+                        Pillar Card {idx + 1}: {card.title || "Untitled Card"}
+                      </span>
+                      <button
+                        type="button"
+                        onClick={() => handleRemoveCard(idx)}
+                        className="p-1 text-gray-400 hover:text-red-600 rounded-lg hover:bg-red-50 transition-colors cursor-pointer"
+                        title="Delete Card"
+                      >
+                        <Trash2 className="w-3.5 h-3.5" />
+                      </button>
+                    </div>
+
+                    <InputField
+                      label="Card Title"
+                      value={card.title}
+                      onChange={(e) => handleUpdateCard(idx, "title", e.target.value)}
+                      placeholder="e.g. Strong Academics"
+                    />
+
+                    <TextAreaField
+                      label="Card Description"
+                      value={card.desc}
+                      onChange={(e) => handleUpdateCard(idx, "desc", e.target.value)}
+                      rows={2}
+                      placeholder="e.g. CBSE curriculum with future ready learning..."
+                    />
+
+                    <ImagePickerField
+                      label="Card Image"
+                      value={card.image}
+                      onChange={(url) => handleUpdateCard(idx, "image", url)}
+                      placeholder="e.g. Select or paste Cloudinary image URL"
+                    />
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
 
-          <div className="border-t border-gray-100 pt-5">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-4">
-              Pillar Card 2: Holistic Growth
-            </h4>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="space-y-3">
-                <InputField
-                  label="Card Title"
-                  value={feature2Title}
-                  onChange={(e) => setFeature2Title(e.target.value)}
-                  placeholder="e.g. Pillar title (e.g. Holistic Growth)"
-                />
-                <TextAreaField
-                  label="Card Description"
-                  value={feature2Desc}
-                  onChange={(e) => setFeature2Desc(e.target.value)}
-                  rows={2}
-                  placeholder="e.g. Details about extracurriculars and character..."
-                />
-              </div>
-              <ImagePickerField
-                label="Card Image"
-                value={feature2Image}
-                onChange={(url) => setFeature2Image(url)}
-                placeholder="e.g. Select or paste Cloudinary image URL"
-              />
-            </div>
-          </div>
-
-          <div className="border-t border-gray-100 pt-5">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-4">
-              Pillar Card 3: Future Ready
-            </h4>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="space-y-3">
-                <InputField
-                  label="Card Title"
-                  value={feature3Title}
-                  onChange={(e) => setFeature3Title(e.target.value)}
-                  placeholder="e.g. Pillar title (e.g. Future Ready)"
-                />
-                <TextAreaField
-                  label="Card Description"
-                  value={feature3Desc}
-                  onChange={(e) => setFeature3Desc(e.target.value)}
-                  rows={2}
-                  placeholder="e.g. Technological integration and digital literacy..."
-                />
-              </div>
-              <ImagePickerField
-                label="Card Image"
-                value={feature3Image}
-                onChange={(url) => setFeature3Image(url)}
-                placeholder="e.g. Select or paste Cloudinary image URL"
-              />
-            </div>
-          </div>
-
-          <div className="pt-4 border-t border-gray-100 flex justify-end">
-            <div className="w-full sm:w-64">
-              <SaveButton onClick={handleSave} loading={loading} saved={saved} />
-            </div>
+          <div className="pt-4 border-t border-gray-100 w-full">
+            <SaveButton onClick={handleSave} loading={loading} saved={saved} />
           </div>
         </div>
       )}

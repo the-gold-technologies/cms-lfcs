@@ -2,11 +2,18 @@
 
 import React, { useState, useEffect } from "react";
 import toast from "react-hot-toast";
+import { Plus, Trash2 } from "lucide-react";
 import { SectionHeader } from "@/components/SectionHeader";
 import { InputField } from "@/components/InputField";
 import { TextAreaField } from "@/components/TextAreaField";
 import { ImagePickerField } from "@/components/ImagePickerField";
 import { SaveButton } from "@/components/SaveButton";
+
+interface ApproachPillar {
+  title: string;
+  desc: string;
+  image: string;
+}
 
 export function EducationalApproachSection({ initialData }: { initialData?: any }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,21 +24,7 @@ export function EducationalApproachSection({ initialData }: { initialData?: any 
   const [headline, setHeadline] = useState("");
   const [description, setDescription] = useState("");
 
-  const [app1Title, setApp1Title] = useState("");
-  const [app1Desc, setApp1Desc] = useState("");
-  const [app1Image, setApp1Image] = useState("");
-
-  const [app2Title, setApp2Title] = useState("");
-  const [app2Desc, setApp2Desc] = useState("");
-  const [app2Image, setApp2Image] = useState("");
-
-  const [app3Title, setApp3Title] = useState("");
-  const [app3Desc, setApp3Desc] = useState("");
-  const [app3Image, setApp3Image] = useState("");
-
-  const [app4Title, setApp4Title] = useState("");
-  const [app4Desc, setApp4Desc] = useState("");
-  const [app4Image, setApp4Image] = useState("");
+  const [pillars, setPillars] = useState<ApproachPillar[]>([]);
 
   useEffect(() => {
     if (initialData) {
@@ -42,47 +35,79 @@ export function EducationalApproachSection({ initialData }: { initialData?: any 
           "Our academic paradigm integrates modern cognitive science with time-tested values.",
       );
 
-      setApp1Title(initialData.app1Title ?? "Child-Centered Learning");
-      setApp1Desc(
-        initialData.app1Desc ??
-          "We focus on nurturing curiosity and encouraging exploration tailored to each learner.",
-      );
-      setApp1Image(
-        initialData.app1Image ??
-          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170030/lfcs-school/independent_1793170030545.webp",
-      );
-
-      setApp2Title(initialData.app2Title ?? "Experiential Learning");
-      setApp2Desc(
-        initialData.app2Desc ??
-          "Hands-on experiences that make learning meaningful, relevant, and lasting.",
-      );
-      setApp2Image(
-        initialData.app2Image ??
-          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170028/lfcs-school/practical_1793170027731.webp",
-      );
-
-      setApp3Title(initialData.app3Title ?? "Holistic Development");
-      setApp3Desc(
-        initialData.app3Desc ??
-          "We nurture academics, creativity, athletics, and life skills equally.",
-      );
-      setApp3Image(
-        initialData.app3Image ??
-          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170034/lfcs-school/activity_1793170034132.webp",
-      );
-
-      setApp4Title(initialData.app4Title ?? "Values & Character");
-      setApp4Desc(
-        initialData.app4Desc ??
-          "Building strong moral compass, empathy, and respect for a better tomorrow.",
-      );
-      setApp4Image(
-        initialData.app4Image ??
-          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170022/lfcs-school/collabrative_1793170021825.webp",
-      );
+      if (Array.isArray(initialData.pillars) && initialData.pillars.length > 0) {
+        setPillars(
+          initialData.pillars.map((p: any) => ({
+            title: p.title ?? "",
+            desc: p.desc ?? "",
+            image: p.image ?? "",
+          })),
+        );
+      } else {
+        setPillars([
+          {
+            title: initialData.app1Title ?? "Child-Centered Learning",
+            desc:
+              initialData.app1Desc ??
+              "We focus on nurturing curiosity and encouraging exploration tailored to each learner.",
+            image:
+              initialData.app1Image ??
+              "https://res.cloudinary.com/dpa93copz/image/upload/v1793170030/lfcs-school/independent_1793170030545.webp",
+          },
+          {
+            title: initialData.app2Title ?? "Experiential Learning",
+            desc:
+              initialData.app2Desc ??
+              "Hands-on experiences that make learning meaningful, relevant, and lasting.",
+            image:
+              initialData.app2Image ??
+              "https://res.cloudinary.com/dpa93copz/image/upload/v1793170028/lfcs-school/practical_1793170027731.webp",
+          },
+          {
+            title: initialData.app3Title ?? "Holistic Development",
+            desc:
+              initialData.app3Desc ??
+              "We nurture academics, creativity, athletics, and life skills equally.",
+            image:
+              initialData.app3Image ??
+              "https://res.cloudinary.com/dpa93copz/image/upload/v1793170034/lfcs-school/activity_1793170034132.webp",
+          },
+          {
+            title: initialData.app4Title ?? "Values & Character",
+            desc:
+              initialData.app4Desc ??
+              "Building strong moral compass, empathy, and respect for a better tomorrow.",
+            image:
+              initialData.app4Image ??
+              "https://res.cloudinary.com/dpa93copz/image/upload/v1793170022/lfcs-school/collabrative_1793170021825.webp",
+          },
+        ]);
+      }
     }
   }, [initialData]);
+
+  const handleAddPillar = () => {
+    setPillars((prev) => [
+      ...prev,
+      {
+        title: "",
+        desc: "",
+        image: "",
+      },
+    ]);
+  };
+
+  const handleRemovePillar = (index: number) => {
+    setPillars((prev) => prev.filter((_, i) => i !== index));
+  };
+
+  const handleUpdatePillar = (index: number, field: keyof ApproachPillar, val: string) => {
+    setPillars((prev) => {
+      const copy = [...prev];
+      copy[index] = { ...copy[index], [field]: val };
+      return copy;
+    });
+  };
 
   const handleSave = async () => {
     setLoading(true);
@@ -93,18 +118,20 @@ export function EducationalApproachSection({ initialData }: { initialData?: any 
           tagline,
           headline,
           description,
-          app1Title,
-          app1Desc,
-          app1Image,
-          app2Title,
-          app2Desc,
-          app2Image,
-          app3Title,
-          app3Desc,
-          app3Image,
-          app4Title,
-          app4Desc,
-          app4Image,
+          pillars, // dynamic array object!
+          // Backward compatibility:
+          app1Title: pillars[0]?.title ?? "",
+          app1Desc: pillars[0]?.desc ?? "",
+          app1Image: pillars[0]?.image ?? "",
+          app2Title: pillars[1]?.title ?? "",
+          app2Desc: pillars[1]?.desc ?? "",
+          app2Image: pillars[1]?.image ?? "",
+          app3Title: pillars[2]?.title ?? "",
+          app3Desc: pillars[2]?.desc ?? "",
+          app3Image: pillars[2]?.image ?? "",
+          app4Title: pillars[3]?.title ?? "",
+          app4Desc: pillars[3]?.desc ?? "",
+          app4Image: pillars[3]?.image ?? "",
         },
       };
 
@@ -132,8 +159,8 @@ export function EducationalApproachSection({ initialData }: { initialData?: any 
   return (
     <div className="bg-white rounded-3xl p-6 shadow-sm ring-1 ring-gray-100 flex flex-col gap-6">
       <SectionHeader
-        title="4. Educational Approach (4 Core Pillars)"
-        description="Four foundational learning principles: Child-Centered, Experiential, Holistic Development, and Values & Character."
+        title="4. Educational Approach Pillars"
+        description="Foundational learning principles: Child-Centered, Experiential, Holistic Development, and Values & Character."
         badge="Live Section"
         isOpen={isOpen}
         onToggle={() => setIsOpen(!isOpen)}
@@ -164,105 +191,91 @@ export function EducationalApproachSection({ initialData }: { initialData?: any 
             placeholder="e.g. Overview introducing the multi-faceted pedagogy..."
           />
 
-          <div className="border-t border-gray-100 pt-5">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-4">
-              Approach Pillars
-            </h4>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-              <div className="p-4 bg-gray-50/70 rounded-2xl border border-gray-100 space-y-3">
-                <InputField
-                  label="Pillar 1 Title"
-                  value={app1Title}
-                  onChange={(e) => setApp1Title(e.target.value)}
-                  placeholder="e.g. Child-Centered Learning"
-                />
-                <TextAreaField
-                  label="Pillar 1 Description"
-                  value={app1Desc}
-                  onChange={(e) => setApp1Desc(e.target.value)}
-                  rows={2}
-                  placeholder="e.g. Detail on personalized learning..."
-                />
-                <ImagePickerField
-                  label="Pillar 1 Photo"
-                  value={app1Image}
-                  onChange={(url) => setApp1Image(url)}
-                  placeholder="e.g. Cloudinary image URL"
-                />
+          {/* DYNAMIC APPROACH PILLARS */}
+          <div className="border-t border-gray-100 pt-5 space-y-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <h4 className="text-xs font-bold uppercase tracking-wider text-gray-700 flex items-center gap-2">
+                  Approach Pillars ({pillars.length})
+                </h4>
+                <p className="text-[11px] text-gray-400 mt-0.5">
+                  Core instructional philosophies. Can add more than 4 pillars.
+                </p>
               </div>
-
-              <div className="p-4 bg-gray-50/70 rounded-2xl border border-gray-100 space-y-3">
-                <InputField
-                  label="Pillar 2 Title"
-                  value={app2Title}
-                  onChange={(e) => setApp2Title(e.target.value)}
-                  placeholder="e.g. Experiential Learning"
-                />
-                <TextAreaField
-                  label="Pillar 2 Description"
-                  value={app2Desc}
-                  onChange={(e) => setApp2Desc(e.target.value)}
-                  rows={2}
-                  placeholder="e.g. Detail on hands-on experiences..."
-                />
-                <ImagePickerField
-                  label="Pillar 2 Photo"
-                  value={app2Image}
-                  onChange={(url) => setApp2Image(url)}
-                  placeholder="e.g. Cloudinary image URL"
-                />
-              </div>
-
-              <div className="p-4 bg-gray-50/70 rounded-2xl border border-gray-100 space-y-3">
-                <InputField
-                  label="Pillar 3 Title"
-                  value={app3Title}
-                  onChange={(e) => setApp3Title(e.target.value)}
-                  placeholder="e.g. Holistic Development"
-                />
-                <TextAreaField
-                  label="Pillar 3 Description"
-                  value={app3Desc}
-                  onChange={(e) => setApp3Desc(e.target.value)}
-                  rows={2}
-                  placeholder="e.g. Sports and co-curricular integration..."
-                />
-                <ImagePickerField
-                  label="Pillar 3 Photo"
-                  value={app3Image}
-                  onChange={(url) => setApp3Image(url)}
-                  placeholder="e.g. Cloudinary image URL"
-                />
-              </div>
-
-              <div className="p-4 bg-gray-50/70 rounded-2xl border border-gray-100 space-y-3">
-                <InputField
-                  label="Pillar 4 Title"
-                  value={app4Title}
-                  onChange={(e) => setApp4Title(e.target.value)}
-                  placeholder="e.g. Values & Character"
-                />
-                <TextAreaField
-                  label="Pillar 4 Description"
-                  value={app4Desc}
-                  onChange={(e) => setApp4Desc(e.target.value)}
-                  rows={2}
-                  placeholder="e.g. Moral and ethical development..."
-                />
-                <ImagePickerField
-                  label="Pillar 4 Photo"
-                  value={app4Image}
-                  onChange={(url) => setApp4Image(url)}
-                  placeholder="e.g. Cloudinary image URL"
-                />
-              </div>
+              <button
+                type="button"
+                onClick={handleAddPillar}
+                className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0E5A60] hover:text-[#061C29] bg-[#0E5A60]/10 hover:bg-[#0E5A60]/20 px-3.5 py-1.5 rounded-xl transition-all cursor-pointer shadow-2xs"
+              >
+                <Plus className="w-3.5 h-3.5" />
+                <span>Add Pillar</span>
+              </button>
             </div>
+
+            {pillars.length === 0 ? (
+              <div
+                onClick={handleAddPillar}
+                className="p-8 rounded-2xl bg-gray-50/70 border border-dashed border-gray-200 text-center text-xs text-gray-400 cursor-pointer hover:bg-gray-100/70 hover:border-gray-300 transition-all flex flex-col items-center justify-center gap-2"
+              >
+                <Plus className="w-5 h-5 text-gray-400" />
+                <span>No pillars added yet. Click to add your first pillar.</span>
+              </div>
+            ) : (
+              <div className="space-y-4">
+                {pillars.map((pillar, idx) => (
+                  <div
+                    key={idx}
+                    className="p-5 bg-gray-50/70 hover:bg-gray-50 rounded-2xl border border-gray-200/80 space-y-3.5 relative transition-all group"
+                  >
+                    <div className="flex items-center justify-between border-b border-gray-200/60 pb-2">
+                      <span className="text-xs font-bold text-[#0E5A60] flex items-center gap-2">
+                        <span className="w-5 h-5 rounded-full bg-[#0E5A60]/10 flex items-center justify-center text-[10px] font-black">
+                          {idx + 1}
+                        </span>
+                        Pillar #{idx + 1}: {pillar.title || "Untitled Pillar"}
+                      </span>
+                      <button
+                        type="button"
+                        onClick={() => handleRemovePillar(idx)}
+                        className="p-1 text-gray-400 hover:text-red-600 rounded-lg hover:bg-red-50 transition-colors cursor-pointer"
+                        title="Delete Pillar"
+                      >
+                        <Trash2 className="w-3.5 h-3.5" />
+                      </button>
+                    </div>
+
+                    {/* Row 1: Title */}
+                    <InputField
+                      label="Pillar Title"
+                      value={pillar.title}
+                      onChange={(e) => handleUpdatePillar(idx, "title", e.target.value)}
+                      placeholder="e.g. Child-Centered Learning"
+                    />
+
+                    {/* Row 2: Description */}
+                    <TextAreaField
+                      label="Pillar Description"
+                      value={pillar.desc}
+                      onChange={(e) => handleUpdatePillar(idx, "desc", e.target.value)}
+                      rows={2}
+                      placeholder="e.g. Detail on personalized learning..."
+                    />
+
+                    {/* Row 3: Image (full width) */}
+                    <ImagePickerField
+                      label="Pillar Photo"
+                      value={pillar.image}
+                      onChange={(url) => handleUpdatePillar(idx, "image", url)}
+                      placeholder="e.g. Cloudinary image URL"
+                    />
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
 
-          <div className="pt-4 border-t border-gray-100 flex justify-end">
-            <div className="w-full sm:w-64">
-              <SaveButton onClick={handleSave} loading={loading} saved={saved} />
-            </div>
+          <div className="pt-4 border-t border-gray-100 w-full">
+            <SaveButton onClick={handleSave} loading={loading} saved={saved} />
           </div>
         </div>
       )}

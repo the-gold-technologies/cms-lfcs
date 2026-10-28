@@ -115,10 +115,8 @@ export function ContactFormSection({ initialData }: { initialData?: any }) {
             placeholder="e.g. B-1/142, Sector-G, Aliganj, Lucknow - 226024, Uttar Pradesh"
           />
 
-          <div className="pt-4 border-t border-gray-100 flex justify-end">
-            <div className="w-full sm:w-64">
-              <SaveButton onClick={handleSave} loading={loading} saved={saved} />
-            </div>
+          <div className="pt-4 border-t border-gray-100 w-full">
+            <SaveButton onClick={handleSave} loading={loading} saved={saved} />
           </div>
         </div>
       )}

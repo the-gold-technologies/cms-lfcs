@@ -2,10 +2,15 @@
 
 import React, { useState, useEffect } from "react";
 import toast from "react-hot-toast";
+import { Plus, Trash2 } from "lucide-react";
 import { SectionHeader } from "@/components/SectionHeader";
 import { InputField } from "@/components/InputField";
 import { TextAreaField } from "@/components/TextAreaField";
 import { SaveButton } from "@/components/SaveButton";
+
+interface ClubItem {
+  name: string;
+}
 
 export function ClubsActivitiesSection({ initialData }: { initialData?: any }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -16,12 +21,7 @@ export function ClubsActivitiesSection({ initialData }: { initialData?: any }) {
   const [headline, setHeadline] = useState("");
   const [description, setDescription] = useState("");
 
-  const [c1Name, setC1Name] = useState("");
-  const [c2Name, setC2Name] = useState("");
-  const [c3Name, setC3Name] = useState("");
-  const [c4Name, setC4Name] = useState("");
-  const [c5Name, setC5Name] = useState("");
-  const [c6Name, setC6Name] = useState("");
+  const [clubs, setClubs] = useState<ClubItem[]>([]);
 
   useEffect(() => {
     if (initialData) {
@@ -32,14 +32,40 @@ export function ClubsActivitiesSection({ initialData }: { initialData?: any }) {
           "Student-led clubs encourage teamwork, passion exploration, and leadership outside standard periods.",
       );
 
-      setC1Name(initialData.c1Name ?? "Academic Competitions & Olympiads");
-      setC2Name(initialData.c2Name ?? "Quiz & General Knowledge Club");
-      setC3Name(initialData.c3Name ?? "Technology & STEM Coding Lab");
-      setC4Name(initialData.c4Name ?? "Debate & Model United Nations");
-      setC5Name(initialData.c5Name ?? "Literary & Creative Writing Guild");
-      setC6Name(initialData.c6Name ?? "Fine Arts & Craft Studio");
+      if (Array.isArray(initialData.clubs) && initialData.clubs.length > 0) {
+        setClubs(
+          initialData.clubs.map((c: any) => ({
+            name: typeof c === "string" ? c : (c.name ?? ""),
+          })),
+        );
+      } else {
+        setClubs([
+          { name: initialData.c1Name ?? "Academic Competitions & Olympiads" },
+          { name: initialData.c2Name ?? "Quiz & General Knowledge Club" },
+          { name: initialData.c3Name ?? "Technology & STEM Coding Lab" },
+          { name: initialData.c4Name ?? "Debate & Model United Nations" },
+          { name: initialData.c5Name ?? "Literary & Creative Writing Guild" },
+          { name: initialData.c6Name ?? "Fine Arts & Craft Studio" },
+        ]);
+      }
     }
   }, [initialData]);
+
+  const handleAddClub = () => {
+    setClubs((prev) => [...prev, { name: "" }]);
+  };
+
+  const handleRemoveClub = (index: number) => {
+    setClubs((prev) => prev.filter((_, i) => i !== index));
+  };
+
+  const handleUpdateClub = (index: number, val: string) => {
+    setClubs((prev) => {
+      const copy = [...prev];
+      copy[index] = { name: val };
+      return copy;
+    });
+  };
 
   const handleSave = async () => {
     setLoading(true);
@@ -50,12 +76,14 @@ export function ClubsActivitiesSection({ initialData }: { initialData?: any }) {
           tagline,
           headline,
           description,
-          c1Name,
-          c2Name,
-          c3Name,
-          c4Name,
-          c5Name,
-          c6Name,
+          clubs, // dynamic array object!
+          // Backward compatibility:
+          c1Name: clubs[0]?.name ?? "",
+          c2Name: clubs[1]?.name ?? "",
+          c3Name: clubs[2]?.name ?? "",
+          c4Name: clubs[3]?.name ?? "",
+          c5Name: clubs[4]?.name ?? "",
+          c6Name: clubs[5]?.name ?? "",
         },
       };
 
@@ -84,7 +112,7 @@ export function ClubsActivitiesSection({ initialData }: { initialData?: any }) {
     <div className="bg-white rounded-3xl p-6 shadow-sm ring-1 ring-gray-100 flex flex-col gap-6">
       <SectionHeader
         title="5. Student Clubs & Societies"
-        description="6 co-curricular student interest clubs fostering innovation, debate, and creativity."
+        description="Co-curricular student interest clubs fostering innovation, debate, and creativity."
         badge="Live Section"
         isOpen={isOpen}
         onToggle={() => setIsOpen(!isOpen)}
@@ -115,54 +143,70 @@ export function ClubsActivitiesSection({ initialData }: { initialData?: any }) {
             placeholder="e.g. Club participation narrative..."
           />
 
-          <div className="border-t border-gray-100 pt-5">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-4">
-              6 Active Student Clubs
-            </h4>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-              <InputField
-                label="Club 1"
-                value={c1Name}
-                onChange={(e) => setC1Name(e.target.value)}
-                placeholder="e.g. Academic Competitions"
-              />
-              <InputField
-                label="Club 2"
-                value={c2Name}
-                onChange={(e) => setC2Name(e.target.value)}
-                placeholder="e.g. Quiz & GK Club"
-              />
-              <InputField
-                label="Club 3"
-                value={c3Name}
-                onChange={(e) => setC3Name(e.target.value)}
-                placeholder="e.g. Technology & STEM"
-              />
-              <InputField
-                label="Club 4"
-                value={c4Name}
-                onChange={(e) => setC4Name(e.target.value)}
-                placeholder="e.g. Debate & Communication"
-              />
-              <InputField
-                label="Club 5"
-                value={c5Name}
-                onChange={(e) => setC5Name(e.target.value)}
-                placeholder="e.g. Literary Guild"
-              />
-              <InputField
-                label="Club 6"
-                value={c6Name}
-                onChange={(e) => setC6Name(e.target.value)}
-                placeholder="e.g. Fine Arts & Craft"
-              />
+          {/* DYNAMIC CLUBS ARRAY */}
+          <div className="border-t border-gray-100 pt-5 space-y-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <h4 className="text-xs font-bold uppercase tracking-wider text-gray-700 flex items-center gap-2">
+                  Active Student Clubs ({clubs.length})
+                </h4>
+                <p className="text-[11px] text-gray-400 mt-0.5">
+                  Co-curricular clubs and activity societies. Can add more than 6 clubs.
+                </p>
+              </div>
+              <button
+                type="button"
+                onClick={handleAddClub}
+                className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0E5A60] hover:text-[#061C29] bg-[#0E5A60]/10 hover:bg-[#0E5A60]/20 px-3.5 py-1.5 rounded-xl transition-all cursor-pointer shadow-2xs"
+              >
+                <Plus className="w-3.5 h-3.5" />
+                <span>Add Club</span>
+              </button>
             </div>
+
+            {clubs.length === 0 ? (
+              <div
+                onClick={handleAddClub}
+                className="p-8 rounded-2xl bg-gray-50/70 border border-dashed border-gray-200 text-center text-xs text-gray-400 cursor-pointer hover:bg-gray-100/70 hover:border-gray-300 transition-all flex flex-col items-center justify-center gap-2"
+              >
+                <Plus className="w-5 h-5 text-gray-400" />
+                <span>No clubs added yet. Click to add your first student club.</span>
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                {clubs.map((c, idx) => (
+                  <div
+                    key={idx}
+                    className="p-3 bg-gray-50/70 hover:bg-gray-50 rounded-2xl border border-gray-200/80 flex items-center gap-2 relative transition-all group"
+                  >
+                    <span className="w-6 h-6 rounded-full bg-[#0E5A60]/10 flex items-center justify-center text-[10px] font-black text-[#0E5A60] shrink-0">
+                      {idx + 1}
+                    </span>
+                    <div className="flex-1 min-w-0">
+                      <input
+                        type="text"
+                        value={c.name}
+                        onChange={(e) => handleUpdateClub(idx, e.target.value)}
+                        placeholder={`Club #${idx + 1} Name`}
+                        className="w-full text-xs font-semibold text-gray-800 bg-transparent border-none outline-none focus:ring-0 placeholder:text-gray-400"
+                      />
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => handleRemoveClub(idx)}
+                      className="p-1 text-gray-400 hover:text-red-600 rounded-lg hover:bg-red-50 transition-colors cursor-pointer shrink-0"
+                      title="Delete Club"
+                    >
+                      <Trash2 className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
 
-          <div className="pt-4 border-t border-gray-100 flex justify-end">
-            <div className="w-full sm:w-64">
-              <SaveButton onClick={handleSave} loading={loading} saved={saved} />
-            </div>
+          <div className="pt-4 border-t border-gray-100 w-full">
+            <SaveButton onClick={handleSave} loading={loading} saved={saved} />
           </div>
         </div>
       )}

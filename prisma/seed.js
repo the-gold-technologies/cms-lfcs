@@ -151,6 +151,7 @@ async function main() {
       "start-school": "Start an Associate School",
       careers: "Careers",
       contact: "Contact Us",
+      gallery: "Photo Gallery",
     };
 
     for (const [slug, sections] of Object.entries(staticPages)) {
@@ -170,25 +171,24 @@ async function main() {
 
       let order = 0;
       for (const [sectionType, sectionContent] of Object.entries(sections)) {
-        const existing = await prisma.section.findFirst({
-          where: { pageId: page.id, type: sectionType },
-        });
-
-        if (existing) {
-          await prisma.section.update({
-            where: { id: existing.id },
-            data: { content: sectionContent, order: order++ },
-          });
-        } else {
-          await prisma.section.create({
-            data: {
+        await prisma.section.upsert({
+          where: {
+            pageId_type: {
               pageId: page.id,
               type: sectionType,
-              content: sectionContent,
-              order: order++,
             },
-          });
-        }
+          },
+          update: {
+            content: sectionContent,
+            order: order++,
+          },
+          create: {
+            pageId: page.id,
+            type: sectionType,
+            content: sectionContent,
+            order: order++,
+          },
+        });
       }
       console.log(
         `✓ Static page "${title}" (${slug}) seeded with ${Object.keys(sections).length} sections`,
@@ -199,7 +199,6 @@ async function main() {
   console.log("🎉 Complete database seed with Cloudinary CDN URLs finished successfully!");
 }
 
-main();
 main()
   .catch((e) => {
     console.error("Seed error:", e);

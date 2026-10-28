@@ -6,6 +6,12 @@ import { SectionHeader } from "@/components/SectionHeader";
 import { InputField } from "@/components/InputField";
 import { TextAreaField } from "@/components/TextAreaField";
 import { SaveButton } from "@/components/SaveButton";
+import { Plus, Trash2 } from "lucide-react";
+
+export interface RoadmapStep {
+  title: string;
+  desc?: string;
+}
 
 export function SetupProcessSection({ initialData }: { initialData?: any }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,14 +23,7 @@ export function SetupProcessSection({ initialData }: { initialData?: any }) {
   const [scriptAccent, setScriptAccent] = useState("");
   const [subtitle, setSubtitle] = useState("");
 
-  const [step1, setStep1] = useState("");
-  const [step2, setStep2] = useState("");
-  const [step3, setStep3] = useState("");
-  const [step4, setStep4] = useState("");
-  const [step5, setStep5] = useState("");
-  const [step6, setStep6] = useState("");
-  const [step7, setStep7] = useState("");
-  const [step8, setStep8] = useState("");
+  const [steps, setSteps] = useState<RoadmapStep[]>([]);
 
   useEffect(() => {
     if (initialData) {
@@ -36,19 +35,48 @@ export function SetupProcessSection({ initialData }: { initialData?: any }) {
           "Establishing a CBSE school requires disciplined milestone planning. Our structured 8-step roadmap guides your project smoothly from proposal to student admissions.",
       );
 
-      setStep1(initialData.step1 ?? "01. Initial Enquiry & Location Feasibility");
-      setStep2(initialData.step2 ?? "02. Leadership Evaluation & Preliminary Discussions");
-      setStep3(initialData.step3 ?? "03. Site Survey & Infrastructure Blueprints");
-      setStep4(initialData.step4 ?? "04. Associate Agreement & Territory Finalisation");
-      setStep5(initialData.step5 ?? "05. Campus Civil Construction & Lab Setup");
-      setStep6(initialData.step6 ?? "06. Principal & Faculty Recruitment & Training");
-      setStep7(initialData.step7 ?? "07. Admissions Campaign Launch & School Readiness Audit");
-      setStep8(initialData.step8 ?? "08. Inaugural Opening & Commencement of Classes");
+      if (Array.isArray(initialData.steps) && initialData.steps.length > 0) {
+        setSteps(
+          initialData.steps.map((s: any) =>
+            typeof s === "string"
+              ? { title: s, desc: "" }
+              : { title: s.title ?? "", desc: s.desc ?? "" },
+          ),
+        );
+      } else {
+        setSteps([
+          { title: initialData.step1 ?? "Initial Enquiry & Location Feasibility" },
+          { title: initialData.step2 ?? "Leadership Evaluation & Preliminary Discussions" },
+          { title: initialData.step3 ?? "Site Survey & Infrastructure Blueprints" },
+          { title: initialData.step4 ?? "Associate Agreement & Territory Finalisation" },
+          { title: initialData.step5 ?? "Campus Civil Construction & Lab Setup" },
+          { title: initialData.step6 ?? "Principal & Faculty Recruitment & Training" },
+          { title: initialData.step7 ?? "Admissions Campaign Launch & School Readiness Audit" },
+          { title: initialData.step8 ?? "Inaugural Opening & Commencement of Classes" },
+        ]);
+      }
     }
   }, [initialData]);
 
+  const handleAddStep = () => {
+    setSteps((prev) => [...prev, { title: "", desc: "" }]);
+  };
+
+  const handleRemoveStep = (index: number) => {
+    setSteps((prev) => prev.filter((_, i) => i !== index));
+  };
+
+  const handleUpdateStep = (index: number, value: string) => {
+    setSteps((prev) => {
+      const copy = [...prev];
+      copy[index] = { ...copy[index], title: value };
+      return copy;
+    });
+  };
+
   const handleSave = async () => {
     setLoading(true);
+    setSaved(false);
     try {
       const payload = {
         section: "SetupProcessSection",
@@ -57,14 +85,16 @@ export function SetupProcessSection({ initialData }: { initialData?: any }) {
           headline,
           scriptAccent,
           subtitle,
-          step1,
-          step2,
-          step3,
-          step4,
-          step5,
-          step6,
-          step7,
-          step8,
+          steps, // Array object!
+          // Backward compatibility:
+          step1: steps[0]?.title ?? "",
+          step2: steps[1]?.title ?? "",
+          step3: steps[2]?.title ?? "",
+          step4: steps[3]?.title ?? "",
+          step5: steps[4]?.title ?? "",
+          step6: steps[5]?.title ?? "",
+          step7: steps[6]?.title ?? "",
+          step8: steps[7]?.title ?? "",
         },
       };
 
@@ -77,10 +107,10 @@ export function SetupProcessSection({ initialData }: { initialData?: any }) {
       const json = await res.json();
       if (json.success) {
         setSaved(true);
-        toast.success("Setup Roadmap saved successfully!");
+        toast.success("Setup roadmap saved successfully!");
         setTimeout(() => setSaved(false), 2500);
       } else {
-        toast.error(json.error || "Failed to save roadmap");
+        toast.error(json.error || "Failed to save section");
       }
     } catch (err: any) {
       toast.error(err?.message || "Network error while saving");
@@ -92,8 +122,8 @@ export function SetupProcessSection({ initialData }: { initialData?: any }) {
   return (
     <div className="bg-white rounded-3xl p-6 shadow-sm ring-1 ring-gray-100 flex flex-col gap-6">
       <SectionHeader
-        title="6. 8-Step School Setup Roadmap"
-        description="The sequential roadmap from initial location enquiry to grand opening and inaugural class commencement."
+        title="6. School Setup Roadmap & Process Timeline"
+        description="Structured setup process from location feasibility survey to campus construction and inaugural admissions."
         badge="Live Section"
         isOpen={isOpen}
         onToggle={() => setIsOpen(!isOpen)}
@@ -109,7 +139,7 @@ export function SetupProcessSection({ initialData }: { initialData?: any }) {
               placeholder="e.g. SCHOOL SETUP ROADMAP"
             />
             <InputField
-              label="Headline Lead"
+              label="Heading Lead"
               value={headline}
               onChange={(e) => setHeadline(e.target.value)}
               placeholder="e.g. From Initial Planning to"
@@ -127,69 +157,76 @@ export function SetupProcessSection({ initialData }: { initialData?: any }) {
             value={subtitle}
             onChange={(e) => setSubtitle(e.target.value)}
             rows={2}
-            placeholder="e.g. Overview of chronological timeline..."
+            placeholder="e.g. Establishing a CBSE school requires disciplined milestone planning..."
           />
 
-          <div className="border-t border-gray-100 pt-5">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-4">
-              8 Roadmap Milestones
-            </h4>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <InputField
-                label="Step 1"
-                value={step1}
-                onChange={(e) => setStep1(e.target.value)}
-                placeholder="e.g. 01. Initial Enquiry & Location Feasibility"
-              />
-              <InputField
-                label="Step 2"
-                value={step2}
-                onChange={(e) => setStep2(e.target.value)}
-                placeholder="e.g. 02. Leadership Evaluation & Discussions"
-              />
-              <InputField
-                label="Step 3"
-                value={step3}
-                onChange={(e) => setStep3(e.target.value)}
-                placeholder="e.g. 03. Site Survey & Blueprints"
-              />
-              <InputField
-                label="Step 4"
-                value={step4}
-                onChange={(e) => setStep4(e.target.value)}
-                placeholder="e.g. 04. Agreement & Finalisation"
-              />
-              <InputField
-                label="Step 5"
-                value={step5}
-                onChange={(e) => setStep5(e.target.value)}
-                placeholder="e.g. 05. Civil Construction & Lab Setup"
-              />
-              <InputField
-                label="Step 6"
-                value={step6}
-                onChange={(e) => setStep6(e.target.value)}
-                placeholder="e.g. 06. Faculty Recruitment & Training"
-              />
-              <InputField
-                label="Step 7"
-                value={step7}
-                onChange={(e) => setStep7(e.target.value)}
-                placeholder="e.g. 07. Admissions Campaign Launch"
-              />
-              <InputField
-                label="Step 8"
-                value={step8}
-                onChange={(e) => setStep8(e.target.value)}
-                placeholder="e.g. 08. Grand Opening & Classes"
-              />
+          {/* DYNAMIC STEPS ARRAY */}
+          <div className="border-t border-gray-100 pt-5 space-y-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <h4 className="text-xs font-bold uppercase tracking-wider text-gray-700 flex items-center gap-2">
+                  Roadmap Milestone Steps ({steps.length})
+                </h4>
+                <p className="text-[11px] text-gray-400 mt-0.5">
+                  Sequential phases guiding partners to successful launch. Can add or reorder steps.
+                </p>
+              </div>
+              <button
+                type="button"
+                onClick={handleAddStep}
+                className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0E5A60] hover:text-[#061C29] bg-[#0E5A60]/10 hover:bg-[#0E5A60]/20 px-3.5 py-1.5 rounded-xl transition-all cursor-pointer shadow-2xs"
+              >
+                <Plus className="w-3.5 h-3.5" />
+                <span>Add Step</span>
+              </button>
             </div>
+
+            {steps.length === 0 ? (
+              <div
+                onClick={handleAddStep}
+                className="p-8 rounded-2xl bg-gray-50/70 border border-dashed border-gray-200 text-center text-xs text-gray-400 cursor-pointer hover:bg-gray-100/70 hover:border-gray-300 transition-all flex flex-col items-center justify-center gap-2"
+              >
+                <Plus className="w-5 h-5 text-gray-400" />
+                <span>No steps added yet. Click to add your first roadmap milestone.</span>
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                {steps.map((st, idx) => (
+                  <div
+                    key={idx}
+                    className="p-3.5 bg-gray-50/70 hover:bg-gray-50 rounded-xl border border-gray-200/80 space-y-2 relative transition-all group"
+                  >
+                    <div className="flex items-center justify-between pb-1 border-b border-gray-200/60">
+                      <span className="text-[11px] font-bold text-[#0E5A60] flex items-center gap-1.5">
+                        <span className="w-4 h-4 rounded-full bg-[#0E5A60]/10 flex items-center justify-center text-[9px] font-black">
+                          {idx + 1}
+                        </span>
+                        Step {idx < 9 ? `0${idx + 1}` : idx + 1}
+                      </span>
+                      <button
+                        type="button"
+                        onClick={() => handleRemoveStep(idx)}
+                        className="p-1 text-gray-400 hover:text-red-600 rounded-md hover:bg-red-50 transition-colors cursor-pointer"
+                        title="Delete Step"
+                      >
+                        <Trash2 className="w-3 h-3" />
+                      </button>
+                    </div>
+
+                    <InputField
+                      label="Step Title"
+                      value={st.title}
+                      onChange={(e) => handleUpdateStep(idx, e.target.value)}
+                      placeholder="e.g. Initial Enquiry & Location Feasibility"
+                    />
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
 
-          <div className="pt-4 border-t border-gray-100 flex justify-end">
-            <div className="w-full sm:w-64">
-              <SaveButton onClick={handleSave} loading={loading} saved={saved} />
-            </div>
+          <div className="pt-4 border-t border-gray-100 w-full">
+            <SaveButton onClick={handleSave} loading={loading} saved={saved} />
           </div>
         </div>
       )}

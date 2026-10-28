@@ -14,7 +14,6 @@ import {
   LogOut,
   Globe,
   Newspaper,
-  Image as ImageIcon,
   GraduationCap,
   Briefcase,
   Compass,
@@ -48,6 +47,7 @@ const sidebarLinks: SidebarLink[] = [
       { title: "Start a School", href: "/static-pages/start-school" },
       { title: "Careers", href: "/static-pages/careers" },
       { title: "Contact Us", href: "/static-pages/contact" },
+      { title: "Photo Gallery", href: "/static-pages/gallery" },
     ],
   },
   {
@@ -65,11 +65,6 @@ const sidebarLinks: SidebarLink[] = [
       { title: "All Stories", href: "/news" },
       { title: "Write New Story", href: "/news/create" },
     ],
-  },
-  {
-    title: "Photo Gallery",
-    href: "/gallery",
-    icon: ImageIcon,
   },
   {
     title: "Toppers & Results",

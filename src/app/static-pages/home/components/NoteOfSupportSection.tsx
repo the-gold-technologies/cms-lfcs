@@ -137,8 +137,8 @@ export function NoteOfSupportSection({ initialData }: { initialData?: any }) {
             <h4 className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-4">
               Endorser 1: Sharman Joshi
             </h4>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="space-y-3">
+            <div className="space-y-3.5">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <InputField
                   label="Full Name"
                   value={person1Name}
@@ -151,20 +151,20 @@ export function NoteOfSupportSection({ initialData }: { initialData?: any }) {
                   onChange={(e) => setPerson1Role(e.target.value)}
                   placeholder="e.g. Role or credentials (e.g. Actor & LFCS Supporter)"
                 />
-                <InputField
-                  label="Callout Headline"
-                  value={person1Headline}
-                  onChange={(e) => setPerson1Headline(e.target.value)}
-                  placeholder="e.g. Punchy one-sentence key quote headline"
-                />
-                <TextAreaField
-                  label="Full Endorsement Quote"
-                  value={person1Quote}
-                  onChange={(e) => setPerson1Quote(e.target.value)}
-                  rows={3}
-                  placeholder="e.g. Complete quote or testimonial text..."
-                />
               </div>
+              <InputField
+                label="Callout Headline"
+                value={person1Headline}
+                onChange={(e) => setPerson1Headline(e.target.value)}
+                placeholder="e.g. Punchy one-sentence key quote headline"
+              />
+              <TextAreaField
+                label="Full Endorsement Quote"
+                value={person1Quote}
+                onChange={(e) => setPerson1Quote(e.target.value)}
+                rows={3}
+                placeholder="e.g. Complete quote or testimonial text..."
+              />
               <ImagePickerField
                 label="Endorser Photo"
                 value={person1Image}
@@ -178,8 +178,8 @@ export function NoteOfSupportSection({ initialData }: { initialData?: any }) {
             <h4 className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-4">
               Endorser 2: Mr. Anand Kumar (Super 30)
             </h4>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="space-y-3">
+            <div className="space-y-3.5">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <InputField
                   label="Full Name"
                   value={person2Name}
@@ -192,20 +192,20 @@ export function NoteOfSupportSection({ initialData }: { initialData?: any }) {
                   onChange={(e) => setPerson2Role(e.target.value)}
                   placeholder="e.g. Role or credentials (e.g. Founder, Super 30)"
                 />
-                <InputField
-                  label="Callout Headline"
-                  value={person2Headline}
-                  onChange={(e) => setPerson2Headline(e.target.value)}
-                  placeholder="e.g. Punchy one-sentence key quote headline"
-                />
-                <TextAreaField
-                  label="Full Endorsement Quote"
-                  value={person2Quote}
-                  onChange={(e) => setPerson2Quote(e.target.value)}
-                  rows={3}
-                  placeholder="e.g. Complete quote or testimonial text..."
-                />
               </div>
+              <InputField
+                label="Callout Headline"
+                value={person2Headline}
+                onChange={(e) => setPerson2Headline(e.target.value)}
+                placeholder="e.g. Punchy one-sentence key quote headline"
+              />
+              <TextAreaField
+                label="Full Endorsement Quote"
+                value={person2Quote}
+                onChange={(e) => setPerson2Quote(e.target.value)}
+                rows={3}
+                placeholder="e.g. Complete quote or testimonial text..."
+              />
               <ImagePickerField
                 label="Endorser Photo"
                 value={person2Image}
@@ -215,10 +215,8 @@ export function NoteOfSupportSection({ initialData }: { initialData?: any }) {
             </div>
           </div>
 
-          <div className="pt-4 border-t border-gray-100 flex justify-end">
-            <div className="w-full sm:w-64">
-              <SaveButton onClick={handleSave} loading={loading} saved={saved} />
-            </div>
+          <div className="pt-4 border-t border-gray-100 w-full">
+            <SaveButton onClick={handleSave} loading={loading} saved={saved} />
           </div>
         </div>
       )}

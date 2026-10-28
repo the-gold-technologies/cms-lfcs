@@ -29,13 +29,25 @@ export function ExperienceSection({ initialData }: { initialData?: any }) {
       setTagline(initialData.tagline ?? "CAMPUS LIFE");
       setHeadline(initialData.headline ?? "An Environment Where");
       setScriptAccent(initialData.scriptAccent ?? "Every Child Thrives");
-      setSubtitle(initialData.subtitle ?? "Beyond classrooms, our campuses buzz with sporting tournaments, science fairs, performing arts, and joyful discovery.");
+      setSubtitle(
+        initialData.subtitle ??
+          "Beyond classrooms, our campuses buzz with sporting tournaments, science fairs, performing arts, and joyful discovery.",
+      );
       setCtaText(initialData.ctaText ?? "Explore Student Life");
       setCtaLink(initialData.ctaLink ?? "/experience");
 
-      setCol1Image(initialData.col1Image ?? "https://res.cloudinary.com/dpa93copz/image/upload/v1793170031/lfcs-school/Experience1_1793170031351.webp");
-      setCol2Image(initialData.col2Image ?? "https://res.cloudinary.com/dpa93copz/image/upload/v1793170032/lfcs-school/Experience4_1793170032205.webp");
-      setCol3Image(initialData.col3Image ?? "https://res.cloudinary.com/dpa93copz/image/upload/v1793170033/lfcs-school/Experience7_1793170033133.webp");
+      setCol1Image(
+        initialData.col1Image ??
+          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170031/lfcs-school/Experience1_1793170031351.webp",
+      );
+      setCol2Image(
+        initialData.col2Image ??
+          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170032/lfcs-school/Experience4_1793170032205.webp",
+      );
+      setCol3Image(
+        initialData.col3Image ??
+          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170033/lfcs-school/Experience7_1793170033133.webp",
+      );
     }
   }, [initialData]);
 

@@ -32,7 +32,9 @@ async function uploadFile(relPath) {
     return relPath;
   }
 
-  const cleanBaseName = path.basename(relPath, path.extname(relPath)).replace(/[^a-zA-Z0-9_-]/g, "_");
+  const cleanBaseName = path
+    .basename(relPath, path.extname(relPath))
+    .replace(/[^a-zA-Z0-9_-]/g, "_");
   const folder = "lfcs-school";
 
   console.log(`Uploading ${relPath} to Cloudinary...`);
@@ -117,14 +119,11 @@ async function main() {
   ];
 
   // 4. Brand & Layout Images
-  const brandImages = [
-    "/logo-header.webp",
-    "/logo1.webp",
-    "/icon.png",
-    "/herobg1.webp",
-  ];
+  const brandImages = ["/logo-header.webp", "/logo1.webp", "/icon.png", "/herobg1.webp"];
 
-  const allImages = [...new Set([...campusImages, ...newsImages, ...galleryImages, ...brandImages])];
+  const allImages = [
+    ...new Set([...campusImages, ...newsImages, ...galleryImages, ...brandImages]),
+  ];
   console.log(`Found ${allImages.length} distinct assets to process.`);
 
   for (const imgPath of allImages) {
@@ -135,4 +134,3 @@ async function main() {
 }
 
 main().catch(console.error);
-

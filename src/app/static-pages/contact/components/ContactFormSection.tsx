@@ -23,7 +23,9 @@ export function ContactFormSection({ initialData }: { initialData?: any }) {
       setPhone1(initialData.phone1 ?? "+91 83688 38489");
       setPhone2(initialData.phone2 ?? "+91 99999 76959");
       setEmail(initialData.email ?? "franchise@lfcsschools.com");
-      setAddress(initialData.address ?? "B-1/142, Sector-G, Aliganj, Lucknow - 226024, Uttar Pradesh");
+      setAddress(
+        initialData.address ?? "B-1/142, Sector-G, Aliganj, Lucknow - 226024, Uttar Pradesh",
+      );
       setHours(initialData.hours ?? "Mon - Sat: 8:00 AM - 5:00 PM");
     }
   }, [initialData]);

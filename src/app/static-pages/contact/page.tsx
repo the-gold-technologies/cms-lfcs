@@ -2,11 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { PageHeader } from "@/components/PageHeader";
-import {
-  ContactHeroSection,
-  ContactFormSection,
-  ContactCampusesSection,
-} from "./components";
+import { ContactHeroSection, ContactFormSection, ContactCampusesSection } from "./components";
 
 export default function ContactPageEditor() {
   const [pageData, setPageData] = useState<any>(null);

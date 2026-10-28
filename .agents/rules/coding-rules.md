@@ -6,4 +6,3 @@
 4. **Rich Text**: Use `react-quill-new` for long descriptions and chapter narratives.
 5. **Database**: Use Prisma Client singleton (`@/lib/prisma`).
 6. **Revalidation**: On successful PUT/POST mutations, trigger `revalidateWebsite()` to update frontend cache.
-

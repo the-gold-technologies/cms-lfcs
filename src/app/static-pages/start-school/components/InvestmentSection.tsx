@@ -37,23 +37,50 @@ export function InvestmentSection({ initialData }: { initialData?: any }) {
     if (initialData) {
       setTagline(initialData.tagline ?? "INFRASTRUCTURE & CAPITAL PLANNING");
       setHeadline(initialData.headline ?? "Planning the Resources for Your School");
-      setSubtitle(initialData.subtitle ?? "Capital allocation is phased to ensure fiscal sustainability, aligned with CBSE minimum campus norms and student intake velocity.");
+      setSubtitle(
+        initialData.subtitle ??
+          "Capital allocation is phased to ensure fiscal sustainability, aligned with CBSE minimum campus norms and student intake velocity.",
+      );
 
       setInv1Title(initialData.inv1Title ?? "Land & Site Acquisition");
-      setInv1Desc(initialData.inv1Desc ?? "1.5 to 3+ acres with safe, accessible road connectivity, clear non-agricultural title, and playground space.");
-      setInv1Image(initialData.inv1Image ?? "https://res.cloudinary.com/dpa93copz/image/upload/v1793170001/lfcs-school/Nizamuddinpura-Mau_1793169999785.webp");
+      setInv1Desc(
+        initialData.inv1Desc ??
+          "1.5 to 3+ acres with safe, accessible road connectivity, clear non-agricultural title, and playground space.",
+      );
+      setInv1Image(
+        initialData.inv1Image ??
+          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170001/lfcs-school/Nizamuddinpura-Mau_1793169999785.webp",
+      );
 
       setInv2Title(initialData.inv2Title ?? "Academic Building & Classrooms");
-      setInv2Desc(initialData.inv2Desc ?? "Spacious, well-ventilated 500 sq.ft classrooms, administrative wing, staff rooms, and infirmary.");
-      setInv2Image(initialData.inv2Image ?? "https://res.cloudinary.com/dpa93copz/image/upload/v1793170002/lfcs-school/Sikatia-Mau_1793170001648.webp");
+      setInv2Desc(
+        initialData.inv2Desc ??
+          "Spacious, well-ventilated 500 sq.ft classrooms, administrative wing, staff rooms, and infirmary.",
+      );
+      setInv2Image(
+        initialData.inv2Image ??
+          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170002/lfcs-school/Sikatia-Mau_1793170001648.webp",
+      );
 
       setInv3Title(initialData.inv3Title ?? "Laboratories & Technology Integration");
-      setInv3Desc(initialData.inv3Desc ?? "Physics, Chemistry, Biology, Mathematics, and Computer labs with digital interactive flat panels.");
-      setInv3Image(initialData.inv3Image ?? "https://res.cloudinary.com/dpa93copz/image/upload/v1793170016/lfcs-school/computer-lab_1793170016129.webp");
+      setInv3Desc(
+        initialData.inv3Desc ??
+          "Physics, Chemistry, Biology, Mathematics, and Computer labs with digital interactive flat panels.",
+      );
+      setInv3Image(
+        initialData.inv3Image ??
+          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170016/lfcs-school/computer-lab_1793170016129.webp",
+      );
 
       setInv4Title(initialData.inv4Title ?? "Sports Complexes & Working Capital");
-      setInv4Desc(initialData.inv4Desc ?? "Outdoor athletic field, basketball court, indoor games room, school buses, and preliminary operating reserve.");
-      setInv4Image(initialData.inv4Image ?? "https://res.cloudinary.com/dpa93copz/image/upload/v1793170017/lfcs-school/sports1_1793170017007.webp");
+      setInv4Desc(
+        initialData.inv4Desc ??
+          "Outdoor athletic field, basketball court, indoor games room, school buses, and preliminary operating reserve.",
+      );
+      setInv4Image(
+        initialData.inv4Image ??
+          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170017/lfcs-school/sports1_1793170017007.webp",
+      );
     }
   }, [initialData]);
 

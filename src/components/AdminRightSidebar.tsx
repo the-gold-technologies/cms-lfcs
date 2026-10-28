@@ -43,7 +43,8 @@ export function AdminRightSidebar({ stats, loading }: AdminRightSidebarProps) {
         </h2>
 
         <p className="text-sm font-medium text-gray-400 leading-relaxed max-w-[200px] mb-8">
-          Manage 8 school branches, prospective parent inquiries, and franchise proposals effortlessly.
+          Manage 8 school branches, prospective parent inquiries, and franchise proposals
+          effortlessly.
         </p>
 
         <Link

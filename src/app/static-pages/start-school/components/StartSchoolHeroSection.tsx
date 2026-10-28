@@ -23,7 +23,10 @@ export function StartSchoolHeroSection({ initialData }: { initialData?: any }) {
       setTagline(initialData.tagline ?? "Start a School");
       setHeadline(initialData.headline ?? "Start a School. Shape a");
       setScriptAccent(initialData.scriptAccent ?? "Future.");
-      setDescription(initialData.description ?? "Become an LFCS Associate Partner and bring premier CBSE education to your city, in collaboration with educational entrepreneurs who share our 40-year legacy.");
+      setDescription(
+        initialData.description ??
+          "Become an LFCS Associate Partner and bring premier CBSE education to your city, in collaboration with educational entrepreneurs who share our 40-year legacy.",
+      );
       setButtonText(initialData.buttonText ?? "Start Your Enquiry");
     }
   }, [initialData]);

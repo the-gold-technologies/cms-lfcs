@@ -22,7 +22,10 @@ export function StartSchoolFinalCTASection({ initialData }: { initialData?: any 
       setHeading(initialData.heading ?? "Build a School With a Shared Educational Purpose");
       setButtonText(initialData.buttonText ?? "Submit Your Enquiry");
       setEmailText(initialData.emailText ?? "franchise@lfcsschools.com");
-      setBgImage(initialData.bgImage ?? "https://res.cloudinary.com/dpa93copz/image/upload/v1793170008/lfcs-school/school-associate-launch_1793170008299.webp");
+      setBgImage(
+        initialData.bgImage ??
+          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170008/lfcs-school/school-associate-launch_1793170008299.webp",
+      );
     }
   }, [initialData]);
 

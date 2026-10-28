@@ -43,23 +43,47 @@ export function AcademicJourneySection({ initialData }: { initialData?: any }) {
 
       setS1Title(initialData.s1Title ?? "Early Years");
       setS1Grades(initialData.s1Grades ?? "[Nursery – UKG]");
-      setS1Desc(initialData.s1Desc ?? "Play-based exploration, sensory development, phonics, and foundational social skills.");
-      setS1Image(initialData.s1Image ?? "https://res.cloudinary.com/dpa93copz/image/upload/v1793170030/lfcs-school/independent_1793170030545.webp");
+      setS1Desc(
+        initialData.s1Desc ??
+          "Play-based exploration, sensory development, phonics, and foundational social skills.",
+      );
+      setS1Image(
+        initialData.s1Image ??
+          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170030/lfcs-school/independent_1793170030545.webp",
+      );
 
       setS2Title(initialData.s2Title ?? "Primary School");
       setS2Grades(initialData.s2Grades ?? "[Classes I – V]");
-      setS2Desc(initialData.s2Desc ?? "Building conceptual numeracy, bilingual literacy, environmental science, and structured habits.");
-      setS2Image(initialData.s2Image ?? "https://res.cloudinary.com/dpa93copz/image/upload/v1793170034/lfcs-school/activity_1793170034132.webp");
+      setS2Desc(
+        initialData.s2Desc ??
+          "Building conceptual numeracy, bilingual literacy, environmental science, and structured habits.",
+      );
+      setS2Image(
+        initialData.s2Image ??
+          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170034/lfcs-school/activity_1793170034132.webp",
+      );
 
       setS3Title(initialData.s3Title ?? "Middle School");
       setS3Grades(initialData.s3Grades ?? "[Classes VI – VIII]");
-      setS3Desc(initialData.s3Desc ?? "Transitioning into rigorous subject disciplines, computer science, and creative projects.");
-      setS3Image(initialData.s3Image ?? "https://res.cloudinary.com/dpa93copz/image/upload/v1793170020/lfcs-school/Experience6_1793170019770.webp");
+      setS3Desc(
+        initialData.s3Desc ??
+          "Transitioning into rigorous subject disciplines, computer science, and creative projects.",
+      );
+      setS3Image(
+        initialData.s3Image ??
+          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170020/lfcs-school/Experience6_1793170019770.webp",
+      );
 
       setS4Title(initialData.s4Title ?? "Secondary & Senior Secondary");
       setS4Grades(initialData.s4Grades ?? "[Classes IX – XII]");
-      setS4Desc(initialData.s4Desc ?? "Board examination mastery in Science, Commerce, and Humanities with IIT-JEE and NEET coaching support.");
-      setS4Image(initialData.s4Image ?? "https://res.cloudinary.com/dpa93copz/image/upload/v1793170019/lfcs-school/digital-classroom_1793170018820.webp");
+      setS4Desc(
+        initialData.s4Desc ??
+          "Board examination mastery in Science, Commerce, and Humanities with IIT-JEE and NEET coaching support.",
+      );
+      setS4Image(
+        initialData.s4Image ??
+          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170019/lfcs-school/digital-classroom_1793170018820.webp",
+      );
     }
   }, [initialData]);
 

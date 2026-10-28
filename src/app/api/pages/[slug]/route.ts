@@ -105,4 +105,3 @@ export async function PUT(req: Request, { params }: { params: Promise<{ slug: st
     return NextResponse.json({ success: false, error: "Internal Server Error" }, { status: 500 });
   }
 }
-

@@ -41,27 +41,54 @@ export function OurGrowthSection({ initialData }: { initialData?: any }) {
     if (initialData) {
       setTagline(initialData.tagline ?? "TIMELINE OF EXCELLENCE");
       setHeadline(initialData.headline ?? "Milestones in Our Journey");
-      setSubtitle(initialData.subtitle ?? "Key historical moments that shaped our growth and expansion across Eastern Uttar Pradesh.");
+      setSubtitle(
+        initialData.subtitle ??
+          "Key historical moments that shaped our growth and expansion across Eastern Uttar Pradesh.",
+      );
 
       setM1Year(initialData.m1Year ?? "1993");
       setM1Title(initialData.m1Title ?? "The Beginning");
-      setM1Desc(initialData.m1Desc ?? "Founded by Late Shri Vijay Shankar Yadav in Mau with just 30 students and a vision for holistic schooling.");
-      setM1Image(initialData.m1Image ?? "https://res.cloudinary.com/dpa93copz/image/upload/v1793170045/lfcs-school/logo1_1793170045264.webp");
+      setM1Desc(
+        initialData.m1Desc ??
+          "Founded by Late Shri Vijay Shankar Yadav in Mau with just 30 students and a vision for holistic schooling.",
+      );
+      setM1Image(
+        initialData.m1Image ??
+          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170045/lfcs-school/logo1_1793170045264.webp",
+      );
 
       setM2Year(initialData.m2Year ?? "2012");
       setM2Title(initialData.m2Title ?? "LFCS Kiriharapur, Ballia");
-      setM2Desc(initialData.m2Desc ?? "Flagship expansion into Ballia district with modern laboratories and lush sports grounds.");
-      setM2Image(initialData.m2Image ?? "https://res.cloudinary.com/dpa93copz/image/upload/v1793170004/lfcs-school/Khalispur-Balia_1793170003677.webp");
+      setM2Desc(
+        initialData.m2Desc ??
+          "Flagship expansion into Ballia district with modern laboratories and lush sports grounds.",
+      );
+      setM2Image(
+        initialData.m2Image ??
+          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170004/lfcs-school/Khalispur-Balia_1793170003677.webp",
+      );
 
       setM3Year(initialData.m3Year ?? "2014");
       setM3Title(initialData.m3Title ?? "LFIS Khalishpur, Mau");
-      setM3Desc(initialData.m3Desc ?? "International-standard campus with Olympic-grade swimming pool, amphitheater, and smart classrooms.");
-      setM3Image(initialData.m3Image ?? "https://res.cloudinary.com/dpa93copz/image/upload/v1793170014/lfcs-school/journey-lfis-mau_1793170014137.webp");
+      setM3Desc(
+        initialData.m3Desc ??
+          "International-standard campus with Olympic-grade swimming pool, amphitheater, and smart classrooms.",
+      );
+      setM3Image(
+        initialData.m3Image ??
+          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170014/lfcs-school/journey-lfis-mau_1793170014137.webp",
+      );
 
       setM4Year(initialData.m4Year ?? "2024");
       setM4Title(initialData.m4Title ?? "School Associate Program");
-      setM4Desc(initialData.m4Desc ?? "Nationwide expansion model inaugurated by Anand Kumar and Sharman Joshi to scale quality education.");
-      setM4Image(initialData.m4Image ?? "https://res.cloudinary.com/dpa93copz/image/upload/v1793170008/lfcs-school/school-associate-launch_1793170008299.webp");
+      setM4Desc(
+        initialData.m4Desc ??
+          "Nationwide expansion model inaugurated by Anand Kumar and Sharman Joshi to scale quality education.",
+      );
+      setM4Image(
+        initialData.m4Image ??
+          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170008/lfcs-school/school-associate-launch_1793170008299.webp",
+      );
     }
   }, [initialData]);
 

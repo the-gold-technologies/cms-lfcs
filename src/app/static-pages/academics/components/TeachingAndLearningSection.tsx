@@ -37,23 +37,50 @@ export function TeachingAndLearningSection({ initialData }: { initialData?: any 
     if (initialData) {
       setTagline(initialData.tagline ?? "TEACHING & LEARNING");
       setHeadline(initialData.headline ?? "From Concepts to Applying Them");
-      setSubtitle(initialData.subtitle ?? "Learning at LFCS moves beyond books. Our skilled educators make classroom learning interactive, exploratory, and memorable.");
+      setSubtitle(
+        initialData.subtitle ??
+          "Learning at LFCS moves beyond books. Our skilled educators make classroom learning interactive, exploratory, and memorable.",
+      );
 
       setM1Title(initialData.m1Title ?? "Collaborative Group Inquiry");
-      setM1Desc(initialData.m1Desc ?? "Peer-to-peer discussions, group projects, and team presentations that reinforce communication.");
-      setM1Image(initialData.m1Image ?? "https://res.cloudinary.com/dpa93copz/image/upload/v1793170022/lfcs-school/collabrative_1793170021825.webp");
+      setM1Desc(
+        initialData.m1Desc ??
+          "Peer-to-peer discussions, group projects, and team presentations that reinforce communication.",
+      );
+      setM1Image(
+        initialData.m1Image ??
+          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170022/lfcs-school/collabrative_1793170021825.webp",
+      );
 
       setM2Title(initialData.m2Title ?? "Practical Demonstrations");
-      setM2Desc(initialData.m2Desc ?? "Laboratory experiments, real-world models, and tactile math tools to cement abstract formulas.");
-      setM2Image(initialData.m2Image ?? "https://res.cloudinary.com/dpa93copz/image/upload/v1793170028/lfcs-school/practical_1793170027731.webp");
+      setM2Desc(
+        initialData.m2Desc ??
+          "Laboratory experiments, real-world models, and tactile math tools to cement abstract formulas.",
+      );
+      setM2Image(
+        initialData.m2Image ??
+          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170028/lfcs-school/practical_1793170027731.webp",
+      );
 
       setM3Title(initialData.m3Title ?? "Independent Research");
-      setM3Desc(initialData.m3Desc ?? "Self-guided library reading, science fair displays, and research essays fostering intellectual autonomy.");
-      setM3Image(initialData.m3Image ?? "https://res.cloudinary.com/dpa93copz/image/upload/v1793170030/lfcs-school/independent_1793170030545.webp");
+      setM3Desc(
+        initialData.m3Desc ??
+          "Self-guided library reading, science fair displays, and research essays fostering intellectual autonomy.",
+      );
+      setM3Image(
+        initialData.m3Image ??
+          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170030/lfcs-school/independent_1793170030545.webp",
+      );
 
       setM4Title(initialData.m4Title ?? "Active Remediation & Mentorship");
-      setM4Desc(initialData.m4Desc ?? "Targeted one-on-one doubt resolution and tailored guidance to leave no child behind.");
-      setM4Image(initialData.m4Image ?? "https://res.cloudinary.com/dpa93copz/image/upload/v1793170034/lfcs-school/activity_1793170034132.webp");
+      setM4Desc(
+        initialData.m4Desc ??
+          "Targeted one-on-one doubt resolution and tailored guidance to leave no child behind.",
+      );
+      setM4Image(
+        initialData.m4Image ??
+          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170034/lfcs-school/activity_1793170034132.webp",
+      );
     }
   }, [initialData]);
 

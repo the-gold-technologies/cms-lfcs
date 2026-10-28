@@ -38,20 +38,44 @@ export function WhyPartnerSection({ initialData }: { initialData?: any }) {
       setHeadline(initialData.headline ?? "A Partnership Built on Trust & Academic Prestige");
 
       setR1Title(initialData.r1Title ?? "Established Brand Heritage");
-      setR1Desc(initialData.r1Desc ?? "40+ years of parental trust, recognizable emblem, and alumni network.");
-      setR1Image(initialData.r1Image ?? "https://res.cloudinary.com/dpa93copz/image/upload/v1793170014/lfcs-school/journey-lfis-mau_1793170014137.webp");
+      setR1Desc(
+        initialData.r1Desc ??
+          "40+ years of parental trust, recognizable emblem, and alumni network.",
+      );
+      setR1Image(
+        initialData.r1Image ??
+          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170014/lfcs-school/journey-lfis-mau_1793170014137.webp",
+      );
 
       setR2Title(initialData.r2Title ?? "Turnkey Curriculum Framework");
-      setR2Desc(initialData.r2Desc ?? "NCERT/CBSE lesson plans, pedagogical handbooks, teacher guides, and assessment schemes.");
-      setR2Image(initialData.r2Image ?? "https://res.cloudinary.com/dpa93copz/image/upload/v1793170028/lfcs-school/practical_1793170027731.webp");
+      setR2Desc(
+        initialData.r2Desc ??
+          "NCERT/CBSE lesson plans, pedagogical handbooks, teacher guides, and assessment schemes.",
+      );
+      setR2Image(
+        initialData.r2Image ??
+          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170028/lfcs-school/practical_1793170027731.webp",
+      );
 
       setR3Title(initialData.r3Title ?? "Operational Guidance");
-      setR3Desc(initialData.r3Desc ?? "End-to-end guidance across school architecture, lab design, bus transport, and regulatory compliance.");
-      setR3Image(initialData.r3Image ?? "https://res.cloudinary.com/dpa93copz/image/upload/v1793170008/lfcs-school/school-associate-launch_1793170008299.webp");
+      setR3Desc(
+        initialData.r3Desc ??
+          "End-to-end guidance across school architecture, lab design, bus transport, and regulatory compliance.",
+      );
+      setR3Image(
+        initialData.r3Image ??
+          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170008/lfcs-school/school-associate-launch_1793170008299.webp",
+      );
 
       setR4Title(initialData.r4Title ?? "Marketing & Admissions Engine");
-      setR4Desc(initialData.r4Desc ?? "High-visibility launch PR campaigns, digital lead generation, and Anand Kumar endorsement collaterals.");
-      setR4Image(initialData.r4Image ?? "https://res.cloudinary.com/dpa93copz/image/upload/v1793170010/lfcs-school/anand-kumar-felicitation_1793170010248.webp");
+      setR4Desc(
+        initialData.r4Desc ??
+          "High-visibility launch PR campaigns, digital lead generation, and Anand Kumar endorsement collaterals.",
+      );
+      setR4Image(
+        initialData.r4Image ??
+          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170010/lfcs-school/anand-kumar-felicitation_1793170010248.webp",
+      );
     }
   }, [initialData]);
 

@@ -5,11 +5,7 @@ import { NewsForm } from "../../components/NewsForm";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 
-export default async function EditNewsPage({
-  params,
-}: {
-  params: Promise<{ id: string }>;
-}) {
+export default async function EditNewsPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   const item = await prisma.newsItem.findUnique({
     where: { id },
@@ -38,4 +34,3 @@ export default async function EditNewsPage({
     </div>
   );
 }
-

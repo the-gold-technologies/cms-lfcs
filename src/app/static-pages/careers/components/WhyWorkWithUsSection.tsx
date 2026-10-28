@@ -31,16 +31,30 @@ export function WhyWorkWithUsSection({ initialData }: { initialData?: any }) {
       setTagline(initialData.tagline ?? "WHY WORK WITH LFCS");
       setHeadline(initialData.headline ?? "Be Part of Something");
       setScriptAccent(initialData.scriptAccent ?? "Meaningful");
-      setParagraph(initialData.paragraph ?? "Working in education is an opportunity to make a difference that extends far beyond the classroom. At LFCS, every role contributes to creating a supportive learning environment.");
+      setParagraph(
+        initialData.paragraph ??
+          "Working in education is an opportunity to make a difference that extends far beyond the classroom. At LFCS, every role contributes to creating a supportive learning environment.",
+      );
 
       setB1Title(initialData.b1Title ?? "Purpose-Driven Work");
-      setB1Text(initialData.b1Text ?? "Directly shape the character and future trajectories of over 15,000 students.");
+      setB1Text(
+        initialData.b1Text ??
+          "Directly shape the character and future trajectories of over 15,000 students.",
+      );
       setB2Title(initialData.b2Title ?? "Collaborative Environment");
-      setB2Text(initialData.b2Text ?? "Work alongside supportive peer educators and seasoned mentors.");
+      setB2Text(
+        initialData.b2Text ?? "Work alongside supportive peer educators and seasoned mentors.",
+      );
       setB3Title(initialData.b3Title ?? "Continuous Learning");
-      setB3Text(initialData.b3Text ?? "Regular pedagogical workshops, digital tool training, and CBSE seminars.");
+      setB3Text(
+        initialData.b3Text ??
+          "Regular pedagogical workshops, digital tool training, and CBSE seminars.",
+      );
       setB4Title(initialData.b4Title ?? "Fair Compensation & Stability");
-      setB4Text(initialData.b4Text ?? "Competitive compensation packages, performance recognition, and provident fund security.");
+      setB4Text(
+        initialData.b4Text ??
+          "Competitive compensation packages, performance recognition, and provident fund security.",
+      );
     }
   }, [initialData]);
 

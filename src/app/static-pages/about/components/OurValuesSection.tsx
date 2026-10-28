@@ -39,22 +39,39 @@ export function OurValuesSection({ initialData }: { initialData?: any }) {
       setHeadline(initialData.headline ?? "Principles That Define Little Flower");
 
       setVal1Title(initialData.val1Title ?? "Integrity");
-      setVal1Desc(initialData.val1Desc ?? "We do the right thing at all times, even when no one is watching.");
+      setVal1Desc(
+        initialData.val1Desc ?? "We do the right thing at all times, even when no one is watching.",
+      );
 
       setVal2Title(initialData.val2Title ?? "Respect");
-      setVal2Desc(initialData.val2Desc ?? "We value every single individual and treat everyone with empathy and kindness.");
+      setVal2Desc(
+        initialData.val2Desc ??
+          "We value every single individual and treat everyone with empathy and kindness.",
+      );
 
       setVal3Title(initialData.val3Title ?? "Excellence");
-      setVal3Desc(initialData.val3Desc ?? "We consistently strive for the highest academic and moral standards in all that we do.");
+      setVal3Desc(
+        initialData.val3Desc ??
+          "We consistently strive for the highest academic and moral standards in all that we do.",
+      );
 
       setVal4Title(initialData.val4Title ?? "Innovation");
-      setVal4Desc(initialData.val4Desc ?? "We embrace modern ideas, critical thinking, and creativity to solve real-world challenges.");
+      setVal4Desc(
+        initialData.val4Desc ??
+          "We embrace modern ideas, critical thinking, and creativity to solve real-world challenges.",
+      );
 
       setVal5Title(initialData.val5Title ?? "Compassion");
-      setVal5Desc(initialData.val5Desc ?? "We foster empathy, active community service, and sincere care for all living things.");
+      setVal5Desc(
+        initialData.val5Desc ??
+          "We foster empathy, active community service, and sincere care for all living things.",
+      );
 
       setVal6Title(initialData.val6Title ?? "Perseverance");
-      setVal6Desc(initialData.val6Desc ?? "We build grit, resilience, and quiet determination to overcome challenges.");
+      setVal6Desc(
+        initialData.val6Desc ??
+          "We build grit, resilience, and quiet determination to overcome challenges.",
+      );
     }
   }, [initialData]);
 

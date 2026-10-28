@@ -22,7 +22,10 @@ export function ContactCampusesSection({ initialData }: { initialData?: any }) {
     if (initialData) {
       setTagline(initialData.tagline ?? "OUR CAMPUSES");
       setHeadline(initialData.headline ?? "Reach a Campus Near You");
-      setSubtitle(initialData.subtitle ?? "Contact or visit any of our schools directly for campus-specific admissions, principal appointments, and transport routes.");
+      setSubtitle(
+        initialData.subtitle ??
+          "Contact or visit any of our schools directly for campus-specific admissions, principal appointments, and transport routes.",
+      );
     }
   }, [initialData]);
 
@@ -77,9 +80,12 @@ export function ContactCampusesSection({ initialData }: { initialData?: any }) {
                 <MapPin className="w-5 h-5" />
               </div>
               <div>
-                <p className="text-xs font-bold text-gray-800">Dynamic Campus Addresses & Contacts</p>
+                <p className="text-xs font-bold text-gray-800">
+                  Dynamic Campus Addresses & Contacts
+                </p>
                 <p className="text-[11px] text-gray-500">
-                  Phone numbers, addresses, and GPS maps for Mau, Ballia, and Ghazipur branches are edited directly in the Campuses module.
+                  Phone numbers, addresses, and GPS maps for Mau, Ballia, and Ghazipur branches are
+                  edited directly in the Campuses module.
                 </p>
               </div>
             </div>

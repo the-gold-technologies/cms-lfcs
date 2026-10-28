@@ -30,10 +30,22 @@ export async function POST(req: Request) {
     if (!authCheck.authorized) return authCheck.response;
 
     const body = await req.json();
-    const { studentName, examType, year, percentageOrRank, campusName, studentPhoto, stream, order } = body;
+    const {
+      studentName,
+      examType,
+      year,
+      percentageOrRank,
+      campusName,
+      studentPhoto,
+      stream,
+      order,
+    } = body;
 
     if (!studentName || !examType || !percentageOrRank) {
-      return NextResponse.json({ success: false, error: "Missing required topper fields" }, { status: 400 });
+      return NextResponse.json(
+        { success: false, error: "Missing required topper fields" },
+        { status: 400 },
+      );
     }
 
     const item = await prisma.academicResult.create({

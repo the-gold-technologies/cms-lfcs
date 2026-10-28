@@ -33,19 +33,40 @@ export function AwardsSection({ initialData }: { initialData?: any }) {
     if (initialData) {
       setTagline(initialData.tagline ?? "HONOURS & RECOGNITION");
       setHeadline(initialData.headline ?? "Awards That Inspire Us");
-      setSubtitle(initialData.subtitle ?? "Celebrating excellence recognized at state, national, and international summits.");
+      setSubtitle(
+        initialData.subtitle ??
+          "Celebrating excellence recognized at state, national, and international summits.",
+      );
 
       setAward1Title(initialData.award1Title ?? "International Academic Recognition");
-      setAward1Desc(initialData.award1Desc ?? "Representation at the 1st International & 31st Annual Conference of Sahodaya School Complexes in Dubai, UAE.");
-      setAward1Image(initialData.award1Image ?? "https://res.cloudinary.com/dpa93copz/image/upload/v1793170013/lfcs-school/logo-unveiling_1793170013232.webp");
+      setAward1Desc(
+        initialData.award1Desc ??
+          "Representation at the 1st International & 31st Annual Conference of Sahodaya School Complexes in Dubai, UAE.",
+      );
+      setAward1Image(
+        initialData.award1Image ??
+          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170013/lfcs-school/logo-unveiling_1793170013232.webp",
+      );
 
       setAward2Title(initialData.award2Title ?? "National Leadership Award");
-      setAward2Desc(initialData.award2Desc ?? "Honoured with the Award for Leading School Chain of Uttar Pradesh at the Education Summit in Lucknow.");
-      setAward2Image(initialData.award2Image ?? "https://res.cloudinary.com/dpa93copz/image/upload/v1793170009/lfcs-school/anand-kumar-toi-profile_1793170009223.webp");
+      setAward2Desc(
+        initialData.award2Desc ??
+          "Honoured with the Award for Leading School Chain of Uttar Pradesh at the Education Summit in Lucknow.",
+      );
+      setAward2Image(
+        initialData.award2Image ??
+          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170009/lfcs-school/anand-kumar-toi-profile_1793170009223.webp",
+      );
 
       setAward3Title(initialData.award3Title ?? "Prestigious Media Recognition");
-      setAward3Desc(initialData.award3Desc ?? "Recipient of the Dainik Jagran Award for being one of the Most Credible Educational Brands in UP.");
-      setAward3Image(initialData.award3Image ?? "https://res.cloudinary.com/dpa93copz/image/upload/v1793170010/lfcs-school/anand-kumar-felicitation_1793170010248.webp");
+      setAward3Desc(
+        initialData.award3Desc ??
+          "Recipient of the Dainik Jagran Award for being one of the Most Credible Educational Brands in UP.",
+      );
+      setAward3Image(
+        initialData.award3Image ??
+          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170010/lfcs-school/anand-kumar-felicitation_1793170010248.webp",
+      );
     }
   }, [initialData]);
 

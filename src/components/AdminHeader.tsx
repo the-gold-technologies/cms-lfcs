@@ -1,7 +1,18 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { Search, FileText, Building, Settings, Shield, Inbox, X, Newspaper, GraduationCap, Image as ImageIcon } from "lucide-react";
+import {
+  Search,
+  FileText,
+  Building,
+  Settings,
+  Shield,
+  Inbox,
+  X,
+  Newspaper,
+  GraduationCap,
+  Image as ImageIcon,
+} from "lucide-react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
@@ -18,7 +29,12 @@ const STATIC_SEARCH_ITEMS: SearchItem[] = [
   { title: "Academics Page", category: "Pages", url: "/static-pages/academics", icon: FileText },
   { title: "Admissions Page", category: "Pages", url: "/static-pages/admissions", icon: FileText },
   { title: "Experience Page", category: "Pages", url: "/static-pages/experience", icon: FileText },
-  { title: "Start a School Page", category: "Pages", url: "/static-pages/start-school", icon: FileText },
+  {
+    title: "Start a School Page",
+    category: "Pages",
+    url: "/static-pages/start-school",
+    icon: FileText,
+  },
   { title: "Careers Page", category: "Pages", url: "/static-pages/careers", icon: FileText },
   { title: "Contact Us Page", category: "Pages", url: "/static-pages/contact", icon: FileText },
   { title: "All School Campuses", category: "Campuses", url: "/campuses", icon: Building },
@@ -28,11 +44,31 @@ const STATIC_SEARCH_ITEMS: SearchItem[] = [
   { title: "Photo Gallery", category: "Gallery", url: "/gallery", icon: ImageIcon },
   { title: "Board Results & Toppers", category: "Academics", url: "/results", icon: GraduationCap },
   { title: "Testimonials", category: "Academics", url: "/testimonials", icon: GraduationCap },
-  { title: "Admission Enquiries", category: "Submissions", url: "/submissions/admissions", icon: Inbox },
-  { title: "Start School Inquiries", category: "Submissions", url: "/submissions/start-school", icon: Inbox },
-  { title: "Career Applications & CVs", category: "Submissions", url: "/submissions/careers", icon: Inbox },
+  {
+    title: "Admission Enquiries",
+    category: "Submissions",
+    url: "/submissions/admissions",
+    icon: Inbox,
+  },
+  {
+    title: "Start School Inquiries",
+    category: "Submissions",
+    url: "/submissions/start-school",
+    icon: Inbox,
+  },
+  {
+    title: "Career Applications & CVs",
+    category: "Submissions",
+    url: "/submissions/careers",
+    icon: Inbox,
+  },
   { title: "General Enquiries", category: "Submissions", url: "/submissions/contact", icon: Inbox },
-  { title: "Social Media & Helpline", category: "Navigation", url: "/navigation/social-media", icon: Settings },
+  {
+    title: "Social Media & Helpline",
+    category: "Navigation",
+    url: "/navigation/social-media",
+    icon: Settings,
+  },
   { title: "Global SEO", category: "SEO", url: "/seo/global", icon: Shield },
   { title: "Profile Settings", category: "Settings", url: "/settings/profile", icon: Settings },
 ];

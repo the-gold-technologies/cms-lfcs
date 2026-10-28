@@ -18,7 +18,10 @@ export async function GET(req: Request) {
     return NextResponse.json({ success: true, data: testimonials });
   } catch (error) {
     console.error("Fetch testimonials error:", error);
-    return NextResponse.json({ success: false, error: "Failed to fetch testimonials" }, { status: 500 });
+    return NextResponse.json(
+      { success: false, error: "Failed to fetch testimonials" },
+      { status: 500 },
+    );
   }
 }
 
@@ -31,7 +34,10 @@ export async function POST(req: Request) {
     const { name, role, text, category, avatarImage, rating, order } = body;
 
     if (!name || !text || !category) {
-      return NextResponse.json({ success: false, error: "Name, category, and review text are required" }, { status: 400 });
+      return NextResponse.json(
+        { success: false, error: "Name, category, and review text are required" },
+        { status: 400 },
+      );
     }
 
     const item = await prisma.testimonial.create({
@@ -49,6 +55,9 @@ export async function POST(req: Request) {
     return NextResponse.json({ success: true, data: item });
   } catch (error) {
     console.error("Create testimonial error:", error);
-    return NextResponse.json({ success: false, error: "Failed to create testimonial" }, { status: 500 });
+    return NextResponse.json(
+      { success: false, error: "Failed to create testimonial" },
+      { status: 500 },
+    );
   }
 }

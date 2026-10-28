@@ -33,22 +33,40 @@ export function SchoolModelSection({ initialData }: { initialData?: any }) {
       setTagline(initialData.tagline ?? "LFCS SCHOOL MODEL");
       setHeadline(initialData.headline ?? "A Partnership Built Around");
       setScriptAccent(initialData.scriptAccent ?? "Education");
-      setSubtitle(initialData.subtitle ?? "A transparent institutional framework designed to align academic excellence, school administration, and sustainable local community impact.");
+      setSubtitle(
+        initialData.subtitle ??
+          "A transparent institutional framework designed to align academic excellence, school administration, and sustainable local community impact.",
+      );
 
       setArea1Title(initialData.area1Title ?? "Educational Framework");
-      setArea1Desc(initialData.area1Desc ?? "Full alignment with the LFCS pedagogical approach, student evaluations, and school values.");
+      setArea1Desc(
+        initialData.area1Desc ??
+          "Full alignment with the LFCS pedagogical approach, student evaluations, and school values.",
+      );
 
       setArea2Title(initialData.area2Title ?? "School Management System");
-      setArea2Desc(initialData.area2Desc ?? "Clear delineation of operational responsibilities, ERP deployment, and administration.");
+      setArea2Desc(
+        initialData.area2Desc ??
+          "Clear delineation of operational responsibilities, ERP deployment, and administration.",
+      );
 
       setArea3Title(initialData.area3Title ?? "Academic Structure");
-      setArea3Desc(initialData.area3Desc ?? "Continuous guidance on CBSE curriculum rollout, teacher training, and timetable management.");
+      setArea3Desc(
+        initialData.area3Desc ??
+          "Continuous guidance on CBSE curriculum rollout, teacher training, and timetable management.",
+      );
 
       setArea4Title(initialData.area4Title ?? "Brand Identity Standards");
-      setArea4Desc(initialData.area4Desc ?? "Authorized usage of LFCS logos, school uniforms, signage, and marketing collaterals.");
+      setArea4Desc(
+        initialData.area4Desc ??
+          "Authorized usage of LFCS logos, school uniforms, signage, and marketing collaterals.",
+      );
 
       setArea5Title(initialData.area5Title ?? "Campus Development Coordination");
-      setArea5Desc(initialData.area5Desc ?? "Architectural blueprints, laboratory layouts, safety clearances, and sports ground setup.");
+      setArea5Desc(
+        initialData.area5Desc ??
+          "Architectural blueprints, laboratory layouts, safety clearances, and sports ground setup.",
+      );
     }
   }, [initialData]);
 

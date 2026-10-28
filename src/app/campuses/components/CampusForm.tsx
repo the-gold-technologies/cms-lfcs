@@ -88,7 +88,10 @@ export function CampusForm({ initialData, isEdit = false }: CampusFormProps) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="bg-white rounded-3xl border border-gray-100 p-8 shadow-xs space-y-6">
+    <form
+      onSubmit={handleSubmit}
+      className="bg-white rounded-3xl border border-gray-100 p-8 shadow-xs space-y-6"
+    >
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
         <InputField
           label="Campus Name *"
@@ -200,9 +203,12 @@ export function CampusForm({ initialData, isEdit = false }: CampusFormProps) {
       </div>
 
       <div className="pt-4 max-w-xs">
-        <SaveButton loading={loading} saved={saved} label={isEdit ? "Update Campus" : "Create Campus"} />
+        <SaveButton
+          loading={loading}
+          saved={saved}
+          label={isEdit ? "Update Campus" : "Create Campus"}
+        />
       </div>
     </form>
   );
 }
-

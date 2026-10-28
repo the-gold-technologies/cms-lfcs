@@ -23,7 +23,10 @@ export function AcademicsCTASection({ initialData }: { initialData?: any }) {
       setHeading(initialData.heading ?? "A Strong Foundation Today, A Brighter Tomorrow.");
       setButtonText(initialData.buttonText ?? "Enquire Now");
       setButtonLink(initialData.buttonLink ?? "/contact#contact-form");
-      setBgImage(initialData.bgImage ?? "https://res.cloudinary.com/dpa93copz/image/upload/v1793170041/lfcs-school/life2_1793170041503.webp");
+      setBgImage(
+        initialData.bgImage ??
+          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170041/lfcs-school/life2_1793170041503.webp",
+      );
     }
   }, [initialData]);
 

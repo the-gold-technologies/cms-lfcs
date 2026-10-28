@@ -2,27 +2,29 @@
 
 > **Notice for Future AI Agents & Developers:**
 > This document tracks the implementation plan, active tasks, and completed deliverables for **Little Flower Group of Schools CMS (`lfcs-school-cms`)**.
-> 
+>
 > This CMS is architected following the exact patterns, component architecture, and data contracts proven in **`kokalachi-cms`**.
 > Read this document first to understand current progress, architectural decisions, and next steps before modifying or adding code.
 
 ---
 
 ## 📌 Project Overview
-* **CMS Project Directory**: `/Users/sudeeshkumar/Desktop/TGT COMPANY/lfcs-school-cms`
-* **Public Website Directory**: `/Users/sudeeshkumar/Desktop/TGT COMPANY/lfcs-school`
-* **Default CMS Port**: `http://localhost:3001`
-* **Default Website Port**: `http://localhost:3000`
-* **Tech Stack**: Next.js 16 (App Router), React 19, Tailwind CSS v4, Prisma ORM, PostgreSQL, NextAuth.js v5 (Auth.js Beta), Sharp (WebP compression), Cloudinary SDK, React Hot Toast, React Quill New, Nodemailer.
-* **Database**: Local PostgreSQL (`postgresql://sudeeshkumar@localhost:5432/lfcs_school_cms`)
-* **Cloud Storage**: Cloudinary (Folder: `lfcs-school`, Cloud Name: `dpa93copz`)
-* **SMTP Server**: Zoho SMTP (`smtppro.zoho.in:465`)
+
+- **CMS Project Directory**: `/Users/sudeeshkumar/Desktop/TGT COMPANY/lfcs-school-cms`
+- **Public Website Directory**: `/Users/sudeeshkumar/Desktop/TGT COMPANY/lfcs-school`
+- **Default CMS Port**: `http://localhost:3001`
+- **Default Website Port**: `http://localhost:3000`
+- **Tech Stack**: Next.js 16 (App Router), React 19, Tailwind CSS v4, Prisma ORM, PostgreSQL, NextAuth.js v5 (Auth.js Beta), Sharp (WebP compression), Cloudinary SDK, React Hot Toast, React Quill New, Nodemailer.
+- **Database**: Local PostgreSQL (`postgresql://sudeeshkumar@localhost:5432/lfcs_school_cms`)
+- **Cloud Storage**: Cloudinary (Folder: `lfcs-school`, Cloud Name: `dpa93copz`)
+- **SMTP Server**: Zoho SMTP (`smtppro.zoho.in:465`)
 
 ---
 
 ## 🧭 Master Implementation Status
 
 ### ✅ Phase 1: Scaffolding, Architecture & Configuration (COMPLETED)
+
 - [x] Initialized Next.js 16 project structure with App Router.
 - [x] Configured `package.json` with identical dependencies to `kokalachi-cms` (`next-auth@5.0.0-beta.30`, `@prisma/adapter-pg`, `pg`, `sharp`, `cloudinary`, `react-hot-toast`, `react-quill-new`, `clsx`, `tailwind-merge`).
 - [x] Created `tsconfig.json` with `@/*`, `@/components/*`, `@/lib/*`, `@/static-pages/*` path aliases.
@@ -32,6 +34,7 @@
 - [x] Built thorough documentation suite (`docs/PLAN_AND_STATUS.md`, `docs/ARCHITECTURE.md`, `docs/FRONTEND_INTEGRATION.md`, `AGENTS.md`, `.agents/rules/coding-rules.md`).
 
 ### ✅ Phase 2: Database Schema & Complete Data Seeding (COMPLETED)
+
 - [x] Created `prisma/schema.prisma` with:
   - `User`: Admin authentication (`email`, `password`, `name`, `role`).
   - `GlobalConfig`: Brand config, Logo, Favicon, Phones, Emails, Socials, GTM, GA4, Robots, Sitemap.
@@ -56,6 +59,7 @@
 - [x] Executed `node prisma/seed.js` — Database fully seeded and ready.
 
 ### ✅ Phase 3: Media Pipeline & File Management (COMPLETED)
+
 - [x] Implemented `src/app/api/upload/route.ts`:
   - `sharp` converts images into WebP format with 82% quality and auto-rotation.
   - Auto-downscales large images exceeding 2000px width/height.
@@ -65,6 +69,7 @@
 - [x] Implemented reusable `ImagePickerField.tsx` with drag-and-drop file upload, WebP compression, preview, and URL input.
 
 ### ✅ Phase 4: Core UI & Dashboard Components (COMPLETED)
+
 - [x] Reusable component kit:
   - `src/components/InputField.tsx`: Floating labels, password toggle, tooltips.
   - `src/components/TextAreaField.tsx`: Multi-line inputs with helper text.
@@ -82,6 +87,7 @@
 - [x] Dashboard Stats API at `src/app/api/dashboard/stats/route.ts`.
 
 ### ✅ Phase 5: Domain Modules & Static Page Editors (COMPLETED)
+
 - [x] **Campuses Module**:
   - `src/app/api/campuses/route.ts` & `src/app/api/campuses/[id]/route.ts`.
   - `src/app/campuses/page.tsx` (Grid view with address, website, and actions).
@@ -117,6 +123,7 @@
 ## 🔄 Next Steps / Remaining Roadmap
 
 ### Phase 6: Frontend Integration (`lfcs-school`)
+
 1. Create `src/lib/cms.ts` and `src/lib/content.ts` in `lfcs-school`.
 2. Add `/api/revalidate/route.ts` to `lfcs-school` using the dedicated `CMS_SHARED_SECRET`.
 3. Connect form server actions in `src/app/actions/enquiries.ts` to forward submissions to `POST /api/submissions` in the CMS.
@@ -125,12 +132,13 @@
 ---
 
 ## 🛠️ How to Run & Verify the CMS
+
 ```bash
 cd "/Users/sudeeshkumar/Desktop/TGT COMPANY/lfcs-school-cms"
 npm run seed     # Seeds database with admin + website data
 npm run dev      # Runs CMS on http://localhost:3001
 ```
-* **Default Admin Credentials**:
-  * **Email**: `admin@lfcs.edu.in`
-  * **Password**: `Admin@123`
 
+- **Default Admin Credentials**:
+  - **Email**: `admin@lfcs.edu.in`
+  - **Password**: `Admin@123`

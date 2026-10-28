@@ -9,7 +9,8 @@ export async function PUT(req: Request) {
     if (!authCheck.authorized) return authCheck.response;
 
     const email = authCheck.session.user?.email;
-    if (!email) return NextResponse.json({ success: false, error: "Unauthorized" }, { status: 401 });
+    if (!email)
+      return NextResponse.json({ success: false, error: "Unauthorized" }, { status: 401 });
 
     const body = await req.json();
     const { currentPassword, newPassword } = body;
@@ -28,7 +29,10 @@ export async function PUT(req: Request) {
 
     const isValid = await bcrypt.compare(currentPassword, user.password);
     if (!isValid) {
-      return NextResponse.json({ success: false, error: "Current password is incorrect" }, { status: 400 });
+      return NextResponse.json(
+        { success: false, error: "Current password is incorrect" },
+        { status: 400 },
+      );
     }
 
     const hashed = await bcrypt.hash(newPassword, 10);
@@ -40,7 +44,9 @@ export async function PUT(req: Request) {
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error("Password update error:", error);
-    return NextResponse.json({ success: false, error: "Failed to update password" }, { status: 500 });
+    return NextResponse.json(
+      { success: false, error: "Failed to update password" },
+      { status: 500 },
+    );
   }
 }
-

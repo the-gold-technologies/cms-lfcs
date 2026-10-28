@@ -22,18 +22,18 @@ This document describes the architectural decisions, patterns, and contracts pow
 
 ## 2. Technology Stack & Key Libraries
 
-| Role | Technology | Notes |
-| :--- | :--- | :--- |
-| **Framework** | Next.js 16.1.6 (App Router) | Running with `--webpack` for compatibility with binary packages |
-| **Language** | TypeScript 5 | Strict typing across models and API contracts |
-| **Styling** | Tailwind CSS v4 | Lightweight styling with modern theme inline tokens |
-| **Database & ORM** | PostgreSQL + Prisma 6.19 | Uses `@prisma/adapter-pg` and `pg` pool |
-| **Authentication** | NextAuth.js v5 (Beta) | Credentials provider + `bcryptjs` password hashing |
-| **Image Compression** | Sharp 0.35 | Max 2000px, 82% WebP conversion, auto-rotation |
-| **Cloud Storage** | Cloudinary SDK v2 | Direct stream upload with `/public/uploads/` fallback |
-| **Rich Text Editor** | React Quill New | Clean formatting for descriptions and policies |
-| **Notifications** | React Hot Toast | User feedback for CRUD and upload actions |
-| **Icons** | Lucide React | Consistent administrative icon library |
+| Role                  | Technology                  | Notes                                                           |
+| :-------------------- | :-------------------------- | :-------------------------------------------------------------- |
+| **Framework**         | Next.js 16.1.6 (App Router) | Running with `--webpack` for compatibility with binary packages |
+| **Language**          | TypeScript 5                | Strict typing across models and API contracts                   |
+| **Styling**           | Tailwind CSS v4             | Lightweight styling with modern theme inline tokens             |
+| **Database & ORM**    | PostgreSQL + Prisma 6.19    | Uses `@prisma/adapter-pg` and `pg` pool                         |
+| **Authentication**    | NextAuth.js v5 (Beta)       | Credentials provider + `bcryptjs` password hashing              |
+| **Image Compression** | Sharp 0.35                  | Max 2000px, 82% WebP conversion, auto-rotation                  |
+| **Cloud Storage**     | Cloudinary SDK v2           | Direct stream upload with `/public/uploads/` fallback           |
+| **Rich Text Editor**  | React Quill New             | Clean formatting for descriptions and policies                  |
+| **Notifications**     | React Hot Toast             | User feedback for CRUD and upload actions                       |
+| **Icons**             | Lucide React                | Consistent administrative icon library                          |
 
 ---
 
@@ -240,4 +240,3 @@ model NavLink {
   updatedAt   DateTime @updatedAt
 }
 ```
-

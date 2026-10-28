@@ -51,7 +51,8 @@ export async function PUT(req: Request, { params }: { params: Promise<{ id: stri
         youtube: body.youtube !== undefined ? body.youtube : existing.youtube,
         phone: body.phone !== undefined ? body.phone : existing.phone,
         email: body.email !== undefined ? body.email : existing.email,
-        principalName: body.principalName !== undefined ? body.principalName : existing.principalName,
+        principalName:
+          body.principalName !== undefined ? body.principalName : existing.principalName,
         facilities: body.facilities !== undefined ? body.facilities : existing.facilities,
         isFeatured: body.isFeatured !== undefined ? body.isFeatured : existing.isFeatured,
         order: body.order !== undefined ? body.order : existing.order,
@@ -93,4 +94,3 @@ export async function DELETE(req: Request, { params }: { params: Promise<{ id: s
     return NextResponse.json({ success: false, error: "Failed to delete campus" }, { status: 500 });
   }
 }
-

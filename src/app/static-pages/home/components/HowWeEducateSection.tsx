@@ -33,8 +33,14 @@ export function HowWeEducateSection({ initialData }: { initialData?: any }) {
       setTagline(initialData.tagline ?? "HOW WE EDUCATE");
       setHeadline(initialData.headline ?? "Learning Beyond");
       setScriptAccent(initialData.scriptAccent ?? "Classrooms");
-      setSubtitle(initialData.subtitle ?? "We blend strong academics with innovation and creativity to nurture curious minds and confident hearts.");
-      setMainImage(initialData.mainImage ?? "https://res.cloudinary.com/dpa93copz/image/upload/v1793170022/lfcs-school/collabrative_1793170021825.webp");
+      setSubtitle(
+        initialData.subtitle ??
+          "We blend strong academics with innovation and creativity to nurture curious minds and confident hearts.",
+      );
+      setMainImage(
+        initialData.mainImage ??
+          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170022/lfcs-school/collabrative_1793170021825.webp",
+      );
 
       setPillar1Title(initialData.pillar1Title ?? "Experiential Learning");
       setPillar1Desc(initialData.pillar1Desc ?? "Hands-on learning that builds curiosity.");
@@ -43,7 +49,9 @@ export function HowWeEducateSection({ initialData }: { initialData?: any }) {
       setPillar3Title(initialData.pillar3Title ?? "Technology & Innovation");
       setPillar3Desc(initialData.pillar3Desc ?? "Smart classrooms and digital integration.");
       setPillar4Title(initialData.pillar4Title ?? "Holistic Growth");
-      setPillar4Desc(initialData.pillar4Desc ?? "Sports, arts and life skills for total development.");
+      setPillar4Desc(
+        initialData.pillar4Desc ?? "Sports, arts and life skills for total development.",
+      );
     }
   }, [initialData]);
 

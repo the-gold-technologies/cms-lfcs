@@ -110,4 +110,3 @@ export async function cleanupObsoleteCloudinaryAssets(oldContent: any, newConten
     console.error("[Media Cleanup] Error during garbage collection:", err);
   }
 }
-

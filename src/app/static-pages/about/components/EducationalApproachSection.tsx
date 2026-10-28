@@ -37,23 +37,50 @@ export function EducationalApproachSection({ initialData }: { initialData?: any 
     if (initialData) {
       setTagline(initialData.tagline ?? "OUR PHILOSOPHY");
       setHeadline(initialData.headline ?? "A Thoughtful Educational Approach");
-      setDescription(initialData.description ?? "Our academic paradigm integrates modern cognitive science with time-tested values.");
+      setDescription(
+        initialData.description ??
+          "Our academic paradigm integrates modern cognitive science with time-tested values.",
+      );
 
       setApp1Title(initialData.app1Title ?? "Child-Centered Learning");
-      setApp1Desc(initialData.app1Desc ?? "We focus on nurturing curiosity and encouraging exploration tailored to each learner.");
-      setApp1Image(initialData.app1Image ?? "https://res.cloudinary.com/dpa93copz/image/upload/v1793170030/lfcs-school/independent_1793170030545.webp");
+      setApp1Desc(
+        initialData.app1Desc ??
+          "We focus on nurturing curiosity and encouraging exploration tailored to each learner.",
+      );
+      setApp1Image(
+        initialData.app1Image ??
+          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170030/lfcs-school/independent_1793170030545.webp",
+      );
 
       setApp2Title(initialData.app2Title ?? "Experiential Learning");
-      setApp2Desc(initialData.app2Desc ?? "Hands-on experiences that make learning meaningful, relevant, and lasting.");
-      setApp2Image(initialData.app2Image ?? "https://res.cloudinary.com/dpa93copz/image/upload/v1793170028/lfcs-school/practical_1793170027731.webp");
+      setApp2Desc(
+        initialData.app2Desc ??
+          "Hands-on experiences that make learning meaningful, relevant, and lasting.",
+      );
+      setApp2Image(
+        initialData.app2Image ??
+          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170028/lfcs-school/practical_1793170027731.webp",
+      );
 
       setApp3Title(initialData.app3Title ?? "Holistic Development");
-      setApp3Desc(initialData.app3Desc ?? "We nurture academics, creativity, athletics, and life skills equally.");
-      setApp3Image(initialData.app3Image ?? "https://res.cloudinary.com/dpa93copz/image/upload/v1793170034/lfcs-school/activity_1793170034132.webp");
+      setApp3Desc(
+        initialData.app3Desc ??
+          "We nurture academics, creativity, athletics, and life skills equally.",
+      );
+      setApp3Image(
+        initialData.app3Image ??
+          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170034/lfcs-school/activity_1793170034132.webp",
+      );
 
       setApp4Title(initialData.app4Title ?? "Values & Character");
-      setApp4Desc(initialData.app4Desc ?? "Building strong moral compass, empathy, and respect for a better tomorrow.");
-      setApp4Image(initialData.app4Image ?? "https://res.cloudinary.com/dpa93copz/image/upload/v1793170022/lfcs-school/collabrative_1793170021825.webp");
+      setApp4Desc(
+        initialData.app4Desc ??
+          "Building strong moral compass, empathy, and respect for a better tomorrow.",
+      );
+      setApp4Image(
+        initialData.app4Image ??
+          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170022/lfcs-school/collabrative_1793170021825.webp",
+      );
     }
   }, [initialData]);
 

@@ -24,7 +24,10 @@ export function AboutHeroSection({ initialData }: { initialData?: any }) {
       setTagline(initialData.tagline ?? "About Us");
       setHeadline(initialData.headline ?? "Empowering Minds, Nurturing");
       setScriptAccent(initialData.scriptAccent ?? "Futures.");
-      setDescription(initialData.description ?? "Discover the heart of Little Flower Group of Schools. A legacy of excellence, rooted in values, and dedicated to shaping the leaders of tomorrow.");
+      setDescription(
+        initialData.description ??
+          "Discover the heart of Little Flower Group of Schools. A legacy of excellence, rooted in values, and dedicated to shaping the leaders of tomorrow.",
+      );
       setCtaText(initialData.ctaText ?? "Explore Our Story");
       setCtaLink(initialData.ctaLink ?? "#our-story");
     }

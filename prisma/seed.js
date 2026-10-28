@@ -42,7 +42,8 @@ async function main() {
       siteTitle: "Little Flower Group of Schools",
       siteDescription: "Rooted in Values. Rising with Excellence.",
       logo: "https://res.cloudinary.com/dpa93copz/image/upload/v1793170044/lfcs-school/logo-header_1793170044344.webp",
-      favicon: "https://res.cloudinary.com/dpa93copz/image/upload/v1793170045/lfcs-school/logo1_1793170045264.webp",
+      favicon:
+        "https://res.cloudinary.com/dpa93copz/image/upload/v1793170045/lfcs-school/logo1_1793170045264.webp",
       phone: "+91 94508 24500",
       email: "info@lfgos.com",
       address: "Nizamuddinpura, Mau, Uttar Pradesh 275101",
@@ -57,7 +58,8 @@ async function main() {
       siteTitle: "Little Flower Group of Schools",
       siteDescription: "Rooted in Values. Rising with Excellence.",
       logo: "https://res.cloudinary.com/dpa93copz/image/upload/v1793170044/lfcs-school/logo-header_1793170044344.webp",
-      favicon: "https://res.cloudinary.com/dpa93copz/image/upload/v1793170045/lfcs-school/logo1_1793170045264.webp",
+      favicon:
+        "https://res.cloudinary.com/dpa93copz/image/upload/v1793170045/lfcs-school/logo1_1793170045264.webp",
       phone: "+91 94508 24500",
       email: "info@lfgos.com",
       address: "Nizamuddinpura, Mau, Uttar Pradesh 275101",
@@ -105,7 +107,9 @@ async function main() {
   if (fs.existsSync(testimonialsFile)) {
     const testimonials = JSON.parse(fs.readFileSync(testimonialsFile, "utf-8"));
     for (const t of testimonials) {
-      const existing = await prisma.testimonial.findFirst({ where: { name: t.name, role: t.role } });
+      const existing = await prisma.testimonial.findFirst({
+        where: { name: t.name, role: t.role },
+      });
       if (existing) {
         await prisma.testimonial.update({ where: { id: existing.id }, data: t });
       } else {
@@ -123,7 +127,10 @@ async function main() {
     for (const g of galleryItems) {
       const existing = await prisma.galleryItem.findFirst({ where: { caption: g.caption } });
       if (existing) {
-        await prisma.galleryItem.update({ where: { id: existing.id }, data: { ...g, order: gOrder++ } });
+        await prisma.galleryItem.update({
+          where: { id: existing.id },
+          data: { ...g, order: gOrder++ },
+        });
       } else {
         await prisma.galleryItem.create({ data: { ...g, order: gOrder++ } });
       }
@@ -131,75 +138,68 @@ async function main() {
     console.log(`✓ ${galleryItems.length} Photo Gallery items seeded with Cloudinary images`);
   }
 
-  // 7. Seed Home Page Sections
-  const homePage = await prisma.page.upsert({
-    where: { slug: "home" },
-    create: {
-      title: "Home",
-      slug: "home",
-      type: "static",
-      visibility: "published",
-    },
-    update: {},
-  });
+  // 7. Seed All 8 Static Pages and Modular Sections
+  const staticPagesFile = path.resolve(__dirname, "static-pages-seed.json");
+  if (fs.existsSync(staticPagesFile)) {
+    const staticPages = JSON.parse(fs.readFileSync(staticPagesFile, "utf-8"));
+    const pageTitles = {
+      home: "Home",
+      about: "About Us",
+      academics: "Academics",
+      admissions: "Admissions",
+      experience: "Student Experience",
+      "start-school": "Start an Associate School",
+      careers: "Careers",
+      contact: "Contact Us",
+    };
 
-  const homeSections = [
-    {
-      type: "HeroSection",
-      content: {
-        title: "Little Flower Group of Schools",
-        tagline: "Rooted in Values. Rising with Excellence.",
-        years: "40+",
-        campuses: "8",
-        students: "15,000+",
-        bgImage: "https://res.cloudinary.com/dpa93copz/image/upload/v1793170046/lfcs-school/herobg1_1793170046153.webp",
-      },
-      order: 0,
-    },
-    {
-      type: "WelcomeSection",
-      content: {
-        heading: "Welcome to Little Flower Group of Schools",
-        description: "For over four decades, Little Flower has been dedicated to providing quality, value-based education across Eastern Uttar Pradesh. We believe that true education nurtures the mind, body, and spirit.",
-        quote: "Education is not merely the transmission of knowledge; it is the ignition of character, curiosity, and compassion.",
-      },
-      order: 1,
-    },
-    {
-      type: "NoteOfSupportSection",
-      content: {
-        anandKumarQuote: "LFCS's mission of bringing quality, affordable education to every community aligns deeply with the philosophy of Super 30. I am honored to support their School Associate initiative.",
-        sharmanJoshiQuote: "Education for all is the foundation of a progressive nation. Little Flower Schools' commitment to holistic child development is truly inspiring.",
-      },
-      order: 2,
-    },
-    {
-      type: "CTABanners",
-      content: {
-        admissionsCtaTitle: "Admissions Open for Session 2026-27",
-        admissionsCtaSubtitle: "Give your child a nurturing, value-based learning environment across our 8 campuses.",
-        partnerCtaTitle: "Start an LFCS Associate School",
-        partnerCtaSubtitle: "Partner with our legacy of 40+ years and establish a premier CBSE school in your city.",
-      },
-      order: 3,
-    },
-  ];
+    for (const [slug, sections] of Object.entries(staticPages)) {
+      const title = pageTitles[slug] || slug.charAt(0).toUpperCase() + slug.slice(1);
+      const page = await prisma.page.upsert({
+        where: { slug },
+        create: {
+          title,
+          slug,
+          type: "static",
+          visibility: "published",
+        },
+        update: {
+          title,
+        },
+      });
 
-  for (const s of homeSections) {
-    const existing = await prisma.section.findFirst({
-      where: { pageId: homePage.id, type: s.type },
-    });
-    if (existing) {
-      await prisma.section.update({ where: { id: existing.id }, data: { content: s.content } });
-    } else {
-      await prisma.section.create({ data: { pageId: homePage.id, ...s } });
+      let order = 0;
+      for (const [sectionType, sectionContent] of Object.entries(sections)) {
+        const existing = await prisma.section.findFirst({
+          where: { pageId: page.id, type: sectionType },
+        });
+
+        if (existing) {
+          await prisma.section.update({
+            where: { id: existing.id },
+            data: { content: sectionContent, order: order++ },
+          });
+        } else {
+          await prisma.section.create({
+            data: {
+              pageId: page.id,
+              type: sectionType,
+              content: sectionContent,
+              order: order++,
+            },
+          });
+        }
+      }
+      console.log(
+        `✓ Static page "${title}" (${slug}) seeded with ${Object.keys(sections).length} sections`,
+      );
     }
   }
-  console.log("✓ Home page sections seeded");
 
   console.log("🎉 Complete database seed with Cloudinary CDN URLs finished successfully!");
 }
 
+main();
 main()
   .catch((e) => {
     console.error("Seed error:", e);
@@ -209,4 +209,3 @@ main()
     await prisma.$disconnect();
     await pool.end();
   });
-

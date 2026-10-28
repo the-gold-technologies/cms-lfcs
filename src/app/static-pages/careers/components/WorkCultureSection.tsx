@@ -25,9 +25,18 @@ export function WorkCultureSection({ initialData }: { initialData?: any }) {
       setTagline(initialData.tagline ?? "OUR WORK CULTURE");
       setHeadline(initialData.headline ?? "Growing Together Through Learning &");
       setScriptAccent(initialData.scriptAccent ?? "Collaboration");
-      setDescription(initialData.description ?? "At Little Flower Group of Schools, we recognise that educators and staff play a defining role in shaping the student experience. We maintain an open, merit-driven environment where ideas are encouraged and achievements celebrated.");
-      setValuesList(initialData.valuesList ?? "Professionalism, Integrity, Mutual Respect, Responsibility, Willingness to Learn, Child Centricity");
-      setCultureImage(initialData.cultureImage ?? "https://res.cloudinary.com/dpa93copz/image/upload/v1793170022/lfcs-school/collabrative_1793170021825.webp");
+      setDescription(
+        initialData.description ??
+          "At Little Flower Group of Schools, we recognise that educators and staff play a defining role in shaping the student experience. We maintain an open, merit-driven environment where ideas are encouraged and achievements celebrated.",
+      );
+      setValuesList(
+        initialData.valuesList ??
+          "Professionalism, Integrity, Mutual Respect, Responsibility, Willingness to Learn, Child Centricity",
+      );
+      setCultureImage(
+        initialData.cultureImage ??
+          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170022/lfcs-school/collabrative_1793170021825.webp",
+      );
     }
   }, [initialData]);
 

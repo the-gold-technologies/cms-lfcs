@@ -37,21 +37,37 @@ export function WelcomeSection({ initialData }: { initialData?: any }) {
       setTagline(initialData.tagline ?? "Welcome To");
       setHeadline(initialData.headline ?? "Little Flower Group");
       setScriptAccent(initialData.scriptAccent ?? "of Schools");
-      setDescription(initialData.description ?? "Our schools are places where children discover their potential, nurture their dreams and grow into confident, compassionate and responsible global citizens.");
+      setDescription(
+        initialData.description ??
+          "Our schools are places where children discover their potential, nurture their dreams and grow into confident, compassionate and responsible global citizens.",
+      );
       setCtaText(initialData.ctaText ?? "Know More About Us");
       setCtaLink(initialData.ctaLink ?? "/about");
 
       setFeature1Title(initialData.feature1Title ?? "Strong Academics");
       setFeature1Desc(initialData.feature1Desc ?? "CBSE curriculum with future ready learning.");
-      setFeature1Image(initialData.feature1Image ?? "https://res.cloudinary.com/dpa93copz/image/upload/v1793170028/lfcs-school/practical_1793170027731.webp");
+      setFeature1Image(
+        initialData.feature1Image ??
+          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170028/lfcs-school/practical_1793170027731.webp",
+      );
 
       setFeature2Title(initialData.feature2Title ?? "Holistic Growth");
-      setFeature2Desc(initialData.feature2Desc ?? "Sports, arts, life skills and leadership opportunities.");
-      setFeature2Image(initialData.feature2Image ?? "https://res.cloudinary.com/dpa93copz/image/upload/v1793170040/lfcs-school/life1_1793170040339.webp");
+      setFeature2Desc(
+        initialData.feature2Desc ?? "Sports, arts, life skills and leadership opportunities.",
+      );
+      setFeature2Image(
+        initialData.feature2Image ??
+          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170040/lfcs-school/life1_1793170040339.webp",
+      );
 
       setFeature3Title(initialData.feature3Title ?? "Future Ready");
-      setFeature3Desc(initialData.feature3Desc ?? "Innovation, technology and 21st century skills.");
-      setFeature3Image(initialData.feature3Image ?? "https://res.cloudinary.com/dpa93copz/image/upload/v1793170019/lfcs-school/digital-classroom_1793170018820.webp");
+      setFeature3Desc(
+        initialData.feature3Desc ?? "Innovation, technology and 21st century skills.",
+      );
+      setFeature3Image(
+        initialData.feature3Image ??
+          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170019/lfcs-school/digital-classroom_1793170018820.webp",
+      );
     }
   }, [initialData]);
 

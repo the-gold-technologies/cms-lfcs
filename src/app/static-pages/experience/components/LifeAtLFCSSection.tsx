@@ -23,8 +23,14 @@ export function LifeAtLFCSSection({ initialData }: { initialData?: any }) {
       setTagline(initialData.tagline ?? "LIFE AT LFCS");
       setHeadline(initialData.headline ?? "Upskilling, Participating & Growing");
       setScriptAccent(initialData.scriptAccent ?? "EveryDay");
-      setDescription(initialData.description ?? "At LFCS, even though academics form the core for the student, these diverse activities and opportunities shape them and make them confident for their future.");
-      setActivitiesList(initialData.activitiesList ?? "Classroom learning, Sports & physical training, Cultural festivals, Inter-school competitions, Student clubs, Educational excursions, Annual Day celebrations");
+      setDescription(
+        initialData.description ??
+          "At LFCS, even though academics form the core for the student, these diverse activities and opportunities shape them and make them confident for their future.",
+      );
+      setActivitiesList(
+        initialData.activitiesList ??
+          "Classroom learning, Sports & physical training, Cultural festivals, Inter-school competitions, Student clubs, Educational excursions, Annual Day celebrations",
+      );
     }
   }, [initialData]);
 

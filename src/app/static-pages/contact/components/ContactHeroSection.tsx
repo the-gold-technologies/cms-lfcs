@@ -22,7 +22,10 @@ export function ContactHeroSection({ initialData }: { initialData?: any }) {
       setTagline(initialData.tagline ?? "Contact Us");
       setHeadline(initialData.headline ?? "We'd Love to");
       setScriptAccent(initialData.scriptAccent ?? "Hear From You.");
-      setDescription(initialData.description ?? "Whether you have a question about admissions, academics, or partnering with us to start a school, the Little Flower Group of Schools team is here to help. Reach out and we'll get back to you soon.");
+      setDescription(
+        initialData.description ??
+          "Whether you have a question about admissions, academics, or partnering with us to start a school, the Little Flower Group of Schools team is here to help. Reach out and we'll get back to you soon.",
+      );
     }
   }, [initialData]);
 

@@ -29,12 +29,24 @@ export function OpportunitiesSection({ initialData }: { initialData?: any }) {
       setHeadline(initialData.headline ?? "Explore Opportunities by Domain");
 
       setTeachTitle(initialData.teachTitle ?? "Teaching Positions (Pre-Primary, PRT, TGT, PGT)");
-      setTeachDesc(initialData.teachDesc ?? "We invite passionate subject educators with strong command over CBSE pedagogy, innovative instructional habits, and empathetic classroom presence.");
-      setTeachRoles(initialData.teachRoles ?? "PGT Physics/Chemistry/Maths/Biology, PGT Commerce/Economics, TGT English/Hindi, TGT Social Science, PRT All Subjects, Pre-Primary Educator, Physical Education Instructor, Fine Arts & Music Teacher");
+      setTeachDesc(
+        initialData.teachDesc ??
+          "We invite passionate subject educators with strong command over CBSE pedagogy, innovative instructional habits, and empathetic classroom presence.",
+      );
+      setTeachRoles(
+        initialData.teachRoles ??
+          "PGT Physics/Chemistry/Maths/Biology, PGT Commerce/Economics, TGT English/Hindi, TGT Social Science, PRT All Subjects, Pre-Primary Educator, Physical Education Instructor, Fine Arts & Music Teacher",
+      );
 
       setAdminTitle(initialData.adminTitle ?? "Administrative & Campus Support Roles");
-      setAdminDesc(initialData.adminDesc ?? "Operational excellence underpins every great school. We seek experienced professionals dedicated to seamless parent relations and campus logistics.");
-      setAdminRoles(initialData.adminRoles ?? "Admissions Counselor, Academic Coordinator, Accountant / Fee In-charge, Front Office Executive, Science Lab Assistant, IT & Network Technician, Transport Supervisor");
+      setAdminDesc(
+        initialData.adminDesc ??
+          "Operational excellence underpins every great school. We seek experienced professionals dedicated to seamless parent relations and campus logistics.",
+      );
+      setAdminRoles(
+        initialData.adminRoles ??
+          "Admissions Counselor, Academic Coordinator, Accountant / Fee In-charge, Front Office Executive, Science Lab Assistant, IT & Network Technician, Transport Supervisor",
+      );
     }
   }, [initialData]);
 

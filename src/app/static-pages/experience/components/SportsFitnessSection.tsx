@@ -27,10 +27,21 @@ export function SportsFitnessSection({ initialData }: { initialData?: any }) {
       setTagline(initialData.tagline ?? "SPORTS & ATHLETICS");
       setHeadline(initialData.headline ?? "Building Physical Resilience &");
       setScriptAccent(initialData.scriptAccent ?? "Team Spirit");
-      setDescription(initialData.description ?? "Physical activity and sportsmanship are integral to life at Little Flower. From cricket pitches, basketball courts, and athletics tracks to Olympic-standard swimming facilities at LFIS, students find ample space to excel.");
-      setCalloutText(initialData.calloutText ?? "Teamwork, discipline, and fair play on every field.");
-      setImage1(initialData.image1 ?? "https://res.cloudinary.com/dpa93copz/image/upload/v1793170017/lfcs-school/sports1_1793170017007.webp");
-      setImage2(initialData.image2 ?? "https://res.cloudinary.com/dpa93copz/image/upload/v1793170037/lfcs-school/sports2_1793170037412.webp");
+      setDescription(
+        initialData.description ??
+          "Physical activity and sportsmanship are integral to life at Little Flower. From cricket pitches, basketball courts, and athletics tracks to Olympic-standard swimming facilities at LFIS, students find ample space to excel.",
+      );
+      setCalloutText(
+        initialData.calloutText ?? "Teamwork, discipline, and fair play on every field.",
+      );
+      setImage1(
+        initialData.image1 ??
+          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170017/lfcs-school/sports1_1793170017007.webp",
+      );
+      setImage2(
+        initialData.image2 ??
+          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170037/lfcs-school/sports2_1793170037412.webp",
+      );
     }
   }, [initialData]);
 

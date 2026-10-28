@@ -28,8 +28,14 @@ export function OurStorySection({ initialData }: { initialData?: any }) {
       setTagline(initialData.tagline ?? "Our Story");
       setHeadline(initialData.headline ?? "A Journey of");
       setScriptAccent(initialData.scriptAccent ?? "Dedication");
-      setParagraph1(initialData.paragraph1 ?? "Founded in 1993 by Late Shri Vijay Shankar Yadav in a temporary space with just 30 students and a big dream, Little Flower School began its journey with a simple mission: to provide quality, value-based education that goes beyond textbooks.");
-      setParagraph2(initialData.paragraph2 ?? "Over the past three decades, we have grown from a modest neighborhood school into a network of CBSE-affiliated schools across Uttar Pradesh. What hasn't changed is our commitment to fostering a nurturing environment where every child feels valued, encouraged, and challenged.");
+      setParagraph1(
+        initialData.paragraph1 ??
+          "Founded in 1993 by Late Shri Vijay Shankar Yadav in a temporary space with just 30 students and a big dream, Little Flower School began its journey with a simple mission: to provide quality, value-based education that goes beyond textbooks.",
+      );
+      setParagraph2(
+        initialData.paragraph2 ??
+          "Over the past three decades, we have grown from a modest neighborhood school into a network of CBSE-affiliated schools across Uttar Pradesh. What hasn't changed is our commitment to fostering a nurturing environment where every child feels valued, encouraged, and challenged.",
+      );
 
       setStat1Number(initialData.stat1Number ?? "1993");
       setStat1Text(initialData.stat1Text ?? "Year Founded with 30 Students");

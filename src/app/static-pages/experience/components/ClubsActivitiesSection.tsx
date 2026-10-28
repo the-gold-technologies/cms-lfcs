@@ -27,7 +27,10 @@ export function ClubsActivitiesSection({ initialData }: { initialData?: any }) {
     if (initialData) {
       setTagline(initialData.tagline ?? "CLUBS & SOCIETIES");
       setHeadline(initialData.headline ?? "Student Clubs & Active Co-Curriculars");
-      setDescription(initialData.description ?? "Student-led clubs encourage teamwork, passion exploration, and leadership outside standard periods.");
+      setDescription(
+        initialData.description ??
+          "Student-led clubs encourage teamwork, passion exploration, and leadership outside standard periods.",
+      );
 
       setC1Name(initialData.c1Name ?? "Academic Competitions & Olympiads");
       setC2Name(initialData.c2Name ?? "Quiz & General Knowledge Club");

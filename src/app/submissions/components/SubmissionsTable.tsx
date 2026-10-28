@@ -173,7 +173,9 @@ export function SubmissionsTable({ formType, title, description }: SubmissionsTa
                     <td className="py-4 px-6 text-gray-600">
                       {formType === "admissions" && (
                         <div>
-                          <span className="font-semibold text-gray-800">Grade: {item.grade || "N/A"}</span>
+                          <span className="font-semibold text-gray-800">
+                            Grade: {item.grade || "N/A"}
+                          </span>
                           {item.preferredCampus && (
                             <div className="text-gray-400">Campus: {item.preferredCampus}</div>
                           )}
@@ -182,12 +184,16 @@ export function SubmissionsTable({ formType, title, description }: SubmissionsTa
                       {formType === "start-school" && (
                         <div>
                           <span className="font-semibold text-gray-800">{item.city}</span>
-                          <div className="text-gray-400">Cap: {item.investmentCapacity || "TBD"}</div>
+                          <div className="text-gray-400">
+                            Cap: {item.investmentCapacity || "TBD"}
+                          </div>
                         </div>
                       )}
                       {formType === "careers" && (
                         <div>
-                          <span className="font-semibold text-gray-800">{item.roleOfInterest || item.careerArea}</span>
+                          <span className="font-semibold text-gray-800">
+                            {item.roleOfInterest || item.careerArea}
+                          </span>
                           {item.cvUrl && (
                             <a
                               href={item.cvUrl}
@@ -202,7 +208,9 @@ export function SubmissionsTable({ formType, title, description }: SubmissionsTa
                       )}
                       {formType === "contact" && (
                         <div>
-                          <span className="font-semibold text-gray-800">{item.enquiryType || "General"}</span>
+                          <span className="font-semibold text-gray-800">
+                            {item.enquiryType || "General"}
+                          </span>
                         </div>
                       )}
                     </td>
@@ -279,7 +287,10 @@ export function SubmissionsTable({ formType, title, description }: SubmissionsTa
               <div className="grid grid-cols-2 gap-3 p-3 bg-gray-50 rounded-xl">
                 <div>
                   <span className="text-gray-400 block">Email</span>
-                  <a href={`mailto:${activeItem.email}`} className="font-semibold text-[#6a2238] hover:underline">
+                  <a
+                    href={`mailto:${activeItem.email}`}
+                    className="font-semibold text-[#6a2238] hover:underline"
+                  >
                     {activeItem.email}
                   </a>
                 </div>
@@ -301,21 +312,28 @@ export function SubmissionsTable({ formType, title, description }: SubmissionsTa
               {activeItem.grade && (
                 <div>
                   <span className="text-gray-400 block">Grade / Class</span>
-                  <span className="font-semibold text-gray-800">{activeItem.grade} ({activeItem.academicSession || ""})</span>
+                  <span className="font-semibold text-gray-800">
+                    {activeItem.grade} ({activeItem.academicSession || ""})
+                  </span>
                 </div>
               )}
 
               {activeItem.city && (
                 <div>
                   <span className="text-gray-400 block">Proposed City / Location</span>
-                  <span className="font-semibold text-gray-800">{activeItem.city} {activeItem.proposedLocation ? `(${activeItem.proposedLocation})` : ""}</span>
+                  <span className="font-semibold text-gray-800">
+                    {activeItem.city}{" "}
+                    {activeItem.proposedLocation ? `(${activeItem.proposedLocation})` : ""}
+                  </span>
                 </div>
               )}
 
               {activeItem.investmentCapacity && (
                 <div>
                   <span className="text-gray-400 block">Investment Capacity & Land</span>
-                  <span className="font-semibold text-gray-800">{activeItem.investmentCapacity} &bull; Land Area: {activeItem.landArea || "N/A"}</span>
+                  <span className="font-semibold text-gray-800">
+                    {activeItem.investmentCapacity} &bull; Land Area: {activeItem.landArea || "N/A"}
+                  </span>
                 </div>
               )}
 
@@ -357,4 +375,3 @@ export function SubmissionsTable({ formType, title, description }: SubmissionsTa
     </div>
   );
 }
-

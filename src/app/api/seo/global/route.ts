@@ -10,7 +10,10 @@ export async function GET() {
     });
     return NextResponse.json({ success: true, data: config });
   } catch (error) {
-    return NextResponse.json({ success: false, error: "Failed to fetch SEO config" }, { status: 500 });
+    return NextResponse.json(
+      { success: false, error: "Failed to fetch SEO config" },
+      { status: 500 },
+    );
   }
 }
 
@@ -34,7 +37,9 @@ export async function PUT(req: Request) {
     return NextResponse.json({ success: true, data: updated });
   } catch (error) {
     console.error("Save global SEO error:", error);
-    return NextResponse.json({ success: false, error: "Failed to save SEO config" }, { status: 500 });
+    return NextResponse.json(
+      { success: false, error: "Failed to save SEO config" },
+      { status: 500 },
+    );
   }
 }
-

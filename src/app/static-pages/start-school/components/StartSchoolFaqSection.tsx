@@ -27,19 +27,35 @@ export function StartSchoolFaqSection({ initialData }: { initialData?: any }) {
   useEffect(() => {
     if (initialData) {
       setTagline(initialData.tagline ?? "FREQUENTLY ASKED QUESTIONS");
-      setHeadline(initialData.headline ?? "Everything You Need to Know About Starting an LFCS School");
+      setHeadline(
+        initialData.headline ?? "Everything You Need to Know About Starting an LFCS School",
+      );
 
       setFaq1Q(initialData.faq1Q ?? "Who can apply to start an LFCS school?");
-      setFaq1A(initialData.faq1A ?? "Individual entrepreneurs, registered charitable trusts, educational societies, and corporate CSR entities with dedicated resources for establishing educational institutions.");
+      setFaq1A(
+        initialData.faq1A ??
+          "Individual entrepreneurs, registered charitable trusts, educational societies, and corporate CSR entities with dedicated resources for establishing educational institutions.",
+      );
 
       setFaq2Q(initialData.faq2Q ?? "What is the minimum land requirement?");
-      setFaq2A(initialData.faq2A ?? "Typically 1.5 to 3 acres depending on city classification, following CBSE affiliation bylaws for playground and built-up area.");
+      setFaq2A(
+        initialData.faq2A ??
+          "Typically 1.5 to 3 acres depending on city classification, following CBSE affiliation bylaws for playground and built-up area.",
+      );
 
-      setFaq3Q(initialData.faq3Q ?? "Does LFCS assist with teacher recruitment and principal onboarding?");
-      setFaq3A(initialData.faq3A ?? "Yes. LFCS central academic council conducts principal search interviews, teacher screening tests, and intensive initial training bootcamps.");
+      setFaq3Q(
+        initialData.faq3Q ?? "Does LFCS assist with teacher recruitment and principal onboarding?",
+      );
+      setFaq3A(
+        initialData.faq3A ??
+          "Yes. LFCS central academic council conducts principal search interviews, teacher screening tests, and intensive initial training bootcamps.",
+      );
 
       setFaq4Q(initialData.faq4Q ?? "How long does the entire setup process take?");
-      setFaq4A(initialData.faq4A ?? "Depending on existing infrastructure readiness, setup typically spans 6 to 12 months from agreement signing to the commencement of the academic session.");
+      setFaq4A(
+        initialData.faq4A ??
+          "Depending on existing infrastructure readiness, setup typically spans 6 to 12 months from agreement signing to the commencement of the academic session.",
+      );
     }
   }, [initialData]);
 

@@ -28,4 +28,3 @@ export async function DELETE(req: Request, { params }: { params: Promise<{ id: s
     return NextResponse.json({ success: false, error: "Failed to delete image" }, { status: 500 });
   }
 }
-

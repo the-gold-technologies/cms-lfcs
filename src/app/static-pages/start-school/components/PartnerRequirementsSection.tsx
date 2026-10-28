@@ -33,22 +33,40 @@ export function PartnerRequirementsSection({ initialData }: { initialData?: any 
       setTagline(initialData.tagline ?? "PARTNER PROFILE & ELIGIBILITY");
       setHeadline(initialData.headline ?? "Who Can Explore an");
       setScriptAccent(initialData.scriptAccent ?? "LFCS Partnership?");
-      setSubtitle(initialData.subtitle ?? "We welcome visionary individuals, trusts, corporate CSR bodies, and educational societies dedicated to uplifting local educational standards.");
+      setSubtitle(
+        initialData.subtitle ??
+          "We welcome visionary individuals, trusts, corporate CSR bodies, and educational societies dedicated to uplifting local educational standards.",
+      );
 
       setReq1Title(initialData.req1Title ?? "Commitment to Education");
-      setReq1Desc(initialData.req1Desc ?? "A sincere interest in contributing to children's character, academic growth, and regional development.");
+      setReq1Desc(
+        initialData.req1Desc ??
+          "A sincere interest in contributing to children's character, academic growth, and regional development.",
+      );
 
       setReq2Title(initialData.req2Title ?? "Management & Leadership Capability");
-      setReq2Desc(initialData.req2Desc ?? "Capacity to organize, recruit, and supervise daily administrative and operational personnel.");
+      setReq2Desc(
+        initialData.req2Desc ??
+          "Capacity to organize, recruit, and supervise daily administrative and operational personnel.",
+      );
 
       setReq3Title(initialData.req3Title ?? "Infrastructure & Land Readiness");
-      setReq3Desc(initialData.req3Desc ?? "Access to 1.5 to 3+ acres of suitable land or constructed school premises adhering to CBSE affiliation norms.");
+      setReq3Desc(
+        initialData.req3Desc ??
+          "Access to 1.5 to 3+ acres of suitable land or constructed school premises adhering to CBSE affiliation norms.",
+      );
 
       setReq4Title(initialData.req4Title ?? "Financial Preparedness");
-      setReq4Desc(initialData.req4Desc ?? "Adequate investment capability for phase-wise campus construction, lab setup, and working capital.");
+      setReq4Desc(
+        initialData.req4Desc ??
+          "Adequate investment capability for phase-wise campus construction, lab setup, and working capital.",
+      );
 
       setReq5Title(initialData.req5Title ?? "Long-Term Vision");
-      setReq5Desc(initialData.req5Desc ?? "A multi-year commitment to maintaining high educational integrity, discipline, and community standing.");
+      setReq5Desc(
+        initialData.req5Desc ??
+          "A multi-year commitment to maintaining high educational integrity, discipline, and community standing.",
+      );
     }
   }, [initialData]);
 

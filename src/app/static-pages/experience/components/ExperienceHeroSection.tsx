@@ -24,7 +24,10 @@ export function ExperienceHeroSection({ initialData }: { initialData?: any }) {
       setTagline(initialData.tagline ?? "Life at LFCS");
       setHeadline(initialData.headline ?? "More than Just a");
       setScriptAccent(initialData.scriptAccent ?? "School Day.");
-      setSubtitle(initialData.subtitle ?? "Life at LFCS is beyond textbooks and classrooms. We cultivate character, teamwork, sportsmanship, and creative expression.");
+      setSubtitle(
+        initialData.subtitle ??
+          "Life at LFCS is beyond textbooks and classrooms. We cultivate character, teamwork, sportsmanship, and creative expression.",
+      );
       setCtaText(initialData.ctaText ?? "Explore Life at LFCS");
       setCtaLink(initialData.ctaLink ?? "#life-at-lfcs");
     }

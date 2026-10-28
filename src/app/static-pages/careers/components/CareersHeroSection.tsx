@@ -23,7 +23,10 @@ export function CareersHeroSection({ initialData }: { initialData?: any }) {
       setTagline(initialData.tagline ?? "Careers at Little Flower Group of Schools");
       setHeadline(initialData.headline ?? "Build Your Career. Shape Young");
       setScriptAccent(initialData.scriptAccent ?? "Futures.");
-      setDescription(initialData.description ?? "At Little Flower, we believe meaningful education begins with passionate educators and professionals. We welcome individuals who want to empower the next generation.");
+      setDescription(
+        initialData.description ??
+          "At Little Flower, we believe meaningful education begins with passionate educators and professionals. We welcome individuals who want to empower the next generation.",
+      );
       setCtaText(initialData.ctaText ?? "Explore Open Positions");
     }
   }, [initialData]);

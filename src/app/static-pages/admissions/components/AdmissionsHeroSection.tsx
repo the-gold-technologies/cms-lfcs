@@ -26,10 +26,16 @@ export function AdmissionsHeroSection({ initialData }: { initialData?: any }) {
       setTagline(initialData.tagline ?? "Admissions at Little Flower Group of Schools");
       setHeadline(initialData.headline ?? "Take the First Step Towards a");
       setScriptAccent(initialData.scriptAccent ?? "Brighter Future.");
-      setDescription(initialData.description ?? "Every child deserves an environment where learning helps them build knowledge, confidence, and character. At LFCS, our aim is to provide students with a strong academic foundation leading to lifelong opportunities.");
+      setDescription(
+        initialData.description ??
+          "Every child deserves an environment where learning helps them build knowledge, confidence, and character. At LFCS, our aim is to provide students with a strong academic foundation leading to lifelong opportunities.",
+      );
       setCtaText(initialData.ctaText ?? "Enquire About Admissions");
       setCtaLink(initialData.ctaLink ?? "#admission-enquiry");
-      setImage(initialData.image ?? "https://res.cloudinary.com/dpa93copz/image/upload/v1793170040/lfcs-school/life1_1793170040339.webp");
+      setImage(
+        initialData.image ??
+          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170040/lfcs-school/life1_1793170040339.webp",
+      );
     }
   }, [initialData]);
 

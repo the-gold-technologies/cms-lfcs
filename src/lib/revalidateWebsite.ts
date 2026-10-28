@@ -47,4 +47,3 @@ export function isWebsiteRequest(request: Request): boolean {
   const secret = process.env.CMS_SHARED_SECRET;
   return !!secret && request.headers.get("x-cms-secret") === secret;
 }
-

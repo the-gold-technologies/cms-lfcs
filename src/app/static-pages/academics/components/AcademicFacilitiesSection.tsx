@@ -38,20 +38,44 @@ export function AcademicFacilitiesSection({ initialData }: { initialData?: any }
       setHeadline(initialData.headline ?? "Modern Academic Facilities");
 
       setF1Title(initialData.f1Title ?? "Smart / Digital Classrooms");
-      setF1Desc(initialData.f1Desc ?? "Interactive flat panels, multimedia audio-visual aids, and high-speed broadband supporting dynamic visual learning.");
-      setF1Image(initialData.f1Image ?? "https://res.cloudinary.com/dpa93copz/image/upload/v1793170019/lfcs-school/digital-classroom_1793170018820.webp");
+      setF1Desc(
+        initialData.f1Desc ??
+          "Interactive flat panels, multimedia audio-visual aids, and high-speed broadband supporting dynamic visual learning.",
+      );
+      setF1Image(
+        initialData.f1Image ??
+          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170019/lfcs-school/digital-classroom_1793170018820.webp",
+      );
 
       setF2Title(initialData.f2Title ?? "Advanced Science Laboratories");
-      setF2Desc(initialData.f2Desc ?? "Fully equipped Physics, Chemistry, and Biology laboratories adhering strictly to CBSE safety guidelines.");
-      setF2Image(initialData.f2Image ?? "https://res.cloudinary.com/dpa93copz/image/upload/v1793170032/lfcs-school/Experience4_1793170032205.webp");
+      setF2Desc(
+        initialData.f2Desc ??
+          "Fully equipped Physics, Chemistry, and Biology laboratories adhering strictly to CBSE safety guidelines.",
+      );
+      setF2Image(
+        initialData.f2Image ??
+          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170032/lfcs-school/Experience4_1793170032205.webp",
+      );
 
       setF3Title(initialData.f3Title ?? "High-Tech Computer Labs");
-      setF3Desc(initialData.f3Desc ?? "Modern terminals with coding IDEs, AI workstations, robotics kits, and digital literacy modules.");
-      setF3Image(initialData.f3Image ?? "https://res.cloudinary.com/dpa93copz/image/upload/v1793170016/lfcs-school/computer-lab_1793170016129.webp");
+      setF3Desc(
+        initialData.f3Desc ??
+          "Modern terminals with coding IDEs, AI workstations, robotics kits, and digital literacy modules.",
+      );
+      setF3Image(
+        initialData.f3Image ??
+          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170016/lfcs-school/computer-lab_1793170016129.webp",
+      );
 
       setF4Title(initialData.f4Title ?? "Knowledge Resource Center & Library");
-      setF4Desc(initialData.f4Desc ?? "Vast catalog of 10,000+ fiction, reference volumes, periodicals, and quiet reading pods.");
-      setF4Image(initialData.f4Image ?? "https://res.cloudinary.com/dpa93copz/image/upload/v1793170015/lfcs-school/library_1793170015178.webp");
+      setF4Desc(
+        initialData.f4Desc ??
+          "Vast catalog of 10,000+ fiction, reference volumes, periodicals, and quiet reading pods.",
+      );
+      setF4Image(
+        initialData.f4Image ??
+          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170015/lfcs-school/library_1793170015178.webp",
+      );
     }
   }, [initialData]);
 

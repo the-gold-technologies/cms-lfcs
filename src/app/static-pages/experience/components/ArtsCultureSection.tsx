@@ -25,9 +25,18 @@ export function ArtsCultureSection({ initialData }: { initialData?: any }) {
       setTagline(initialData.tagline ?? "ARTS & CREATIVE EXPRESSION");
       setHeadline(initialData.headline ?? "A Space to Create &");
       setScriptAccent(initialData.scriptAccent ?? "Express");
-      setDescription(initialData.description ?? "At LFCS, we nurture creative instincts. Through painting, pottery, theatre, vocal music, instrumental bands, and cultural dance festivals, every child discovers their inner artist.");
-      setImage1(initialData.image1 ?? "https://res.cloudinary.com/dpa93copz/image/upload/v1793170035/lfcs-school/art1_1793170035130.webp");
-      setImage2(initialData.image2 ?? "https://res.cloudinary.com/dpa93copz/image/upload/v1793170039/lfcs-school/art2_1793170039436.webp");
+      setDescription(
+        initialData.description ??
+          "At LFCS, we nurture creative instincts. Through painting, pottery, theatre, vocal music, instrumental bands, and cultural dance festivals, every child discovers their inner artist.",
+      );
+      setImage1(
+        initialData.image1 ??
+          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170035/lfcs-school/art1_1793170035130.webp",
+      );
+      setImage2(
+        initialData.image2 ??
+          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170039/lfcs-school/art2_1793170039436.webp",
+      );
     }
   }, [initialData]);
 

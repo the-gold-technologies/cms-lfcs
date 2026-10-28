@@ -13,7 +13,10 @@ export async function GET(req: Request, { params }: { params: Promise<{ id: stri
     }
     return NextResponse.json({ success: true, data: item });
   } catch (error) {
-    return NextResponse.json({ success: false, error: "Failed to fetch news item" }, { status: 500 });
+    return NextResponse.json(
+      { success: false, error: "Failed to fetch news item" },
+      { status: 500 },
+    );
   }
 }
 
@@ -44,7 +47,8 @@ export async function PUT(req: Request, { params }: { params: Promise<{ id: stri
         source: body.source ?? existing.source,
         url: body.url ?? existing.url,
         content: body.content !== undefined ? body.content : existing.content,
-        isFeaturedHome: body.isFeaturedHome !== undefined ? body.isFeaturedHome : existing.isFeaturedHome,
+        isFeaturedHome:
+          body.isFeaturedHome !== undefined ? body.isFeaturedHome : existing.isFeaturedHome,
         order: body.order !== undefined ? body.order : existing.order,
       },
     });
@@ -81,7 +85,9 @@ export async function DELETE(req: Request, { params }: { params: Promise<{ id: s
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error("Delete news error:", error);
-    return NextResponse.json({ success: false, error: "Failed to delete news item" }, { status: 500 });
+    return NextResponse.json(
+      { success: false, error: "Failed to delete news item" },
+      { status: 500 },
+    );
   }
 }
-

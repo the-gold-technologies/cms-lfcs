@@ -35,15 +35,32 @@ export function NoteOfSupportSection({ initialData }: { initialData?: any }) {
 
       setPerson1Name(initialData.person1Name ?? "Sharman Joshi");
       setPerson1Role(initialData.person1Role ?? "Actor & LFCS Supporter");
-      setPerson1Headline(initialData.person1Headline ?? "Some journeys are worth supporting because of the trust behind them.");
-      setPerson1Quote(initialData.person1Quote ?? "I am happy to extend my support to Little Flower Children School and its journey towards making quality education accessible to more children and families.");
-      setPerson1Image(initialData.person1Image ?? "https://res.cloudinary.com/dpa93copz/image/upload/v1793170012/lfcs-school/sharman-joshi_1793170012349.webp");
+      setPerson1Headline(
+        initialData.person1Headline ??
+          "Some journeys are worth supporting because of the trust behind them.",
+      );
+      setPerson1Quote(
+        initialData.person1Quote ??
+          "I am happy to extend my support to Little Flower Children School and its journey towards making quality education accessible to more children and families.",
+      );
+      setPerson1Image(
+        initialData.person1Image ??
+          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170012/lfcs-school/sharman-joshi_1793170012349.webp",
+      );
 
       setPerson2Name(initialData.person2Name ?? "Mr. Anand Kumar");
       setPerson2Role(initialData.person2Role ?? "Mathematician & Founder, Super 30");
-      setPerson2Headline(initialData.person2Headline ?? "Education can change the direction of a child's life.");
-      setPerson2Quote(initialData.person2Quote ?? "Quality education must reach the children who need it most. I wish LFCS the very best as it takes this important vision across India.");
-      setPerson2Image(initialData.person2Image ?? "https://res.cloudinary.com/dpa93copz/image/upload/v1793170011/lfcs-school/anand-kumar_1793170011282.webp");
+      setPerson2Headline(
+        initialData.person2Headline ?? "Education can change the direction of a child's life.",
+      );
+      setPerson2Quote(
+        initialData.person2Quote ??
+          "Quality education must reach the children who need it most. I wish LFCS the very best as it takes this important vision across India.",
+      );
+      setPerson2Image(
+        initialData.person2Image ??
+          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170011/lfcs-school/anand-kumar_1793170011282.webp",
+      );
     }
   }, [initialData]);
 

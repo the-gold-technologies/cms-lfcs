@@ -42,27 +42,44 @@ export function AdmissionClassesSection({ initialData }: { initialData?: any }) 
       setTagline(initialData.tagline ?? "CLASSES OPEN FOR ADMISSION");
       setHeadline(initialData.headline ?? "Find the Right Learning Stage");
       setScriptAccent(initialData.scriptAccent ?? "for Your Child");
-      setSubtitle(initialData.subtitle ?? "Little Flower Group of Schools offers admissions across foundational pre-primary, primary, middle, and senior secondary grades.");
+      setSubtitle(
+        initialData.subtitle ??
+          "Little Flower Group of Schools offers admissions across foundational pre-primary, primary, middle, and senior secondary grades.",
+      );
 
       setC1Name(initialData.c1Name ?? "Pre-Primary Foundation");
       setC1Grades(initialData.c1Grades ?? "Nursery, LKG, UKG");
-      setC1Desc(initialData.c1Desc ?? "Play-based motor skills, phonics, socialization, and storytelling.");
+      setC1Desc(
+        initialData.c1Desc ?? "Play-based motor skills, phonics, socialization, and storytelling.",
+      );
 
       setC2Name(initialData.c2Name ?? "Primary School");
       setC2Grades(initialData.c2Grades ?? "Classes I to V");
-      setC2Desc(initialData.c2Desc ?? "Foundational numeracy, literacy, hindi, environmental studies, and co-curriculars.");
+      setC2Desc(
+        initialData.c2Desc ??
+          "Foundational numeracy, literacy, hindi, environmental studies, and co-curriculars.",
+      );
 
       setC3Name(initialData.c3Name ?? "Middle School");
       setC3Grades(initialData.c3Grades ?? "Classes VI to VIII");
-      setC3Desc(initialData.c3Desc ?? "Subject specialization, science labs, computer technology, and sports.");
+      setC3Desc(
+        initialData.c3Desc ??
+          "Subject specialization, science labs, computer technology, and sports.",
+      );
 
       setC4Name(initialData.c4Name ?? "Secondary School");
       setC4Grades(initialData.c4Grades ?? "Classes IX and X");
-      setC4Desc(initialData.c4Desc ?? "Rigorous CBSE Board syllabus, practical experiments, and academic remediation.");
+      setC4Desc(
+        initialData.c4Desc ??
+          "Rigorous CBSE Board syllabus, practical experiments, and academic remediation.",
+      );
 
       setC5Name(initialData.c5Name ?? "Senior Secondary");
       setC5Grades(initialData.c5Grades ?? "Classes XI and XII");
-      setC5Desc(initialData.c5Desc ?? "Science (PCM/PCB), Commerce, and Humanities with integrated competitive coaching.");
+      setC5Desc(
+        initialData.c5Desc ??
+          "Science (PCM/PCB), Commerce, and Humanities with integrated competitive coaching.",
+      );
     }
   }, [initialData]);
 

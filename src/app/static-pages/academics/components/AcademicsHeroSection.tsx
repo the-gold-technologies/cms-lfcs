@@ -24,7 +24,10 @@ export function AcademicsHeroSection({ initialData }: { initialData?: any }) {
       setTagline(initialData.tagline ?? "Academics");
       setHeadline(initialData.headline ?? "Learning Today, Leading");
       setScriptAccent(initialData.scriptAccent ?? "Tomorrow.");
-      setDescription(initialData.description ?? "At Little Flower, academics go beyond textbooks. We nurture curiosity, build strong foundations, and inspire a love for lifelong learning.");
+      setDescription(
+        initialData.description ??
+          "At Little Flower, academics go beyond textbooks. We nurture curiosity, build strong foundations, and inspire a love for lifelong learning.",
+      );
       setCtaText(initialData.ctaText ?? "Explore Our Syllabus");
       setCtaLink(initialData.ctaLink ?? "#curriculum");
     }

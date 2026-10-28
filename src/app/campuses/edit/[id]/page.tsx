@@ -5,11 +5,7 @@ import { CampusForm } from "../../components/CampusForm";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 
-export default async function EditCampusPage({
-  params,
-}: {
-  params: Promise<{ id: string }>;
-}) {
+export default async function EditCampusPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   const campus = await prisma.campus.findUnique({
     where: { id },
@@ -38,4 +34,3 @@ export default async function EditCampusPage({
     </div>
   );
 }
-

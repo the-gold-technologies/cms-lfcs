@@ -33,19 +33,40 @@ export function LeadershipSection({ initialData }: { initialData?: any }) {
     if (initialData) {
       setTagline(initialData.tagline ?? "LEADERSHIP / MANAGEMENT");
       setHeadline(initialData.headline ?? "Guiding the Institution");
-      setSubtitle(initialData.subtitle ?? "Little Flower's growth has been guided by visionary management committed to quality education and character formation.");
+      setSubtitle(
+        initialData.subtitle ??
+          "Little Flower's growth has been guided by visionary management committed to quality education and character formation.",
+      );
 
       setFounderName(initialData.founderName ?? "Late Shri Vijay Shankar Yadav");
       setFounderTitle(initialData.founderTitle ?? "Founder & Visionary");
-      setFounderQuote(initialData.founderQuote ?? "Education is not merely the transmission of information; it is the ignition of character, curiosity, and compassion.");
-      setFounderBio(initialData.founderBio ?? "A dedicated educator whose unwavering belief in the potential of rural and semi-urban children gave birth to Little Flower in 1993.");
-      setFounderImage(initialData.founderImage ?? "https://res.cloudinary.com/dpa93copz/image/upload/v1793170014/lfcs-school/journey-lfis-mau_1793170014137.webp");
+      setFounderQuote(
+        initialData.founderQuote ??
+          "Education is not merely the transmission of information; it is the ignition of character, curiosity, and compassion.",
+      );
+      setFounderBio(
+        initialData.founderBio ??
+          "A dedicated educator whose unwavering belief in the potential of rural and semi-urban children gave birth to Little Flower in 1993.",
+      );
+      setFounderImage(
+        initialData.founderImage ??
+          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170014/lfcs-school/journey-lfis-mau_1793170014137.webp",
+      );
 
       setDirectorName(initialData.directorName ?? "Shri Vivek Yadav");
       setDirectorTitle(initialData.directorTitle ?? "Managing Director");
-      setDirectorQuote(initialData.directorQuote ?? "Our mission is to prepare children not just for examinations, but for life — equipped with ethics, logic, and global awareness.");
-      setDirectorBio(initialData.directorBio ?? "Spearheading modern curriculum integration, Olympic-standard sports facilities, and the LFCS Associate School expansion across Uttar Pradesh.");
-      setDirectorImage(initialData.directorImage ?? "https://res.cloudinary.com/dpa93copz/image/upload/v1793170010/lfcs-school/anand-kumar-felicitation_1793170010248.webp");
+      setDirectorQuote(
+        initialData.directorQuote ??
+          "Our mission is to prepare children not just for examinations, but for life — equipped with ethics, logic, and global awareness.",
+      );
+      setDirectorBio(
+        initialData.directorBio ??
+          "Spearheading modern curriculum integration, Olympic-standard sports facilities, and the LFCS Associate School expansion across Uttar Pradesh.",
+      );
+      setDirectorImage(
+        initialData.directorImage ??
+          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170010/lfcs-school/anand-kumar-felicitation_1793170010248.webp",
+      );
     }
   }, [initialData]);
 

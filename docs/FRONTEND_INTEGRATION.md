@@ -5,6 +5,7 @@ This document explains how the main website (`lfcs-school`) connects to `lfcs-sc
 ---
 
 ## 1. Environment Variables in `lfcs-school/.env.local`
+
 ```env
 NEXT_PUBLIC_CMS_URL="http://localhost:3001"
 CMS_SHARED_SECRET="lfcs-school-secret-key-replace-in-production"
@@ -13,6 +14,7 @@ CMS_SHARED_SECRET="lfcs-school-secret-key-replace-in-production"
 ---
 
 ## 2. Server-Side Client (`src/lib/cms.ts`)
+
 ```typescript
 const CMS_URL = process.env.NEXT_PUBLIC_CMS_URL;
 export const REVALIDATE_SECONDS = 3600;
@@ -30,7 +32,10 @@ export const CmsTag = {
 
 export type CmsResponse<T, S = undefined> = { success: true; data: T; seo: S };
 
-export async function cmsGet<T, S = undefined>(path: string, tags: string[]): Promise<CmsResponse<T, S>> {
+export async function cmsGet<T, S = undefined>(
+  path: string,
+  tags: string[],
+): Promise<CmsResponse<T, S>> {
   if (!CMS_URL) throw new Error("NEXT_PUBLIC_CMS_URL is not set");
 
   const res = await fetch(`${CMS_URL.replace(/\/$/, "")}/api${path}`, {
@@ -59,7 +64,9 @@ export async function cmsPost<T>(path: string, body: unknown): Promise<T> {
 
   const json = await res.json().catch(() => null);
   if (!res.ok || !json?.success) {
-    throw new Error(`[cms] POST ${path} responded ${res.status}: ${json?.error ?? "unknown error"}`);
+    throw new Error(
+      `[cms] POST ${path} responded ${res.status}: ${json?.error ?? "unknown error"}`,
+    );
   }
   return json.data;
 }
@@ -68,6 +75,7 @@ export async function cmsPost<T>(path: string, body: unknown): Promise<T> {
 ---
 
 ## 3. On-Demand Cache Invalidation Endpoint (`src/app/api/revalidate/route.ts`)
+
 ```typescript
 import { revalidateTag } from "next/cache";
 import { NextResponse } from "next/server";
@@ -93,7 +101,9 @@ export async function POST(req: Request) {
 ---
 
 ## 4. Submitting Leads to the CMS Database
+
 In `src/app/actions/enquiries.ts`, form actions will forward submissions to the CMS:
+
 ```typescript
 await cmsPost("/submissions", {
   formType: "admissions",
@@ -105,5 +115,5 @@ await cmsPost("/submissions", {
   message,
 });
 ```
-This stores the submission into the PostgreSQL database for admin management, and dispatches administrative SMTP email notifications.
 
+This stores the submission into the PostgreSQL database for admin management, and dispatches administrative SMTP email notifications.

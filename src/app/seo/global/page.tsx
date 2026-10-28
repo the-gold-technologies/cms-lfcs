@@ -84,7 +84,10 @@ export default function GlobalSeoPage() {
         description="Configure default meta titles, site description, favicon, Google Analytics GA4, and Google Tag Manager."
       />
 
-      <form onSubmit={handleSave} className="bg-white rounded-3xl border border-gray-100 p-8 shadow-xs space-y-6">
+      <form
+        onSubmit={handleSave}
+        className="bg-white rounded-3xl border border-gray-100 p-8 shadow-xs space-y-6"
+      >
         <InputField
           label="Default Website Title *"
           value={siteTitle}
@@ -158,4 +161,3 @@ export default function GlobalSeoPage() {
     </div>
   );
 }
-

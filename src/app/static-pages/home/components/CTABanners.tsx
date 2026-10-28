@@ -27,17 +27,33 @@ export function CTABanners({ initialData }: { initialData?: any }) {
 
   useEffect(() => {
     if (initialData) {
-      setBanner1Title(initialData.banner1Title ?? initialData.admissionsCtaTitle ?? "Admissions Open");
-      setBanner1Subtitle(initialData.banner1Subtitle ?? initialData.admissionsCtaSubtitle ?? "Begin your child's journey of excellence and endless possibilities across our 8 campuses.");
+      setBanner1Title(
+        initialData.banner1Title ?? initialData.admissionsCtaTitle ?? "Admissions Open",
+      );
+      setBanner1Subtitle(
+        initialData.banner1Subtitle ??
+          initialData.admissionsCtaSubtitle ??
+          "Begin your child's journey of excellence and endless possibilities across our 8 campuses.",
+      );
       setBanner1CtaText(initialData.banner1CtaText ?? "Learn About Admissions");
       setBanner1CtaLink(initialData.banner1CtaLink ?? "/admissions");
-      setBanner1Image(initialData.banner1Image ?? "https://res.cloudinary.com/dpa93copz/image/upload/v1793170041/lfcs-school/life2_1793170041503.webp");
+      setBanner1Image(
+        initialData.banner1Image ??
+          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170041/lfcs-school/life2_1793170041503.webp",
+      );
 
       setBanner2Title(initialData.banner2Title ?? initialData.partnerCtaTitle ?? "Start a School");
-      setBanner2Subtitle(initialData.banner2Subtitle ?? initialData.partnerCtaSubtitle ?? "Partner with our 40-year legacy to bring quality, values-based CBSE education to your city.");
+      setBanner2Subtitle(
+        initialData.banner2Subtitle ??
+          initialData.partnerCtaSubtitle ??
+          "Partner with our 40-year legacy to bring quality, values-based CBSE education to your city.",
+      );
       setBanner2CtaText(initialData.banner2CtaText ?? "Partner With Us");
       setBanner2CtaLink(initialData.banner2CtaLink ?? "/start-school");
-      setBanner2Image(initialData.banner2Image ?? "https://res.cloudinary.com/dpa93copz/image/upload/v1793170008/lfcs-school/school-associate-launch_1793170008299.webp");
+      setBanner2Image(
+        initialData.banner2Image ??
+          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170008/lfcs-school/school-associate-launch_1793170008299.webp",
+      );
     }
   }, [initialData]);
 

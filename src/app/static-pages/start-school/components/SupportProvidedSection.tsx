@@ -29,16 +29,28 @@ export function SupportProvidedSection({ initialData }: { initialData?: any }) {
     if (initialData) {
       setTagline(initialData.tagline ?? "PARTNERSHIP LIFECYCLE");
       setHeadline(initialData.headline ?? "Comprehensive Support Across All Setup Stages");
-      setSubtitle(initialData.subtitle ?? "From initial land layout through grand opening and ongoing annual academic audits, LFCS supports your school at every step.");
+      setSubtitle(
+        initialData.subtitle ??
+          "From initial land layout through grand opening and ongoing annual academic audits, LFCS supports your school at every step.",
+      );
 
       setStage1Title(initialData.stage1Title ?? "Stage 1: Pre-Launch Support");
-      setStage1Items(initialData.stage1Items ?? "School Planning & Architectural Layouts, Academic Structure & Timetable Blueprint, Brand Identity Guidelines, Faculty Recruitment & Induction Workshops");
+      setStage1Items(
+        initialData.stage1Items ??
+          "School Planning & Architectural Layouts, Academic Structure & Timetable Blueprint, Brand Identity Guidelines, Faculty Recruitment & Induction Workshops",
+      );
 
       setStage2Title(initialData.stage2Title ?? "Stage 2: Launch Support");
-      setStage2Items(initialData.stage2Items ?? "Admissions Planning & Outreach Strategy, School Readiness Inspection, Marketing Campaigns & Launch Collaterals, Press Announcements");
+      setStage2Items(
+        initialData.stage2Items ??
+          "Admissions Planning & Outreach Strategy, School Readiness Inspection, Marketing Campaigns & Launch Collaterals, Press Announcements",
+      );
 
       setStage3Title(initialData.stage3Title ?? "Stage 3: Post-Launch & Ongoing Support");
-      setStage3Items(initialData.stage3Items ?? "Annual Academic Quality Audits, Regular Teacher Training Programs, Curriculum Updates, Inter-School Sports & Cultural Leagues Participation");
+      setStage3Items(
+        initialData.stage3Items ??
+          "Annual Academic Quality Audits, Regular Teacher Training Programs, Curriculum Updates, Inter-School Sports & Cultural Leagues Participation",
+      );
     }
   }, [initialData]);
 

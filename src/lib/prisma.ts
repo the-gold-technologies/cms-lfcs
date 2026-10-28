@@ -22,11 +22,8 @@ const pool = new Pool({
 
 const adapter = new PrismaPg(pool);
 
-export const prisma =
-  global.prismaInstance ??
-  new PrismaClient({ adapter });
+export const prisma = global.prismaInstance ?? new PrismaClient({ adapter });
 
 if (process.env.NODE_ENV !== "production") {
   global.prismaInstance = prisma;
 }
-

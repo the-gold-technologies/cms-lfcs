@@ -22,7 +22,10 @@ export function GallerySection({ initialData }: { initialData?: any }) {
     if (initialData) {
       setTagline(initialData.tagline ?? "CAMPUS GALLERY");
       setHeadline(initialData.headline ?? "Moments Captured Across Our Campuses");
-      setSubtitle(initialData.subtitle ?? "A glimpse into everyday life, celebrations, scientific discovery, and sporting triumphs across Little Flower schools.");
+      setSubtitle(
+        initialData.subtitle ??
+          "A glimpse into everyday life, celebrations, scientific discovery, and sporting triumphs across Little Flower schools.",
+      );
     }
   }, [initialData]);
 
@@ -79,7 +82,8 @@ export function GallerySection({ initialData }: { initialData?: any }) {
               <div>
                 <p className="text-xs font-bold text-gray-800">Dynamic Cloudinary Photo Gallery</p>
                 <p className="text-[11px] text-gray-500">
-                  Individual campus photos, captions, and category filters (Sports, Events, Labs, Arts) are managed in the Photo Gallery module.
+                  Individual campus photos, captions, and category filters (Sports, Events, Labs,
+                  Arts) are managed in the Photo Gallery module.
                 </p>
               </div>
             </div>

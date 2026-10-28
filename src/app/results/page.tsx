@@ -122,7 +122,8 @@ export default function ResultsPage() {
     }
   };
 
-  const filtered = filterExam === "ALL" ? results : results.filter((r) => r.examType === filterExam);
+  const filtered =
+    filterExam === "ALL" ? results : results.filter((r) => r.examType === filterExam);
 
   return (
     <section className="flex flex-col gap-8 pb-12 max-w-7xl mx-auto">
@@ -159,7 +160,9 @@ export default function ResultsPage() {
         <div className="py-16 text-center bg-white rounded-3xl p-8 border border-gray-100">
           <Trophy className="w-12 h-12 text-gray-300 mx-auto mb-3" />
           <h3 className="text-base font-bold text-gray-800">No Topper Records Found</h3>
-          <p className="text-xs text-gray-400 mt-1 mb-5">Add the first CBSE board topper or competitive ranker.</p>
+          <p className="text-xs text-gray-400 mt-1 mb-5">
+            Add the first CBSE board topper or competitive ranker.
+          </p>
           <button
             onClick={openCreateModal}
             className="px-5 py-2.5 bg-[#0E5A60] text-white rounded-xl text-xs font-bold"
@@ -198,9 +201,13 @@ export default function ResultsPage() {
                 <h3 className="font-bold text-center text-gray-900 text-sm">{item.studentName}</h3>
                 <p className="text-center text-xs text-gray-500 font-medium">{item.campusName}</p>
                 {item.stream && (
-                  <p className="text-center text-[11px] text-gray-400 mt-0.5">{item.stream} Stream</p>
+                  <p className="text-center text-[11px] text-gray-400 mt-0.5">
+                    {item.stream} Stream
+                  </p>
                 )}
-                <p className="text-center text-[10px] text-gray-400 font-mono mt-1">Batch {item.year}</p>
+                <p className="text-center text-[10px] text-gray-400 font-mono mt-1">
+                  Batch {item.year}
+                </p>
               </div>
 
               <div className="flex gap-2 pt-4 border-t border-gray-100 mt-4">

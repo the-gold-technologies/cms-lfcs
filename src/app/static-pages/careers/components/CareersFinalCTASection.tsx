@@ -20,7 +20,10 @@ export function CareersFinalCTASection({ initialData }: { initialData?: any }) {
   useEffect(() => {
     if (initialData) {
       setHeading(initialData.heading ?? "Your Next Opportunity Could Begin Here");
-      setDescription(initialData.description ?? "If you are passionate about education and would like to explore a fulfilling career with Little Flower Group of Schools, submit your CV and profile today.");
+      setDescription(
+        initialData.description ??
+          "If you are passionate about education and would like to explore a fulfilling career with Little Flower Group of Schools, submit your CV and profile today.",
+      );
       setButtonText(initialData.buttonText ?? "Submit Your Profile");
       setEmailText(initialData.emailText ?? "careers@lfcsschools.com");
     }

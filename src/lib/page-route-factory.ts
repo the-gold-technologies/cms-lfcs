@@ -37,7 +37,10 @@ export function createPageRouteHandlers(slug: string, defaultTitle: string) {
         });
       } catch (error) {
         console.error(`Page ${slug} content fetch error:`, error);
-        return NextResponse.json({ success: false, error: "Internal Server Error" }, { status: 500 });
+        return NextResponse.json(
+          { success: false, error: "Internal Server Error" },
+          { status: 500 },
+        );
       }
     },
 
@@ -102,7 +105,10 @@ export function createPageRouteHandlers(slug: string, defaultTitle: string) {
         return NextResponse.json({ success: true });
       } catch (error) {
         console.error(`Page ${slug} section save error:`, error);
-        return NextResponse.json({ success: false, error: "Internal Server Error" }, { status: 500 });
+        return NextResponse.json(
+          { success: false, error: "Internal Server Error" },
+          { status: 500 },
+        );
       }
     },
   };

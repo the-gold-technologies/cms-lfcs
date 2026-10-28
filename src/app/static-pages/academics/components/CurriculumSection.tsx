@@ -30,18 +30,35 @@ export function CurriculumSection({ initialData }: { initialData?: any }) {
   useEffect(() => {
     if (initialData) {
       setTagline(initialData.tagline ?? "OUR CURRICULUM");
-      setHeadline(initialData.headline ?? "A Curriculum Designed for Deep Conceptual Understanding");
-      setSubtitle(initialData.subtitle ?? "Affiliated with the Central Board of Secondary Education (CBSE), New Delhi, our curriculum integrates NCERT guidelines with modern experiential inquiry.");
-      setImage(initialData.image ?? "https://res.cloudinary.com/dpa93copz/image/upload/v1793170028/lfcs-school/practical_1793170027731.webp");
+      setHeadline(
+        initialData.headline ?? "A Curriculum Designed for Deep Conceptual Understanding",
+      );
+      setSubtitle(
+        initialData.subtitle ??
+          "Affiliated with the Central Board of Secondary Education (CBSE), New Delhi, our curriculum integrates NCERT guidelines with modern experiential inquiry.",
+      );
+      setImage(
+        initialData.image ??
+          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170028/lfcs-school/practical_1793170027731.webp",
+      );
 
       setSubj1Title(initialData.subj1Title ?? "Language & Literature");
-      setSubj1Desc(initialData.subj1Desc ?? "English and Hindi articulation, grammar fluency, and comprehension.");
+      setSubj1Desc(
+        initialData.subj1Desc ??
+          "English and Hindi articulation, grammar fluency, and comprehension.",
+      );
       setSubj2Title(initialData.subj2Title ?? "Mathematics & Logic");
-      setSubj2Desc(initialData.subj2Desc ?? "Conceptual problem-solving, mental arithmetic, and geometry.");
+      setSubj2Desc(
+        initialData.subj2Desc ?? "Conceptual problem-solving, mental arithmetic, and geometry.",
+      );
       setSubj3Title(initialData.subj3Title ?? "Science & Inquiry");
-      setSubj3Desc(initialData.subj3Desc ?? "Physics, Chemistry, and Biology hands-on lab experimentation.");
+      setSubj3Desc(
+        initialData.subj3Desc ?? "Physics, Chemistry, and Biology hands-on lab experimentation.",
+      );
       setSubj4Title(initialData.subj4Title ?? "Social Sciences & Civics");
-      setSubj4Desc(initialData.subj4Desc ?? "History, Geography, and Democratic Politics understanding.");
+      setSubj4Desc(
+        initialData.subj4Desc ?? "History, Geography, and Democratic Politics understanding.",
+      );
     }
   }, [initialData]);
 

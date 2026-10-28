@@ -22,10 +22,15 @@ export function AboutCTASection({ initialData }: { initialData?: any }) {
   useEffect(() => {
     if (initialData) {
       setHeading(initialData.heading ?? "Be a Part of Our Little Flower Family");
-      setSubtitle(initialData.subtitle ?? "Admissions open for a brighter tomorrow across all campuses.");
+      setSubtitle(
+        initialData.subtitle ?? "Admissions open for a brighter tomorrow across all campuses.",
+      );
       setButtonText(initialData.buttonText ?? "Enquire Now");
       setButtonLink(initialData.buttonLink ?? "/contact#contact-form");
-      setBgImage(initialData.bgImage ?? "https://res.cloudinary.com/dpa93copz/image/upload/v1793170040/lfcs-school/life1_1793170040339.webp");
+      setBgImage(
+        initialData.bgImage ??
+          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170040/lfcs-school/life1_1793170040339.webp",
+      );
     }
   }, [initialData]);
 

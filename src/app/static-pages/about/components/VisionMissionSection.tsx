@@ -20,9 +20,15 @@ export function VisionMissionSection({ initialData }: { initialData?: any }) {
   useEffect(() => {
     if (initialData) {
       setVisionTitle(initialData.visionTitle ?? "Our Vision");
-      setVisionDesc(initialData.visionDesc ?? "To be a leading educational network that empowers students to achieve their highest potential, fostering a generation of compassionate, innovative, and responsible global citizens who will make a positive impact on the world.");
+      setVisionDesc(
+        initialData.visionDesc ??
+          "To be a leading educational network that empowers students to achieve their highest potential, fostering a generation of compassionate, innovative, and responsible global citizens who will make a positive impact on the world.",
+      );
       setMissionTitle(initialData.missionTitle ?? "Our Mission");
-      setMissionDesc(initialData.missionDesc ?? "To provide transformative, values-based education that combines academic rigor with character building, practical life skills, and social consciousness, ensuring equitable access to high-quality learning across all communities.");
+      setMissionDesc(
+        initialData.missionDesc ??
+          "To provide transformative, values-based education that combines academic rigor with character building, practical life skills, and social consciousness, ensuring equitable access to high-quality learning across all communities.",
+      );
     }
   }, [initialData]);
 

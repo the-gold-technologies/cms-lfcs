@@ -41,25 +41,48 @@ export function OurApproachSection({ initialData }: { initialData?: any }) {
       setTagline(initialData.tagline ?? "OUR APPROACH");
       setHeadline(initialData.headline ?? "Learning That Builds");
       setScriptAccent(initialData.scriptAccent ?? "Life Skills");
-      setSubtitle(initialData.subtitle ?? "Not just academics we prepare children for life, with knowledge, character and curiosity.");
+      setSubtitle(
+        initialData.subtitle ??
+          "Not just academics we prepare children for life, with knowledge, character and curiosity.",
+      );
       setCtaText(initialData.ctaText ?? "Explore Academics");
       setCtaLink(initialData.ctaLink ?? "/academics");
 
       setCard1Title(initialData.card1Title ?? "Communication Skills");
-      setCard1Desc(initialData.card1Desc ?? "Public speaking, debate, and bilingual articulate expression.");
-      setCard1Image(initialData.card1Image ?? "https://res.cloudinary.com/dpa93copz/image/upload/v1793170018/lfcs-school/skills1_1793170017926.webp");
+      setCard1Desc(
+        initialData.card1Desc ?? "Public speaking, debate, and bilingual articulate expression.",
+      );
+      setCard1Image(
+        initialData.card1Image ??
+          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170018/lfcs-school/skills1_1793170017926.webp",
+      );
 
       setCard2Title(initialData.card2Title ?? "Problem Solving & Logic");
-      setCard2Desc(initialData.card2Desc ?? "STEM-oriented scientific enquiry and analytical reasoning.");
-      setCard2Image(initialData.card2Image ?? "https://res.cloudinary.com/dpa93copz/image/upload/v1793170029/lfcs-school/skills2_1793170028638.webp");
+      setCard2Desc(
+        initialData.card2Desc ?? "STEM-oriented scientific enquiry and analytical reasoning.",
+      );
+      setCard2Image(
+        initialData.card2Image ??
+          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170029/lfcs-school/skills2_1793170028638.webp",
+      );
 
       setCard3Title(initialData.card3Title ?? "Emotional Resilience");
-      setCard3Desc(initialData.card3Desc ?? "Mindfulness, self-awareness, and value-based moral balance.");
-      setCard3Image(initialData.card3Image ?? "https://res.cloudinary.com/dpa93copz/image/upload/v1793170036/lfcs-school/skills3_1793170036462.webp");
+      setCard3Desc(
+        initialData.card3Desc ?? "Mindfulness, self-awareness, and value-based moral balance.",
+      );
+      setCard3Image(
+        initialData.card3Image ??
+          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170036/lfcs-school/skills3_1793170036462.webp",
+      );
 
       setCard4Title(initialData.card4Title ?? "Leadership & Ethics");
-      setCard4Desc(initialData.card4Desc ?? "Student council, community outreach, and peer mentorship.");
-      setCard4Image(initialData.card4Image ?? "https://res.cloudinary.com/dpa93copz/image/upload/v1793170039/lfcs-school/skills4_1793170038535.webp");
+      setCard4Desc(
+        initialData.card4Desc ?? "Student council, community outreach, and peer mentorship.",
+      );
+      setCard4Image(
+        initialData.card4Image ??
+          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170039/lfcs-school/skills4_1793170038535.webp",
+      );
     }
   }, [initialData]);
 

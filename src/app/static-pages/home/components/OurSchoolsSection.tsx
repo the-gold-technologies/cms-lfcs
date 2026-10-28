@@ -24,7 +24,10 @@ export function OurSchoolsSection({ initialData }: { initialData?: any }) {
     if (initialData) {
       setTagline(initialData.tagline ?? "OUR CAMPUSES");
       setHeadline(initialData.headline ?? "8 Campuses Across Eastern Uttar Pradesh");
-      setSubtitle(initialData.subtitle ?? "Discover premier CBSE educational institutions established across Mau, Ballia, and Ghazipur districts.");
+      setSubtitle(
+        initialData.subtitle ??
+          "Discover premier CBSE educational institutions established across Mau, Ballia, and Ghazipur districts.",
+      );
       setCtaText(initialData.ctaText ?? "Explore All Campuses");
       setCtaLink(initialData.ctaLink ?? "/our-school");
     }
@@ -85,7 +88,8 @@ export function OurSchoolsSection({ initialData }: { initialData?: any }) {
               <div>
                 <p className="text-xs font-bold text-gray-800">Dynamic Campuses Data</p>
                 <p className="text-[11px] text-gray-500">
-                  Individual branch cards, photos, contact details, and locations are managed directly in the Campuses module.
+                  Individual branch cards, photos, contact details, and locations are managed
+                  directly in the Campuses module.
                 </p>
               </div>
             </div>

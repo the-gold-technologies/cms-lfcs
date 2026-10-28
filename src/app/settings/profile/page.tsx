@@ -59,11 +59,15 @@ export default function AdminProfilePage() {
       <div className="bg-white rounded-3xl border border-gray-100 p-8 shadow-xs space-y-6">
         <div>
           <h3 className="text-sm font-bold text-gray-900 mb-1">Account Information</h3>
-          <p className="text-xs text-gray-500">Logged in as {session?.user?.email || "Administrator"}</p>
+          <p className="text-xs text-gray-500">
+            Logged in as {session?.user?.email || "Administrator"}
+          </p>
         </div>
 
         <form onSubmit={handlePasswordChange} className="space-y-4 pt-4 border-t border-gray-100">
-          <h4 className="text-xs font-bold text-gray-700 uppercase tracking-wider">Change Password</h4>
+          <h4 className="text-xs font-bold text-gray-700 uppercase tracking-wider">
+            Change Password
+          </h4>
 
           <InputField
             label="Current Password *"
@@ -100,4 +104,3 @@ export default function AdminProfilePage() {
     </div>
   );
 }
-

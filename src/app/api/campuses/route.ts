@@ -11,7 +11,10 @@ export async function GET() {
     return NextResponse.json({ success: true, data: campuses });
   } catch (error) {
     console.error("Campuses fetch error:", error);
-    return NextResponse.json({ success: false, error: "Failed to fetch campuses" }, { status: 500 });
+    return NextResponse.json(
+      { success: false, error: "Failed to fetch campuses" },
+      { status: 500 },
+    );
   }
 }
 
@@ -21,7 +24,22 @@ export async function POST(req: Request) {
     if (!authCheck.authorized) return authCheck.response;
 
     const body = await req.json();
-    const { name, city, state, address, img, website, instagram, facebook, youtube, phone, email, principalName, facilities, isFeatured } = body;
+    const {
+      name,
+      city,
+      state,
+      address,
+      img,
+      website,
+      instagram,
+      facebook,
+      youtube,
+      phone,
+      email,
+      principalName,
+      facilities,
+      isFeatured,
+    } = body;
 
     if (!name || !city || !address) {
       return NextResponse.json(
@@ -65,4 +83,3 @@ export async function POST(req: Request) {
     );
   }
 }
-

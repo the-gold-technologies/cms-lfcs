@@ -32,17 +32,29 @@ export function AdmissionOverviewSection({ initialData }: { initialData?: any })
       setTagline(initialData.tagline ?? "ADMISSION OVERVIEW");
       setHeadline(initialData.headline ?? "Begin Your Child's Learning");
       setScriptAccent(initialData.scriptAccent ?? "Journey with LFCS");
-      setParagraph1(initialData.paragraph1 ?? "Choosing the right school is an important decision for every family. At Little Flower Group of Schools, we believe that education should prepare children not only for academic success but also for the opportunities and responsibilities ahead.");
-      setParagraph2(initialData.paragraph2 ?? "Our approach combines structured learning, value-based education and opportunities for students to discover their abilities, develop confidence and grow into responsible individuals across our 8 campuses.");
+      setParagraph1(
+        initialData.paragraph1 ??
+          "Choosing the right school is an important decision for every family. At Little Flower Group of Schools, we believe that education should prepare children not only for academic success but also for the opportunities and responsibilities ahead.",
+      );
+      setParagraph2(
+        initialData.paragraph2 ??
+          "Our approach combines structured learning, value-based education and opportunities for students to discover their abilities, develop confidence and grow into responsible individuals across our 8 campuses.",
+      );
 
       setP1Title(initialData.p1Title ?? "Structured Learning");
       setP1Text(initialData.p1Text ?? "A strong academic base built step by step.");
       setP2Title(initialData.p2Title ?? "Value-Based Education");
-      setP2Text(initialData.p2Text ?? "Character, ethics, and civic responsibility alongside academics.");
+      setP2Text(
+        initialData.p2Text ?? "Character, ethics, and civic responsibility alongside academics.",
+      );
       setP3Title(initialData.p3Title ?? "Room to Discover");
-      setP3Text(initialData.p3Text ?? "Opportunities to find passions and build genuine self-confidence.");
+      setP3Text(
+        initialData.p3Text ?? "Opportunities to find passions and build genuine self-confidence.",
+      );
       setP4Title(initialData.p4Title ?? "8 Premier Campuses");
-      setP4Text(initialData.p4Text ?? "Quality education accessible for more families and communities.");
+      setP4Text(
+        initialData.p4Text ?? "Quality education accessible for more families and communities.",
+      );
     }
   }, [initialData]);
 

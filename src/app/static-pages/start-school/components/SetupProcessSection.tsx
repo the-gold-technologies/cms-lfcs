@@ -31,7 +31,10 @@ export function SetupProcessSection({ initialData }: { initialData?: any }) {
       setTagline(initialData.tagline ?? "SCHOOL SETUP ROADMAP");
       setHeadline(initialData.headline ?? "From Initial Planning to");
       setScriptAccent(initialData.scriptAccent ?? "Grand Opening");
-      setSubtitle(initialData.subtitle ?? "Establishing a CBSE school requires disciplined milestone planning. Our structured 8-step roadmap guides your project smoothly from proposal to student admissions.");
+      setSubtitle(
+        initialData.subtitle ??
+          "Establishing a CBSE school requires disciplined milestone planning. Our structured 8-step roadmap guides your project smoothly from proposal to student admissions.",
+      );
 
       setStep1(initialData.step1 ?? "01. Initial Enquiry & Location Feasibility");
       setStep2(initialData.step2 ?? "02. Leadership Evaluation & Preliminary Discussions");

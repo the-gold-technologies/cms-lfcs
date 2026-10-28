@@ -24,7 +24,9 @@ export function NewsForm({ initialData, isEdit = false }: NewsFormProps) {
   const [source, setSource] = useState(initialData?.source || "");
   const [url, setUrl] = useState(initialData?.url || "");
   const [img, setImg] = useState(initialData?.img || "");
-  const [isFeaturedHome, setIsFeaturedHome] = useState<boolean>(initialData?.isFeaturedHome ?? false);
+  const [isFeaturedHome, setIsFeaturedHome] = useState<boolean>(
+    initialData?.isFeaturedHome ?? false,
+  );
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -71,7 +73,10 @@ export function NewsForm({ initialData, isEdit = false }: NewsFormProps) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="bg-white rounded-3xl border border-gray-100 p-8 shadow-xs space-y-6">
+    <form
+      onSubmit={handleSubmit}
+      className="bg-white rounded-3xl border border-gray-100 p-8 shadow-xs space-y-6"
+    >
       <InputField
         label="Article Headline / Title *"
         value={title}
@@ -129,15 +134,21 @@ export function NewsForm({ initialData, isEdit = false }: NewsFormProps) {
           onChange={(e) => setIsFeaturedHome(e.target.checked)}
           className="w-4 h-4 text-[#6a2238] rounded-md border-gray-300 focus:ring-[#6a2238]"
         />
-        <label htmlFor="featuredHome" className="text-xs font-semibold text-gray-700 cursor-pointer">
+        <label
+          htmlFor="featuredHome"
+          className="text-xs font-semibold text-gray-700 cursor-pointer"
+        >
           Feature as primary highlighted story on the Home Page
         </label>
       </div>
 
       <div className="pt-4 max-w-xs">
-        <SaveButton loading={loading} saved={saved} label={isEdit ? "Update Article" : "Publish Article"} />
+        <SaveButton
+          loading={loading}
+          saved={saved}
+          label={isEdit ? "Update Article" : "Publish Article"}
+        />
       </div>
     </form>
   );
 }
-

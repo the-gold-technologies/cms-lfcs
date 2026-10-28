@@ -23,7 +23,10 @@ export function AcademicResultsSection({ initialData }: { initialData?: any }) {
     if (initialData) {
       setTagline(initialData.tagline ?? "ACADEMIC EXCELLENCE");
       setHeadline(initialData.headline ?? "Consistent Outstanding Board Results");
-      setSubtitle(initialData.subtitle ?? "Celebrating our brilliant CBSE Class X and Class XII toppers whose dedication and academic excellence continue to make LFCS proud.");
+      setSubtitle(
+        initialData.subtitle ??
+          "Celebrating our brilliant CBSE Class X and Class XII toppers whose dedication and academic excellence continue to make LFCS proud.",
+      );
       setBadgeText(initialData.badgeText ?? "100% Board Pass Rate");
     }
   }, [initialData]);
@@ -82,7 +85,8 @@ export function AcademicResultsSection({ initialData }: { initialData?: any }) {
               <div>
                 <p className="text-xs font-bold text-gray-800">Board Results & Merit Lists</p>
                 <p className="text-[11px] text-gray-500">
-                  Individual student names, percentages, and topper photographs are managed in the dedicated Board Results module.
+                  Individual student names, percentages, and topper photographs are managed in the
+                  dedicated Board Results module.
                 </p>
               </div>
             </div>

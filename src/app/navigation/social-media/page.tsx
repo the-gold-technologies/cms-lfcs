@@ -80,7 +80,10 @@ export default function SocialMediaPage() {
         description="Manage central school telephone helplines, official emails, postal address, and social links."
       />
 
-      <form onSubmit={handleSave} className="bg-white rounded-3xl border border-gray-100 p-8 shadow-xs space-y-6">
+      <form
+        onSubmit={handleSave}
+        className="bg-white rounded-3xl border border-gray-100 p-8 shadow-xs space-y-6"
+      >
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           <InputField
             label="Central Helpline Phone *"
@@ -144,4 +147,3 @@ export default function SocialMediaPage() {
     </div>
   );
 }
-

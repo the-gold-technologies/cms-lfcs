@@ -9,7 +9,14 @@
     "facebook": "https://www.facebook.com/share/19GPAevD61/",
     "youtube": "",
     "img": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170001/lfcs-school/Nizamuddinpura-Mau_1793169999785.webp",
-    "facilities": ["Smart Classrooms", "Physics Lab", "Chemistry Lab", "Biology Lab", "Library", "Computer Lab"],
+    "facilities": [
+      "Smart Classrooms",
+      "Physics Lab",
+      "Chemistry Lab",
+      "Biology Lab",
+      "Library",
+      "Computer Lab"
+    ],
     "isFeatured": true,
     "order": 0
   },
@@ -112,4 +119,3 @@
     "order": 7
   }
 ]
-

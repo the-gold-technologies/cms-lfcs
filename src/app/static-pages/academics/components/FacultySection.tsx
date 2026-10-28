@@ -24,7 +24,10 @@ export function FacultySection({ initialData }: { initialData?: any }) {
       setTagline(initialData.tagline ?? "OUR FACULTY");
       setHeadline(initialData.headline ?? "Meet Our School");
       setScriptAccent(initialData.scriptAccent ?? "Principals");
-      setSubtitle(initialData.subtitle ?? "Experienced academic leaders guiding faculty mentors and nurturing student potential across all 8 branches.");
+      setSubtitle(
+        initialData.subtitle ??
+          "Experienced academic leaders guiding faculty mentors and nurturing student potential across all 8 branches.",
+      );
     }
   }, [initialData]);
 
@@ -82,7 +85,8 @@ export function FacultySection({ initialData }: { initialData?: any }) {
               <div>
                 <p className="text-xs font-bold text-gray-800">Dynamic Principals & Campuses</p>
                 <p className="text-[11px] text-gray-500">
-                  Principal photos, designations, and qualifications can also be configured per branch in the Campuses directory.
+                  Principal photos, designations, and qualifications can also be configured per
+                  branch in the Campuses directory.
                 </p>
               </div>
             </div>

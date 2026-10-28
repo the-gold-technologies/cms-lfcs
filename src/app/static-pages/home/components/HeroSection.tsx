@@ -35,8 +35,14 @@ export function HeroSection({ initialData }: { initialData?: any }) {
     if (initialData) {
       setHeadline(initialData.headline ?? "Rooted in Values.");
       setScriptAccent(initialData.scriptAccent ?? "Rising with Excellence.");
-      setSubtitle(initialData.subtitle ?? "A network of CBSE schools committed to academic excellence, character building and holistic development.");
-      setBgImage(initialData.bgImage ?? "https://res.cloudinary.com/dpa93copz/image/upload/v1793170046/lfcs-school/herobg1_1793170046153.webp");
+      setSubtitle(
+        initialData.subtitle ??
+          "A network of CBSE schools committed to academic excellence, character building and holistic development.",
+      );
+      setBgImage(
+        initialData.bgImage ??
+          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170046/lfcs-school/herobg1_1793170046153.webp",
+      );
       setPrimaryCtaText(initialData.primaryCtaText ?? "Explore Our Schools");
       setPrimaryCtaLink(initialData.primaryCtaLink ?? "/our-school");
       setSecondaryCtaText(initialData.secondaryCtaText ?? "Start a School");

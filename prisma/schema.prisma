@@ -1,0 +1,208 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String    @unique
+  emailVerified DateTime?
+  image         String?
+  password      String
+  role          String    @default("admin")
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+model GlobalConfig {
+  id                  String   @id @default("global")
+  siteTitle           String   @default("Little Flower Group of Schools")
+  siteDescription     String   @default("Rooted in Values. Rising with Excellence.")
+  favicon             String?
+  logo                String?
+  phone               String?  @default("+91 94508 24500")
+  email               String?  @default("info@lfgos.com")
+  address             String?  @default("Nizamuddinpura, Mau, Uttar Pradesh 275101")
+  facebookUrl         String?
+  instagramUrl        String?
+  youtubeUrl          String?
+  linkedinUrl         String?
+  googleAnalyticsId   String?
+  gtmId               String?
+  searchConsoleId     String?
+  customHeaderScripts String?
+  customFooterScripts String?
+  socialLinks         Json?
+  robotsTxt           String?  @default("User-agent: *\nAllow: /\n\nSitemap: https://lfgos.com/sitemap.xml")
+  sitemapEnabled      Boolean  @default(true)
+  schema              String?
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+}
+
+model Campus {
+  id            String   @id @default(cuid())
+  name          String
+  city          String
+  state         String   @default("Uttar Pradesh")
+  address       String
+  img           String
+  website       String?
+  instagram     String?
+  facebook      String?
+  youtube       String?
+  phone         String?
+  email         String?
+  principalName String?
+  facilities    Json?    @default("[]")
+  isFeatured    Boolean  @default(true)
+  order         Int      @default(0)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model NewsItem {
+  id              String   @id @default(cuid())
+  title           String
+  slug            String?  @unique
+  excerpt         String
+  date            String   // e.g. "09 Oct 2026"
+  img             String
+  source          String
+  url             String
+  content         String?  // Optional rich text article
+  isFeaturedHome  Boolean  @default(false)
+  order           Int      @default(0)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+model CoverageOutlet {
+  id        String   @id @default(cuid())
+  name      String   @unique
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model GalleryItem {
+  id        String   @id @default(cuid())
+  src       String
+  caption   String
+  category  String   // "Campus & Facilities", "Classrooms", "Science Labs", "Early Years", "Sports & Fitness", "Arts & Culture", "Events & Achievements"
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Testimonial {
+  id          String   @id @default(cuid())
+  name        String
+  role        String
+  text        String
+  category    String   // "PARENTS", "TEACHERS", "STUDENTS"
+  avatarImage String?
+  rating      Int      @default(5)
+  order       Int      @default(0)
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model AcademicResult {
+  id               String   @id @default(cuid())
+  year             String   // e.g., "2025-2026"
+  examType         String   // "CBSE 10th", "CBSE 12th", "JEE", "NEET"
+  studentName      String
+  percentageOrRank String   // e.g., "98.4%" or "AIR 412"
+  campusName       String
+  studentPhoto     String?
+  stream           String?  // "Science", "Commerce", "Humanities"
+  order            Int      @default(0)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+
+model JobOpening {
+  id             String   @id @default(cuid())
+  title          String
+  category       String   // "Teaching", "Administrative"
+  campusLocation String?  // e.g., "Mau", "Ballia", "All Campuses"
+  requirements   Json?    @default("[]")
+  description    String?
+  status         String   @default("Active") // "Active", "Closed"
+  order          Int      @default(0)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+model Submission {
+  id                 String   @id @default(cuid())
+  formType           String   // "admissions", "start-school", "careers", "contact"
+  fullName           String
+  email              String
+  phone              String
+  preferredCampus    String?
+  grade              String?
+  academicSession    String?
+  city               String?
+  proposedLocation   String?
+  landOwnership      String?
+  landArea           String?
+  schoolLevel        String?
+  investmentCapacity String?
+  careerArea         String?
+  roleOfInterest     String?
+  experience         String?
+  cvUrl              String?
+  enquiryType        String?
+  message            String
+  status             String   @default("New") // "New", "In Review", "Contacted", "Closed"
+  internalNotes      String?
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+}
+
+model Page {
+  id              String    @id @default(cuid())
+  title           String?
+  slug            String    @unique
+  type            String    @default("static")
+  visibility      String    @default("published")
+  metaTitle       String?
+  metaDescription String?
+  targetKeywords  String?
+  canonicalUrl    String?
+  noIndex         Boolean   @default(false)
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  sections        Section[]
+}
+
+model Section {
+  id        String   @id @default(cuid())
+  pageId    String
+  type      String
+  content   Json     @default("{}")
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  page      Page     @relation(fields: [pageId], references: [id], onDelete: Cascade)
+}
+
+model NavLink {
+  id          String   @id @default(cuid())
+  label       String
+  url         String
+  type        String   @default("Header") // "Header", "Footer"
+  parent      String   @default("-")
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+

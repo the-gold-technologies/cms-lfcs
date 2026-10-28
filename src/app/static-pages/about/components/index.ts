@@ -1,0 +1,9 @@
+export { AboutHeroSection } from "./AboutHeroSection";
+export { OurStorySection } from "./OurStorySection";
+export { VisionMissionSection } from "./VisionMissionSection";
+export { EducationalApproachSection } from "./EducationalApproachSection";
+export { OurValuesSection } from "./OurValuesSection";
+export { LeadershipSection } from "./LeadershipSection";
+export { OurGrowthSection } from "./OurGrowthSection";
+export { AwardsSection } from "./AwardsSection";
+export { AboutCTASection } from "./AboutCTASection";

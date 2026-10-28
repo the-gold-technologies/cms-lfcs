@@ -1,0 +1,28 @@
+{
+  "home": {
+    "HeroSection": {
+      "title": "Little Flower Group of Schools",
+      "tagline": "Rooted in Values. Rising with Excellence.",
+      "years": "40+",
+      "campuses": "8",
+      "students": "15,000+",
+      "bgImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170046/lfcs-school/herobg1_1793170046153.webp"
+    },
+    "WelcomeSection": {
+      "heading": "Welcome to Little Flower Group of Schools",
+      "description": "For over four decades, Little Flower has been dedicated to providing quality, value-based education across Eastern Uttar Pradesh. We believe that true education nurtures the mind, body, and spirit.",
+      "quote": "Education is not merely the transmission of knowledge; it is the ignition of character, curiosity, and compassion."
+    },
+    "NoteOfSupportSection": {
+      "anandKumarQuote": "LFCS's mission of bringing quality, affordable education to every community aligns deeply with the philosophy of Super 30. I am honored to support their School Associate initiative.",
+      "sharmanJoshiQuote": "Education for all is the foundation of a progressive nation. Little Flower Schools' commitment to holistic child development is truly inspiring."
+    },
+    "CTABanners": {
+      "admissionsCtaTitle": "Admissions Open for Session 2026-27",
+      "admissionsCtaSubtitle": "Give your child a nurturing, value-based learning environment across our 8 campuses.",
+      "partnerCtaTitle": "Start an LFCS Associate School",
+      "partnerCtaSubtitle": "Partner with our legacy of 40+ years and establish a premier CBSE school in your city."
+    }
+  }
+}
+

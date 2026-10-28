@@ -1,0 +1,66 @@
+[
+  {
+    "name": "Animesh Rai",
+    "role": "Alumnus, Pursuing BBA",
+    "category": "STUDENTS",
+    "text": "My years at the school gave me a strong foundation for pursuing BBA. The discipline and values I learned here continue to help me in college.",
+    "order": 0
+  },
+  {
+    "name": "Aditi Rai",
+    "role": "Alumna, Pursuing MBBS",
+    "category": "STUDENTS",
+    "text": "The teachers always motivated me to ask questions and understand concepts rather than simply memorising them. Beyond academics, the school taught me responsibility, time management and respect.",
+    "order": 1
+  },
+  {
+    "name": "Suraj Yadav",
+    "role": "Alumnus, Pursuing B.Tech (AI & ML)",
+    "category": "STUDENTS",
+    "text": "The school provided an environment where curiosity and interest in technology were encouraged. My teachers helped me develop logical thinking and problem-solving skills.",
+    "order": 2
+  },
+  {
+    "name": "Mr. Shashi Bhushan Singh",
+    "role": "PGT Science",
+    "category": "TEACHERS",
+    "text": "Working at Little Flower Children School has been a rewarding experience. The management supports teachers with modern pedagogy and digital classrooms.",
+    "order": 0
+  },
+  {
+    "name": "Mr. Umesh Vishwakarma",
+    "role": "TGT Maths",
+    "category": "TEACHERS",
+    "text": "My experience at LFCS has been enriching and fulfilling. The focus on conceptual clarity and student welfare makes teaching genuinely impactful.",
+    "order": 1
+  },
+  {
+    "name": "Ms. Wajeeha Parveen",
+    "role": "TGT Teacher",
+    "category": "TEACHERS",
+    "text": "The school provides a balanced environment for academic learning, creativity, discipline and personality development.",
+    "order": 2
+  },
+  {
+    "name": "Mr. Sarvesh Singh",
+    "role": "Parent",
+    "category": "PARENTS",
+    "text": "The teachers are caring, approachable and attentive towards individual students. We have seen wonderful growth in our child's confidence.",
+    "order": 0
+  },
+  {
+    "name": "Mr. Banshidhar Yadav",
+    "role": "Parent",
+    "category": "PARENTS",
+    "text": "LFCS has provided our child with a safe, disciplined and encouraging learning environment. The value-based approach is unmatched.",
+    "order": 1
+  },
+  {
+    "name": "Mr. Rambharat Yadav",
+    "role": "Parent",
+    "category": "PARENTS",
+    "text": "We are pleased with the academic and personal development of my child at LFCS. We are thankful to the teachers and management for their sincere efforts.",
+    "order": 2
+  }
+]
+

@@ -1,0 +1,9 @@
+export { StartSchoolHeroSection } from "./StartSchoolHeroSection";
+export { WhyPartnerSection } from "./WhyPartnerSection";
+export { SchoolModelSection } from "./SchoolModelSection";
+export { SupportProvidedSection } from "./SupportProvidedSection";
+export { PartnerRequirementsSection } from "./PartnerRequirementsSection";
+export { SetupProcessSection } from "./SetupProcessSection";
+export { InvestmentSection } from "./InvestmentSection";
+export { StartSchoolFaqSection } from "./StartSchoolFaqSection";
+export { StartSchoolFinalCTASection } from "./StartSchoolFinalCTASection";

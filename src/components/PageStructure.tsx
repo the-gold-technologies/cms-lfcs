@@ -46,6 +46,14 @@ const LFCS_PAGES: PageListItem[] = [
     sectionsCount: 3,
   },
   {
+    title: "Our Schools (Campuses)",
+    slug: "our-school",
+    route: "/our-school",
+    editorUrl: "/static-pages/our-school",
+    type: "Campus Directory",
+    sectionsCount: 3,
+  },
+  {
     title: "Experience / Campus Life",
     slug: "experience",
     route: "/experience",

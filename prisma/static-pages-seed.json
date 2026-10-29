@@ -1413,5 +1413,44 @@
       "scriptAccent": "Our Campuses.",
       "description": "A look inside Little Flower schools: our classrooms, labs, early years, sports, culture and the events that make school life memorable."
     }
+  },
+  "our-school": {
+    "OurSchoolHeroSection": {
+      "tagline": "Our Schools",
+      "title": "A Network of",
+      "scriptAccent": "Excellence & Growth.",
+      "description": "Discover the Little Flower Children's School network. Spread across multiple cities, our schools are united by a shared commitment to academic excellence, character building, and providing a nurturing environment where students shape their future."
+    },
+    "AllSchoolsListSection": {
+      "tagline": "OUR CAMPUSES",
+      "headline": "8 Campuses Across Eastern Uttar Pradesh",
+      "subtitle": "Discover premier CBSE educational institutions established across Mau, Ballia, and Ghazipur districts."
+    },
+    "OurSchoolCTASection": {
+      "tagline": "Admissions Open",
+      "headline": "Give your child a place to",
+      "scriptAccent": "Grow. Lead. Learn.",
+      "primaryButtonText": "Enquire for Admission",
+      "secondaryButtonText": "Explore Our School",
+      "secondaryButtonLink": "/about",
+      "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793259108/lfcs-school/our-school/our-school-cta_1793259105953.webp",
+      "features": [
+        {
+          "title": "Nurturing",
+          "subtitle": "Environment",
+          "icon": "Leaf"
+        },
+        {
+          "title": "Holistic",
+          "subtitle": "Development",
+          "icon": "Users"
+        },
+        {
+          "title": "Brighter",
+          "subtitle": "Futures",
+          "icon": "Star"
+        }
+      ]
+    }
   }
 }

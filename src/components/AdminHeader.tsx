@@ -28,6 +28,7 @@ const STATIC_SEARCH_ITEMS: SearchItem[] = [
   { title: "About Us Page", category: "Pages", url: "/static-pages/about", icon: FileText },
   { title: "Academics Page", category: "Pages", url: "/static-pages/academics", icon: FileText },
   { title: "Admissions Page", category: "Pages", url: "/static-pages/admissions", icon: FileText },
+  { title: "Our Schools Page", category: "Pages", url: "/static-pages/our-school", icon: FileText },
   { title: "Experience Page", category: "Pages", url: "/static-pages/experience", icon: FileText },
   {
     title: "Start a School Page",

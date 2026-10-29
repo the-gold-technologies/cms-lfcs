@@ -59,6 +59,7 @@ const sidebarLinks: SidebarLink[] = [
       { title: "About Us", href: "/static-pages/about" },
       { title: "Academics", href: "/static-pages/academics" },
       { title: "Admissions", href: "/static-pages/admissions" },
+      { title: "Our Schools", href: "/static-pages/our-school" },
       { title: "Experience", href: "/static-pages/experience" },
       { title: "Start a School", href: "/static-pages/start-school" },
       { title: "Careers", href: "/static-pages/careers" },

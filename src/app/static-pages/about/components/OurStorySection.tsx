@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 import { SectionHeader } from "@/components/SectionHeader";
 import { InputField } from "@/components/InputField";
 import { TextAreaField } from "@/components/TextAreaField";
+import { ImagePickerField } from "@/components/ImagePickerField";
 import { SaveButton } from "@/components/SaveButton";
 import { Plus, Trash2 } from "lucide-react";
 
@@ -22,26 +23,21 @@ export function OurStorySection({ initialData }: { initialData?: any }) {
   const [headline, setHeadline] = useState("");
   const [scriptAccent, setScriptAccent] = useState("");
   const [story, setStory] = useState("");
+  const [storyImage1, setStoryImage1] = useState("");
+  const [storyImage2, setStoryImage2] = useState("");
 
   const [stats, setStats] = useState<StoryStat[]>([]);
 
   useEffect(() => {
     if (initialData) {
-      setTagline(initialData.tagline ?? "Our Story");
-      setHeadline(initialData.headline ?? "A Journey of");
-      setScriptAccent(initialData.scriptAccent ?? "Dedication");
+      setTagline(initialData.tagline ?? "");
+      setHeadline(initialData.headline ?? "");
+      setScriptAccent(initialData.scriptAccent ?? "");
+      setStory(initialData.story ?? "");
+      setStoryImage1(initialData.storyImage1 ?? "");
+      setStoryImage2(initialData.storyImage2 ?? "");
 
-      if (initialData.story) {
-        setStory(initialData.story);
-      } else if (initialData.paragraph1 || initialData.paragraph2) {
-        setStory([initialData.paragraph1, initialData.paragraph2].filter(Boolean).join("\n\n"));
-      } else {
-        setStory(
-          "Founded in 1993 by Late Shri Vijay Shankar Yadav in a temporary space with just 30 students and a big dream, Little Flower School began its journey with a simple mission: to provide quality, value-based education that goes beyond textbooks.\n\nOver the past three decades, we have grown from a modest neighborhood school into a network of CBSE-affiliated schools across Uttar Pradesh. What hasn't changed is our commitment to fostering a nurturing environment where every child feels valued, encouraged, and challenged.",
-        );
-      }
-
-      if (Array.isArray(initialData.stats) && initialData.stats.length > 0) {
+      if (Array.isArray(initialData.stats)) {
         setStats(
           initialData.stats.map((s: any) => ({
             value: s.value ?? "",
@@ -49,16 +45,7 @@ export function OurStorySection({ initialData }: { initialData?: any }) {
           })),
         );
       } else {
-        setStats([
-          {
-            value: initialData.stat1Number ?? "1993",
-            label: initialData.stat1Text ?? "Year Founded with 30 Students",
-          },
-          {
-            value: initialData.stat2Number ?? "30+",
-            label: initialData.stat2Text ?? "Years of Transformative Growth",
-          },
-        ]);
+        setStats([]);
       }
     }
   }, [initialData]);
@@ -83,8 +70,6 @@ export function OurStorySection({ initialData }: { initialData?: any }) {
     setLoading(true);
     setSaved(false);
     try {
-      const paragraphs = story.split(/\n\s*\n/).map((p) => p.trim()).filter(Boolean);
-
       const payload = {
         section: "OurStorySection",
         content: {
@@ -92,6 +77,8 @@ export function OurStorySection({ initialData }: { initialData?: any }) {
           headline,
           scriptAccent,
           story,
+          storyImage1,
+          storyImage2,
           stats,
         },
       };
@@ -134,19 +121,19 @@ export function OurStorySection({ initialData }: { initialData?: any }) {
               label="Eyebrow Tag"
               value={tagline}
               onChange={(e) => setTagline(e.target.value)}
-              placeholder="e.g. Section category tag (e.g. Our Story)"
+              placeholder="e.g. Our Story"
             />
             <InputField
               label="Headline Lead"
               value={headline}
               onChange={(e) => setHeadline(e.target.value)}
-              placeholder="e.g. Title lead (e.g. A Journey of)"
+              placeholder="e.g. A Journey of"
             />
             <InputField
               label="Script Accent"
               value={scriptAccent}
               onChange={(e) => setScriptAccent(e.target.value)}
-              placeholder="e.g. Cursive word (e.g. Dedication)"
+              placeholder="e.g. Dedication"
             />
           </div>
 
@@ -160,6 +147,21 @@ export function OurStorySection({ initialData }: { initialData?: any }) {
             helperText="Hit Enter twice between paragraphs to create clean white line spaces just like on the live website."
             placeholder="Write the founding narrative here. Separate multiple paragraphs by hitting Enter twice..."
           />
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <ImagePickerField
+              label="Story Primary Photo"
+              value={storyImage1}
+              onChange={setStoryImage1}
+              folder="lfcs-school/about"
+            />
+            <ImagePickerField
+              label="Story Secondary Photo"
+              value={storyImage2}
+              onChange={setStoryImage2}
+              folder="lfcs-school/about"
+            />
+          </div>
 
           {/* DYNAMIC HISTORICAL METRICS */}
           <div className="border-t border-gray-100 pt-5 space-y-4">
@@ -222,7 +224,7 @@ export function OurStorySection({ initialData }: { initialData?: any }) {
                       label="Label"
                       value={st.label}
                       onChange={(e) => handleUpdateStat(idx, "label", e.target.value)}
-                      placeholder="e.g. Year Founded with 30 Students"
+                      placeholder="e.g. Year Founded"
                     />
                   </div>
                 ))}

@@ -19,21 +19,16 @@ export function VisionMissionSection({ initialData }: { initialData?: any }) {
 
   useEffect(() => {
     if (initialData) {
-      setVisionTitle(initialData.visionTitle ?? "Our Vision");
-      setVisionDesc(
-        initialData.visionDesc ??
-          "To be a leading educational network that empowers students to achieve their highest potential, fostering a generation of compassionate, innovative, and responsible global citizens who will make a positive impact on the world.",
-      );
-      setMissionTitle(initialData.missionTitle ?? "Our Mission");
-      setMissionDesc(
-        initialData.missionDesc ??
-          "To provide transformative, values-based education that combines academic rigor with character building, practical life skills, and social consciousness, ensuring equitable access to high-quality learning across all communities.",
-      );
+      setVisionTitle(initialData.visionTitle ?? "");
+      setVisionDesc(initialData.visionDesc ?? "");
+      setMissionTitle(initialData.missionTitle ?? "");
+      setMissionDesc(initialData.missionDesc ?? "");
     }
   }, [initialData]);
 
   const handleSave = async () => {
     setLoading(true);
+    setSaved(false);
     try {
       const payload = {
         section: "VisionMissionSection",
@@ -69,7 +64,7 @@ export function VisionMissionSection({ initialData }: { initialData?: any }) {
   return (
     <div className="bg-white rounded-3xl p-6 shadow-sm ring-1 ring-gray-100 flex flex-col gap-6">
       <SectionHeader
-        title="3. Vision & Mission Cards"
+        title="4. Vision & Mission Cards"
         description="Dual signature cards defining Little Flower's forward-looking institutional vision and grounded everyday mission."
         badge="Live Section"
         isOpen={isOpen}
@@ -95,14 +90,14 @@ export function VisionMissionSection({ initialData }: { initialData?: any }) {
                 value={visionDesc}
                 onChange={(e) => setVisionDesc(e.target.value)}
                 rows={4}
-                placeholder="e.g. State the institutional vision for graduating students..."
+                placeholder="e.g. State the institutional vision..."
               />
             </div>
 
             {/* Mission Card */}
-            <div className="p-5 bg-rose-50/40 rounded-2xl border border-rose-100 space-y-3">
-              <h4 className="text-xs font-bold uppercase tracking-wider text-[#c76785]">
-                Mission Statement (Burgundy Card)
+            <div className="p-5 bg-pink-50/40 rounded-2xl border border-pink-100 space-y-3">
+              <h4 className="text-xs font-bold uppercase tracking-wider text-pink-800">
+                Mission Statement (Pink Card)
               </h4>
               <InputField
                 label="Card Title"
@@ -115,7 +110,7 @@ export function VisionMissionSection({ initialData }: { initialData?: any }) {
                 value={missionDesc}
                 onChange={(e) => setMissionDesc(e.target.value)}
                 rows={4}
-                placeholder="e.g. State the educational methods and standards..."
+                placeholder="e.g. State the institutional mission..."
               />
             </div>
           </div>

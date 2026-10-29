@@ -24,6 +24,7 @@ export function OurGrowthSection({ initialData }: { initialData?: any }) {
 
   const [tagline, setTagline] = useState("");
   const [headline, setHeadline] = useState("");
+  const [scriptAccent, setScriptAccent] = useState("");
   const [subtitle, setSubtitle] = useState("");
 
   const [milestones, setMilestones] = useState<MilestoneItem[]>([]);
@@ -31,14 +32,12 @@ export function OurGrowthSection({ initialData }: { initialData?: any }) {
 
   useEffect(() => {
     if (initialData) {
-      setTagline(initialData.tagline ?? "TIMELINE OF EXCELLENCE");
-      setHeadline(initialData.headline ?? "Milestones in Our Journey");
-      setSubtitle(
-        initialData.subtitle ??
-          "Key historical moments that shaped our growth and expansion across Eastern Uttar Pradesh.",
-      );
+      setTagline(initialData.tagline ?? "");
+      setHeadline(initialData.headline ?? "");
+      setScriptAccent(initialData.scriptAccent ?? "");
+      setSubtitle(initialData.subtitle ?? "");
 
-      if (Array.isArray(initialData.milestones) && initialData.milestones.length > 0) {
+      if (Array.isArray(initialData.milestones)) {
         setMilestones(
           initialData.milestones.map((m: any) => ({
             year: m.year ?? "",
@@ -48,48 +47,7 @@ export function OurGrowthSection({ initialData }: { initialData?: any }) {
           })),
         );
       } else {
-        setMilestones([
-          {
-            year: initialData.m1Year ?? "1993",
-            title: initialData.m1Title ?? "The Beginning",
-            desc:
-              initialData.m1Desc ??
-              "Founded by Late Shri Vijay Shankar Yadav in Mau with just 30 students and a vision for holistic schooling.",
-            image:
-              initialData.m1Image ??
-              "https://res.cloudinary.com/dpa93copz/image/upload/v1793170045/lfcs-school/logo1_1793170045264.webp",
-          },
-          {
-            year: initialData.m2Year ?? "2012",
-            title: initialData.m2Title ?? "LFCS Kiriharapur, Ballia",
-            desc:
-              initialData.m2Desc ??
-              "Flagship expansion into Ballia district with modern laboratories and lush sports grounds.",
-            image:
-              initialData.m2Image ??
-              "https://res.cloudinary.com/dpa93copz/image/upload/v1793170004/lfcs-school/Khalispur-Balia_1793170003677.webp",
-          },
-          {
-            year: initialData.m3Year ?? "2014",
-            title: initialData.m3Title ?? "LFIS Khalishpur, Mau",
-            desc:
-              initialData.m3Desc ??
-              "International-standard campus with Olympic-grade swimming pool, amphitheater, and smart classrooms.",
-            image:
-              initialData.m3Image ??
-              "https://res.cloudinary.com/dpa93copz/image/upload/v1793170014/lfcs-school/journey-lfis-mau_1793170014137.webp",
-          },
-          {
-            year: initialData.m4Year ?? "2024",
-            title: initialData.m4Title ?? "School Associate Program",
-            desc:
-              initialData.m4Desc ??
-              "Nationwide expansion model inaugurated by Anand Kumar and Sharman Joshi to scale quality education.",
-            image:
-              initialData.m4Image ??
-              "https://res.cloudinary.com/dpa93copz/image/upload/v1793170008/lfcs-school/school-associate-launch_1793170008299.webp",
-          },
-        ]);
+        setMilestones([]);
       }
     }
   }, [initialData]);
@@ -114,10 +72,14 @@ export function OurGrowthSection({ initialData }: { initialData?: any }) {
     );
   };
 
-  const handleUpdateMilestone = (index: number, field: keyof MilestoneItem, value: string) => {
+  const handleUpdateMilestone = (
+    index: number,
+    field: keyof MilestoneItem,
+    val: string,
+  ) => {
     setMilestones((prev) => {
       const copy = [...prev];
-      copy[index] = { ...copy[index], [field]: value };
+      copy[index] = { ...copy[index], [field]: val };
       return copy;
     });
   };
@@ -131,6 +93,7 @@ export function OurGrowthSection({ initialData }: { initialData?: any }) {
         content: {
           tagline,
           headline,
+          scriptAccent,
           subtitle,
           milestones,
         },
@@ -145,7 +108,7 @@ export function OurGrowthSection({ initialData }: { initialData?: any }) {
       const json = await res.json();
       if (json.success) {
         setSaved(true);
-        toast.success("Our Growth timeline section saved successfully!");
+        toast.success("Our Growth timeline saved successfully!");
         setTimeout(() => setSaved(false), 2500);
       } else {
         toast.error(json.error || "Failed to save section");
@@ -160,8 +123,8 @@ export function OurGrowthSection({ initialData }: { initialData?: any }) {
   return (
     <div className="bg-white rounded-3xl p-6 shadow-sm ring-1 ring-gray-100 flex flex-col gap-6">
       <SectionHeader
-        title="7. Our Growth & Journey Milestones"
-        description="Historical timeline showcasing expansion milestones from founding in 1993 to modern campuses and Associate School initiatives."
+        title="7. Our Growth Timeline (Milestones)"
+        description="Historical journey of Little Flower Group from 1993 inception through multi-district campus expansion and modern milestones."
         badge="Live Section"
         isOpen={isOpen}
         onToggle={() => setIsOpen(!isOpen)}
@@ -169,18 +132,24 @@ export function OurGrowthSection({ initialData }: { initialData?: any }) {
 
       {isOpen && (
         <div className="space-y-6 pt-2">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <InputField
               label="Eyebrow Tag"
               value={tagline}
               onChange={(e) => setTagline(e.target.value)}
-              placeholder="e.g. Eyebrow badge (e.g. TIMELINE OF EXCELLENCE)"
+              placeholder="e.g. Our Journey"
             />
             <InputField
-              label="Section Headline"
+              label="Primary Heading"
               value={headline}
               onChange={(e) => setHeadline(e.target.value)}
-              placeholder="e.g. Section title (e.g. Milestones in Our Journey)"
+              placeholder="e.g. Growing with"
+            />
+            <InputField
+              label="Script Accent"
+              value={scriptAccent}
+              onChange={(e) => setScriptAccent(e.target.value)}
+              placeholder="e.g. Purpose"
             />
           </div>
 
@@ -189,7 +158,7 @@ export function OurGrowthSection({ initialData }: { initialData?: any }) {
             value={subtitle}
             onChange={(e) => setSubtitle(e.target.value)}
             rows={2}
-            placeholder="e.g. Introductory summary of organizational expansion..."
+            placeholder="e.g. From 30 students in a temporary space to a network of CBSE schools..."
           />
 
           {/* DYNAMIC MILESTONES ARRAY */}
@@ -197,35 +166,20 @@ export function OurGrowthSection({ initialData }: { initialData?: any }) {
             <div className="flex items-center justify-between">
               <div>
                 <h4 className="text-xs font-bold uppercase tracking-wider text-gray-700 flex items-center gap-2">
-                  Historical Milestones ({milestones.length})
+                  Timeline Milestones ({milestones.length})
                 </h4>
                 <p className="text-[11px] text-gray-400 mt-0.5">
-                  Timeline milestones marking key years and achievements. Can add more than 4 milestones.
+                  Chronological landmark events with photographs and narrative milestones.
                 </p>
               </div>
-              <div className="flex items-center gap-2">
-                <button
-                  type="button"
-                  onClick={() => {
-                    if (openIndices.length === milestones.length) {
-                      setOpenIndices([]);
-                    } else {
-                      setOpenIndices(milestones.map((_, i) => i));
-                    }
-                  }}
-                  className="text-xs font-semibold text-slate-500 hover:text-slate-800 px-2 py-1 rounded-lg hover:bg-slate-100 transition-colors cursor-pointer"
-                >
-                  {openIndices.length === milestones.length ? "Collapse All" : "Expand All"}
-                </button>
-                <button
-                  type="button"
-                  onClick={handleAddMilestone}
-                  className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0E5A60] hover:text-[#061C29] bg-[#0E5A60]/10 hover:bg-[#0E5A60]/20 px-3.5 py-1.5 rounded-xl transition-all cursor-pointer shadow-2xs"
-                >
-                  <Plus className="w-3.5 h-3.5" />
-                  <span>Add Milestone</span>
-                </button>
-              </div>
+              <button
+                type="button"
+                onClick={handleAddMilestone}
+                className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0E5A60] hover:text-[#061C29] bg-[#0E5A60]/10 hover:bg-[#0E5A60]/20 px-3.5 py-1.5 rounded-xl transition-all cursor-pointer shadow-2xs"
+              >
+                <Plus className="w-3.5 h-3.5" />
+                <span>Add Milestone</span>
+              </button>
             </div>
 
             {milestones.length === 0 ? (
@@ -238,13 +192,15 @@ export function OurGrowthSection({ initialData }: { initialData?: any }) {
               </div>
             ) : (
               <div className="space-y-3">
-                {milestones.map((m, idx) => (
+                {milestones.map((milestone, idx) => (
                   <CollapsibleCard
                     key={idx}
                     index={idx}
-                    title={`Milestone ${idx + 1}: ${m.title || "Untitled Milestone"}`}
-                    badge={m.year || undefined}
-                    thumbnail={m.image}
+                    title={
+                      milestone.year && milestone.title
+                        ? `${milestone.year} - ${milestone.title}`
+                        : `Milestone ${idx + 1}`
+                    }
                     isOpen={openIndices.includes(idx)}
                     onToggle={() =>
                       setOpenIndices((prev) =>
@@ -252,21 +208,18 @@ export function OurGrowthSection({ initialData }: { initialData?: any }) {
                       )
                     }
                     onDelete={() => handleRemoveMilestone(idx)}
-                    deleteTitle="Delete Milestone"
                   >
-                    <div className="grid grid-cols-1 sm:grid-cols-4 gap-4">
-                      <div>
-                        <InputField
-                          label="Year"
-                          value={m.year}
-                          onChange={(e) => handleUpdateMilestone(idx, "year", e.target.value)}
-                          placeholder="e.g. 1993"
-                        />
-                      </div>
-                      <div className="sm:col-span-3">
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                      <InputField
+                        label="Year / Period"
+                        value={milestone.year}
+                        onChange={(e) => handleUpdateMilestone(idx, "year", e.target.value)}
+                        placeholder="e.g. 1993"
+                      />
+                      <div className="sm:col-span-2">
                         <InputField
                           label="Milestone Title"
-                          value={m.title}
+                          value={milestone.title}
                           onChange={(e) => handleUpdateMilestone(idx, "title", e.target.value)}
                           placeholder="e.g. The Beginning"
                         />
@@ -274,18 +227,18 @@ export function OurGrowthSection({ initialData }: { initialData?: any }) {
                     </div>
 
                     <TextAreaField
-                      label="Description"
-                      value={m.desc}
+                      label="Milestone Description"
+                      value={milestone.desc}
                       onChange={(e) => handleUpdateMilestone(idx, "desc", e.target.value)}
                       rows={2}
-                      placeholder="e.g. Brief history..."
+                      placeholder="e.g. Founded by Late Shri Vijay Shankar Yadav in a temporary space..."
                     />
 
                     <ImagePickerField
-                      label="Milestone Photo"
-                      value={m.image}
+                      label="Milestone Photo / Landmark"
+                      value={milestone.image}
                       onChange={(url) => handleUpdateMilestone(idx, "image", url)}
-                      placeholder="e.g. Cloudinary photo URL"
+                      folder="lfcs-school/about"
                     />
                   </CollapsibleCard>
                 ))}

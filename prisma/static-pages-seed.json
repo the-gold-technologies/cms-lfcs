@@ -1,164 +1,57 @@
 {
   "about": {
-    "AboutCTASection": {
-      "heading": "Be a Part of Our Little Flower Family",
-      "subtitle": "Admissions open for a brighter tomorrow across all campuses.",
-      "buttonText": "Enquire Now",
-      "buttonLink": "/contact#contact-form",
-      "bgImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170040/lfcs-school/life1_1793170040339.webp"
-    },
     "AboutHeroSection": {
       "tagline": "About Us",
       "headline": "Empowering Minds, Nurturing",
       "scriptAccent": "Futures.",
       "description": "Discover the heart of Little Flower Group of Schools. A legacy of excellence, rooted in values, and dedicated to shaping the leaders of tomorrow.",
       "ctaText": "Explore Our Story",
-      "ctaLink": "#our-story"
-    },
-    "AwardsSection": {
-      "tagline": "HONOURS & RECOGNITION",
-      "headline": "Awards That Inspire Us",
-      "subtitle": "Celebrating excellence recognized at state, national, and international summits.",
-      "awards": [
-        {
-          "title": "International Academic Recognition",
-          "desc": "Representation at the 1st International & 31st Annual Conference of Sahodaya School Complexes in Dubai, UAE.",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170013/lfcs-school/logo-unveiling_1793170013232.webp"
-        },
-        {
-          "title": "National Leadership Award",
-          "desc": "Honoured with the Award for Leading School Chain of Uttar Pradesh at the Education Summit in Lucknow.",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170009/lfcs-school/anand-kumar-toi-profile_1793170009223.webp"
-        },
-        {
-          "title": "Prestigious Media Recognition",
-          "desc": "Recipient of the Dainik Jagran Award for being one of the Most Credible Educational Brands in UP.",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170010/lfcs-school/anand-kumar-felicitation_1793170010248.webp"
-        }
-      ]
-    },
-    "EducationalApproachSection": {
-      "tagline": "OUR PHILOSOPHY",
-      "headline": "A Thoughtful Educational Approach",
-      "description": "Our academic paradigm integrates modern cognitive science with time-tested values.",
-      "pillars": [
-        {
-          "title": "Child-Centered Learning",
-          "desc": "We focus on nurturing curiosity and encouraging exploration tailored to each learner.",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170030/lfcs-school/independent_1793170030545.webp"
-        },
-        {
-          "title": "Experiential Learning",
-          "desc": "Hands-on experiences that make learning meaningful, relevant, and lasting.",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170028/lfcs-school/practical_1793170027731.webp"
-        },
-        {
-          "title": "Holistic Development",
-          "desc": "We nurture academics, creativity, athletics, and life skills equally.",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170034/lfcs-school/activity_1793170034132.webp"
-        },
-        {
-          "title": "Values & Character",
-          "desc": "Building strong moral compass, empathy, and respect for a better tomorrow.",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170022/lfcs-school/collabrative_1793170021825.webp"
-        }
-      ]
-    },
-    "LeadershipSection": {
-      "tagline": "LEADERSHIP / MANAGEMENT",
-      "headline": "Guiding the Institution",
-      "subtitle": "Little Flower's growth has been guided by visionary management committed to quality education and character formation.",
-      "leaders": [
-        {
-          "name": "Late Shri Vijay Shankar Yadav",
-          "role": "Founder & Visionary",
-          "quote": "Education is not merely the transmission of information; it is the ignition of character, curiosity, and compassion.",
-          "bio": "A dedicated educator whose unwavering belief in the potential of rural and semi-urban children gave birth to Little Flower in 1993.",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170014/lfcs-school/journey-lfis-mau_1793170014137.webp"
-        },
-        {
-          "name": "Shri Vivek Yadav",
-          "role": "Managing Director",
-          "quote": "Our mission is to prepare children not just for examinations, but for life — equipped with ethics, logic, and global awareness.",
-          "bio": "Spearheading modern curriculum integration, Olympic-standard sports facilities, and the LFCS Associate School expansion across Uttar Pradesh.",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170010/lfcs-school/anand-kumar-felicitation_1793170010248.webp"
-        }
-      ]
-    },
-    "OurGrowthSection": {
-      "tagline": "TIMELINE OF EXCELLENCE",
-      "headline": "Milestones in Our Journey",
-      "subtitle": "Key historical moments that shaped our growth and expansion across Eastern Uttar Pradesh.",
-      "milestones": [
-        {
-          "year": "1993",
-          "title": "The Beginning",
-          "desc": "Founded by Late Shri Vijay Shankar Yadav in Mau with just 30 students and a vision for holistic schooling.",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170045/lfcs-school/logo1_1793170045264.webp"
-        },
-        {
-          "year": "2012",
-          "title": "LFCS Kiriharapur, Ballia",
-          "desc": "Flagship expansion into Ballia district with modern laboratories and lush sports grounds.",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170004/lfcs-school/Khalispur-Balia_1793170003677.webp"
-        },
-        {
-          "year": "2014",
-          "title": "LFIS Khalishpur, Mau",
-          "desc": "International-standard campus with Olympic-grade swimming pool, amphitheater, and smart classrooms.",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170014/lfcs-school/journey-lfis-mau_1793170014137.webp"
-        },
-        {
-          "year": "2024",
-          "title": "School Associate Program",
-          "desc": "Nationwide expansion model inaugurated by Anand Kumar and Sharman Joshi to scale quality education.",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170008/lfcs-school/school-associate-launch_1793170008299.webp"
-        }
-      ]
+      "ctaLink": "#our-story",
+      "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793254261/lfcs-school/about/about-hero_1793254259596.webp"
     },
     "OurStorySection": {
       "tagline": "Our Story",
       "headline": "A Journey of",
       "scriptAccent": "Dedication",
-      "story": "Founded in 1993 by Late Shri Vijay Shankar Yadav in a temporary space with just 30 students and a big dream, Little Flower School began its journey with a simple mission: to provide quality, value-based education that goes beyond textbooks.\n\nOver the past three decades, we have grown from a modest neighborhood school into a network of CBSE-affiliated schools across Uttar Pradesh. What hasn't changed is our commitment to fostering a nurturing environment where every child feels valued, encouraged, and challenged.",
+      "story": "Founded in 1993 by Late Shri Vijay Shankar Yadav in a temporary space with just 30 students and a big dream, Little Flower School began its journey with a simple mission: to provide quality, value-based education that goes beyond textbooks.\n\nOver the past three decades, we have grown from a modest neighborhood school into a network of CBSE-affiliated schools across Uttar Pradesh. What hasn't changed is our commitment to fostering a nurturing environment where every child feels valued, encouraged, and challenged to achieve their best.",
+      "storyImage1": "https://res.cloudinary.com/dpa93copz/image/upload/v1793254263/lfcs-school/about/story1_1793254263392.webp",
+      "storyImage2": "https://res.cloudinary.com/dpa93copz/image/upload/v1793254265/lfcs-school/about/story2_1793254265102.webp",
       "stats": [
         {
           "value": "1993",
-          "label": "Year Founded with 30 Students"
+          "label": "Year Founded"
         },
         {
-          "value": "30+",
-          "label": "Years of Transformative Growth"
+          "value": "1000+",
+          "label": "Qualified Teachers"
         }
       ]
     },
-    "OurValuesSection": {
-      "tagline": "OUR VALUES",
-      "headline": "Principles That Define Little Flower",
-      "values": [
+    "EducationalApproachSection": {
+      "tagline": "How We Teach",
+      "headline": "Our Educational",
+      "scriptAccent": "Approach",
+      "description": "A dynamic blend of traditional values and modern pedagogical techniques designed to unlock every child's potential.",
+      "pillars": [
         {
-          "title": "Integrity",
-          "desc": "We do the right thing at all times, even when no one is watching."
+          "title": "Child-Centered Learning",
+          "desc": "We focus on nurturing curiosity and encouraging exploration.",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793254266/lfcs-school/about/approach1_1793254266018.webp"
         },
         {
-          "title": "Respect",
-          "desc": "We value every single individual and treat everyone with empathy and kindness."
+          "title": "Experiential Learning",
+          "desc": "Hands-on experiences that make learning meaningful and lasting.",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793254267/lfcs-school/about/approach2_1793254267246.webp"
         },
         {
-          "title": "Excellence",
-          "desc": "We consistently strive for the highest academic and moral standards in all that we do."
+          "title": "Holistic Development",
+          "desc": "We nurture academics, creativity, sports, and life skills equally.",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793254268/lfcs-school/about/approach3_1793254268269.webp"
         },
         {
-          "title": "Innovation",
-          "desc": "We embrace modern ideas, critical thinking, and creativity to solve real-world challenges."
-        },
-        {
-          "title": "Compassion",
-          "desc": "We foster empathy, active community service, and sincere care for all living things."
-        },
-        {
-          "title": "Perseverance",
-          "desc": "We build grit, resilience, and quiet determination to overcome challenges."
+          "title": "Values & Character",
+          "desc": "Building strong values, empathy, and respect for a better tomorrow.",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793254270/lfcs-school/about/approach4_1793254269293.webp"
         }
       ]
     },
@@ -166,7 +59,168 @@
       "visionTitle": "Our Vision",
       "visionDesc": "To be a leading educational network that empowers students to achieve their highest potential, fostering a generation of compassionate, innovative, and responsible global citizens who will make a positive impact on the world.",
       "missionTitle": "Our Mission",
-      "missionDesc": "To provide transformative, values-based education that combines academic rigor with character building, practical life skills, and social consciousness, ensuring equitable access to high-quality learning across all communities."
+      "missionDesc": "To provide a dynamic, inclusive, and values-driven learning environment where excellence in academics, character development, and holistic growth is cultivated through dedicated teaching and strong community partnerships."
+    },
+    "OurValuesSection": {
+      "tagline": "Core Values",
+      "headline": "The Pillars of Our",
+      "scriptAccent": "Community",
+      "subtitle": "Our core values are the foundation of everything we do. They guide our choices, shape our culture, and inspire a better tomorrow.",
+      "values": [
+        {
+          "title": "Integrity",
+          "desc": "We do the right thing at all times, even when no one is watching.",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793254272/lfcs-school/about/values1_1793254272266.webp"
+        },
+        {
+          "title": "Respect",
+          "desc": "We value every single individual and treat everyone with kindness.",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793254273/lfcs-school/about/values2_1793254273191.webp"
+        },
+        {
+          "title": "Excellence",
+          "desc": "We consistently strive for the highest standards in all that we do.",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793254274/lfcs-school/about/values3_1793254274105.webp"
+        },
+        {
+          "title": "Innovation",
+          "desc": "We embrace new ideas and creativity to solve real-world challenges.",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793254275/lfcs-school/about/values4_1793254275130.webp"
+        },
+        {
+          "title": "Community",
+          "desc": "We build strong, supportive relationships that help us grow together.",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793254276/lfcs-school/about/values5_1793254276052.webp"
+        },
+        {
+          "title": "Responsibility",
+          "desc": "We take full ownership of our actions and care deeply for our world.",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793254277/lfcs-school/about/values6_1793254277486.webp"
+        }
+      ]
+    },
+    "LeadershipSection": {
+      "tagline": "Leadership / Management",
+      "headline": "Guiding the",
+      "scriptAccent": "Institution",
+      "subtitle": "Little Flower's growth has been guided by a management committed to building an institution focused on quality education and student development.",
+      "leaders": [
+        {
+          "name": "Late Vijay Shankar Yadav Ji",
+          "role": "Founder & Visionary",
+          "quote": "The foundation of Little Flower's educational journey was laid by Late Shiksha Ratan Vijay Shankar Yadav Ji, whose belief in the importance of education continues to remain part of the institution's identity.",
+          "bio": "A passionate educator who dedicated his entire life to building accessible, value-based learning institutions across eastern Uttar Pradesh.",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793254279/lfcs-school/about/founder_1793254278510.webp"
+        },
+        {
+          "name": "Mr. Muralidhar Yadav",
+          "role": "Chairman, Little Flower Group of Schools",
+          "quote": "Education That Creates Lasting Impact",
+          "bio": "At Little Flower, we believe that the true purpose of education is to prepare children not only for examinations, but for the opportunities and responsibilities that lie ahead.\n\nOur journey has always been guided by a commitment to provide quality education while creating an environment where students can develop knowledge, character, confidence and a sense of responsibility.",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793254280/lfcs-school/about/chairman_1793254279737.webp"
+        },
+        {
+          "name": "Sharman Joshi",
+          "role": "Actor & Supporter",
+          "quote": "Some journeys are worth supporting because of the trust behind them.",
+          "bio": "I am happy to extend my support to Little Flower Children School and its journey towards making quality education accessible to more children and families.\n\nOver the years, LFCS has built a foundation of trust and goodwill through its commitment to education and the communities it serves.",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170012/lfcs-school/sharman-joshi_1793170012349.webp"
+        },
+        {
+          "name": "Mr. Anand Kumar",
+          "role": "Mathematician & Founder, Super 30",
+          "quote": "Education can change the direction of a child's life. But for that change to happen, quality education must reach the children who need it.",
+          "bio": "I am happy to support Little Flower Children Schools and its vision of taking accessible and structured education to more communities.\n\nWhat resonates with me is the belief that every child deserves an opportunity to learn, explore and discover their potential and move forward with confidence.",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170011/lfcs-school/anand-kumar_1793170011282.webp"
+        },
+        {
+          "name": "Ms. Manju Rana",
+          "role": "Concort Consultant & Advisor",
+          "quote": "National Award for Teachers, 2018",
+          "bio": "Felicitated with the National Award for Teachers by the President of India in 2018 for her contribution in the field of education for over 34 years.\n\nFormer Director of the Seth Anandram Jaipuria Group of Schools, with extensive experience in academics, strategic planning, and administrative management.",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793254281/lfcs-school/about/manju-rana-full_1793254280783.webp"
+        }
+      ]
+    },
+    "OurGrowthSection": {
+      "tagline": "Our Journey",
+      "headline": "Growing with",
+      "scriptAccent": "Purpose",
+      "subtitle": "From 30 students in a temporary space to a network of CBSE schools, our journey has been about values, growth, and transforming lives.",
+      "milestones": [
+        {
+          "year": "1993",
+          "title": "The Beginning",
+          "desc": "Founded by Late Shri Vijay Shankar Yadav in a temporary space with just 30 students.",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793254282/lfcs-school/about/founder-portrait_1793254281990.webp"
+        },
+        {
+          "year": "2012",
+          "title": "LFCS Kiriharapur, Ballia",
+          "desc": "An exemplary academy established with modern facilities and cutting edge amenities.",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170004/lfcs-school/Khalispur-Balia_1793170003677.webp"
+        },
+        {
+          "year": "2014",
+          "title": "LFIS, Khalishpur Mau",
+          "desc": "Our flagship international school in Khalishpur, with high tech facilities and an Olympic standard swimming pool.",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170014/lfcs-school/journey-lfis-mau_1793170014137.webp"
+        },
+        {
+          "year": "2018",
+          "title": "LFCS, Ghosi",
+          "desc": "Extending holistic, value based education to the children of remote villages.",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170003/lfcs-school/Ghosi_1793170002814.webp"
+        },
+        {
+          "year": "2022",
+          "title": "LFCS, Kasimabad Ghazipur",
+          "desc": "A new branch in Kasimabad, Ghazipur, commencing operations in the 2022-23 session.",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170004/lfcs-school/Kasimabad_1793170004532.webp"
+        }
+      ]
+    },
+    "AwardsSection": {
+      "tagline": "Recognition & Achievements",
+      "headline": "A Legacy of",
+      "scriptAccent": "Excellence",
+      "quote": "Nationally Honoured, Internationally Recognised",
+      "awards": [
+        {
+          "title": "International Academic Recognition",
+          "desc": "Representation at the 1st International & 31st Annual Conference of Sahodaya School Complexes, Dubai (UAE), highlighting the school's global academic engagement and leadership in contemporary education.",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793254283/lfcs-school/about/international-recognition-1_1793254283321.webp",
+          "images": [
+            "https://res.cloudinary.com/dpa93copz/image/upload/v1793254283/lfcs-school/about/international-recognition-1_1793254283321.webp"
+          ]
+        },
+        {
+          "title": "National Leadership Award",
+          "desc": "Honoured with the Award for Leading School Chain of Uttar Pradesh at the Education Summit, Lucknow, recognising visionary leadership, quality education, and institutional excellence.",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793254284/lfcs-school/about/national-leadership-award-1_1793254284244.webp",
+          "images": [
+            "https://res.cloudinary.com/dpa93copz/image/upload/v1793254284/lfcs-school/about/national-leadership-award-1_1793254284244.webp",
+            "https://res.cloudinary.com/dpa93copz/image/upload/v1793254285/lfcs-school/about/national-leadership-award-2_1793254285145.webp",
+            "https://res.cloudinary.com/dpa93copz/image/upload/v1793254286/lfcs-school/about/national-leadership-award-3_1793254286190.webp"
+          ]
+        },
+        {
+          "title": "Prestigious Media Recognition",
+          "desc": "Recipient of the Dainik Jagran Award 2022 for being one of the Most Credible Brands in Education, acknowledging trust, consistency, and outstanding educational contribution.",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793254287/lfcs-school/about/media-recognition-1_1793254287351.webp",
+          "images": [
+            "https://res.cloudinary.com/dpa93copz/image/upload/v1793254287/lfcs-school/about/media-recognition-1_1793254287351.webp",
+            "https://res.cloudinary.com/dpa93copz/image/upload/v1793254289/lfcs-school/about/media-recognition-2_1793254288589.webp"
+          ]
+        }
+      ]
+    },
+    "AboutCTASection": {
+      "heading": "Be a Part of Our Little Flower Family",
+      "subtitle": "Admissions open for a brighter tomorrow.",
+      "buttonText": "Enquire Now",
+      "buttonLink": "/contact#contact-form",
+      "bgImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1793254289/lfcs-school/about/cta-bg_1793254289446.webp"
     }
   },
   "academics": {

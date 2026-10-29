@@ -23,6 +23,7 @@ export function EducationalApproachSection({ initialData }: { initialData?: any 
 
   const [tagline, setTagline] = useState("");
   const [headline, setHeadline] = useState("");
+  const [scriptAccent, setScriptAccent] = useState("");
   const [description, setDescription] = useState("");
 
   const [pillars, setPillars] = useState<ApproachPillar[]>([]);
@@ -30,60 +31,27 @@ export function EducationalApproachSection({ initialData }: { initialData?: any 
 
   useEffect(() => {
     if (initialData) {
-      setTagline(initialData.tagline ?? "OUR PHILOSOPHY");
-      setHeadline(initialData.headline ?? "A Thoughtful Educational Approach");
-      setDescription(
-        initialData.description ??
-          "Our academic paradigm integrates modern cognitive science with time-tested values.",
-      );
+      setTagline(initialData.tagline ?? "");
+      setHeadline(initialData.headline ?? "");
+      setScriptAccent(initialData.scriptAccent ?? "");
+      setDescription(initialData.description ?? "");
 
-      if (Array.isArray(initialData.pillars) && initialData.pillars.length > 0) {
+      const list = Array.isArray(initialData.pillars)
+        ? initialData.pillars
+        : Array.isArray(initialData.cards)
+          ? initialData.cards
+          : null;
+
+      if (list) {
         setPillars(
-          initialData.pillars.map((p: any) => ({
+          list.map((p: any) => ({
             title: p.title ?? "",
-            desc: p.desc ?? "",
-            image: p.image ?? "",
+            desc: p.desc ?? p.description ?? "",
+            image: p.image ?? p.imgSrc ?? "",
           })),
         );
       } else {
-        setPillars([
-          {
-            title: initialData.app1Title ?? "Child-Centered Learning",
-            desc:
-              initialData.app1Desc ??
-              "We focus on nurturing curiosity and encouraging exploration tailored to each learner.",
-            image:
-              initialData.app1Image ??
-              "https://res.cloudinary.com/dpa93copz/image/upload/v1793170030/lfcs-school/independent_1793170030545.webp",
-          },
-          {
-            title: initialData.app2Title ?? "Experiential Learning",
-            desc:
-              initialData.app2Desc ??
-              "Hands-on experiences that make learning meaningful, relevant, and lasting.",
-            image:
-              initialData.app2Image ??
-              "https://res.cloudinary.com/dpa93copz/image/upload/v1793170028/lfcs-school/practical_1793170027731.webp",
-          },
-          {
-            title: initialData.app3Title ?? "Holistic Development",
-            desc:
-              initialData.app3Desc ??
-              "We nurture academics, creativity, athletics, and life skills equally.",
-            image:
-              initialData.app3Image ??
-              "https://res.cloudinary.com/dpa93copz/image/upload/v1793170034/lfcs-school/activity_1793170034132.webp",
-          },
-          {
-            title: initialData.app4Title ?? "Values & Character",
-            desc:
-              initialData.app4Desc ??
-              "Building strong moral compass, empathy, and respect for a better tomorrow.",
-            image:
-              initialData.app4Image ??
-              "https://res.cloudinary.com/dpa93copz/image/upload/v1793170022/lfcs-school/collabrative_1793170021825.webp",
-          },
-        ]);
+        setPillars([]);
       }
     }
   }, [initialData]);
@@ -117,12 +85,14 @@ export function EducationalApproachSection({ initialData }: { initialData?: any 
 
   const handleSave = async () => {
     setLoading(true);
+    setSaved(false);
     try {
       const payload = {
         section: "EducationalApproachSection",
         content: {
           tagline,
           headline,
+          scriptAccent,
           description,
           pillars,
         },
@@ -137,7 +107,7 @@ export function EducationalApproachSection({ initialData }: { initialData?: any 
       const json = await res.json();
       if (json.success) {
         setSaved(true);
-        toast.success("Educational Approach section saved successfully!");
+        toast.success("Educational Approach saved successfully!");
         setTimeout(() => setSaved(false), 2500);
       } else {
         toast.error(json.error || "Failed to save section");
@@ -152,8 +122,8 @@ export function EducationalApproachSection({ initialData }: { initialData?: any 
   return (
     <div className="bg-white rounded-3xl p-6 shadow-sm ring-1 ring-gray-100 flex flex-col gap-6">
       <SectionHeader
-        title="4. Educational Approach Pillars"
-        description="Foundational learning principles: Child-Centered, Experiential, Holistic Development, and Values & Character."
+        title="3. Educational Approach (Teaching Philosophy)"
+        description="Core tenets of pedagogy at Little Flower: Child-centered exploration, experiential learning, and holistic enrichment."
         badge="Live Section"
         isOpen={isOpen}
         onToggle={() => setIsOpen(!isOpen)}
@@ -161,27 +131,33 @@ export function EducationalApproachSection({ initialData }: { initialData?: any 
 
       {isOpen && (
         <div className="space-y-6 pt-2">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <InputField
-              label="Eyebrow Tag"
+              label="Pre-Heading Tag"
               value={tagline}
               onChange={(e) => setTagline(e.target.value)}
-              placeholder="e.g. Eyebrow badge (e.g. OUR PHILOSOPHY)"
+              placeholder="e.g. How We Teach"
             />
             <InputField
-              label="Section Headline"
+              label="Main Headline"
               value={headline}
               onChange={(e) => setHeadline(e.target.value)}
-              placeholder="e.g. Section title (e.g. A Thoughtful Educational Approach)"
+              placeholder="e.g. Our Educational"
+            />
+            <InputField
+              label="Script Accent"
+              value={scriptAccent}
+              onChange={(e) => setScriptAccent(e.target.value)}
+              placeholder="e.g. Approach"
             />
           </div>
 
           <TextAreaField
-            label="Section Overview"
+            label="Section Subtitle"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             rows={2}
-            placeholder="e.g. Overview introducing the multi-faceted pedagogy..."
+            placeholder="e.g. A dynamic blend of traditional values and modern pedagogical techniques..."
           />
 
           {/* DYNAMIC APPROACH PILLARS */}
@@ -192,32 +168,17 @@ export function EducationalApproachSection({ initialData }: { initialData?: any 
                   Approach Pillars ({pillars.length})
                 </h4>
                 <p className="text-[11px] text-gray-400 mt-0.5">
-                  Core instructional philosophies. Can add more than 4 pillars.
+                  Dynamic pedagogical pillars. You can add more cards beyond 4.
                 </p>
               </div>
-              <div className="flex items-center gap-2">
-                <button
-                  type="button"
-                  onClick={() => {
-                    if (openIndices.length === pillars.length) {
-                      setOpenIndices([]);
-                    } else {
-                      setOpenIndices(pillars.map((_, i) => i));
-                    }
-                  }}
-                  className="text-xs font-semibold text-slate-500 hover:text-slate-800 px-2 py-1 rounded-lg hover:bg-slate-100 transition-colors cursor-pointer"
-                >
-                  {openIndices.length === pillars.length ? "Collapse All" : "Expand All"}
-                </button>
-                <button
-                  type="button"
-                  onClick={handleAddPillar}
-                  className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0E5A60] hover:text-[#061C29] bg-[#0E5A60]/10 hover:bg-[#0E5A60]/20 px-3.5 py-1.5 rounded-xl transition-all cursor-pointer shadow-2xs"
-                >
-                  <Plus className="w-3.5 h-3.5" />
-                  <span>Add Pillar</span>
-                </button>
-              </div>
+              <button
+                type="button"
+                onClick={handleAddPillar}
+                className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0E5A60] hover:text-[#061C29] bg-[#0E5A60]/10 hover:bg-[#0E5A60]/20 px-3.5 py-1.5 rounded-xl transition-all cursor-pointer shadow-2xs"
+              >
+                <Plus className="w-3.5 h-3.5" />
+                <span>Add Pillar</span>
+              </button>
             </div>
 
             {pillars.length === 0 ? (
@@ -226,7 +187,7 @@ export function EducationalApproachSection({ initialData }: { initialData?: any 
                 className="p-8 rounded-2xl bg-gray-50/70 border border-dashed border-gray-200 text-center text-xs text-gray-400 cursor-pointer hover:bg-gray-100/70 hover:border-gray-300 transition-all flex flex-col items-center justify-center gap-2"
               >
                 <Plus className="w-5 h-5 text-gray-400" />
-                <span>No pillars added yet. Click to add your first pillar.</span>
+                <span>No approach pillars added yet. Click to add your first pillar.</span>
               </div>
             ) : (
               <div className="space-y-3">
@@ -234,8 +195,7 @@ export function EducationalApproachSection({ initialData }: { initialData?: any 
                   <CollapsibleCard
                     key={idx}
                     index={idx}
-                    title={`Pillar ${idx + 1}: ${pillar.title || "Untitled Pillar"}`}
-                    thumbnail={pillar.image}
+                    title={pillar.title || `Pillar ${idx + 1}`}
                     isOpen={openIndices.includes(idx)}
                     onToggle={() =>
                       setOpenIndices((prev) =>
@@ -243,7 +203,6 @@ export function EducationalApproachSection({ initialData }: { initialData?: any 
                       )
                     }
                     onDelete={() => handleRemovePillar(idx)}
-                    deleteTitle="Delete Pillar"
                   >
                     <InputField
                       label="Pillar Title"
@@ -257,14 +216,14 @@ export function EducationalApproachSection({ initialData }: { initialData?: any 
                       value={pillar.desc}
                       onChange={(e) => handleUpdatePillar(idx, "desc", e.target.value)}
                       rows={2}
-                      placeholder="e.g. Detail on personalized learning..."
+                      placeholder="e.g. We focus on nurturing curiosity and encouraging exploration..."
                     />
 
                     <ImagePickerField
                       label="Pillar Photo"
                       value={pillar.image}
                       onChange={(url) => handleUpdatePillar(idx, "image", url)}
-                      placeholder="e.g. Cloudinary image URL"
+                      folder="lfcs-school/about"
                     />
                   </CollapsibleCard>
                 ))}

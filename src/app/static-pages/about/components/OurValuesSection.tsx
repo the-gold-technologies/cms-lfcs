@@ -7,11 +7,13 @@ import { CollapsibleCard } from "@/components/CollapsibleCard";
 import { SectionHeader } from "@/components/SectionHeader";
 import { InputField } from "@/components/InputField";
 import { TextAreaField } from "@/components/TextAreaField";
+import { ImagePickerField } from "@/components/ImagePickerField";
 import { SaveButton } from "@/components/SaveButton";
 
 interface ValueItem {
   title: string;
   desc: string;
+  image?: string;
 }
 
 export function OurValuesSection({ initialData }: { initialData?: any }) {
@@ -21,61 +23,29 @@ export function OurValuesSection({ initialData }: { initialData?: any }) {
 
   const [tagline, setTagline] = useState("");
   const [headline, setHeadline] = useState("");
+  const [scriptAccent, setScriptAccent] = useState("");
+  const [subtitle, setSubtitle] = useState("");
 
   const [values, setValues] = useState<ValueItem[]>([]);
   const [openIndices, setOpenIndices] = useState<number[]>([0]);
 
   useEffect(() => {
     if (initialData) {
-      setTagline(initialData.tagline ?? "OUR VALUES");
-      setHeadline(initialData.headline ?? "Principles That Define Little Flower");
+      setTagline(initialData.tagline ?? "");
+      setHeadline(initialData.headline ?? "");
+      setScriptAccent(initialData.scriptAccent ?? "");
+      setSubtitle(initialData.subtitle ?? "");
 
-      if (Array.isArray(initialData.values) && initialData.values.length > 0) {
+      if (Array.isArray(initialData.values)) {
         setValues(
           initialData.values.map((v: any) => ({
             title: v.title ?? "",
             desc: v.desc ?? "",
+            image: v.image ?? v.img ?? "",
           })),
         );
       } else {
-        setValues([
-          {
-            title: initialData.val1Title ?? "Integrity",
-            desc:
-              initialData.val1Desc ??
-              "We do the right thing at all times, even when no one is watching.",
-          },
-          {
-            title: initialData.val2Title ?? "Respect",
-            desc:
-              initialData.val2Desc ??
-              "We value every single individual and treat everyone with empathy and kindness.",
-          },
-          {
-            title: initialData.val3Title ?? "Excellence",
-            desc:
-              initialData.val3Desc ??
-              "We consistently strive for the highest academic and moral standards in all that we do.",
-          },
-          {
-            title: initialData.val4Title ?? "Innovation",
-            desc:
-              initialData.val4Desc ??
-              "We embrace modern ideas, critical thinking, and creativity to solve real-world challenges.",
-          },
-          {
-            title: initialData.val5Title ?? "Compassion",
-            desc:
-              initialData.val5Desc ??
-              "We foster empathy, active community service, and sincere care for all living things.",
-          },
-          {
-            title: initialData.val6Title ?? "Perseverance",
-            desc:
-              initialData.val6Desc ??
-              "We build grit, resilience, and quiet determination to overcome challenges.",
-          },
-        ]);
+        setValues([]);
       }
     }
   }, [initialData]);
@@ -86,6 +56,7 @@ export function OurValuesSection({ initialData }: { initialData?: any }) {
       {
         title: "",
         desc: "",
+        image: "",
       },
     ]);
     setOpenIndices((prev) => [...prev, values.length]);
@@ -108,12 +79,15 @@ export function OurValuesSection({ initialData }: { initialData?: any }) {
 
   const handleSave = async () => {
     setLoading(true);
+    setSaved(false);
     try {
       const payload = {
         section: "OurValuesSection",
         content: {
           tagline,
           headline,
+          scriptAccent,
+          subtitle,
           values,
         },
       };
@@ -127,7 +101,7 @@ export function OurValuesSection({ initialData }: { initialData?: any }) {
       const json = await res.json();
       if (json.success) {
         setSaved(true);
-        toast.success("Core Values section saved successfully!");
+        toast.success("Our Values section saved successfully!");
         setTimeout(() => setSaved(false), 2500);
       } else {
         toast.error(json.error || "Failed to save section");
@@ -142,8 +116,8 @@ export function OurValuesSection({ initialData }: { initialData?: any }) {
   return (
     <div className="bg-white rounded-3xl p-6 shadow-sm ring-1 ring-gray-100 flex flex-col gap-6">
       <SectionHeader
-        title="5. Core Values (Institutional Tenets)"
-        description="Moral compass tenets: Integrity, Respect, Excellence, Innovation, Compassion, and Perseverance."
+        title="5. Core Values Section"
+        description="The foundational moral pillars that shape the institution: Integrity, Respect, Excellence, Innovation, Community, and Responsibility."
         badge="Live Section"
         isOpen={isOpen}
         onToggle={() => setIsOpen(!isOpen)}
@@ -151,55 +125,54 @@ export function OurValuesSection({ initialData }: { initialData?: any }) {
 
       {isOpen && (
         <div className="space-y-6 pt-2">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <InputField
-              label="Eyebrow Tag"
+              label="Pre-Heading Tag"
               value={tagline}
               onChange={(e) => setTagline(e.target.value)}
-              placeholder="e.g. Eyebrow badge (e.g. OUR VALUES)"
+              placeholder="e.g. Core Values"
             />
             <InputField
-              label="Headline"
+              label="Main Headline"
               value={headline}
               onChange={(e) => setHeadline(e.target.value)}
-              placeholder="e.g. Section title (e.g. Principles That Define Little Flower)"
+              placeholder="e.g. The Pillars of Our"
+            />
+            <InputField
+              label="Script Accent"
+              value={scriptAccent}
+              onChange={(e) => setScriptAccent(e.target.value)}
+              placeholder="e.g. Community"
             />
           </div>
+
+          <TextAreaField
+            label="Section Subtitle"
+            value={subtitle}
+            onChange={(e) => setSubtitle(e.target.value)}
+            rows={2}
+            placeholder="e.g. Our core values are the foundation of everything we do..."
+          />
 
           {/* DYNAMIC CORE VALUES ARRAY */}
           <div className="border-t border-gray-100 pt-5 space-y-4">
             <div className="flex items-center justify-between">
               <div>
                 <h4 className="text-xs font-bold uppercase tracking-wider text-gray-700 flex items-center gap-2">
-                  Institutional Tenets ({values.length})
+                  Value Cards ({values.length})
                 </h4>
                 <p className="text-[11px] text-gray-400 mt-0.5">
-                  Core values instilled across campuses. Can add more than 6 values.
+                  Dynamic institutional values. You can add or reorder cards freely.
                 </p>
               </div>
-              <div className="flex items-center gap-2">
-                <button
-                  type="button"
-                  onClick={() => {
-                    if (openIndices.length === values.length) {
-                      setOpenIndices([]);
-                    } else {
-                      setOpenIndices(values.map((_, i) => i));
-                    }
-                  }}
-                  className="text-xs font-semibold text-slate-500 hover:text-slate-800 px-2 py-1 rounded-lg hover:bg-slate-100 transition-colors cursor-pointer"
-                >
-                  {openIndices.length === values.length ? "Collapse All" : "Expand All"}
-                </button>
-                <button
-                  type="button"
-                  onClick={handleAddValue}
-                  className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0E5A60] hover:text-[#061C29] bg-[#0E5A60]/10 hover:bg-[#0E5A60]/20 px-3.5 py-1.5 rounded-xl transition-all cursor-pointer shadow-2xs"
-                >
-                  <Plus className="w-3.5 h-3.5" />
-                  <span>Add Value</span>
-                </button>
-              </div>
+              <button
+                type="button"
+                onClick={handleAddValue}
+                className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0E5A60] hover:text-[#061C29] bg-[#0E5A60]/10 hover:bg-[#0E5A60]/20 px-3.5 py-1.5 rounded-xl transition-all cursor-pointer shadow-2xs"
+              >
+                <Plus className="w-3.5 h-3.5" />
+                <span>Add Value</span>
+              </button>
             </div>
 
             {values.length === 0 ? (
@@ -208,15 +181,15 @@ export function OurValuesSection({ initialData }: { initialData?: any }) {
                 className="p-8 rounded-2xl bg-gray-50/70 border border-dashed border-gray-200 text-center text-xs text-gray-400 cursor-pointer hover:bg-gray-100/70 hover:border-gray-300 transition-all flex flex-col items-center justify-center gap-2"
               >
                 <Plus className="w-5 h-5 text-gray-400" />
-                <span>No values added yet. Click to add your first core value.</span>
+                <span>No values added yet. Click to add your first value.</span>
               </div>
             ) : (
               <div className="space-y-3">
-                {values.map((v, idx) => (
+                {values.map((val, idx) => (
                   <CollapsibleCard
                     key={idx}
                     index={idx}
-                    title={`Value ${idx + 1}: ${v.title || "Untitled"}`}
+                    title={val.title || `Value ${idx + 1}`}
                     isOpen={openIndices.includes(idx)}
                     onToggle={() =>
                       setOpenIndices((prev) =>
@@ -224,21 +197,27 @@ export function OurValuesSection({ initialData }: { initialData?: any }) {
                       )
                     }
                     onDelete={() => handleRemoveValue(idx)}
-                    deleteTitle="Delete Value"
                   >
                     <InputField
                       label="Value Title"
-                      value={v.title}
+                      value={val.title}
                       onChange={(e) => handleUpdateValue(idx, "title", e.target.value)}
                       placeholder="e.g. Integrity"
                     />
 
                     <TextAreaField
-                      label="Description"
-                      value={v.desc}
+                      label="Value Description"
+                      value={val.desc}
                       onChange={(e) => handleUpdateValue(idx, "desc", e.target.value)}
                       rows={2}
-                      placeholder="e.g. Ethical character explanation..."
+                      placeholder="e.g. We do the right thing at all times..."
+                    />
+
+                    <ImagePickerField
+                      label="Value Illustration / Photo"
+                      value={val.image || ""}
+                      onChange={(url) => handleUpdateValue(idx, "image", url)}
+                      folder="lfcs-school/about"
                     />
                   </CollapsibleCard>
                 ))}

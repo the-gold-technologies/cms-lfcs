@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 import { SectionHeader } from "@/components/SectionHeader";
 import { InputField } from "@/components/InputField";
 import { TextAreaField } from "@/components/TextAreaField";
+import { ImagePickerField } from "@/components/ImagePickerField";
 import { SaveButton } from "@/components/SaveButton";
 
 export function AboutHeroSection({ initialData }: { initialData?: any }) {
@@ -18,23 +19,23 @@ export function AboutHeroSection({ initialData }: { initialData?: any }) {
   const [description, setDescription] = useState("");
   const [ctaText, setCtaText] = useState("");
   const [ctaLink, setCtaLink] = useState("");
+  const [image, setImage] = useState("");
 
   useEffect(() => {
     if (initialData) {
-      setTagline(initialData.tagline ?? "About Us");
-      setHeadline(initialData.headline ?? "Empowering Minds, Nurturing");
-      setScriptAccent(initialData.scriptAccent ?? "Futures.");
-      setDescription(
-        initialData.description ??
-          "Discover the heart of Little Flower Group of Schools. A legacy of excellence, rooted in values, and dedicated to shaping the leaders of tomorrow.",
-      );
-      setCtaText(initialData.ctaText ?? "Explore Our Story");
-      setCtaLink(initialData.ctaLink ?? "#our-story");
+      setTagline(initialData.tagline ?? "");
+      setHeadline(initialData.headline ?? "");
+      setScriptAccent(initialData.scriptAccent ?? "");
+      setDescription(initialData.description ?? "");
+      setCtaText(initialData.ctaText ?? "");
+      setCtaLink(initialData.ctaLink ?? "");
+      setImage(initialData.image ?? "");
     }
   }, [initialData]);
 
   const handleSave = async () => {
     setLoading(true);
+    setSaved(false);
     try {
       const payload = {
         section: "AboutHeroSection",
@@ -45,6 +46,7 @@ export function AboutHeroSection({ initialData }: { initialData?: any }) {
           description,
           ctaText,
           ctaLink,
+          image,
         },
       };
 
@@ -73,7 +75,7 @@ export function AboutHeroSection({ initialData }: { initialData?: any }) {
     <div className="bg-white rounded-3xl p-6 shadow-sm ring-1 ring-gray-100 flex flex-col gap-6">
       <SectionHeader
         title="1. About Us Hero Banner"
-        description="Above-the-fold welcoming statement on the About Us page with script accent typography and scroll prompt."
+        description="Above-the-fold welcoming statement on the About Us page with script accent typography, hero illustration, and scroll prompt."
         badge="Live Section"
         isOpen={isOpen}
         onToggle={() => setIsOpen(!isOpen)}
@@ -86,19 +88,19 @@ export function AboutHeroSection({ initialData }: { initialData?: any }) {
               label="Eyebrow Tag"
               value={tagline}
               onChange={(e) => setTagline(e.target.value)}
-              placeholder="e.g. Eyebrow badge (e.g. About Us)"
+              placeholder="e.g. About Us"
             />
             <InputField
               label="Primary Heading"
               value={headline}
               onChange={(e) => setHeadline(e.target.value)}
-              placeholder="e.g. Primary headline (e.g. Empowering Minds, Nurturing)"
+              placeholder="e.g. Empowering Minds, Nurturing"
             />
             <InputField
               label="Script Accent"
               value={scriptAccent}
               onChange={(e) => setScriptAccent(e.target.value)}
-              placeholder="e.g. Script word flourish (e.g. Futures.)"
+              placeholder="e.g. Futures."
             />
           </div>
 
@@ -107,7 +109,14 @@ export function AboutHeroSection({ initialData }: { initialData?: any }) {
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             rows={3}
-            placeholder="e.g. Describe the heritage and vision of Little Flower..."
+            placeholder="e.g. Discover the heart of Little Flower Group of Schools..."
+          />
+
+          <ImagePickerField
+            label="Hero Graphic / Illustration"
+            value={image}
+            onChange={setImage}
+            folder="lfcs-school/about"
           />
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -115,13 +124,13 @@ export function AboutHeroSection({ initialData }: { initialData?: any }) {
               label="CTA Button Label"
               value={ctaText}
               onChange={(e) => setCtaText(e.target.value)}
-              placeholder="e.g. Button label (e.g. Explore Our Story)"
+              placeholder="e.g. Explore Our Story"
             />
             <InputField
               label="CTA Target Link"
               value={ctaLink}
               onChange={(e) => setCtaLink(e.target.value)}
-              placeholder="e.g. Target anchor (e.g. #our-story)"
+              placeholder="e.g. #our-story"
             />
           </div>
 

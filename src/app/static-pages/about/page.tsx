@@ -42,8 +42,8 @@ export default function AboutPageEditor() {
 
       <AboutHeroSection initialData={pageData?.AboutHeroSection} />
       <OurStorySection initialData={pageData?.OurStorySection} />
-      <VisionMissionSection initialData={pageData?.VisionMissionSection} />
       <EducationalApproachSection initialData={pageData?.EducationalApproachSection} />
+      <VisionMissionSection initialData={pageData?.VisionMissionSection} />
       <OurValuesSection initialData={pageData?.OurValuesSection} />
       <LeadershipSection initialData={pageData?.LeadershipSection} />
       <OurGrowthSection initialData={pageData?.OurGrowthSection} />

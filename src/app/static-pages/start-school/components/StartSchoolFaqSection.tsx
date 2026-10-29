@@ -6,7 +6,8 @@ import { SectionHeader } from "@/components/SectionHeader";
 import { InputField } from "@/components/InputField";
 import { TextAreaField } from "@/components/TextAreaField";
 import { SaveButton } from "@/components/SaveButton";
-import { Plus, Trash2 } from "lucide-react";
+import { CollapsibleCard } from "@/components/CollapsibleCard";
+import { Plus } from "lucide-react";
 
 export interface FaqItem {
   question: string;
@@ -22,6 +23,7 @@ export function StartSchoolFaqSection({ initialData }: { initialData?: any }) {
   const [headline, setHeadline] = useState("");
 
   const [faqs, setFaqs] = useState<FaqItem[]>([]);
+  const [openIndices, setOpenIndices] = useState<number[]>([0]);
 
   useEffect(() => {
     if (initialData) {
@@ -72,10 +74,14 @@ export function StartSchoolFaqSection({ initialData }: { initialData?: any }) {
 
   const handleAddFaq = () => {
     setFaqs((prev) => [...prev, { question: "", answer: "" }]);
+    setOpenIndices((prev) => [...prev, faqs.length]);
   };
 
   const handleRemoveFaq = (index: number) => {
     setFaqs((prev) => prev.filter((_, i) => i !== index));
+    setOpenIndices((prev) =>
+      prev.filter((i) => i !== index).map((i) => (i > index ? i - 1 : i)),
+    );
   };
 
   const handleUpdateFaq = (index: number, field: keyof FaqItem, value: string) => {
@@ -158,14 +164,29 @@ export function StartSchoolFaqSection({ initialData }: { initialData?: any }) {
                   Frequently asked questions and detailed answers. Can add more than 4 questions.
                 </p>
               </div>
-              <button
-                type="button"
-                onClick={handleAddFaq}
-                className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0E5A60] hover:text-[#061C29] bg-[#0E5A60]/10 hover:bg-[#0E5A60]/20 px-3.5 py-1.5 rounded-xl transition-all cursor-pointer shadow-2xs"
-              >
-                <Plus className="w-3.5 h-3.5" />
-                <span>Add Question</span>
-              </button>
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (openIndices.length === faqs.length) {
+                      setOpenIndices([]);
+                    } else {
+                      setOpenIndices(faqs.map((_, i) => i));
+                    }
+                  }}
+                  className="text-xs font-semibold text-slate-500 hover:text-slate-800 px-2 py-1 rounded-lg hover:bg-slate-100 transition-colors cursor-pointer"
+                >
+                  {openIndices.length === faqs.length ? "Collapse All" : "Expand All"}
+                </button>
+                <button
+                  type="button"
+                  onClick={handleAddFaq}
+                  className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0E5A60] hover:text-[#061C29] bg-[#0E5A60]/10 hover:bg-[#0E5A60]/20 px-3.5 py-1.5 rounded-xl transition-all cursor-pointer shadow-2xs"
+                >
+                  <Plus className="w-3.5 h-3.5" />
+                  <span>Add Question</span>
+                </button>
+              </div>
             </div>
 
             {faqs.length === 0 ? (
@@ -177,29 +198,21 @@ export function StartSchoolFaqSection({ initialData }: { initialData?: any }) {
                 <span>No FAQs added yet. Click to add your first question.</span>
               </div>
             ) : (
-              <div className="space-y-3.5">
+              <div className="space-y-3">
                 {faqs.map((faq, idx) => (
-                  <div
+                  <CollapsibleCard
                     key={idx}
-                    className="p-5 bg-gray-50/70 hover:bg-gray-50 rounded-2xl border border-gray-200/80 space-y-3 relative transition-all group"
+                    index={idx}
+                    title={faq.question || `Question #${idx + 1}`}
+                    isOpen={openIndices.includes(idx)}
+                    onToggle={() =>
+                      setOpenIndices((prev) =>
+                        prev.includes(idx) ? prev.filter((i) => i !== idx) : [...prev, idx],
+                      )
+                    }
+                    onDelete={() => handleRemoveFaq(idx)}
+                    deleteTitle="Delete Question"
                   >
-                    <div className="flex items-center justify-between border-b border-gray-200/60 pb-2">
-                      <span className="text-xs font-bold text-[#0E5A60] flex items-center gap-2">
-                        <span className="w-5 h-5 rounded-full bg-[#0E5A60]/10 flex items-center justify-center text-[10px] font-black">
-                          {idx + 1}
-                        </span>
-                        Question #{idx + 1}: {faq.question || "Untitled Question"}
-                      </span>
-                      <button
-                        type="button"
-                        onClick={() => handleRemoveFaq(idx)}
-                        className="p-1 text-gray-400 hover:text-red-600 rounded-lg hover:bg-red-50 transition-colors cursor-pointer"
-                        title="Delete Question"
-                      >
-                        <Trash2 className="w-3.5 h-3.5" />
-                      </button>
-                    </div>
-
                     <InputField
                       label="Question Text"
                       value={faq.question}
@@ -214,7 +227,7 @@ export function StartSchoolFaqSection({ initialData }: { initialData?: any }) {
                       rows={3}
                       placeholder="e.g. Detailed answer covering requirements and guidelines..."
                     />
-                  </div>
+                  </CollapsibleCard>
                 ))}
               </div>
             )}

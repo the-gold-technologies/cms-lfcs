@@ -7,7 +7,8 @@ import { InputField } from "@/components/InputField";
 import { TextAreaField } from "@/components/TextAreaField";
 import { ImagePickerField } from "@/components/ImagePickerField";
 import { SaveButton } from "@/components/SaveButton";
-import { Plus, Trash2 } from "lucide-react";
+import { Plus } from "lucide-react";
+import { CollapsibleCard } from "@/components/CollapsibleCard";
 
 export interface MilestoneItem {
   year: string;
@@ -26,6 +27,7 @@ export function OurGrowthSection({ initialData }: { initialData?: any }) {
   const [subtitle, setSubtitle] = useState("");
 
   const [milestones, setMilestones] = useState<MilestoneItem[]>([]);
+  const [openIndices, setOpenIndices] = useState<number[]>([0]);
 
   useEffect(() => {
     if (initialData) {
@@ -102,10 +104,14 @@ export function OurGrowthSection({ initialData }: { initialData?: any }) {
         image: "",
       },
     ]);
+    setOpenIndices((prev) => [...prev, milestones.length]);
   };
 
   const handleRemoveMilestone = (index: number) => {
     setMilestones((prev) => prev.filter((_, i) => i !== index));
+    setOpenIndices((prev) =>
+      prev.filter((i) => i !== index).map((i) => (i > index ? i - 1 : i)),
+    );
   };
 
   const handleUpdateMilestone = (index: number, field: keyof MilestoneItem, value: string) => {
@@ -197,14 +203,29 @@ export function OurGrowthSection({ initialData }: { initialData?: any }) {
                   Timeline milestones marking key years and achievements. Can add more than 4 milestones.
                 </p>
               </div>
-              <button
-                type="button"
-                onClick={handleAddMilestone}
-                className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0E5A60] hover:text-[#061C29] bg-[#0E5A60]/10 hover:bg-[#0E5A60]/20 px-3.5 py-1.5 rounded-xl transition-all cursor-pointer shadow-2xs"
-              >
-                <Plus className="w-3.5 h-3.5" />
-                <span>Add Milestone</span>
-              </button>
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (openIndices.length === milestones.length) {
+                      setOpenIndices([]);
+                    } else {
+                      setOpenIndices(milestones.map((_, i) => i));
+                    }
+                  }}
+                  className="text-xs font-semibold text-slate-500 hover:text-slate-800 px-2 py-1 rounded-lg hover:bg-slate-100 transition-colors cursor-pointer"
+                >
+                  {openIndices.length === milestones.length ? "Collapse All" : "Expand All"}
+                </button>
+                <button
+                  type="button"
+                  onClick={handleAddMilestone}
+                  className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0E5A60] hover:text-[#061C29] bg-[#0E5A60]/10 hover:bg-[#0E5A60]/20 px-3.5 py-1.5 rounded-xl transition-all cursor-pointer shadow-2xs"
+                >
+                  <Plus className="w-3.5 h-3.5" />
+                  <span>Add Milestone</span>
+                </button>
+              </div>
             </div>
 
             {milestones.length === 0 ? (
@@ -216,37 +237,33 @@ export function OurGrowthSection({ initialData }: { initialData?: any }) {
                 <span>No milestones added yet. Click to add your first milestone.</span>
               </div>
             ) : (
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div className="space-y-3">
                 {milestones.map((m, idx) => (
-                  <div
+                  <CollapsibleCard
                     key={idx}
-                    className="p-5 bg-gray-50/70 hover:bg-gray-50 rounded-2xl border border-gray-200/80 space-y-3.5 relative transition-all group"
+                    index={idx}
+                    title={`Milestone ${idx + 1}: ${m.title || "Untitled Milestone"}`}
+                    badge={m.year || undefined}
+                    thumbnail={m.image}
+                    isOpen={openIndices.includes(idx)}
+                    onToggle={() =>
+                      setOpenIndices((prev) =>
+                        prev.includes(idx) ? prev.filter((i) => i !== idx) : [...prev, idx],
+                      )
+                    }
+                    onDelete={() => handleRemoveMilestone(idx)}
+                    deleteTitle="Delete Milestone"
                   >
-                    <div className="flex items-center justify-between border-b border-gray-200/60 pb-2">
-                      <span className="text-xs font-bold text-[#0E5A60] flex items-center gap-2">
-                        <span className="w-5 h-5 rounded-full bg-[#0E5A60]/10 flex items-center justify-center text-[10px] font-black">
-                          {idx + 1}
-                        </span>
-                        Milestone #{idx + 1}: {m.year || "Year"}
-                      </span>
-                      <button
-                        type="button"
-                        onClick={() => handleRemoveMilestone(idx)}
-                        className="p-1 text-gray-400 hover:text-red-600 rounded-lg hover:bg-red-50 transition-colors cursor-pointer"
-                        title="Delete Milestone"
-                      >
-                        <Trash2 className="w-3.5 h-3.5" />
-                      </button>
-                    </div>
-
-                    <div className="grid grid-cols-3 gap-2">
-                      <InputField
-                        label="Year"
-                        value={m.year}
-                        onChange={(e) => handleUpdateMilestone(idx, "year", e.target.value)}
-                        placeholder="e.g. 1993"
-                      />
-                      <div className="col-span-2">
+                    <div className="grid grid-cols-1 sm:grid-cols-4 gap-4">
+                      <div>
+                        <InputField
+                          label="Year"
+                          value={m.year}
+                          onChange={(e) => handleUpdateMilestone(idx, "year", e.target.value)}
+                          placeholder="e.g. 1993"
+                        />
+                      </div>
+                      <div className="sm:col-span-3">
                         <InputField
                           label="Milestone Title"
                           value={m.title}
@@ -270,7 +287,7 @@ export function OurGrowthSection({ initialData }: { initialData?: any }) {
                       onChange={(url) => handleUpdateMilestone(idx, "image", url)}
                       placeholder="e.g. Cloudinary photo URL"
                     />
-                  </div>
+                  </CollapsibleCard>
                 ))}
               </div>
             )}

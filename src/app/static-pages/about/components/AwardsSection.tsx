@@ -2,7 +2,8 @@
 
 import React, { useState, useEffect } from "react";
 import toast from "react-hot-toast";
-import { Plus, Trash2 } from "lucide-react";
+import { Plus } from "lucide-react";
+import { CollapsibleCard } from "@/components/CollapsibleCard";
 import { SectionHeader } from "@/components/SectionHeader";
 import { InputField } from "@/components/InputField";
 import { TextAreaField } from "@/components/TextAreaField";
@@ -25,6 +26,7 @@ export function AwardsSection({ initialData }: { initialData?: any }) {
   const [subtitle, setSubtitle] = useState("");
 
   const [awards, setAwards] = useState<AwardItem[]>([]);
+  const [openIndices, setOpenIndices] = useState<number[]>([0]);
 
   useEffect(() => {
     if (initialData) {
@@ -86,10 +88,14 @@ export function AwardsSection({ initialData }: { initialData?: any }) {
         image: "",
       },
     ]);
+    setOpenIndices((prev) => [...prev, awards.length]);
   };
 
   const handleRemoveAward = (index: number) => {
     setAwards((prev) => prev.filter((_, i) => i !== index));
+    setOpenIndices((prev) =>
+      prev.filter((i) => i !== index).map((i) => (i > index ? i - 1 : i)),
+    );
   };
 
   const handleUpdateAward = (index: number, field: keyof AwardItem, val: string) => {
@@ -180,14 +186,29 @@ export function AwardsSection({ initialData }: { initialData?: any }) {
                   State, national and international recognitions. Can add more than 3 awards.
                 </p>
               </div>
-              <button
-                type="button"
-                onClick={handleAddAward}
-                className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0E5A60] hover:text-[#061C29] bg-[#0E5A60]/10 hover:bg-[#0E5A60]/20 px-3.5 py-1.5 rounded-xl transition-all cursor-pointer shadow-2xs"
-              >
-                <Plus className="w-3.5 h-3.5" />
-                <span>Add Award</span>
-              </button>
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (openIndices.length === awards.length) {
+                      setOpenIndices([]);
+                    } else {
+                      setOpenIndices(awards.map((_, i) => i));
+                    }
+                  }}
+                  className="text-xs font-semibold text-slate-500 hover:text-slate-800 px-2 py-1 rounded-lg hover:bg-slate-100 transition-colors cursor-pointer"
+                >
+                  {openIndices.length === awards.length ? "Collapse All" : "Expand All"}
+                </button>
+                <button
+                  type="button"
+                  onClick={handleAddAward}
+                  className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0E5A60] hover:text-[#061C29] bg-[#0E5A60]/10 hover:bg-[#0E5A60]/20 px-3.5 py-1.5 rounded-xl transition-all cursor-pointer shadow-2xs"
+                >
+                  <Plus className="w-3.5 h-3.5" />
+                  <span>Add Award</span>
+                </button>
+              </div>
             </div>
 
             {awards.length === 0 ? (
@@ -199,29 +220,22 @@ export function AwardsSection({ initialData }: { initialData?: any }) {
                 <span>No awards added yet. Click to add your first honour.</span>
               </div>
             ) : (
-              <div className="space-y-4">
+              <div className="space-y-3">
                 {awards.map((award, idx) => (
-                  <div
+                  <CollapsibleCard
                     key={idx}
-                    className="p-5 bg-gray-50/70 hover:bg-gray-50 rounded-2xl border border-gray-200/80 space-y-3.5 relative transition-all group"
+                    index={idx}
+                    title={`Award ${idx + 1}: ${award.title || "Untitled Award"}`}
+                    thumbnail={award.image}
+                    isOpen={openIndices.includes(idx)}
+                    onToggle={() =>
+                      setOpenIndices((prev) =>
+                        prev.includes(idx) ? prev.filter((i) => i !== idx) : [...prev, idx],
+                      )
+                    }
+                    onDelete={() => handleRemoveAward(idx)}
+                    deleteTitle="Delete Award"
                   >
-                    <div className="flex items-center justify-between border-b border-gray-200/60 pb-2">
-                      <span className="text-xs font-bold text-[#0E5A60] flex items-center gap-2">
-                        <span className="w-5 h-5 rounded-full bg-[#0E5A60]/10 flex items-center justify-center text-[10px] font-black">
-                          {idx + 1}
-                        </span>
-                        Award #{idx + 1}: {award.title || "Untitled Award"}
-                      </span>
-                      <button
-                        type="button"
-                        onClick={() => handleRemoveAward(idx)}
-                        className="p-1 text-gray-400 hover:text-red-600 rounded-lg hover:bg-red-50 transition-colors cursor-pointer"
-                        title="Delete Award"
-                      >
-                        <Trash2 className="w-3.5 h-3.5" />
-                      </button>
-                    </div>
-
                     {/* Row 1: Title */}
                     <InputField
                       label="Award Title"
@@ -246,7 +260,7 @@ export function AwardsSection({ initialData }: { initialData?: any }) {
                       onChange={(url) => handleUpdateAward(idx, "image", url)}
                       placeholder="e.g. Cloudinary trophy/award photo URL"
                     />
-                  </div>
+                  </CollapsibleCard>
                 ))}
               </div>
             )}

@@ -2,7 +2,8 @@
 
 import React, { useState, useEffect } from "react";
 import toast from "react-hot-toast";
-import { Plus, Trash2 } from "lucide-react";
+import { Plus } from "lucide-react";
+import { CollapsibleCard } from "@/components/CollapsibleCard";
 import { SectionHeader } from "@/components/SectionHeader";
 import { InputField } from "@/components/InputField";
 import { TextAreaField } from "@/components/TextAreaField";
@@ -24,6 +25,7 @@ export function WhyWorkWithUsSection({ initialData }: { initialData?: any }) {
   const [paragraph, setParagraph] = useState("");
 
   const [benefits, setBenefits] = useState<WorkBenefit[]>([]);
+  const [openIndices, setOpenIndices] = useState<number[]>([0]);
 
   useEffect(() => {
     if (initialData) {
@@ -81,10 +83,14 @@ export function WhyWorkWithUsSection({ initialData }: { initialData?: any }) {
         text: "",
       },
     ]);
+    setOpenIndices((prev) => [...prev, benefits.length]);
   };
 
   const handleRemoveBenefit = (index: number) => {
     setBenefits((prev) => prev.filter((_, i) => i !== index));
+    setOpenIndices((prev) =>
+      prev.filter((i) => i !== index).map((i) => (i > index ? i - 1 : i)),
+    );
   };
 
   const handleUpdateBenefit = (index: number, field: keyof WorkBenefit, val: string) => {
@@ -182,14 +188,29 @@ export function WhyWorkWithUsSection({ initialData }: { initialData?: any }) {
                   Professional development and cultural perks. Can add more perks.
                 </p>
               </div>
-              <button
-                type="button"
-                onClick={handleAddBenefit}
-                className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0E5A60] hover:text-[#061C29] bg-[#0E5A60]/10 hover:bg-[#0E5A60]/20 px-3.5 py-1.5 rounded-xl transition-all cursor-pointer shadow-2xs"
-              >
-                <Plus className="w-3.5 h-3.5" />
-                <span>Add Benefit</span>
-              </button>
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (openIndices.length === benefits.length) {
+                      setOpenIndices([]);
+                    } else {
+                      setOpenIndices(benefits.map((_, i) => i));
+                    }
+                  }}
+                  className="text-xs font-semibold text-slate-500 hover:text-slate-800 px-2 py-1 rounded-lg hover:bg-slate-100 transition-colors cursor-pointer"
+                >
+                  {openIndices.length === benefits.length ? "Collapse All" : "Expand All"}
+                </button>
+                <button
+                  type="button"
+                  onClick={handleAddBenefit}
+                  className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0E5A60] hover:text-[#061C29] bg-[#0E5A60]/10 hover:bg-[#0E5A60]/20 px-3.5 py-1.5 rounded-xl transition-all cursor-pointer shadow-2xs"
+                >
+                  <Plus className="w-3.5 h-3.5" />
+                  <span>Add Benefit</span>
+                </button>
+              </div>
             </div>
 
             {benefits.length === 0 ? (
@@ -201,29 +222,21 @@ export function WhyWorkWithUsSection({ initialData }: { initialData?: any }) {
                 <span>No perks added yet. Click to add your first advantage.</span>
               </div>
             ) : (
-              <div className="space-y-4">
+              <div className="space-y-3">
                 {benefits.map((b, idx) => (
-                  <div
+                  <CollapsibleCard
                     key={idx}
-                    className="p-5 bg-gray-50/70 hover:bg-gray-50 rounded-2xl border border-gray-200/80 space-y-3.5 relative transition-all group"
+                    index={idx}
+                    title={`Advantage ${idx + 1}: ${b.title || "Untitled Advantage"}`}
+                    isOpen={openIndices.includes(idx)}
+                    onToggle={() =>
+                      setOpenIndices((prev) =>
+                        prev.includes(idx) ? prev.filter((i) => i !== idx) : [...prev, idx],
+                      )
+                    }
+                    onDelete={() => handleRemoveBenefit(idx)}
+                    deleteTitle="Delete Advantage"
                   >
-                    <div className="flex items-center justify-between border-b border-gray-200/60 pb-2">
-                      <span className="text-xs font-bold text-[#0E5A60] flex items-center gap-2">
-                        <span className="w-5 h-5 rounded-full bg-[#0E5A60]/10 flex items-center justify-center text-[10px] font-black">
-                          {idx + 1}
-                        </span>
-                        Advantage #{idx + 1}: {b.title || "Untitled Advantage"}
-                      </span>
-                      <button
-                        type="button"
-                        onClick={() => handleRemoveBenefit(idx)}
-                        className="p-1 text-gray-400 hover:text-red-600 rounded-lg hover:bg-red-50 transition-colors cursor-pointer"
-                        title="Delete Advantage"
-                      >
-                        <Trash2 className="w-3.5 h-3.5" />
-                      </button>
-                    </div>
-
                     <InputField
                       label="Benefit Title"
                       value={b.title}
@@ -238,7 +251,7 @@ export function WhyWorkWithUsSection({ initialData }: { initialData?: any }) {
                       rows={2}
                       placeholder="e.g. Directly shape character and learning outcomes..."
                     />
-                  </div>
+                  </CollapsibleCard>
                 ))}
               </div>
             )}

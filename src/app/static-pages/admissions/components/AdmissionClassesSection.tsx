@@ -2,7 +2,8 @@
 
 import React, { useState, useEffect } from "react";
 import toast from "react-hot-toast";
-import { Plus, Trash2 } from "lucide-react";
+import { Plus } from "lucide-react";
+import { CollapsibleCard } from "@/components/CollapsibleCard";
 import { SectionHeader } from "@/components/SectionHeader";
 import { InputField } from "@/components/InputField";
 import { TextAreaField } from "@/components/TextAreaField";
@@ -25,6 +26,7 @@ export function AdmissionClassesSection({ initialData }: { initialData?: any }) 
   const [subtitle, setSubtitle] = useState("");
 
   const [classes, setClasses] = useState<AdmissionClass[]>([]);
+  const [openIndices, setOpenIndices] = useState<number[]>([0]);
 
   useEffect(() => {
     if (initialData) {
@@ -95,10 +97,14 @@ export function AdmissionClassesSection({ initialData }: { initialData?: any }) 
         desc: "",
       },
     ]);
+    setOpenIndices((prev) => [...prev, classes.length]);
   };
 
   const handleRemoveClass = (index: number) => {
     setClasses((prev) => prev.filter((_, i) => i !== index));
+    setOpenIndices((prev) =>
+      prev.filter((i) => i !== index).map((i) => (i > index ? i - 1 : i)),
+    );
   };
 
   const handleUpdateClass = (index: number, field: keyof AdmissionClass, val: string) => {
@@ -196,14 +202,29 @@ export function AdmissionClassesSection({ initialData }: { initialData?: any }) 
                   Available entry stages and grade levels. Can add more stages.
                 </p>
               </div>
-              <button
-                type="button"
-                onClick={handleAddClass}
-                className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0E5A60] hover:text-[#061C29] bg-[#0E5A60]/10 hover:bg-[#0E5A60]/20 px-3.5 py-1.5 rounded-xl transition-all cursor-pointer shadow-2xs"
-              >
-                <Plus className="w-3.5 h-3.5" />
-                <span>Add Stage</span>
-              </button>
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (openIndices.length === classes.length) {
+                      setOpenIndices([]);
+                    } else {
+                      setOpenIndices(classes.map((_, i) => i));
+                    }
+                  }}
+                  className="text-xs font-semibold text-slate-500 hover:text-slate-800 px-2 py-1 rounded-lg hover:bg-slate-100 transition-colors cursor-pointer"
+                >
+                  {openIndices.length === classes.length ? "Collapse All" : "Expand All"}
+                </button>
+                <button
+                  type="button"
+                  onClick={handleAddClass}
+                  className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0E5A60] hover:text-[#061C29] bg-[#0E5A60]/10 hover:bg-[#0E5A60]/20 px-3.5 py-1.5 rounded-xl transition-all cursor-pointer shadow-2xs"
+                >
+                  <Plus className="w-3.5 h-3.5" />
+                  <span>Add Stage</span>
+                </button>
+              </div>
             </div>
 
             {classes.length === 0 ? (
@@ -215,29 +236,22 @@ export function AdmissionClassesSection({ initialData }: { initialData?: any }) 
                 <span>No stages added yet. Click to add your first admission stage.</span>
               </div>
             ) : (
-              <div className="space-y-4">
+              <div className="space-y-3">
                 {classes.map((c, idx) => (
-                  <div
+                  <CollapsibleCard
                     key={idx}
-                    className="p-5 bg-gray-50/70 hover:bg-gray-50 rounded-2xl border border-gray-200/80 space-y-3.5 relative transition-all group"
+                    index={idx}
+                    title={`Stage ${idx + 1}: ${c.name || "Untitled Stage"}`}
+                    badge={c.grades || undefined}
+                    isOpen={openIndices.includes(idx)}
+                    onToggle={() =>
+                      setOpenIndices((prev) =>
+                        prev.includes(idx) ? prev.filter((i) => i !== idx) : [...prev, idx],
+                      )
+                    }
+                    onDelete={() => handleRemoveClass(idx)}
+                    deleteTitle="Delete Stage"
                   >
-                    <div className="flex items-center justify-between border-b border-gray-200/60 pb-2">
-                      <span className="text-xs font-bold text-[#0E5A60] flex items-center gap-2">
-                        <span className="w-5 h-5 rounded-full bg-[#0E5A60]/10 flex items-center justify-center text-[10px] font-black">
-                          {idx + 1}
-                        </span>
-                        Stage #{idx + 1}: {c.name || "Untitled Stage"}
-                      </span>
-                      <button
-                        type="button"
-                        onClick={() => handleRemoveClass(idx)}
-                        className="p-1 text-gray-400 hover:text-red-600 rounded-lg hover:bg-red-50 transition-colors cursor-pointer"
-                        title="Delete Stage"
-                      >
-                        <Trash2 className="w-3.5 h-3.5" />
-                      </button>
-                    </div>
-
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <InputField
                         label="Stage Name"
@@ -260,7 +274,7 @@ export function AdmissionClassesSection({ initialData }: { initialData?: any }) 
                       rows={2}
                       placeholder="e.g. Play-based motor skills, foundational literacy..."
                     />
-                  </div>
+                  </CollapsibleCard>
                 ))}
               </div>
             )}

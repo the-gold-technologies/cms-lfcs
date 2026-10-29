@@ -36,6 +36,22 @@ const sidebarLinks: SidebarLink[] = [
     icon: LayoutDashboard,
   },
   {
+    title: "Navigation & Links",
+    icon: Compass,
+    sublinks: [
+      { title: "Menu Links", href: "/navigation/menu-links" },
+      { title: "Social Media & Footer", href: "/navigation/social-media" },
+    ],
+  },
+  {
+    title: "Campuses",
+    icon: Building,
+    sublinks: [
+      { title: "All Campuses", href: "/campuses" },
+      { title: "Add New Campus", href: "/campuses/create" },
+    ],
+  },
+  {
     title: "Pages",
     icon: BookOpen,
     sublinks: [
@@ -48,14 +64,6 @@ const sidebarLinks: SidebarLink[] = [
       { title: "Careers", href: "/static-pages/careers" },
       { title: "Contact Us", href: "/static-pages/contact" },
       { title: "Photo Gallery", href: "/static-pages/gallery" },
-    ],
-  },
-  {
-    title: "Campuses",
-    icon: Building,
-    sublinks: [
-      { title: "All Campuses", href: "/campuses" },
-      { title: "Add New Campus", href: "/campuses/create" },
     ],
   },
   {
@@ -87,14 +95,6 @@ const sidebarLinks: SidebarLink[] = [
       { title: "Start a School", href: "/submissions/start-school" },
       { title: "Career CVs", href: "/submissions/careers" },
       { title: "General Enquiries", href: "/submissions/contact" },
-    ],
-  },
-  {
-    title: "Navigation & Links",
-    icon: Compass,
-    sublinks: [
-      { title: "Menu Links", href: "/navigation/menu-links" },
-      { title: "Social Media & Footer", href: "/navigation/social-media" },
     ],
   },
   {

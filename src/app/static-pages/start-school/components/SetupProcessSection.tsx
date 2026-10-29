@@ -6,7 +6,8 @@ import { SectionHeader } from "@/components/SectionHeader";
 import { InputField } from "@/components/InputField";
 import { TextAreaField } from "@/components/TextAreaField";
 import { SaveButton } from "@/components/SaveButton";
-import { Plus, Trash2 } from "lucide-react";
+import { CollapsibleCard } from "@/components/CollapsibleCard";
+import { Plus } from "lucide-react";
 
 export interface RoadmapStep {
   title: string;
@@ -24,6 +25,7 @@ export function SetupProcessSection({ initialData }: { initialData?: any }) {
   const [subtitle, setSubtitle] = useState("");
 
   const [steps, setSteps] = useState<RoadmapStep[]>([]);
+  const [openIndices, setOpenIndices] = useState<number[]>([0]);
 
   useEffect(() => {
     if (initialData) {
@@ -60,10 +62,14 @@ export function SetupProcessSection({ initialData }: { initialData?: any }) {
 
   const handleAddStep = () => {
     setSteps((prev) => [...prev, { title: "", desc: "" }]);
+    setOpenIndices((prev) => [...prev, steps.length]);
   };
 
   const handleRemoveStep = (index: number) => {
     setSteps((prev) => prev.filter((_, i) => i !== index));
+    setOpenIndices((prev) =>
+      prev.filter((i) => i !== index).map((i) => (i > index ? i - 1 : i)),
+    );
   };
 
   const handleUpdateStep = (index: number, value: string) => {
@@ -162,14 +168,29 @@ export function SetupProcessSection({ initialData }: { initialData?: any }) {
                   Sequential phases guiding partners to successful launch. Can add or reorder steps.
                 </p>
               </div>
-              <button
-                type="button"
-                onClick={handleAddStep}
-                className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0E5A60] hover:text-[#061C29] bg-[#0E5A60]/10 hover:bg-[#0E5A60]/20 px-3.5 py-1.5 rounded-xl transition-all cursor-pointer shadow-2xs"
-              >
-                <Plus className="w-3.5 h-3.5" />
-                <span>Add Step</span>
-              </button>
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (openIndices.length === steps.length) {
+                      setOpenIndices([]);
+                    } else {
+                      setOpenIndices(steps.map((_, i) => i));
+                    }
+                  }}
+                  className="text-xs font-semibold text-slate-500 hover:text-slate-800 px-2 py-1 rounded-lg hover:bg-slate-100 transition-colors cursor-pointer"
+                >
+                  {openIndices.length === steps.length ? "Collapse All" : "Expand All"}
+                </button>
+                <button
+                  type="button"
+                  onClick={handleAddStep}
+                  className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0E5A60] hover:text-[#061C29] bg-[#0E5A60]/10 hover:bg-[#0E5A60]/20 px-3.5 py-1.5 rounded-xl transition-all cursor-pointer shadow-2xs"
+                >
+                  <Plus className="w-3.5 h-3.5" />
+                  <span>Add Step</span>
+                </button>
+              </div>
             </div>
 
             {steps.length === 0 ? (
@@ -181,36 +202,29 @@ export function SetupProcessSection({ initialData }: { initialData?: any }) {
                 <span>No steps added yet. Click to add your first roadmap milestone.</span>
               </div>
             ) : (
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+              <div className="space-y-3">
                 {steps.map((st, idx) => (
-                  <div
+                  <CollapsibleCard
                     key={idx}
-                    className="p-3.5 bg-gray-50/70 hover:bg-gray-50 rounded-xl border border-gray-200/80 space-y-2 relative transition-all group"
+                    index={idx}
+                    title={st.title || `Step ${idx < 9 ? `0${idx + 1}` : idx + 1}`}
+                    badge={`Step ${idx + 1}`}
+                    isOpen={openIndices.includes(idx)}
+                    onToggle={() =>
+                      setOpenIndices((prev) =>
+                        prev.includes(idx) ? prev.filter((i) => i !== idx) : [...prev, idx],
+                      )
+                    }
+                    onDelete={() => handleRemoveStep(idx)}
+                    deleteTitle="Delete Step"
                   >
-                    <div className="flex items-center justify-between pb-1 border-b border-gray-200/60">
-                      <span className="text-[11px] font-bold text-[#0E5A60] flex items-center gap-1.5">
-                        <span className="w-4 h-4 rounded-full bg-[#0E5A60]/10 flex items-center justify-center text-[9px] font-black">
-                          {idx + 1}
-                        </span>
-                        Step {idx < 9 ? `0${idx + 1}` : idx + 1}
-                      </span>
-                      <button
-                        type="button"
-                        onClick={() => handleRemoveStep(idx)}
-                        className="p-1 text-gray-400 hover:text-red-600 rounded-md hover:bg-red-50 transition-colors cursor-pointer"
-                        title="Delete Step"
-                      >
-                        <Trash2 className="w-3 h-3" />
-                      </button>
-                    </div>
-
                     <InputField
-                      label="Step Title"
+                      label="Step Title & Details"
                       value={st.title}
                       onChange={(e) => handleUpdateStep(idx, e.target.value)}
                       placeholder="e.g. Initial Enquiry & Location Feasibility"
                     />
-                  </div>
+                  </CollapsibleCard>
                 ))}
               </div>
             )}

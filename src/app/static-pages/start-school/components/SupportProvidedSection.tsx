@@ -2,16 +2,23 @@
 
 import React, { useState, useEffect } from "react";
 import toast from "react-hot-toast";
-import { Plus } from "lucide-react";
-import { CollapsibleCard } from "@/components/CollapsibleCard";
 import { SectionHeader } from "@/components/SectionHeader";
 import { InputField } from "@/components/InputField";
 import { TextAreaField } from "@/components/TextAreaField";
 import { SaveButton } from "@/components/SaveButton";
+import { Plus } from "lucide-react";
+import { CollapsibleCard } from "@/components/CollapsibleCard";
 
-interface SupportStage {
+export interface SupportStageItem {
   title: string;
-  items: string;
+  desc: string;
+}
+
+export interface SupportStage {
+  label: string;
+  color?: string;
+  bg?: string;
+  items: SupportStageItem[];
 }
 
 export function SupportProvidedSection({ initialData }: { initialData?: any }) {
@@ -21,48 +28,33 @@ export function SupportProvidedSection({ initialData }: { initialData?: any }) {
 
   const [tagline, setTagline] = useState("");
   const [headline, setHeadline] = useState("");
-  const [subtitle, setSubtitle] = useState("");
+  const [scriptAccent, setScriptAccent] = useState("");
 
   const [stages, setStages] = useState<SupportStage[]>([]);
   const [openIndices, setOpenIndices] = useState<number[]>([0]);
 
   useEffect(() => {
     if (initialData) {
-      setTagline(initialData.tagline ?? "PARTNERSHIP LIFECYCLE");
-      setHeadline(initialData.headline ?? "Comprehensive Support Across All Setup Stages");
-      setSubtitle(
-        initialData.subtitle ??
-          "From initial land layout through grand opening and ongoing annual academic audits, LFCS supports your school at every step.",
-      );
+      setTagline(initialData.tagline ?? "");
+      setHeadline(initialData.headline ?? "");
+      setScriptAccent(initialData.scriptAccent ?? "");
 
-      if (Array.isArray(initialData.stages) && initialData.stages.length > 0) {
+      if (Array.isArray(initialData.stages)) {
         setStages(
           initialData.stages.map((s: any) => ({
-            title: s.title ?? "",
-            items: s.items ?? "",
+            label: s.label ?? "",
+            color: s.color ?? "",
+            bg: s.bg ?? "",
+            items: Array.isArray(s.items)
+              ? s.items.map((it: any) => ({
+                  title: it.title ?? "",
+                  desc: it.desc ?? it.description ?? "",
+                }))
+              : [],
           })),
         );
       } else {
-        setStages([
-          {
-            title: initialData.stage1Title ?? "Stage 1: Pre-Launch Support",
-            items:
-              initialData.stage1Items ??
-              "School Planning & Architectural Layouts, Academic Structure & Timetable Blueprint, Brand Identity Guidelines, Faculty Recruitment & Induction Workshops",
-          },
-          {
-            title: initialData.stage2Title ?? "Stage 2: Launch Support",
-            items:
-              initialData.stage2Items ??
-              "Admissions Planning & Outreach Strategy, School Readiness Inspection, Marketing Campaigns & Launch Collaterals, Press Announcements",
-          },
-          {
-            title: initialData.stage3Title ?? "Stage 3: Post-Launch & Ongoing Support",
-            items:
-              initialData.stage3Items ??
-              "Annual Academic Quality Audits, Regular Teacher Training Programs, Curriculum Updates, Inter-School Sports & Cultural Leagues Participation",
-          },
-        ]);
+        setStages([]);
       }
     }
   }, [initialData]);
@@ -71,8 +63,10 @@ export function SupportProvidedSection({ initialData }: { initialData?: any }) {
     setStages((prev) => [
       ...prev,
       {
-        title: "",
-        items: "",
+        label: "",
+        color: "",
+        bg: "",
+        items: [{ title: "", desc: "" }],
       },
     ]);
     setOpenIndices((prev) => [...prev, stages.length]);
@@ -85,23 +79,59 @@ export function SupportProvidedSection({ initialData }: { initialData?: any }) {
     );
   };
 
-  const handleUpdateStage = (index: number, field: keyof SupportStage, val: string) => {
+  const handleUpdateStage = (
+    index: number,
+    field: keyof SupportStage,
+    value: any,
+  ) => {
     setStages((prev) => {
       const copy = [...prev];
-      copy[index] = { ...copy[index], [field]: val };
+      copy[index] = { ...copy[index], [field]: value };
+      return copy;
+    });
+  };
+
+  const handleAddItemToStage = (stageIdx: number) => {
+    setStages((prev) => {
+      const copy = [...prev];
+      copy[stageIdx].items = [...copy[stageIdx].items, { title: "", desc: "" }];
+      return copy;
+    });
+  };
+
+  const handleRemoveItemFromStage = (stageIdx: number, itemIdx: number) => {
+    setStages((prev) => {
+      const copy = [...prev];
+      copy[stageIdx].items = copy[stageIdx].items.filter((_, i) => i !== itemIdx);
+      return copy;
+    });
+  };
+
+  const handleUpdateStageItem = (
+    stageIdx: number,
+    itemIdx: number,
+    field: keyof SupportStageItem,
+    value: string,
+  ) => {
+    setStages((prev) => {
+      const copy = [...prev];
+      const items = [...copy[stageIdx].items];
+      items[itemIdx] = { ...items[itemIdx], [field]: value };
+      copy[stageIdx].items = items;
       return copy;
     });
   };
 
   const handleSave = async () => {
     setLoading(true);
+    setSaved(false);
     try {
       const payload = {
         section: "SupportProvidedSection",
         content: {
           tagline,
           headline,
-          subtitle,
+          scriptAccent,
           stages,
         },
       };
@@ -130,8 +160,8 @@ export function SupportProvidedSection({ initialData }: { initialData?: any }) {
   return (
     <div className="bg-white rounded-3xl p-6 shadow-sm ring-1 ring-gray-100 flex flex-col gap-6">
       <SectionHeader
-        title="4. Partnership Support Stages"
-        description="Deliverables provided during Pre-Launch setup, School Inauguration, and Ongoing operations."
+        title="4. Support Provided Across the Development Lifecycle"
+        description="Comprehensive 3-stage roadmap: Pre-Launch, Launch Support, and Post-Launch Operations."
         badge="Live Section"
         isOpen={isOpen}
         onToggle={() => setIsOpen(!isOpen)}
@@ -139,111 +169,156 @@ export function SupportProvidedSection({ initialData }: { initialData?: any }) {
 
       {isOpen && (
         <div className="space-y-6 pt-2">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <InputField
-              label="Eyebrow Tag"
+              label="Pre-Heading Tagline"
               value={tagline}
               onChange={(e) => setTagline(e.target.value)}
-              placeholder="e.g. PARTNERSHIP LIFECYCLE"
+              placeholder="e.g. What LFCS Provides"
             />
             <InputField
-              label="Section Headline"
+              label="Headline"
               value={headline}
               onChange={(e) => setHeadline(e.target.value)}
-              placeholder="e.g. Comprehensive Support Across All Setup Stages"
+              placeholder="e.g. Support Across the School"
+            />
+            <InputField
+              label="Script Accent"
+              value={scriptAccent}
+              onChange={(e) => setScriptAccent(e.target.value)}
+              placeholder="e.g. Development Journey"
             />
           </div>
 
-          <TextAreaField
-            label="Section Subtitle"
-            value={subtitle}
-            onChange={(e) => setSubtitle(e.target.value)}
-            rows={2}
-            placeholder="e.g. Support lifecycle narrative..."
-          />
-
-          {/* DYNAMIC STAGES ARRAY */}
+          {/* DYNAMIC SUPPORT STAGES */}
           <div className="border-t border-gray-100 pt-5 space-y-4">
             <div className="flex items-center justify-between">
               <div>
-                <h4 className="text-xs font-bold uppercase tracking-wider text-gray-700 flex items-center gap-2">
-                  Support Lifecycle Stages ({stages.length})
+                <h4 className="text-xs font-bold uppercase tracking-wider text-gray-500">
+                  Lifecycle Support Stages ({stages.length})
                 </h4>
                 <p className="text-[11px] text-gray-400 mt-0.5">
-                  Phased support deliverables. Can add more than 3 stages.
+                  Stages delivered by LFCS (e.g. Pre-Launch, Launch, Post-Launch).
                 </p>
               </div>
-              <div className="flex items-center gap-2">
-                <button
-                  type="button"
-                  onClick={() => {
-                    if (openIndices.length === stages.length) {
-                      setOpenIndices([]);
-                    } else {
-                      setOpenIndices(stages.map((_, i) => i));
-                    }
-                  }}
-                  className="text-xs font-semibold text-slate-500 hover:text-slate-800 px-2 py-1 rounded-lg hover:bg-slate-100 transition-colors cursor-pointer"
-                >
-                  {openIndices.length === stages.length ? "Collapse All" : "Expand All"}
-                </button>
-                <button
-                  type="button"
-                  onClick={handleAddStage}
-                  className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0E5A60] hover:text-[#061C29] bg-[#0E5A60]/10 hover:bg-[#0E5A60]/20 px-3.5 py-1.5 rounded-xl transition-all cursor-pointer shadow-2xs"
-                >
-                  <Plus className="w-3.5 h-3.5" />
-                  <span>Add Stage</span>
-                </button>
-              </div>
+              <button
+                type="button"
+                onClick={handleAddStage}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-[#0E5A60] bg-[#0E5A60]/10 hover:bg-[#0E5A60]/20 rounded-xl transition-colors cursor-pointer"
+              >
+                <Plus className="w-3.5 h-3.5" />
+                <span>Add Stage</span>
+              </button>
             </div>
 
             {stages.length === 0 ? (
               <div
                 onClick={handleAddStage}
-                className="p-8 rounded-2xl bg-gray-50/70 border border-dashed border-gray-200 text-center text-xs text-gray-400 cursor-pointer hover:bg-gray-100/70 hover:border-gray-300 transition-all flex flex-col items-center justify-center gap-2"
+                className="p-8 border-2 border-dashed border-gray-200 rounded-2xl text-center text-gray-400 hover:border-[#0E5A60] hover:text-[#0E5A60] transition-colors cursor-pointer text-xs font-medium flex flex-col items-center gap-2"
               >
-                <Plus className="w-5 h-5 text-gray-400" />
+                <Plus className="w-6 h-6 text-gray-300" />
                 <span>No support stages added yet. Click to add your first stage.</span>
               </div>
             ) : (
               <div className="space-y-3">
-                {stages.map((stage, idx) => (
+                {stages.map((stage, sIdx) => (
                   <CollapsibleCard
-                    key={idx}
-                    index={idx}
-                    title={stage.title || `Stage ${idx + 1}`}
-                    isOpen={openIndices.includes(idx)}
+                    key={sIdx}
+                    index={sIdx}
+                    title={`Stage ${sIdx + 1}: ${stage.label || "Untitled Stage"}`}
+                    isOpen={openIndices.includes(sIdx)}
                     onToggle={() =>
                       setOpenIndices((prev) =>
-                        prev.includes(idx) ? prev.filter((i) => i !== idx) : [...prev, idx],
+                        prev.includes(sIdx) ? prev.filter((i) => i !== sIdx) : [...prev, sIdx],
                       )
                     }
-                    onDelete={() => handleRemoveStage(idx)}
+                    onDelete={() => handleRemoveStage(sIdx)}
                     deleteTitle="Delete Stage"
                   >
-                    <InputField
-                      label="Stage Title"
-                      value={stage.title}
-                      onChange={(e) => handleUpdateStage(idx, "title", e.target.value)}
-                      placeholder="e.g. Stage 1: Pre-Launch Support"
-                    />
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                      <InputField
+                        label="Stage Label"
+                        value={stage.label}
+                        onChange={(e) => handleUpdateStage(sIdx, "label", e.target.value)}
+                        placeholder="e.g. Pre-Launch Support"
+                      />
+                      <InputField
+                        label="Accent Color Hex (Optional)"
+                        value={stage.color ?? ""}
+                        onChange={(e) => handleUpdateStage(sIdx, "color", e.target.value)}
+                        placeholder="e.g. #dfae19"
+                      />
+                      <InputField
+                        label="Background Tint Hex (Optional)"
+                        value={stage.bg ?? ""}
+                        onChange={(e) => handleUpdateStage(sIdx, "bg", e.target.value)}
+                        placeholder="e.g. #fcf5de"
+                      />
+                    </div>
 
-                    <TextAreaField
-                      label="Stage Deliverables (Comma-separated items)"
-                      value={stage.items}
-                      onChange={(e) => handleUpdateStage(idx, "items", e.target.value)}
-                      rows={2}
-                      placeholder="e.g. Architectural layouts, curriculum planning, teacher recruitment..."
-                    />
+                    <div className="pt-3 border-t border-gray-100 space-y-3">
+                      <div className="flex items-center justify-between">
+                        <span className="text-xs font-bold text-gray-700">
+                          Deliverables & Support Items ({stage.items.length})
+                        </span>
+                        <button
+                          type="button"
+                          onClick={() => handleAddItemToStage(sIdx)}
+                          className="text-[11px] font-semibold text-[#0E5A60] hover:underline flex items-center gap-1 cursor-pointer"
+                        >
+                          <Plus className="w-3 h-3" /> Add Item
+                        </button>
+                      </div>
+
+                      <div className="space-y-2">
+                        {stage.items.map((item, iIdx) => (
+                          <div
+                            key={iIdx}
+                            className="p-3 bg-gray-50/70 rounded-xl border border-gray-100 space-y-2 relative"
+                          >
+                            <div className="flex items-center justify-between">
+                              <span className="text-[11px] font-bold text-gray-500">
+                                Item #{iIdx + 1}
+                              </span>
+                              <button
+                                type="button"
+                                onClick={() => handleRemoveItemFromStage(sIdx, iIdx)}
+                                className="text-[11px] text-red-500 hover:underline cursor-pointer"
+                              >
+                                Remove
+                              </button>
+                            </div>
+                            <InputField
+                              label="Item Title"
+                              value={item.title}
+                              onChange={(e) =>
+                                handleUpdateStageItem(sIdx, iIdx, "title", e.target.value)
+                              }
+                              placeholder="e.g. Academic Planning"
+                            />
+                            <TextAreaField
+                              label="Item Details"
+                              value={item.desc}
+                              onChange={(e) =>
+                                handleUpdateStageItem(sIdx, iIdx, "desc", e.target.value)
+                              }
+                              rows={2}
+                              placeholder="e.g. Support with academic structure, curriculum implementation..."
+                            />
+                          </div>
+                        ))}
+                      </div>
+                    </div>
                   </CollapsibleCard>
                 ))}
               </div>
             )}
           </div>
 
-          <div className="pt-4 border-t border-gray-100 w-full">
-            <SaveButton onClick={handleSave} loading={loading} saved={saved} />
+          <div className="pt-4 border-t border-gray-100 flex justify-end">
+            <div className="w-full">
+              <SaveButton onClick={handleSave} loading={loading} saved={saved} />
+            </div>
           </div>
         </div>
       )}

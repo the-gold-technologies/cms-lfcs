@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 import { SectionHeader } from "@/components/SectionHeader";
 import { InputField } from "@/components/InputField";
 import { TextAreaField } from "@/components/TextAreaField";
+import { ImagePickerField } from "@/components/ImagePickerField";
 import { SaveButton } from "@/components/SaveButton";
 
 export function StartSchoolHeroSection({ initialData }: { initialData?: any }) {
@@ -17,22 +18,22 @@ export function StartSchoolHeroSection({ initialData }: { initialData?: any }) {
   const [scriptAccent, setScriptAccent] = useState("");
   const [description, setDescription] = useState("");
   const [buttonText, setButtonText] = useState("");
+  const [image, setImage] = useState("");
 
   useEffect(() => {
     if (initialData) {
-      setTagline(initialData.tagline ?? "Start a School");
-      setHeadline(initialData.headline ?? "Start a School. Shape a");
-      setScriptAccent(initialData.scriptAccent ?? "Future.");
-      setDescription(
-        initialData.description ??
-          "Become an LFCS Associate Partner and bring premier CBSE education to your city, in collaboration with educational entrepreneurs who share our 40-year legacy.",
-      );
-      setButtonText(initialData.buttonText ?? "Start Your Enquiry");
+      setTagline(initialData.tagline ?? "");
+      setHeadline(initialData.headline ?? "");
+      setScriptAccent(initialData.scriptAccent ?? "");
+      setDescription(initialData.description ?? "");
+      setButtonText(initialData.buttonText ?? "");
+      setImage(initialData.image ?? "");
     }
   }, [initialData]);
 
   const handleSave = async () => {
     setLoading(true);
+    setSaved(false);
     try {
       const payload = {
         section: "StartSchoolHeroSection",
@@ -42,6 +43,7 @@ export function StartSchoolHeroSection({ initialData }: { initialData?: any }) {
           scriptAccent,
           description,
           buttonText,
+          image,
         },
       };
 
@@ -80,13 +82,13 @@ export function StartSchoolHeroSection({ initialData }: { initialData?: any }) {
         <div className="space-y-6 pt-2">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <InputField
-              label="Eyebrow Tag"
+              label="Pre-Heading Tagline"
               value={tagline}
               onChange={(e) => setTagline(e.target.value)}
               placeholder="e.g. Start a School"
             />
             <InputField
-              label="Headline Lead"
+              label="Headline"
               value={headline}
               onChange={(e) => setHeadline(e.target.value)}
               placeholder="e.g. Start a School. Shape a"
@@ -100,22 +102,32 @@ export function StartSchoolHeroSection({ initialData }: { initialData?: any }) {
           </div>
 
           <TextAreaField
-            label="Hero Description"
+            label="Section Description"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             rows={3}
-            placeholder="e.g. Partnership proposition summary..."
+            placeholder="e.g. Become a part of LFCS and bring quality education closer to communities..."
           />
 
           <InputField
-            label="Enquiry CTA Button Label"
+            label="CTA Button Text"
             value={buttonText}
             onChange={(e) => setButtonText(e.target.value)}
             placeholder="e.g. Start Your Enquiry"
           />
 
-          <div className="pt-4 border-t border-gray-100 w-full">
-            <SaveButton onClick={handleSave} loading={loading} saved={saved} />
+          <ImagePickerField
+            label="Hero Visual Graphic"
+            value={image}
+            onChange={(url) => setImage(url)}
+            placeholder="e.g. Cloudinary image URL"
+            folder="lfcs-school/start-school"
+          />
+
+          <div className="pt-4 border-t border-gray-100 flex justify-end">
+            <div className="w-full">
+              <SaveButton onClick={handleSave} loading={loading} saved={saved} />
+            </div>
           </div>
         </div>
       )}

@@ -2,16 +2,21 @@
 
 import React, { useState, useEffect } from "react";
 import toast from "react-hot-toast";
-import { Plus } from "lucide-react";
-import { CollapsibleCard } from "@/components/CollapsibleCard";
 import { SectionHeader } from "@/components/SectionHeader";
 import { InputField } from "@/components/InputField";
 import { TextAreaField } from "@/components/TextAreaField";
 import { SaveButton } from "@/components/SaveButton";
+import { Plus } from "lucide-react";
+import { CollapsibleCard } from "@/components/CollapsibleCard";
 
-interface RequirementItem {
+export interface PartnerProfileItem {
   title: string;
   desc: string;
+  color?: string;
+}
+
+export interface EligibilityCriterion {
+  title: string;
 }
 
 export function PartnerRequirementsSection({ initialData }: { initialData?: any }) {
@@ -22,93 +27,107 @@ export function PartnerRequirementsSection({ initialData }: { initialData?: any 
   const [tagline, setTagline] = useState("");
   const [headline, setHeadline] = useState("");
   const [scriptAccent, setScriptAccent] = useState("");
-  const [subtitle, setSubtitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [eligibilityTitle, setEligibilityTitle] = useState("");
+  const [eligibilityNote, setEligibilityNote] = useState("");
 
-  const [requirements, setRequirements] = useState<RequirementItem[]>([]);
-  const [openIndices, setOpenIndices] = useState<number[]>([0]);
+  const [profile, setProfile] = useState<PartnerProfileItem[]>([]);
+  const [criteria, setCriteria] = useState<EligibilityCriterion[]>([]);
+  const [openProfileIndices, setOpenProfileIndices] = useState<number[]>([0]);
+  const [openCriteriaIndices, setOpenCriteriaIndices] = useState<number[]>([0]);
 
   useEffect(() => {
     if (initialData) {
-      setTagline(initialData.tagline ?? "PARTNER PROFILE & ELIGIBILITY");
-      setHeadline(initialData.headline ?? "Who Can Explore an");
-      setScriptAccent(initialData.scriptAccent ?? "LFCS Partnership?");
-      setSubtitle(
-        initialData.subtitle ??
-          "We welcome visionary individuals, trusts, corporate CSR bodies, and educational societies dedicated to uplifting local educational standards.",
-      );
+      setTagline(initialData.tagline ?? "");
+      setHeadline(initialData.headline ?? "");
+      setScriptAccent(initialData.scriptAccent ?? "");
+      setDescription(initialData.description ?? "");
+      setEligibilityTitle(initialData.eligibilityTitle ?? "");
+      setEligibilityNote(initialData.eligibilityNote ?? "");
 
-      if (Array.isArray(initialData.requirements) && initialData.requirements.length > 0) {
-        setRequirements(
-          initialData.requirements.map((r: any) => ({
-            title: r.title ?? "",
-            desc: r.desc ?? "",
+      const pList = Array.isArray(initialData.profile)
+        ? initialData.profile
+        : Array.isArray(initialData.requirements)
+          ? initialData.requirements
+          : null;
+
+      if (pList) {
+        setProfile(
+          pList.map((p: any) => ({
+            title: p.title ?? "",
+            desc: p.desc ?? p.description ?? "",
+            color: p.color ?? "",
           })),
         );
       } else {
-        setRequirements([
-          {
-            title: initialData.req1Title ?? "Commitment to Education",
-            desc:
-              initialData.req1Desc ??
-              "A sincere interest in contributing to children's character, academic growth, and regional development.",
-          },
-          {
-            title: initialData.req2Title ?? "Management & Leadership Capability",
-            desc:
-              initialData.req2Desc ??
-              "Capacity to organize, recruit, and supervise daily administrative and operational personnel.",
-          },
-          {
-            title: initialData.req3Title ?? "Infrastructure & Land Readiness",
-            desc:
-              initialData.req3Desc ??
-              "Access to 1.5 to 3+ acres of suitable land or constructed school premises adhering to CBSE affiliation norms.",
-          },
-          {
-            title: initialData.req4Title ?? "Financial Preparedness",
-            desc:
-              initialData.req4Desc ??
-              "Adequate investment capability for phase-wise campus construction, lab setup, and working capital.",
-          },
-          {
-            title: initialData.req5Title ?? "Long-Term Vision",
-            desc:
-              initialData.req5Desc ??
-              "A multi-year commitment to maintaining high educational integrity, discipline, and community standing.",
-          },
-        ]);
+        setProfile([]);
+      }
+
+      const cList = Array.isArray(initialData.criteria)
+        ? initialData.criteria
+        : Array.isArray(initialData.eligibilityPending)
+          ? initialData.eligibilityPending
+          : null;
+
+      if (cList) {
+        setCriteria(
+          cList.map((c: any) => ({
+            title: typeof c === "string" ? c : (c.title ?? c.name ?? ""),
+          })),
+        );
+      } else {
+        setCriteria([]);
       }
     }
   }, [initialData]);
 
-  const handleAddRequirement = () => {
-    setRequirements((prev) => [
-      ...prev,
-      {
-        title: "",
-        desc: "",
-      },
-    ]);
-    setOpenIndices((prev) => [...prev, requirements.length]);
+  const handleAddProfile = () => {
+    setProfile((prev) => [...prev, { title: "", desc: "", color: "" }]);
+    setOpenProfileIndices((prev) => [...prev, profile.length]);
   };
 
-  const handleRemoveRequirement = (index: number) => {
-    setRequirements((prev) => prev.filter((_, i) => i !== index));
-    setOpenIndices((prev) =>
+  const handleRemoveProfile = (index: number) => {
+    setProfile((prev) => prev.filter((_, i) => i !== index));
+    setOpenProfileIndices((prev) =>
       prev.filter((i) => i !== index).map((i) => (i > index ? i - 1 : i)),
     );
   };
 
-  const handleUpdateRequirement = (index: number, field: keyof RequirementItem, val: string) => {
-    setRequirements((prev) => {
+  const handleUpdateProfile = (
+    index: number,
+    field: keyof PartnerProfileItem,
+    value: string,
+  ) => {
+    setProfile((prev) => {
       const copy = [...prev];
-      copy[index] = { ...copy[index], [field]: val };
+      copy[index] = { ...copy[index], [field]: value };
+      return copy;
+    });
+  };
+
+  const handleAddCriterion = () => {
+    setCriteria((prev) => [...prev, { title: "" }]);
+    setOpenCriteriaIndices((prev) => [...prev, criteria.length]);
+  };
+
+  const handleRemoveCriterion = (index: number) => {
+    setCriteria((prev) => prev.filter((_, i) => i !== index));
+    setOpenCriteriaIndices((prev) =>
+      prev.filter((i) => i !== index).map((i) => (i > index ? i - 1 : i)),
+    );
+  };
+
+  const handleUpdateCriterion = (index: number, value: string) => {
+    setCriteria((prev) => {
+      const copy = [...prev];
+      copy[index] = { title: value };
       return copy;
     });
   };
 
   const handleSave = async () => {
     setLoading(true);
+    setSaved(false);
     try {
       const payload = {
         section: "PartnerRequirementsSection",
@@ -116,8 +135,11 @@ export function PartnerRequirementsSection({ initialData }: { initialData?: any 
           tagline,
           headline,
           scriptAccent,
-          subtitle,
-          requirements,
+          description,
+          eligibilityTitle,
+          eligibilityNote,
+          profile,
+          criteria,
         },
       };
 
@@ -130,7 +152,7 @@ export function PartnerRequirementsSection({ initialData }: { initialData?: any 
       const json = await res.json();
       if (json.success) {
         setSaved(true);
-        toast.success("Partner Requirements saved successfully!");
+        toast.success("Partner Requirements section saved successfully!");
         setTimeout(() => setSaved(false), 2500);
       } else {
         toast.error(json.error || "Failed to save section");
@@ -146,7 +168,7 @@ export function PartnerRequirementsSection({ initialData }: { initialData?: any 
     <div className="bg-white rounded-3xl p-6 shadow-sm ring-1 ring-gray-100 flex flex-col gap-6">
       <SectionHeader
         title="5. Partner Eligibility & Requirements"
-        description="Defines criteria for prospective partners: Commitment to Education, Management, Land, Financials, and Long-Term Vision."
+        description="Profile qualities and specific compliance requirements expected from educational partners."
         badge="Live Section"
         isOpen={isOpen}
         onToggle={() => setIsOpen(!isOpen)}
@@ -156,13 +178,13 @@ export function PartnerRequirementsSection({ initialData }: { initialData?: any 
         <div className="space-y-6 pt-2">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <InputField
-              label="Eyebrow Tag"
+              label="Pre-Heading Tagline"
               value={tagline}
               onChange={(e) => setTagline(e.target.value)}
-              placeholder="e.g. PARTNER PROFILE"
+              placeholder="e.g. Partner Requirements"
             />
             <InputField
-              label="Headline Lead"
+              label="Headline"
               value={headline}
               onChange={(e) => setHeadline(e.target.value)}
               placeholder="e.g. Who Can Explore an"
@@ -176,86 +198,94 @@ export function PartnerRequirementsSection({ initialData }: { initialData?: any 
           </div>
 
           <TextAreaField
-            label="Section Subtitle"
-            value={subtitle}
-            onChange={(e) => setSubtitle(e.target.value)}
+            label="Section Description"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
             rows={2}
-            placeholder="e.g. Overview of partner eligibility..."
+            placeholder="e.g. We welcome enquiries from individuals and organisations who share an interest in education..."
           />
 
-          {/* DYNAMIC REQUIREMENTS ARRAY */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <InputField
+              label="Eligibility Box Title"
+              value={eligibilityTitle}
+              onChange={(e) => setEligibilityTitle(e.target.value)}
+              placeholder="e.g. Partner Eligibility"
+            />
+            <InputField
+              label="Indicative Disclaimer Note"
+              value={eligibilityNote}
+              onChange={(e) => setEligibilityNote(e.target.value)}
+              placeholder="e.g. * These eligibility criteria are indicative..."
+            />
+          </div>
+
+          {/* DYNAMIC PARTNER PROFILE PILLARS */}
           <div className="border-t border-gray-100 pt-5 space-y-4">
             <div className="flex items-center justify-between">
               <div>
-                <h4 className="text-xs font-bold uppercase tracking-wider text-gray-700 flex items-center gap-2">
-                  Partner Eligibility Criteria ({requirements.length})
+                <h4 className="text-xs font-bold uppercase tracking-wider text-gray-500">
+                  Partner Profile Qualities ({profile.length})
                 </h4>
                 <p className="text-[11px] text-gray-400 mt-0.5">
-                  Core qualifications for potential franchise/school partners. Can add more than 5 criteria.
+                  Core competencies looked for in candidates (e.g. Management Capability, Long-Term Commitment).
                 </p>
               </div>
-              <div className="flex items-center gap-2">
-                <button
-                  type="button"
-                  onClick={() => {
-                    if (openIndices.length === requirements.length) {
-                      setOpenIndices([]);
-                    } else {
-                      setOpenIndices(requirements.map((_, i) => i));
-                    }
-                  }}
-                  className="text-xs font-semibold text-slate-500 hover:text-slate-800 px-2 py-1 rounded-lg hover:bg-slate-100 transition-colors cursor-pointer"
-                >
-                  {openIndices.length === requirements.length ? "Collapse All" : "Expand All"}
-                </button>
-                <button
-                  type="button"
-                  onClick={handleAddRequirement}
-                  className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0E5A60] hover:text-[#061C29] bg-[#0E5A60]/10 hover:bg-[#0E5A60]/20 px-3.5 py-1.5 rounded-xl transition-all cursor-pointer shadow-2xs"
-                >
-                  <Plus className="w-3.5 h-3.5" />
-                  <span>Add Criterion</span>
-                </button>
-              </div>
+              <button
+                type="button"
+                onClick={handleAddProfile}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-[#0E5A60] bg-[#0E5A60]/10 hover:bg-[#0E5A60]/20 rounded-xl transition-colors cursor-pointer"
+              >
+                <Plus className="w-3.5 h-3.5" />
+                <span>Add Quality</span>
+              </button>
             </div>
 
-            {requirements.length === 0 ? (
+            {profile.length === 0 ? (
               <div
-                onClick={handleAddRequirement}
-                className="p-8 rounded-2xl bg-gray-50/70 border border-dashed border-gray-200 text-center text-xs text-gray-400 cursor-pointer hover:bg-gray-100/70 hover:border-gray-300 transition-all flex flex-col items-center justify-center gap-2"
+                onClick={handleAddProfile}
+                className="p-8 border-2 border-dashed border-gray-200 rounded-2xl text-center text-gray-400 hover:border-[#0E5A60] hover:text-[#0E5A60] transition-colors cursor-pointer text-xs font-medium flex flex-col items-center gap-2"
               >
-                <Plus className="w-5 h-5 text-gray-400" />
-                <span>No criteria added yet. Click to add your first requirement.</span>
+                <Plus className="w-6 h-6 text-gray-300" />
+                <span>No qualities added yet. Click to add your first profile requirement.</span>
               </div>
             ) : (
               <div className="space-y-3">
-                {requirements.map((req, idx) => (
+                {profile.map((p, idx) => (
                   <CollapsibleCard
                     key={idx}
                     index={idx}
-                    title={req.title || `Criterion #${idx + 1}`}
-                    isOpen={openIndices.includes(idx)}
+                    title={`Quality ${idx + 1}: ${p.title || "Untitled Quality"}`}
+                    isOpen={openProfileIndices.includes(idx)}
                     onToggle={() =>
-                      setOpenIndices((prev) =>
+                      setOpenProfileIndices((prev) =>
                         prev.includes(idx) ? prev.filter((i) => i !== idx) : [...prev, idx],
                       )
                     }
-                    onDelete={() => handleRemoveRequirement(idx)}
-                    deleteTitle="Delete Criterion"
+                    onDelete={() => handleRemoveProfile(idx)}
+                    deleteTitle="Delete Quality"
                   >
-                    <InputField
-                      label="Criterion Title"
-                      value={req.title}
-                      onChange={(e) => handleUpdateRequirement(idx, "title", e.target.value)}
-                      placeholder="e.g. Commitment to Education"
-                    />
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      <InputField
+                        label="Quality Title"
+                        value={p.title}
+                        onChange={(e) => handleUpdateProfile(idx, "title", e.target.value)}
+                        placeholder="e.g. Management Capability"
+                      />
+                      <InputField
+                        label="Accent Color Hex (Optional)"
+                        value={p.color ?? ""}
+                        onChange={(e) => handleUpdateProfile(idx, "color", e.target.value)}
+                        placeholder="e.g. #66733a"
+                      />
+                    </div>
 
                     <TextAreaField
                       label="Description"
-                      value={req.desc}
-                      onChange={(e) => handleUpdateRequirement(idx, "desc", e.target.value)}
+                      value={p.desc}
+                      onChange={(e) => handleUpdateProfile(idx, "desc", e.target.value)}
                       rows={2}
-                      placeholder="e.g. Passion for educational development, character..."
+                      placeholder="e.g. The ability to manage or arrange the resources required..."
                     />
                   </CollapsibleCard>
                 ))}
@@ -263,8 +293,67 @@ export function PartnerRequirementsSection({ initialData }: { initialData?: any 
             )}
           </div>
 
-          <div className="pt-4 border-t border-gray-100 w-full">
-            <SaveButton onClick={handleSave} loading={loading} saved={saved} />
+          {/* DYNAMIC ELIGIBILITY CRITERIA CHECKLIST */}
+          <div className="border-t border-gray-100 pt-5 space-y-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <h4 className="text-xs font-bold uppercase tracking-wider text-gray-500">
+                  Eligibility Criteria Items ({criteria.length})
+                </h4>
+                <p className="text-[11px] text-gray-400 mt-0.5">
+                  Checklist points displayed in the eligibility box.
+                </p>
+              </div>
+              <button
+                type="button"
+                onClick={handleAddCriterion}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-[#0E5A60] bg-[#0E5A60]/10 hover:bg-[#0E5A60]/20 rounded-xl transition-colors cursor-pointer"
+              >
+                <Plus className="w-3.5 h-3.5" />
+                <span>Add Criterion</span>
+              </button>
+            </div>
+
+            {criteria.length === 0 ? (
+              <div
+                onClick={handleAddCriterion}
+                className="p-8 border-2 border-dashed border-gray-200 rounded-2xl text-center text-gray-400 hover:border-[#0E5A60] hover:text-[#0E5A60] transition-colors cursor-pointer text-xs font-medium flex flex-col items-center gap-2"
+              >
+                <Plus className="w-6 h-6 text-gray-300" />
+                <span>No criteria added yet. Click to add your first criterion.</span>
+              </div>
+            ) : (
+              <div className="space-y-3">
+                {criteria.map((c, idx) => (
+                  <CollapsibleCard
+                    key={idx}
+                    index={idx}
+                    title={`Criterion ${idx + 1}: ${c.title || "Untitled Criterion"}`}
+                    isOpen={openCriteriaIndices.includes(idx)}
+                    onToggle={() =>
+                      setOpenCriteriaIndices((prev) =>
+                        prev.includes(idx) ? prev.filter((i) => i !== idx) : [...prev, idx],
+                      )
+                    }
+                    onDelete={() => handleRemoveCriterion(idx)}
+                    deleteTitle="Delete Criterion"
+                  >
+                    <InputField
+                      label="Criterion Requirement"
+                      value={c.title}
+                      onChange={(e) => handleUpdateCriterion(idx, e.target.value)}
+                      placeholder="e.g. Minimum land requirement"
+                    />
+                  </CollapsibleCard>
+                ))}
+              </div>
+            )}
+          </div>
+
+          <div className="pt-4 border-t border-gray-100 flex justify-end">
+            <div className="w-full">
+              <SaveButton onClick={handleSave} loading={loading} saved={saved} />
+            </div>
           </div>
         </div>
       )}

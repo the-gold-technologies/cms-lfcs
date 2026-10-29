@@ -1038,200 +1038,372 @@
     }
   },
   "start-school": {
-    "InvestmentSection": {
-      "tagline": "INFRASTRUCTURE & CAPITAL PLANNING",
-      "headline": "Planning the Resources for Your School",
-      "subtitle": "Capital allocation is phased to ensure fiscal sustainability, aligned with CBSE minimum campus norms and student intake velocity.",
-      "heads": [
-        {
-          "title": "Land & Site Acquisition",
-          "desc": "1.5 to 3+ acres with safe, accessible road connectivity, clear non-agricultural title, and playground space.",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170001/lfcs-school/Nizamuddinpura-Mau_1793169999785.webp"
-        },
-        {
-          "title": "Academic Building & Classrooms",
-          "desc": "Spacious, well-ventilated 500 sq.ft classrooms, administrative wing, staff rooms, and infirmary.",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170002/lfcs-school/Sikatia-Mau_1793170001648.webp"
-        },
-        {
-          "title": "Laboratories & Technology Integration",
-          "desc": "Physics, Chemistry, Biology, Mathematics, and Computer labs with digital interactive flat panels.",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170016/lfcs-school/computer-lab_1793170016129.webp"
-        },
-        {
-          "title": "Sports Complexes & Working Capital",
-          "desc": "Outdoor athletic field, basketball court, indoor games room, school buses, and preliminary operating reserve.",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170017/lfcs-school/sports1_1793170017007.webp"
-        }
-      ]
+    "StartSchoolHeroSection": {
+      "tagline": "Start a School",
+      "headline": "Start a School. Shape a",
+      "scriptAccent": "Future.",
+      "description": "Become a part of LFCS and bring quality education closer to communities, in partnership with individuals and organisations who share our commitment to learning and growth.",
+      "buttonText": "Start Your Enquiry",
+      "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793257755/lfcs-school/start-school/start-school-hero_1793257753045.webp"
     },
-    "PartnerRequirementsSection": {
-      "tagline": "PARTNER PROFILE & ELIGIBILITY",
-      "headline": "Who Can Explore an",
-      "scriptAccent": "LFCS Partnership?",
-      "subtitle": "We welcome visionary individuals, trusts, corporate CSR bodies, and educational societies dedicated to uplifting local educational standards.",
-      "requirements": [
+    "WhyPartnerSection": {
+      "tagline": "Why Start an LFCS School?",
+      "headline": "Build an Educational Institution",
+      "scriptAccent": "With Purpose",
+      "reasons": [
         {
-          "title": "Commitment to Education",
-          "desc": "A sincere interest in contributing to children's character, academic growth, and regional development."
+          "title": "An Established Educational Identity",
+          "desc": "Built around the Little Flower identity and values-led philosophy.",
+          "color": "#dfae19",
+          "bg": "#fcf5de",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793257756/lfcs-school/start-school/lfis-mau-crop_1793257756282.webp"
         },
         {
-          "title": "Management & Leadership Capability",
-          "desc": "Capacity to organize, recruit, and supervise daily administrative and operational personnel."
+          "title": "A Focus on Quality Education",
+          "desc": "A structured environment that supports academic foundations and growth.",
+          "color": "#66733a",
+          "bg": "#edf1e8",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793255201/lfcs-school/academics/classroom_1793255200659.webp"
         },
         {
-          "title": "Infrastructure & Land Readiness",
-          "desc": "Access to 1.5 to 3+ acres of suitable land or constructed school premises adhering to CBSE affiliation norms."
+          "title": "Academic & Operational Guidance",
+          "desc": "Support across academic planning and school operations, per the partnership scope.",
+          "color": "#3b82f6",
+          "bg": "#eff6ff",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793254271/lfcs-school/about/story1_1793254270094.webp"
         },
         {
-          "title": "Financial Preparedness",
-          "desc": "Adequate investment capability for phase-wise campus construction, lab setup, and working capital."
+          "title": "A Shared Educational Vision",
+          "desc": "Be part of an initiative expanding access to quality education.",
+          "color": "#c76785",
+          "bg": "#fbeff2",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170035/lfcs-school/art1_1793170035130.webp"
         },
         {
-          "title": "Long-Term Vision",
-          "desc": "A multi-year commitment to maintaining high educational integrity, discipline, and community standing."
+          "title": "Long-Term Institutional Development",
+          "desc": "Build a school that grows sustainably and serves its community.",
+          "color": "#842b46",
+          "bg": "#fbeef1",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793252206/lfcs-school/home/future_1793252205739.webp"
         }
       ]
     },
     "SchoolModelSection": {
-      "tagline": "LFCS SCHOOL MODEL",
+      "tagline": "LFCS School Model",
       "headline": "A Partnership Built Around",
       "scriptAccent": "Education",
-      "subtitle": "A transparent institutional framework designed to align academic excellence, school administration, and sustainable local community impact.",
       "areas": [
         {
           "title": "Educational Framework",
-          "desc": "Full alignment with the LFCS pedagogical approach, student evaluations, and school values."
+          "desc": "Alignment with the LFCS approach to learning, student development and school values.",
+          "color": "#dfae19",
+          "bg": "#fcf5de"
         },
         {
-          "title": "School Management System",
-          "desc": "Clear delineation of operational responsibilities, ERP deployment, and administration."
+          "title": "School Management",
+          "desc": "Clarity on management responsibilities, operational processes and decision-making.",
+          "color": "#66733a",
+          "bg": "#edf1e8"
         },
         {
           "title": "Academic Structure",
-          "desc": "Continuous guidance on CBSE curriculum rollout, teacher training, and timetable management."
+          "desc": "Guidance on curriculum implementation, teaching practices and academic planning, where included in the agreement.",
+          "color": "#3b82f6",
+          "bg": "#eff6ff"
         },
         {
-          "title": "Brand Identity Standards",
-          "desc": "Authorized usage of LFCS logos, school uniforms, signage, and marketing collaterals."
+          "title": "Brand Identity",
+          "desc": "Use of approved LFCS branding and communication guidelines, subject to the applicable partnership terms.",
+          "color": "#c76785",
+          "bg": "#fbeff2"
         },
         {
-          "title": "Campus Development Coordination",
-          "desc": "Architectural blueprints, laboratory layouts, safety clearances, and sports ground setup."
+          "title": "School Development",
+          "desc": "Planning and coordination for establishing the required infrastructure, resources and operating systems.",
+          "color": "#842b46",
+          "bg": "#fbeef1"
+        }
+      ]
+    },
+    "SupportProvidedSection": {
+      "tagline": "What LFCS Provides",
+      "headline": "Support Across the School",
+      "scriptAccent": "Development Journey",
+      "stages": [
+        {
+          "label": "Pre-Launch Support",
+          "color": "#dfae19",
+          "bg": "#fcf5de",
+          "items": [
+            {
+              "title": "School Planning",
+              "desc": "Guidance on the initial planning and development requirements, where applicable."
+            },
+            {
+              "title": "Academic Planning",
+              "desc": "Support with academic structure, curriculum implementation and teaching-related planning, subject to the agreed scope."
+            },
+            {
+              "title": "Branding & Communication",
+              "desc": "Guidelines for applying the LFCS brand identity across relevant school touchpoints."
+            },
+            {
+              "title": "Faculty & Staff Planning",
+              "desc": "Guidance related to staffing requirements, recruitment and training, if included in the partnership."
+            }
+          ]
+        },
+        {
+          "label": "Launch Support",
+          "color": "#842b46",
+          "bg": "#fbeef1",
+          "items": [
+            {
+              "title": "Admissions Planning",
+              "desc": "Support for planning the admission process and related communication activities, where applicable."
+            },
+            {
+              "title": "School Readiness",
+              "desc": "Coordination of relevant preparations required before the school begins operations."
+            },
+            {
+              "title": "Marketing & Launch Collaterals",
+              "desc": "Support with approved branding and marketing materials, according to the partnership scope."
+            }
+          ]
+        },
+        {
+          "label": "Post-Launch Support",
+          "color": "#3b82f6",
+          "bg": "#eff6ff",
+          "items": [
+            {
+              "title": "Academic Coordination",
+              "desc": "Support related to academic planning and implementation, where agreed."
+            },
+            {
+              "title": "Operational Guidance",
+              "desc": "Assistance with relevant operational processes and school management requirements."
+            },
+            {
+              "title": "Training & Development",
+              "desc": "Possible training and development programmes for teachers and staff, subject to availability."
+            },
+            {
+              "title": "Continuous Coordination",
+              "desc": "Ongoing support arrangements as defined in the partnership agreement."
+            }
+          ]
+        }
+      ]
+    },
+    "PartnerRequirementsSection": {
+      "tagline": "Partner Requirements",
+      "headline": "Who Can Explore an",
+      "scriptAccent": "LFCS Partnership?",
+      "description": "We welcome enquiries from individuals and organisations who share an interest in education and are prepared to meet the requirements of establishing and managing a school.",
+      "eligibilityTitle": "Partner Eligibility",
+      "eligibilityNote": "* These eligibility criteria are indicative and will be confirmed with LFCS management before publishing.",
+      "profile": [
+        {
+          "title": "Commitment to Education",
+          "desc": "An interest in contributing to children's education and the development of the local community.",
+          "color": "#dfae19"
+        },
+        {
+          "title": "Management Capability",
+          "desc": "The ability to manage or arrange the resources required for school operations.",
+          "color": "#66733a"
+        },
+        {
+          "title": "Infrastructure Readiness",
+          "desc": "Access to suitable land, premises or the resources needed for school development, according to the applicable requirements.",
+          "color": "#3b82f6"
+        },
+        {
+          "title": "Financial Preparedness",
+          "desc": "The ability to meet the investment and operating requirements established for the proposed school.",
+          "color": "#c76785"
+        },
+        {
+          "title": "Long-Term Commitment",
+          "desc": "A willingness to work towards developing and maintaining the school over the long term.",
+          "color": "#842b46"
+        }
+      ],
+      "criteria": [
+        {
+          "title": "Eligible individual / organisation types"
+        },
+        {
+          "title": "Minimum land requirement"
+        },
+        {
+          "title": "Preferred location"
+        },
+        {
+          "title": "Financial eligibility"
+        },
+        {
+          "title": "Management experience"
+        },
+        {
+          "title": "School board / affiliation requirements"
         }
       ]
     },
     "SetupProcessSection": {
-      "tagline": "SCHOOL SETUP ROADMAP",
-      "headline": "From Initial Planning to",
-      "scriptAccent": "Grand Opening",
-      "subtitle": "Establishing a CBSE school requires disciplined milestone planning. Our structured 8-step roadmap guides your project smoothly from proposal to student admissions.",
+      "tagline": "School Setup Process",
+      "headline": "From Planning to",
+      "scriptAccent": "School Opening",
+      "description": "Establishing a school requires coordinated planning across infrastructure, academic preparation, staffing and operational readiness our proposed setup process is presented through the stages below.",
       "steps": [
         {
-          "title": "01. Initial Enquiry & Location Feasibility"
+          "n": "01",
+          "title": "Initial Enquiry",
+          "desc": "Share your interest in establishing an LFCS school, along with your proposed location and initial requirements."
         },
         {
-          "title": "02. Leadership Evaluation & Preliminary Discussions"
+          "n": "02",
+          "title": "Discussion & Evaluation",
+          "desc": "Discuss the proposed school, location, objectives and partnership requirements with the LFCS team."
         },
         {
-          "title": "03. Site Survey & Infrastructure Blueprints"
+          "n": "03",
+          "title": "Location & Feasibility",
+          "desc": "Review the proposed location, infrastructure requirements and feasibility of the school project."
         },
         {
-          "title": "04. Associate Agreement & Territory Finalisation"
+          "n": "04",
+          "title": "Partnership Finalisation",
+          "desc": "Discuss and finalise the partnership structure, responsibilities, commercial terms and relevant agreements."
         },
         {
-          "title": "05. Campus Civil Construction & Lab Setup"
+          "n": "05",
+          "title": "School Planning & Development",
+          "desc": "Work on infrastructure planning, academic requirements, staffing and other preparations necessary for establishing the school."
         },
         {
-          "title": "06. Principal & Faculty Recruitment & Training"
+          "n": "06",
+          "title": "Pre-Launch Preparation",
+          "desc": "Complete relevant operational preparations, branding, admissions planning and staff readiness."
         },
         {
-          "title": "07. Admissions Campaign Launch & School Readiness Audit"
+          "n": "07",
+          "title": "School Launch",
+          "desc": "Proceed with the opening of the school after completing the applicable requirements and approvals."
         },
         {
-          "title": "08. Inaugural Opening & Commencement of Classes"
+          "n": "08",
+          "title": "Ongoing Operations",
+          "desc": "Continue school operations with the agreed support and coordination framework."
+        }
+      ]
+    },
+    "InvestmentSection": {
+      "tagline": "Investment & Infrastructure",
+      "headline": "Planning the",
+      "scriptAccent": "Resources for Your School",
+      "description": "The investment and infrastructure requirements for an LFCS school will depend on the proposed location, school size, classes offered, facilities and applicable regulatory requirements.",
+      "considerations": [
+        {
+          "title": "Land & Location",
+          "desc": "Identification of suitable land and location based on the school's proposed size, community needs and applicable requirements.",
+          "color": "#dfae19",
+          "bg": "#fcf5de",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793257757/lfcs-school/start-school/investment1_1793257757311.webp"
+        },
+        {
+          "title": "School Building",
+          "desc": "Planning classrooms, administrative spaces and other required areas for school operations.",
+          "color": "#66733a",
+          "bg": "#edf1e8",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793257759/lfcs-school/start-school/investment2_1793257758660.webp"
+        },
+        {
+          "title": "Academic Facilities",
+          "desc": "Provision of appropriate learning resources, laboratories, library and other facilities, as applicable.",
+          "color": "#3b82f6",
+          "bg": "#eff6ff",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793257760/lfcs-school/start-school/investment3_1793257759785.webp"
+        },
+        {
+          "title": "Sports & Activity Areas",
+          "desc": "Planning spaces for physical education, sports and student activities.",
+          "color": "#c76785",
+          "bg": "#fbeff2",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793257761/lfcs-school/start-school/investment4_1793257761014.webp"
+        },
+        {
+          "title": "Furniture & Equipment",
+          "desc": "Arranging classroom furniture, computers, teaching resources and other essential equipment.",
+          "color": "#842b46",
+          "bg": "#fbeef1",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793257763/lfcs-school/start-school/investment5_1793257762346.webp"
+        },
+        {
+          "title": "Operational Resources",
+          "desc": "Planning for staffing, technology, administration and ongoing school operations.",
+          "color": "#b56f35",
+          "bg": "#fdf2e9",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793257764/lfcs-school/start-school/investment6_1793257763834.webp"
         }
       ]
     },
     "StartSchoolFaqSection": {
-      "tagline": "FREQUENTLY ASKED QUESTIONS",
-      "headline": "Everything You Need to Know About Starting an LFCS School",
+      "tagline": "FAQs",
+      "headline": "Frequently Asked",
+      "scriptAccent": "Questions",
+      "description": "Find answers to common questions about starting an LFCS school. For specific queries, feel free to reach out to our team.",
       "faqs": [
         {
-          "question": "Who can apply to start an LFCS school?",
-          "answer": "Individual entrepreneurs, registered charitable trusts, educational societies, and corporate CSR entities with dedicated resources for establishing educational institutions."
+          "q": "Who can apply to start an LFCS school?",
+          "a": "Individuals and eligible organisations interested in establishing a school may enquire. The applicable eligibility requirements will depend on the LFCS partnership model."
         },
         {
-          "question": "What is the minimum land requirement?",
-          "answer": "Typically 1.5 to 3 acres depending on city classification, following CBSE affiliation bylaws for playground and built-up area."
+          "q": "What is the minimum land requirement?",
+          "a": "The land requirement will depend on the proposed school model, location and applicable infrastructure requirements.",
+          "note": "Need to confirm this from client — the actual details."
         },
         {
-          "question": "Does LFCS assist with teacher recruitment and principal onboarding?",
-          "answer": "Yes. LFCS central academic council conducts principal search interviews, teacher screening tests, and intensive initial training bootcamps."
+          "q": "What investment is required to start an LFCS school?",
+          "a": "The investment depends on the proposed school size, location, infrastructure and partnership terms. The LFCS team can provide details after understanding the proposed project."
         },
         {
-          "question": "How long does the entire setup process take?",
-          "answer": "Depending on existing infrastructure readiness, setup typically spans 6 to 12 months from agreement signing to the commencement of the academic session."
+          "q": "Does LFCS provide academic support?",
+          "a": "Academic support will depend on the agreed partnership structure and scope of services."
+        },
+        {
+          "q": "Does LFCS help with school infrastructure planning?",
+          "a": "Details of infrastructure planning and support will depend on the school model and agreed responsibilities."
+        },
+        {
+          "q": "Does LFCS support teacher recruitment and training?",
+          "a": "Recruitment and training support, if available, will be provided according to the applicable partnership terms."
+        },
+        {
+          "q": "How long does it take to start a school?",
+          "a": "The timeline depends on location, approvals, infrastructure development, staffing and other project requirements."
+        },
+        {
+          "q": "Does LFCS assist with admissions and marketing?",
+          "a": "Support for admissions and marketing will depend on the agreed partnership scope."
+        },
+        {
+          "q": "Can I start an LFCS school in my city?",
+          "a": "You can submit an enquiry with your proposed location. The LFCS team can review the details and discuss the applicable requirements."
+        },
+        {
+          "q": "How can I enquire about starting an LFCS school?",
+          "a": "Complete the enquiry form on this page, and the relevant team can contact you regarding your proposal."
         }
       ]
     },
     "StartSchoolFinalCTASection": {
       "heading": "Build a School With a Shared Educational Purpose",
       "buttonText": "Submit Your Enquiry",
-      "emailText": "franchise@lfcsschools.com",
-      "bgImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170008/lfcs-school/school-associate-launch_1793170008299.webp"
-    },
-    "StartSchoolHeroSection": {
-      "tagline": "Start a School",
-      "headline": "Start a School. Shape a",
-      "scriptAccent": "Future.",
-      "description": "Become an LFCS Associate Partner and bring premier CBSE education to your city, in collaboration with educational entrepreneurs who share our 40-year legacy.",
-      "buttonText": "Start Your Enquiry"
-    },
-    "SupportProvidedSection": {
-      "tagline": "PARTNERSHIP LIFECYCLE",
-      "headline": "Comprehensive Support Across All Setup Stages",
-      "subtitle": "From initial land layout through grand opening and ongoing annual academic audits, LFCS supports your school at every step.",
-      "stages": [
-        {
-          "title": "Stage 1: Pre-Launch Support",
-          "items": "School Planning & Architectural Layouts, Academic Structure & Timetable Blueprint, Brand Identity Guidelines, Faculty Recruitment & Induction Workshops"
-        },
-        {
-          "title": "Stage 2: Launch Support",
-          "items": "Admissions Planning & Outreach Strategy, School Readiness Inspection, Marketing Campaigns & Launch Collaterals, Press Announcements"
-        },
-        {
-          "title": "Stage 3: Post-Launch & Ongoing Support",
-          "items": "Annual Academic Quality Audits, Regular Teacher Training Programs, Curriculum Updates, Inter-School Sports & Cultural Leagues Participation"
-        }
-      ]
-    },
-    "WhyPartnerSection": {
-      "tagline": "WHY PARTNER WITH US",
-      "headline": "A Partnership Built on Trust & Academic Prestige",
-      "advantages": [
-        {
-          "title": "Established Brand Heritage",
-          "desc": "40+ years of parental trust, recognizable emblem, and alumni network.",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170014/lfcs-school/journey-lfis-mau_1793170014137.webp"
-        },
-        {
-          "title": "Turnkey Curriculum Framework",
-          "desc": "NCERT/CBSE lesson plans, pedagogical handbooks, teacher guides, and assessment schemes.",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170028/lfcs-school/practical_1793170027731.webp"
-        },
-        {
-          "title": "Operational Guidance",
-          "desc": "End-to-end guidance across school architecture, lab design, bus transport, and regulatory compliance.",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170008/lfcs-school/school-associate-launch_1793170008299.webp"
-        },
-        {
-          "title": "Marketing & Admissions Engine",
-          "desc": "High-visibility launch PR campaigns, digital lead generation, and Anand Kumar endorsement collaterals.",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170010/lfcs-school/anand-kumar-felicitation_1793170010248.webp"
-        }
-      ]
+      "contactEmail": "franchise@lfcsschools.com",
+      "bgImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1793254289/lfcs-school/about/cta-bg_1793254289446.webp"
     }
   },
   "gallery": {

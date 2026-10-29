@@ -2,18 +2,20 @@
 
 import React, { useState, useEffect } from "react";
 import toast from "react-hot-toast";
-import { Plus } from "lucide-react";
-import { CollapsibleCard } from "@/components/CollapsibleCard";
 import { SectionHeader } from "@/components/SectionHeader";
 import { InputField } from "@/components/InputField";
 import { TextAreaField } from "@/components/TextAreaField";
 import { ImagePickerField } from "@/components/ImagePickerField";
 import { SaveButton } from "@/components/SaveButton";
+import { Plus } from "lucide-react";
+import { CollapsibleCard } from "@/components/CollapsibleCard";
 
-interface CapitalHead {
+export interface ConsiderationCard {
   title: string;
   desc: string;
   image: string;
+  color?: string;
+  bg?: string;
 }
 
 export function InvestmentSection({ initialData }: { initialData?: any }) {
@@ -23,108 +25,86 @@ export function InvestmentSection({ initialData }: { initialData?: any }) {
 
   const [tagline, setTagline] = useState("");
   const [headline, setHeadline] = useState("");
-  const [subtitle, setSubtitle] = useState("");
+  const [scriptAccent, setScriptAccent] = useState("");
+  const [description, setDescription] = useState("");
 
-  const [heads, setHeads] = useState<CapitalHead[]>([]);
+  const [considerations, setConsiderations] = useState<ConsiderationCard[]>([]);
   const [openIndices, setOpenIndices] = useState<number[]>([0]);
 
   useEffect(() => {
     if (initialData) {
-      setTagline(initialData.tagline ?? "INFRASTRUCTURE & CAPITAL PLANNING");
-      setHeadline(initialData.headline ?? "Planning the Resources for Your School");
-      setSubtitle(
-        initialData.subtitle ??
-          "Capital allocation is phased to ensure fiscal sustainability, aligned with CBSE minimum campus norms and student intake velocity.",
-      );
+      setTagline(initialData.tagline ?? "");
+      setHeadline(initialData.headline ?? "");
+      setScriptAccent(initialData.scriptAccent ?? "");
+      setDescription(initialData.description ?? "");
 
-      if (Array.isArray(initialData.heads) && initialData.heads.length > 0) {
-        setHeads(
-          initialData.heads.map((h: any) => ({
-            title: h.title ?? "",
-            desc: h.desc ?? "",
-            image: h.image ?? "",
+      const list = Array.isArray(initialData.considerations)
+        ? initialData.considerations
+        : Array.isArray(initialData.items)
+          ? initialData.items
+          : null;
+
+      if (list) {
+        setConsiderations(
+          list.map((c: any) => ({
+            title: c.title ?? "",
+            desc: c.desc ?? c.description ?? "",
+            image: c.image ?? "",
+            color: c.color ?? "",
+            bg: c.bg ?? "",
           })),
         );
       } else {
-        setHeads([
-          {
-            title: initialData.inv1Title ?? "Land & Site Acquisition",
-            desc:
-              initialData.inv1Desc ??
-              "1.5 to 3+ acres with safe, accessible road connectivity, clear non-agricultural title, and playground space.",
-            image:
-              initialData.inv1Image ??
-              "https://res.cloudinary.com/dpa93copz/image/upload/v1793170001/lfcs-school/Nizamuddinpura-Mau_1793169999785.webp",
-          },
-          {
-            title: initialData.inv2Title ?? "Academic Building & Classrooms",
-            desc:
-              initialData.inv2Desc ??
-              "Spacious, well-ventilated 500 sq.ft classrooms, administrative wing, staff rooms, and infirmary.",
-            image:
-              initialData.inv2Image ??
-              "https://res.cloudinary.com/dpa93copz/image/upload/v1793170002/lfcs-school/Sikatia-Mau_1793170001648.webp",
-          },
-          {
-            title: initialData.inv3Title ?? "Laboratories & Technology Integration",
-            desc:
-              initialData.inv3Desc ??
-              "Physics, Chemistry, Biology, Mathematics, and Computer labs with digital interactive flat panels.",
-            image:
-              initialData.inv3Image ??
-              "https://res.cloudinary.com/dpa93copz/image/upload/v1793170016/lfcs-school/computer-lab_1793170016129.webp",
-          },
-          {
-            title: initialData.inv4Title ?? "Sports Complexes & Working Capital",
-            desc:
-              initialData.inv4Desc ??
-              "Outdoor athletic field, basketball court, indoor games room, school buses, and preliminary operating reserve.",
-            image:
-              initialData.inv4Image ??
-              "https://res.cloudinary.com/dpa93copz/image/upload/v1793170017/lfcs-school/sports1_1793170017007.webp",
-          },
-        ]);
+        setConsiderations([]);
       }
     }
   }, [initialData]);
 
-  const handleAddHead = () => {
-    setHeads((prev) => [
+  const handleAddConsideration = () => {
+    setConsiderations((prev) => [
       ...prev,
       {
         title: "",
         desc: "",
         image: "",
+        color: "",
+        bg: "",
       },
     ]);
-    setOpenIndices((prev) => [...prev, heads.length]);
+    setOpenIndices((prev) => [...prev, considerations.length]);
   };
 
-  const handleRemoveHead = (index: number) => {
-    setHeads((prev) => prev.filter((_, i) => i !== index));
+  const handleRemoveConsideration = (index: number) => {
+    setConsiderations((prev) => prev.filter((_, i) => i !== index));
     setOpenIndices((prev) =>
       prev.filter((i) => i !== index).map((i) => (i > index ? i - 1 : i)),
     );
   };
 
-  const handleUpdateHead = (index: number, field: keyof CapitalHead, val: string) => {
-    setHeads((prev) => {
+  const handleUpdateConsideration = (
+    index: number,
+    field: keyof ConsiderationCard,
+    value: string,
+  ) => {
+    setConsiderations((prev) => {
       const copy = [...prev];
-      copy[index] = { ...copy[index], [field]: val };
+      copy[index] = { ...copy[index], [field]: value };
       return copy;
     });
   };
 
   const handleSave = async () => {
     setLoading(true);
+    setSaved(false);
     try {
       const payload = {
         section: "InvestmentSection",
         content: {
           tagline,
           headline,
-          subtitle,
-          heads,
+          scriptAccent,
+          description,
+          considerations,
         },
       };
 
@@ -137,7 +117,7 @@ export function InvestmentSection({ initialData }: { initialData?: any }) {
       const json = await res.json();
       if (json.success) {
         setSaved(true);
-        toast.success("Investment & Resource Planning saved successfully!");
+        toast.success("Investment & Infrastructure section saved successfully!");
         setTimeout(() => setSaved(false), 2500);
       } else {
         toast.error(json.error || "Failed to save section");
@@ -152,8 +132,8 @@ export function InvestmentSection({ initialData }: { initialData?: any }) {
   return (
     <div className="bg-white rounded-3xl p-6 shadow-sm ring-1 ring-gray-100 flex flex-col gap-6">
       <SectionHeader
-        title="7. Investment & Resource Planning"
-        description="Outlines infrastructure requirements: Land acquisition, Civil construction, Laboratories, and Sports/Working capital."
+        title="7. Investment & Infrastructure Planning"
+        description="Core capital resource areas: Land & Location, Building, Labs, Sports Grounds, Equipment, and Operations."
         badge="Live Section"
         isOpen={isOpen}
         onToggle={() => setIsOpen(!isOpen)}
@@ -161,113 +141,117 @@ export function InvestmentSection({ initialData }: { initialData?: any }) {
 
       {isOpen && (
         <div className="space-y-6 pt-2">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <InputField
-              label="Eyebrow Tag"
+              label="Pre-Heading Tagline"
               value={tagline}
               onChange={(e) => setTagline(e.target.value)}
-              placeholder="e.g. INFRASTRUCTURE & CAPITAL PLANNING"
+              placeholder="e.g. Investment & Infrastructure"
             />
             <InputField
-              label="Section Headline"
+              label="Headline"
               value={headline}
               onChange={(e) => setHeadline(e.target.value)}
-              placeholder="e.g. Planning the Resources for Your School"
+              placeholder="e.g. Planning the"
+            />
+            <InputField
+              label="Script Accent"
+              value={scriptAccent}
+              onChange={(e) => setScriptAccent(e.target.value)}
+              placeholder="e.g. Resources for Your School"
             />
           </div>
 
           <TextAreaField
-            label="Section Subtitle"
-            value={subtitle}
-            onChange={(e) => setSubtitle(e.target.value)}
+            label="Section Description"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
             rows={2}
-            placeholder="e.g. Overview of phased capital outlay..."
+            placeholder="e.g. The investment and infrastructure requirements for an LFCS school will depend on location, size..."
           />
 
-          {/* DYNAMIC CAPITAL HEADS ARRAY */}
+          {/* DYNAMIC CONSIDERATIONS */}
           <div className="border-t border-gray-100 pt-5 space-y-4">
             <div className="flex items-center justify-between">
               <div>
-                <h4 className="text-xs font-bold uppercase tracking-wider text-gray-700 flex items-center gap-2">
-                  Capital Allocation Heads ({heads.length})
+                <h4 className="text-xs font-bold uppercase tracking-wider text-gray-500">
+                  Resource Considerations ({considerations.length})
                 </h4>
                 <p className="text-[11px] text-gray-400 mt-0.5">
-                  Phased infrastructure heads. Can add more than 4 heads.
+                  Capital planning categories shown on the investment grid.
                 </p>
               </div>
-              <div className="flex items-center gap-2">
-                <button
-                  type="button"
-                  onClick={() => {
-                    if (openIndices.length === heads.length) {
-                      setOpenIndices([]);
-                    } else {
-                      setOpenIndices(heads.map((_, i) => i));
-                    }
-                  }}
-                  className="text-xs font-semibold text-slate-500 hover:text-slate-800 px-2 py-1 rounded-lg hover:bg-slate-100 transition-colors cursor-pointer"
-                >
-                  {openIndices.length === heads.length ? "Collapse All" : "Expand All"}
-                </button>
-                <button
-                  type="button"
-                  onClick={handleAddHead}
-                  className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0E5A60] hover:text-[#061C29] bg-[#0E5A60]/10 hover:bg-[#0E5A60]/20 px-3.5 py-1.5 rounded-xl transition-all cursor-pointer shadow-2xs"
-                >
-                  <Plus className="w-3.5 h-3.5" />
-                  <span>Add Capital Head</span>
-                </button>
-              </div>
+              <button
+                type="button"
+                onClick={handleAddConsideration}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-[#0E5A60] bg-[#0E5A60]/10 hover:bg-[#0E5A60]/20 rounded-xl transition-colors cursor-pointer"
+              >
+                <Plus className="w-3.5 h-3.5" />
+                <span>Add Consideration</span>
+              </button>
             </div>
 
-            {heads.length === 0 ? (
+            {considerations.length === 0 ? (
               <div
-                onClick={handleAddHead}
-                className="p-8 rounded-2xl bg-gray-50/70 border border-dashed border-gray-200 text-center text-xs text-gray-400 cursor-pointer hover:bg-gray-100/70 hover:border-gray-300 transition-all flex flex-col items-center justify-center gap-2"
+                onClick={handleAddConsideration}
+                className="p-8 border-2 border-dashed border-gray-200 rounded-2xl text-center text-gray-400 hover:border-[#0E5A60] hover:text-[#0E5A60] transition-colors cursor-pointer text-xs font-medium flex flex-col items-center gap-2"
               >
-                <Plus className="w-5 h-5 text-gray-400" />
-                <span>No allocation heads added yet. Click to add your first head.</span>
+                <Plus className="w-6 h-6 text-gray-300" />
+                <span>No considerations added yet. Click to add your first resource card.</span>
               </div>
             ) : (
               <div className="space-y-3">
-                {heads.map((head, idx) => (
+                {considerations.map((item, idx) => (
                   <CollapsibleCard
                     key={idx}
                     index={idx}
-                    title={`Capital Head ${idx + 1}: ${head.title || "Untitled"}`}
-                    thumbnail={head.image}
+                    title={`Consideration ${idx + 1}: ${item.title || "Untitled Resource"}`}
+                    thumbnail={item.image}
                     isOpen={openIndices.includes(idx)}
                     onToggle={() =>
                       setOpenIndices((prev) =>
                         prev.includes(idx) ? prev.filter((i) => i !== idx) : [...prev, idx],
                       )
                     }
-                    onDelete={() => handleRemoveHead(idx)}
-                    deleteTitle="Delete Head"
+                    onDelete={() => handleRemoveConsideration(idx)}
+                    deleteTitle="Delete Consideration"
                   >
-                    {/* Row 1: Title */}
                     <InputField
-                      label="Head Title"
-                      value={head.title}
-                      onChange={(e) => handleUpdateHead(idx, "title", e.target.value)}
-                      placeholder="e.g. Land & Site Acquisition"
+                      label="Resource Title"
+                      value={item.title}
+                      onChange={(e) => handleUpdateConsideration(idx, "title", e.target.value)}
+                      placeholder="e.g. Land & Location"
                     />
 
-                    {/* Row 2: Description */}
                     <TextAreaField
                       label="Description"
-                      value={head.desc}
-                      onChange={(e) => handleUpdateHead(idx, "desc", e.target.value)}
+                      value={item.desc}
+                      onChange={(e) => handleUpdateConsideration(idx, "desc", e.target.value)}
                       rows={2}
-                      placeholder="e.g. Land area requirements, title clearances..."
+                      placeholder="e.g. Identification of suitable land and location based on the school's proposed size..."
                     />
 
-                    {/* Row 3: Image (full width) */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      <InputField
+                        label="Accent Color Hex (Optional)"
+                        value={item.color ?? ""}
+                        onChange={(e) => handleUpdateConsideration(idx, "color", e.target.value)}
+                        placeholder="e.g. #dfae19"
+                      />
+                      <InputField
+                        label="Badge Background Hex (Optional)"
+                        value={item.bg ?? ""}
+                        onChange={(e) => handleUpdateConsideration(idx, "bg", e.target.value)}
+                        placeholder="e.g. #fcf5de"
+                      />
+                    </div>
+
                     <ImagePickerField
-                      label="Head Photo / Visual"
-                      value={head.image}
-                      onChange={(url) => handleUpdateHead(idx, "image", url)}
-                      placeholder="e.g. Cloudinary photo URL"
+                      label="Photo Illustration"
+                      value={item.image}
+                      onChange={(url) => handleUpdateConsideration(idx, "image", url)}
+                      placeholder="e.g. Cloudinary image URL"
+                      folder="lfcs-school/start-school"
                     />
                   </CollapsibleCard>
                 ))}
@@ -275,8 +259,10 @@ export function InvestmentSection({ initialData }: { initialData?: any }) {
             )}
           </div>
 
-          <div className="pt-4 border-t border-gray-100 w-full">
-            <SaveButton onClick={handleSave} loading={loading} saved={saved} />
+          <div className="pt-4 border-t border-gray-100 flex justify-end">
+            <div className="w-full">
+              <SaveButton onClick={handleSave} loading={loading} saved={saved} />
+            </div>
           </div>
         </div>
       )}

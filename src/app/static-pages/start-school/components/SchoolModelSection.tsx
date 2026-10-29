@@ -2,16 +2,18 @@
 
 import React, { useState, useEffect } from "react";
 import toast from "react-hot-toast";
-import { Plus } from "lucide-react";
-import { CollapsibleCard } from "@/components/CollapsibleCard";
 import { SectionHeader } from "@/components/SectionHeader";
 import { InputField } from "@/components/InputField";
 import { TextAreaField } from "@/components/TextAreaField";
 import { SaveButton } from "@/components/SaveButton";
+import { Plus } from "lucide-react";
+import { CollapsibleCard } from "@/components/CollapsibleCard";
 
-interface ModelArea {
+export interface ModelArea {
   title: string;
   desc: string;
+  color?: string;
+  bg?: string;
 }
 
 export function SchoolModelSection({ initialData }: { initialData?: any }) {
@@ -22,61 +24,33 @@ export function SchoolModelSection({ initialData }: { initialData?: any }) {
   const [tagline, setTagline] = useState("");
   const [headline, setHeadline] = useState("");
   const [scriptAccent, setScriptAccent] = useState("");
-  const [subtitle, setSubtitle] = useState("");
 
   const [areas, setAreas] = useState<ModelArea[]>([]);
   const [openIndices, setOpenIndices] = useState<number[]>([0]);
 
   useEffect(() => {
     if (initialData) {
-      setTagline(initialData.tagline ?? "LFCS SCHOOL MODEL");
-      setHeadline(initialData.headline ?? "A Partnership Built Around");
-      setScriptAccent(initialData.scriptAccent ?? "Education");
-      setSubtitle(
-        initialData.subtitle ??
-          "A transparent institutional framework designed to align academic excellence, school administration, and sustainable local community impact.",
-      );
+      setTagline(initialData.tagline ?? "");
+      setHeadline(initialData.headline ?? "");
+      setScriptAccent(initialData.scriptAccent ?? "");
 
-      if (Array.isArray(initialData.areas) && initialData.areas.length > 0) {
+      const list = Array.isArray(initialData.areas)
+        ? initialData.areas
+        : Array.isArray(initialData.pillars)
+          ? initialData.pillars
+          : null;
+
+      if (list) {
         setAreas(
-          initialData.areas.map((a: any) => ({
+          list.map((a: any) => ({
             title: a.title ?? "",
-            desc: a.desc ?? "",
+            desc: a.desc ?? a.description ?? "",
+            color: a.color ?? "",
+            bg: a.bg ?? "",
           })),
         );
       } else {
-        setAreas([
-          {
-            title: initialData.area1Title ?? "Educational Framework",
-            desc:
-              initialData.area1Desc ??
-              "Full alignment with the LFCS pedagogical approach, student evaluations, and school values.",
-          },
-          {
-            title: initialData.area2Title ?? "School Management System",
-            desc:
-              initialData.area2Desc ??
-              "Clear delineation of operational responsibilities, ERP deployment, and administration.",
-          },
-          {
-            title: initialData.area3Title ?? "Academic Structure",
-            desc:
-              initialData.area3Desc ??
-              "Continuous guidance on CBSE curriculum rollout, teacher training, and timetable management.",
-          },
-          {
-            title: initialData.area4Title ?? "Brand Identity Standards",
-            desc:
-              initialData.area4Desc ??
-              "Authorized usage of LFCS logos, school uniforms, signage, and marketing collaterals.",
-          },
-          {
-            title: initialData.area5Title ?? "Campus Development Coordination",
-            desc:
-              initialData.area5Desc ??
-              "Architectural blueprints, laboratory layouts, safety clearances, and sports ground setup.",
-          },
-        ]);
+        setAreas([]);
       }
     }
   }, [initialData]);
@@ -87,6 +61,8 @@ export function SchoolModelSection({ initialData }: { initialData?: any }) {
       {
         title: "",
         desc: "",
+        color: "",
+        bg: "",
       },
     ]);
     setOpenIndices((prev) => [...prev, areas.length]);
@@ -99,16 +75,21 @@ export function SchoolModelSection({ initialData }: { initialData?: any }) {
     );
   };
 
-  const handleUpdateArea = (index: number, field: keyof ModelArea, val: string) => {
+  const handleUpdateArea = (
+    index: number,
+    field: keyof ModelArea,
+    value: string,
+  ) => {
     setAreas((prev) => {
       const copy = [...prev];
-      copy[index] = { ...copy[index], [field]: val };
+      copy[index] = { ...copy[index], [field]: value };
       return copy;
     });
   };
 
   const handleSave = async () => {
     setLoading(true);
+    setSaved(false);
     try {
       const payload = {
         section: "SchoolModelSection",
@@ -116,7 +97,6 @@ export function SchoolModelSection({ initialData }: { initialData?: any }) {
           tagline,
           headline,
           scriptAccent,
-          subtitle,
           areas,
         },
       };
@@ -146,7 +126,7 @@ export function SchoolModelSection({ initialData }: { initialData?: any }) {
     <div className="bg-white rounded-3xl p-6 shadow-sm ring-1 ring-gray-100 flex flex-col gap-6">
       <SectionHeader
         title="3. LFCS School Operating Model Pillars"
-        description="Core operational framework: Educational, Management, Academic Structure, Brand Identity, and Development."
+        description="Highlights key operational domains: Educational Framework, Management, Academic Structure, Brand Identity, and Development."
         badge="Live Section"
         isOpen={isOpen}
         onToggle={() => setIsOpen(!isOpen)}
@@ -156,13 +136,13 @@ export function SchoolModelSection({ initialData }: { initialData?: any }) {
         <div className="space-y-6 pt-2">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <InputField
-              label="Eyebrow Tag"
+              label="Pre-Heading Tagline"
               value={tagline}
               onChange={(e) => setTagline(e.target.value)}
-              placeholder="e.g. LFCS SCHOOL MODEL"
+              placeholder="e.g. LFCS School Model"
             />
             <InputField
-              label="Headline Lead"
+              label="Headline"
               value={headline}
               onChange={(e) => setHeadline(e.target.value)}
               placeholder="e.g. A Partnership Built Around"
@@ -175,57 +155,34 @@ export function SchoolModelSection({ initialData }: { initialData?: any }) {
             />
           </div>
 
-          <TextAreaField
-            label="Section Subtitle"
-            value={subtitle}
-            onChange={(e) => setSubtitle(e.target.value)}
-            rows={2}
-            placeholder="e.g. Operating model summary..."
-          />
-
-          {/* DYNAMIC MODEL AREAS ARRAY */}
+          {/* DYNAMIC AREAS */}
           <div className="border-t border-gray-100 pt-5 space-y-4">
             <div className="flex items-center justify-between">
               <div>
-                <h4 className="text-xs font-bold uppercase tracking-wider text-gray-700 flex items-center gap-2">
-                  Model Focus Pillars ({areas.length})
+                <h4 className="text-xs font-bold uppercase tracking-wider text-gray-500">
+                  Model Areas ({areas.length})
                 </h4>
                 <p className="text-[11px] text-gray-400 mt-0.5">
-                  Core operational pillars. Can add more than 5 pillars.
+                  Core operational pillar columns shown on the model section.
                 </p>
               </div>
-              <div className="flex items-center gap-2">
-                <button
-                  type="button"
-                  onClick={() => {
-                    if (openIndices.length === areas.length) {
-                      setOpenIndices([]);
-                    } else {
-                      setOpenIndices(areas.map((_, i) => i));
-                    }
-                  }}
-                  className="text-xs font-semibold text-slate-500 hover:text-slate-800 px-2 py-1 rounded-lg hover:bg-slate-100 transition-colors cursor-pointer"
-                >
-                  {openIndices.length === areas.length ? "Collapse All" : "Expand All"}
-                </button>
-                <button
-                  type="button"
-                  onClick={handleAddArea}
-                  className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0E5A60] hover:text-[#061C29] bg-[#0E5A60]/10 hover:bg-[#0E5A60]/20 px-3.5 py-1.5 rounded-xl transition-all cursor-pointer shadow-2xs"
-                >
-                  <Plus className="w-3.5 h-3.5" />
-                  <span>Add Pillar</span>
-                </button>
-              </div>
+              <button
+                type="button"
+                onClick={handleAddArea}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-[#0E5A60] bg-[#0E5A60]/10 hover:bg-[#0E5A60]/20 rounded-xl transition-colors cursor-pointer"
+              >
+                <Plus className="w-3.5 h-3.5" />
+                <span>Add Area</span>
+              </button>
             </div>
 
             {areas.length === 0 ? (
               <div
                 onClick={handleAddArea}
-                className="p-8 rounded-2xl bg-gray-50/70 border border-dashed border-gray-200 text-center text-xs text-gray-400 cursor-pointer hover:bg-gray-100/70 hover:border-gray-300 transition-all flex flex-col items-center justify-center gap-2"
+                className="p-8 border-2 border-dashed border-gray-200 rounded-2xl text-center text-gray-400 hover:border-[#0E5A60] hover:text-[#0E5A60] transition-colors cursor-pointer text-xs font-medium flex flex-col items-center gap-2"
               >
-                <Plus className="w-5 h-5 text-gray-400" />
-                <span>No model pillars added yet. Click to add your first pillar.</span>
+                <Plus className="w-6 h-6 text-gray-300" />
+                <span>No areas added yet. Click to add your first pillar.</span>
               </div>
             ) : (
               <div className="space-y-3">
@@ -233,7 +190,7 @@ export function SchoolModelSection({ initialData }: { initialData?: any }) {
                   <CollapsibleCard
                     key={idx}
                     index={idx}
-                    title={area.title || `Pillar #${idx + 1}`}
+                    title={`Pillar ${idx + 1}: ${area.title || "Untitled Area"}`}
                     isOpen={openIndices.includes(idx)}
                     onToggle={() =>
                       setOpenIndices((prev) =>
@@ -241,10 +198,10 @@ export function SchoolModelSection({ initialData }: { initialData?: any }) {
                       )
                     }
                     onDelete={() => handleRemoveArea(idx)}
-                    deleteTitle="Delete Pillar"
+                    deleteTitle="Delete Area"
                   >
                     <InputField
-                      label="Pillar Title"
+                      label="Area Title"
                       value={area.title}
                       onChange={(e) => handleUpdateArea(idx, "title", e.target.value)}
                       placeholder="e.g. Educational Framework"
@@ -255,16 +212,33 @@ export function SchoolModelSection({ initialData }: { initialData?: any }) {
                       value={area.desc}
                       onChange={(e) => handleUpdateArea(idx, "desc", e.target.value)}
                       rows={2}
-                      placeholder="e.g. Learning approach, evaluation standards..."
+                      placeholder="e.g. Alignment with the LFCS approach to learning..."
                     />
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      <InputField
+                        label="Accent Color Hex (Optional)"
+                        value={area.color ?? ""}
+                        onChange={(e) => handleUpdateArea(idx, "color", e.target.value)}
+                        placeholder="e.g. #dfae19"
+                      />
+                      <InputField
+                        label="Background Color Hex (Optional)"
+                        value={area.bg ?? ""}
+                        onChange={(e) => handleUpdateArea(idx, "bg", e.target.value)}
+                        placeholder="e.g. #fcf5de"
+                      />
+                    </div>
                   </CollapsibleCard>
                 ))}
               </div>
             )}
           </div>
 
-          <div className="pt-4 border-t border-gray-100 w-full">
-            <SaveButton onClick={handleSave} loading={loading} saved={saved} />
+          <div className="pt-4 border-t border-gray-100 flex justify-end">
+            <div className="w-full">
+              <SaveButton onClick={handleSave} loading={loading} saved={saved} />
+            </div>
           </div>
         </div>
       )}

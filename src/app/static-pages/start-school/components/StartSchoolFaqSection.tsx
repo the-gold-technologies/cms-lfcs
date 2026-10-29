@@ -6,12 +6,13 @@ import { SectionHeader } from "@/components/SectionHeader";
 import { InputField } from "@/components/InputField";
 import { TextAreaField } from "@/components/TextAreaField";
 import { SaveButton } from "@/components/SaveButton";
-import { CollapsibleCard } from "@/components/CollapsibleCard";
 import { Plus } from "lucide-react";
+import { CollapsibleCard } from "@/components/CollapsibleCard";
 
 export interface FaqItem {
-  question: string;
-  answer: string;
+  q: string;
+  a: string;
+  note?: string;
 }
 
 export function StartSchoolFaqSection({ initialData }: { initialData?: any }) {
@@ -21,59 +22,35 @@ export function StartSchoolFaqSection({ initialData }: { initialData?: any }) {
 
   const [tagline, setTagline] = useState("");
   const [headline, setHeadline] = useState("");
+  const [scriptAccent, setScriptAccent] = useState("");
+  const [description, setDescription] = useState("");
 
   const [faqs, setFaqs] = useState<FaqItem[]>([]);
   const [openIndices, setOpenIndices] = useState<number[]>([0]);
 
   useEffect(() => {
     if (initialData) {
-      setTagline(initialData.tagline ?? "FREQUENTLY ASKED QUESTIONS");
-      setHeadline(
-        initialData.headline ?? "Everything You Need to Know About Starting an LFCS School",
-      );
+      setTagline(initialData.tagline ?? "");
+      setHeadline(initialData.headline ?? "");
+      setScriptAccent(initialData.scriptAccent ?? "");
+      setDescription(initialData.description ?? "");
 
-      if (Array.isArray(initialData.faqs) && initialData.faqs.length > 0) {
+      if (Array.isArray(initialData.faqs)) {
         setFaqs(
           initialData.faqs.map((f: any) => ({
-            question: f.question ?? f.q ?? "",
-            answer: f.answer ?? f.a ?? "",
+            q: f.q ?? f.question ?? "",
+            a: f.a ?? f.answer ?? "",
+            note: f.note ?? "",
           })),
         );
       } else {
-        setFaqs([
-          {
-            question: initialData.faq1Q ?? "Who can apply to start an LFCS school?",
-            answer:
-              initialData.faq1A ??
-              "Individual entrepreneurs, registered charitable trusts, educational societies, and corporate CSR entities with dedicated resources for establishing educational institutions.",
-          },
-          {
-            question: initialData.faq2Q ?? "What is the minimum land requirement?",
-            answer:
-              initialData.faq2A ??
-              "Typically 1.5 to 3 acres depending on city classification, following CBSE affiliation bylaws for playground and built-up area.",
-          },
-          {
-            question:
-              initialData.faq3Q ??
-              "Does LFCS assist with teacher recruitment and principal onboarding?",
-            answer:
-              initialData.faq3A ??
-              "Yes. LFCS central academic council conducts principal search interviews, teacher screening tests, and intensive initial training bootcamps.",
-          },
-          {
-            question: initialData.faq4Q ?? "How long does the entire setup process take?",
-            answer:
-              initialData.faq4A ??
-              "Depending on existing infrastructure readiness, setup typically spans 6 to 12 months from agreement signing to the commencement of the academic session.",
-          },
-        ]);
+        setFaqs([]);
       }
     }
   }, [initialData]);
 
   const handleAddFaq = () => {
-    setFaqs((prev) => [...prev, { question: "", answer: "" }]);
+    setFaqs((prev) => [...prev, { q: "", a: "", note: "" }]);
     setOpenIndices((prev) => [...prev, faqs.length]);
   };
 
@@ -84,7 +61,11 @@ export function StartSchoolFaqSection({ initialData }: { initialData?: any }) {
     );
   };
 
-  const handleUpdateFaq = (index: number, field: keyof FaqItem, value: string) => {
+  const handleUpdateFaq = (
+    index: number,
+    field: keyof FaqItem,
+    value: string,
+  ) => {
     setFaqs((prev) => {
       const copy = [...prev];
       copy[index] = { ...copy[index], [field]: value };
@@ -101,6 +82,8 @@ export function StartSchoolFaqSection({ initialData }: { initialData?: any }) {
         content: {
           tagline,
           headline,
+          scriptAccent,
+          description,
           faqs,
         },
       };
@@ -129,8 +112,8 @@ export function StartSchoolFaqSection({ initialData }: { initialData?: any }) {
   return (
     <div className="bg-white rounded-3xl p-6 shadow-sm ring-1 ring-gray-100 flex flex-col gap-6">
       <SectionHeader
-        title="8. Frequently Asked Questions (Associate School FAQs)"
-        description="Address prospective partner doubts covering eligibility, land requirements, curriculum compliance, and ROI."
+        title="8. Frequently Asked Questions (Partner FAQs)"
+        description="Address prospective franchisee queries on land, capital, academic support, and agreements."
         badge="Live Section"
         isOpen={isOpen}
         onToggle={() => setIsOpen(!isOpen)}
@@ -138,63 +121,62 @@ export function StartSchoolFaqSection({ initialData }: { initialData?: any }) {
 
       {isOpen && (
         <div className="space-y-6 pt-2">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <InputField
-              label="Eyebrow Tag"
+              label="Pre-Heading Tagline"
               value={tagline}
               onChange={(e) => setTagline(e.target.value)}
-              placeholder="e.g. FREQUENTLY ASKED QUESTIONS"
+              placeholder="e.g. FAQs"
             />
             <InputField
-              label="Section Headline"
+              label="Headline"
               value={headline}
               onChange={(e) => setHeadline(e.target.value)}
-              placeholder="e.g. Everything You Need to Know..."
+              placeholder="e.g. Frequently Asked"
+            />
+            <InputField
+              label="Script Accent"
+              value={scriptAccent}
+              onChange={(e) => setScriptAccent(e.target.value)}
+              placeholder="e.g. Questions"
             />
           </div>
 
-          {/* DYNAMIC FAQS ARRAY */}
+          <TextAreaField
+            label="Section Description"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            rows={2}
+            placeholder="e.g. Find answers to common questions about starting an LFCS school..."
+          />
+
+          {/* DYNAMIC FAQS */}
           <div className="border-t border-gray-100 pt-5 space-y-4">
             <div className="flex items-center justify-between">
               <div>
-                <h4 className="text-xs font-bold uppercase tracking-wider text-gray-700 flex items-center gap-2">
-                  Associate School FAQs ({faqs.length})
+                <h4 className="text-xs font-bold uppercase tracking-wider text-gray-500">
+                  Questions & Answers ({faqs.length})
                 </h4>
                 <p className="text-[11px] text-gray-400 mt-0.5">
-                  Frequently asked questions and detailed answers. Can add more than 4 questions.
+                  Expandable FAQ accordion items shown to partners.
                 </p>
               </div>
-              <div className="flex items-center gap-2">
-                <button
-                  type="button"
-                  onClick={() => {
-                    if (openIndices.length === faqs.length) {
-                      setOpenIndices([]);
-                    } else {
-                      setOpenIndices(faqs.map((_, i) => i));
-                    }
-                  }}
-                  className="text-xs font-semibold text-slate-500 hover:text-slate-800 px-2 py-1 rounded-lg hover:bg-slate-100 transition-colors cursor-pointer"
-                >
-                  {openIndices.length === faqs.length ? "Collapse All" : "Expand All"}
-                </button>
-                <button
-                  type="button"
-                  onClick={handleAddFaq}
-                  className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0E5A60] hover:text-[#061C29] bg-[#0E5A60]/10 hover:bg-[#0E5A60]/20 px-3.5 py-1.5 rounded-xl transition-all cursor-pointer shadow-2xs"
-                >
-                  <Plus className="w-3.5 h-3.5" />
-                  <span>Add Question</span>
-                </button>
-              </div>
+              <button
+                type="button"
+                onClick={handleAddFaq}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-[#0E5A60] bg-[#0E5A60]/10 hover:bg-[#0E5A60]/20 rounded-xl transition-colors cursor-pointer"
+              >
+                <Plus className="w-3.5 h-3.5" />
+                <span>Add FAQ</span>
+              </button>
             </div>
 
             {faqs.length === 0 ? (
               <div
                 onClick={handleAddFaq}
-                className="p-8 rounded-2xl bg-gray-50/70 border border-dashed border-gray-200 text-center text-xs text-gray-400 cursor-pointer hover:bg-gray-100/70 hover:border-gray-300 transition-all flex flex-col items-center justify-center gap-2"
+                className="p-8 border-2 border-dashed border-gray-200 rounded-2xl text-center text-gray-400 hover:border-[#0E5A60] hover:text-[#0E5A60] transition-colors cursor-pointer text-xs font-medium flex flex-col items-center gap-2"
               >
-                <Plus className="w-5 h-5 text-gray-400" />
+                <Plus className="w-6 h-6 text-gray-300" />
                 <span>No FAQs added yet. Click to add your first question.</span>
               </div>
             ) : (
@@ -203,7 +185,7 @@ export function StartSchoolFaqSection({ initialData }: { initialData?: any }) {
                   <CollapsibleCard
                     key={idx}
                     index={idx}
-                    title={faq.question || `Question #${idx + 1}`}
+                    title={`Q${idx + 1}: ${faq.q || "Untitled Question"}`}
                     isOpen={openIndices.includes(idx)}
                     onToggle={() =>
                       setOpenIndices((prev) =>
@@ -211,21 +193,28 @@ export function StartSchoolFaqSection({ initialData }: { initialData?: any }) {
                       )
                     }
                     onDelete={() => handleRemoveFaq(idx)}
-                    deleteTitle="Delete Question"
+                    deleteTitle="Delete FAQ"
                   >
                     <InputField
-                      label="Question Text"
-                      value={faq.question}
-                      onChange={(e) => handleUpdateFaq(idx, "question", e.target.value)}
-                      placeholder="e.g. What is the minimum land requirement?"
+                      label="Question"
+                      value={faq.q}
+                      onChange={(e) => handleUpdateFaq(idx, "q", e.target.value)}
+                      placeholder="e.g. Who can apply to start an LFCS school?"
                     />
 
                     <TextAreaField
                       label="Answer"
-                      value={faq.answer}
-                      onChange={(e) => handleUpdateFaq(idx, "answer", e.target.value)}
+                      value={faq.a}
+                      onChange={(e) => handleUpdateFaq(idx, "a", e.target.value)}
                       rows={3}
-                      placeholder="e.g. Detailed answer covering requirements and guidelines..."
+                      placeholder="e.g. Individuals and eligible organisations interested in establishing a school may enquire..."
+                    />
+
+                    <InputField
+                      label="Note / Footnote (Optional)"
+                      value={faq.note ?? ""}
+                      onChange={(e) => handleUpdateFaq(idx, "note", e.target.value)}
+                      placeholder="e.g. Need to confirm this from client..."
                     />
                   </CollapsibleCard>
                 ))}
@@ -233,8 +222,10 @@ export function StartSchoolFaqSection({ initialData }: { initialData?: any }) {
             )}
           </div>
 
-          <div className="pt-4 border-t border-gray-100 w-full">
-            <SaveButton onClick={handleSave} loading={loading} saved={saved} />
+          <div className="pt-4 border-t border-gray-100 flex justify-end">
+            <div className="w-full">
+              <SaveButton onClick={handleSave} loading={loading} saved={saved} />
+            </div>
           </div>
         </div>
       )}

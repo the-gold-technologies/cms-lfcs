@@ -10,10 +10,12 @@ import { SaveButton } from "@/components/SaveButton";
 import { Plus } from "lucide-react";
 import { CollapsibleCard } from "@/components/CollapsibleCard";
 
-export interface AdvantageCard {
+export interface ReasonCard {
   title: string;
   desc: string;
   image: string;
+  color?: string;
+  bg?: string;
 }
 
 export function WhyPartnerSection({ initialData }: { initialData?: any }) {
@@ -23,87 +25,66 @@ export function WhyPartnerSection({ initialData }: { initialData?: any }) {
 
   const [tagline, setTagline] = useState("");
   const [headline, setHeadline] = useState("");
+  const [scriptAccent, setScriptAccent] = useState("");
 
-  const [advantages, setAdvantages] = useState<AdvantageCard[]>([]);
+  const [reasons, setReasons] = useState<ReasonCard[]>([]);
   const [openIndices, setOpenIndices] = useState<number[]>([0]);
 
   useEffect(() => {
     if (initialData) {
-      setTagline(initialData.tagline ?? "WHY PARTNER WITH US");
-      setHeadline(initialData.headline ?? "A Partnership Built on Trust & Academic Prestige");
+      setTagline(initialData.tagline ?? "");
+      setHeadline(initialData.headline ?? "");
+      setScriptAccent(initialData.scriptAccent ?? "");
 
-      if (Array.isArray(initialData.advantages) && initialData.advantages.length > 0) {
-        setAdvantages(
-          initialData.advantages.map((a: any) => ({
-            title: a.title ?? "",
-            desc: a.desc ?? a.description ?? "",
-            image: a.image ?? "",
+      const list = Array.isArray(initialData.reasons)
+        ? initialData.reasons
+        : Array.isArray(initialData.advantages)
+          ? initialData.advantages
+          : null;
+
+      if (list) {
+        setReasons(
+          list.map((r: any) => ({
+            title: r.title ?? "",
+            desc: r.desc ?? r.description ?? "",
+            image: r.image ?? "",
+            color: r.color ?? "",
+            bg: r.bg ?? "",
           })),
         );
       } else {
-        setAdvantages([
-          {
-            title: initialData.r1Title ?? "Established Brand Heritage",
-            desc:
-              initialData.r1Desc ??
-              "40+ years of parental trust, recognizable emblem, and alumni network.",
-            image:
-              initialData.r1Image ??
-              "https://res.cloudinary.com/dpa93copz/image/upload/v1793170014/lfcs-school/journey-lfis-mau_1793170014137.webp",
-          },
-          {
-            title: initialData.r2Title ?? "Turnkey Curriculum Framework",
-            desc:
-              initialData.r2Desc ??
-              "NCERT/CBSE lesson plans, pedagogical handbooks, teacher guides, and assessment schemes.",
-            image:
-              initialData.r2Image ??
-              "https://res.cloudinary.com/dpa93copz/image/upload/v1793170028/lfcs-school/practical_1793170027731.webp",
-          },
-          {
-            title: initialData.r3Title ?? "Operational Guidance",
-            desc:
-              initialData.r3Desc ??
-              "End-to-end guidance across school architecture, lab design, bus transport, and regulatory compliance.",
-            image:
-              initialData.r3Image ??
-              "https://res.cloudinary.com/dpa93copz/image/upload/v1793170008/lfcs-school/school-associate-launch_1793170008299.webp",
-          },
-          {
-            title: initialData.r4Title ?? "Marketing & Admissions Engine",
-            desc:
-              initialData.r4Desc ??
-              "High-visibility launch PR campaigns, digital lead generation, and Anand Kumar endorsement collaterals.",
-            image:
-              initialData.r4Image ??
-              "https://res.cloudinary.com/dpa93copz/image/upload/v1793170010/lfcs-school/anand-kumar-felicitation_1793170010248.webp",
-          },
-        ]);
+        setReasons([]);
       }
     }
   }, [initialData]);
 
-  const handleAddAdvantage = () => {
-    setAdvantages((prev) => [
+  const handleAddReason = () => {
+    setReasons((prev) => [
       ...prev,
       {
         title: "",
         desc: "",
         image: "",
+        color: "",
+        bg: "",
       },
     ]);
-    setOpenIndices((prev) => [...prev, advantages.length]);
+    setOpenIndices((prev) => [...prev, reasons.length]);
   };
 
-  const handleRemoveAdvantage = (index: number) => {
-    setAdvantages((prev) => prev.filter((_, i) => i !== index));
+  const handleRemoveReason = (index: number) => {
+    setReasons((prev) => prev.filter((_, i) => i !== index));
     setOpenIndices((prev) =>
       prev.filter((i) => i !== index).map((i) => (i > index ? i - 1 : i)),
     );
   };
 
-  const handleUpdateAdvantage = (index: number, field: keyof AdvantageCard, value: string) => {
-    setAdvantages((prev) => {
+  const handleUpdateReason = (
+    index: number,
+    field: keyof ReasonCard,
+    value: string,
+  ) => {
+    setReasons((prev) => {
       const copy = [...prev];
       copy[index] = { ...copy[index], [field]: value };
       return copy;
@@ -119,7 +100,8 @@ export function WhyPartnerSection({ initialData }: { initialData?: any }) {
         content: {
           tagline,
           headline,
-          advantages,
+          scriptAccent,
+          reasons,
         },
       };
 
@@ -147,8 +129,8 @@ export function WhyPartnerSection({ initialData }: { initialData?: any }) {
   return (
     <div className="bg-white rounded-3xl p-6 shadow-sm ring-1 ring-gray-100 flex flex-col gap-6">
       <SectionHeader
-        title="2. Why Partner with LFCS (Associate Advantages)"
-        description="Four foundational competitive advantages: Established Brand, Turnkey Curriculum, Operational Support, and Launch Marketing."
+        title="2. Why Partner with LFCS (Key Advantages)"
+        description="Highlights brand trust, academic foundation, operational assistance, and vision."
         badge="Live Section"
         isOpen={isOpen}
         onToggle={() => setIsOpen(!isOpen)}
@@ -156,102 +138,109 @@ export function WhyPartnerSection({ initialData }: { initialData?: any }) {
 
       {isOpen && (
         <div className="space-y-6 pt-2">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <InputField
-              label="Eyebrow Tag"
+              label="Pre-Heading Tagline"
               value={tagline}
               onChange={(e) => setTagline(e.target.value)}
-              placeholder="e.g. WHY PARTNER WITH US"
+              placeholder="e.g. Why Start an LFCS School?"
             />
             <InputField
-              label="Section Headline"
+              label="Headline"
               value={headline}
               onChange={(e) => setHeadline(e.target.value)}
-              placeholder="e.g. A Partnership Built on Trust & Academic Prestige"
+              placeholder="e.g. Build an Educational Institution"
+            />
+            <InputField
+              label="Script Accent"
+              value={scriptAccent}
+              onChange={(e) => setScriptAccent(e.target.value)}
+              placeholder="e.g. With Purpose"
             />
           </div>
 
-          {/* DYNAMIC ADVANTAGES ARRAY */}
+          {/* DYNAMIC REASONS */}
           <div className="border-t border-gray-100 pt-5 space-y-4">
             <div className="flex items-center justify-between">
               <div>
-                <h4 className="text-xs font-bold uppercase tracking-wider text-gray-700 flex items-center gap-2">
-                  Partnership Advantages ({advantages.length})
+                <h4 className="text-xs font-bold uppercase tracking-wider text-gray-500">
+                  Partnership Reasons ({reasons.length})
                 </h4>
                 <p className="text-[11px] text-gray-400 mt-0.5">
-                  Competitive advantages and institutional support for partners. Can add more than 4 advantages.
+                  Core advantages displayed to prospective school partners.
                 </p>
               </div>
-              <div className="flex items-center gap-2">
-                <button
-                  type="button"
-                  onClick={() => {
-                    if (openIndices.length === advantages.length) {
-                      setOpenIndices([]);
-                    } else {
-                      setOpenIndices(advantages.map((_, i) => i));
-                    }
-                  }}
-                  className="text-xs font-semibold text-slate-500 hover:text-slate-800 px-2 py-1 rounded-lg hover:bg-slate-100 transition-colors cursor-pointer"
-                >
-                  {openIndices.length === advantages.length ? "Collapse All" : "Expand All"}
-                </button>
-                <button
-                  type="button"
-                  onClick={handleAddAdvantage}
-                  className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0E5A60] hover:text-[#061C29] bg-[#0E5A60]/10 hover:bg-[#0E5A60]/20 px-3.5 py-1.5 rounded-xl transition-all cursor-pointer shadow-2xs"
-                >
-                  <Plus className="w-3.5 h-3.5" />
-                  <span>Add Advantage</span>
-                </button>
-              </div>
+              <button
+                type="button"
+                onClick={handleAddReason}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-[#0E5A60] bg-[#0E5A60]/10 hover:bg-[#0E5A60]/20 rounded-xl transition-colors cursor-pointer"
+              >
+                <Plus className="w-3.5 h-3.5" />
+                <span>Add Reason</span>
+              </button>
             </div>
 
-            {advantages.length === 0 ? (
+            {reasons.length === 0 ? (
               <div
-                onClick={handleAddAdvantage}
-                className="p-8 rounded-2xl bg-gray-50/70 border border-dashed border-gray-200 text-center text-xs text-gray-400 cursor-pointer hover:bg-gray-100/70 hover:border-gray-300 transition-all flex flex-col items-center justify-center gap-2"
+                onClick={handleAddReason}
+                className="p-8 border-2 border-dashed border-gray-200 rounded-2xl text-center text-gray-400 hover:border-[#0E5A60] hover:text-[#0E5A60] transition-colors cursor-pointer text-xs font-medium flex flex-col items-center gap-2"
               >
-                <Plus className="w-5 h-5 text-gray-400" />
-                <span>No advantages added yet. Click to add your first advantage.</span>
+                <Plus className="w-6 h-6 text-gray-300" />
+                <span>No reasons added yet. Click to add your first reason card.</span>
               </div>
             ) : (
               <div className="space-y-3">
-                {advantages.map((adv, idx) => (
+                {reasons.map((item, idx) => (
                   <CollapsibleCard
                     key={idx}
                     index={idx}
-                    title={`Advantage ${idx + 1}: ${adv.title || "Untitled Advantage"}`}
-                    thumbnail={adv.image}
+                    title={`Reason ${idx + 1}: ${item.title || "Untitled Reason"}`}
+                    thumbnail={item.image}
                     isOpen={openIndices.includes(idx)}
                     onToggle={() =>
                       setOpenIndices((prev) =>
                         prev.includes(idx) ? prev.filter((i) => i !== idx) : [...prev, idx],
                       )
                     }
-                    onDelete={() => handleRemoveAdvantage(idx)}
-                    deleteTitle="Delete Advantage"
+                    onDelete={() => handleRemoveReason(idx)}
+                    deleteTitle="Delete Reason"
                   >
                     <InputField
-                      label="Advantage Title"
-                      value={adv.title}
-                      onChange={(e) => handleUpdateAdvantage(idx, "title", e.target.value)}
-                      placeholder="e.g. Established Brand Heritage"
+                      label="Reason Title"
+                      value={item.title}
+                      onChange={(e) => handleUpdateReason(idx, "title", e.target.value)}
+                      placeholder="e.g. An Established Educational Identity"
                     />
 
                     <TextAreaField
                       label="Description"
-                      value={adv.desc}
-                      onChange={(e) => handleUpdateAdvantage(idx, "desc", e.target.value)}
+                      value={item.desc}
+                      onChange={(e) => handleUpdateReason(idx, "desc", e.target.value)}
                       rows={2}
-                      placeholder="e.g. 40+ years of parental trust, recognizable emblem..."
+                      placeholder="e.g. Built around the Little Flower identity and values-led philosophy."
                     />
 
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      <InputField
+                        label="Accent Color Hex (Optional)"
+                        value={item.color ?? ""}
+                        onChange={(e) => handleUpdateReason(idx, "color", e.target.value)}
+                        placeholder="e.g. #dfae19"
+                      />
+                      <InputField
+                        label="Card Background Tint Hex (Optional)"
+                        value={item.bg ?? ""}
+                        onChange={(e) => handleUpdateReason(idx, "bg", e.target.value)}
+                        placeholder="e.g. #fcf5de"
+                      />
+                    </div>
+
                     <ImagePickerField
-                      label="Card Photo"
-                      value={adv.image}
-                      onChange={(url) => handleUpdateAdvantage(idx, "image", url)}
-                      placeholder="e.g. Cloudinary photo URL"
+                      label="Card Image Photo"
+                      value={item.image}
+                      onChange={(url) => handleUpdateReason(idx, "image", url)}
+                      placeholder="e.g. Cloudinary image URL"
+                      folder="lfcs-school/start-school"
                     />
                   </CollapsibleCard>
                 ))}
@@ -259,8 +248,10 @@ export function WhyPartnerSection({ initialData }: { initialData?: any }) {
             )}
           </div>
 
-          <div className="pt-4 border-t border-gray-100 w-full">
-            <SaveButton onClick={handleSave} loading={loading} saved={saved} />
+          <div className="pt-4 border-t border-gray-100 flex justify-end">
+            <div className="w-full">
+              <SaveButton onClick={handleSave} loading={loading} saved={saved} />
+            </div>
           </div>
         </div>
       )}

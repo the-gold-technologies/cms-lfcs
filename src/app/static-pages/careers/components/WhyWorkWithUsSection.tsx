@@ -9,9 +9,12 @@ import { InputField } from "@/components/InputField";
 import { TextAreaField } from "@/components/TextAreaField";
 import { SaveButton } from "@/components/SaveButton";
 
-interface WorkBenefit {
+interface WorkHighlight {
   title: string;
   text: string;
+  icon: string;
+  color: string;
+  bg: string;
 }
 
 export function WhyWorkWithUsSection({ initialData }: { initialData?: any }) {
@@ -22,96 +25,102 @@ export function WhyWorkWithUsSection({ initialData }: { initialData?: any }) {
   const [tagline, setTagline] = useState("");
   const [headline, setHeadline] = useState("");
   const [scriptAccent, setScriptAccent] = useState("");
-  const [paragraph, setParagraph] = useState("");
+  const [description, setDescription] = useState("");
 
-  const [benefits, setBenefits] = useState<WorkBenefit[]>([]);
+  const [highlights, setHighlights] = useState<WorkHighlight[]>([]);
   const [openIndices, setOpenIndices] = useState<number[]>([0]);
 
   useEffect(() => {
     if (initialData) {
-      setTagline(initialData.tagline ?? "WHY WORK WITH LFCS");
-      setHeadline(initialData.headline ?? "Be Part of Something");
-      setScriptAccent(initialData.scriptAccent ?? "Meaningful");
-      setParagraph(
-        initialData.paragraph ??
-          "Working in education is an opportunity to make a difference that extends far beyond the classroom. At LFCS, every role contributes to creating a supportive learning environment.",
-      );
+      setTagline(initialData.tagline ?? "");
+      setHeadline(initialData.headline ?? "");
+      setScriptAccent(initialData.scriptAccent ?? "");
 
-      if (Array.isArray(initialData.benefits) && initialData.benefits.length > 0) {
-        setBenefits(
-          initialData.benefits.map((b: any) => ({
-            title: b.title ?? "",
-            text: b.text ?? "",
+      if (Array.isArray(initialData.paragraphs)) {
+        setDescription(initialData.paragraphs.join("\n\n"));
+      } else if (typeof initialData.paragraph === "string" && initialData.paragraph) {
+        setDescription(initialData.paragraph);
+      } else if (typeof initialData.description === "string" && initialData.description) {
+        setDescription(initialData.description);
+      } else {
+        setDescription("");
+      }
+
+      const list = Array.isArray(initialData.highlights)
+        ? initialData.highlights
+        : Array.isArray(initialData.benefits)
+          ? initialData.benefits
+          : null;
+
+      if (list) {
+        setHighlights(
+          list.map((h: any) => ({
+            title: h.title ?? "",
+            text: h.text ?? "",
+            icon: h.icon ?? "Target",
+            color: h.color ?? "text-lf-burgundy",
+            bg: h.bg ?? "bg-[#fbeef2]",
           })),
         );
       } else {
-        setBenefits([
-          {
-            title: initialData.b1Title ?? "Purpose-Driven Work",
-            text:
-              initialData.b1Text ??
-              "Directly shape the character and future trajectories of over 15,000 students.",
-          },
-          {
-            title: initialData.b2Title ?? "Collaborative Environment",
-            text:
-              initialData.b2Text ??
-              "Work alongside supportive peer educators and seasoned mentors.",
-          },
-          {
-            title: initialData.b3Title ?? "Continuous Learning",
-            text:
-              initialData.b3Text ??
-              "Regular pedagogical workshops, digital tool training, and CBSE seminars.",
-          },
-          {
-            title: initialData.b4Title ?? "Fair Compensation & Stability",
-            text:
-              initialData.b4Text ??
-              "Competitive compensation packages, performance recognition, and provident fund security.",
-          },
-        ]);
+        setHighlights([]);
       }
     }
   }, [initialData]);
 
-  const handleAddBenefit = () => {
-    setBenefits((prev) => [
+  const toggleCard = (index: number) => {
+    setOpenIndices((prev) =>
+      prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index],
+    );
+  };
+
+  const addHighlight = () => {
+    setHighlights((prev) => [
       ...prev,
       {
         title: "",
         text: "",
+        icon: "Target",
+        color: "text-lf-burgundy",
+        bg: "bg-[#fbeef2]",
       },
     ]);
-    setOpenIndices((prev) => [...prev, benefits.length]);
+    setOpenIndices((prev) => [...prev, highlights.length]);
   };
 
-  const handleRemoveBenefit = (index: number) => {
-    setBenefits((prev) => prev.filter((_, i) => i !== index));
+  const removeHighlight = (index: number) => {
+    setHighlights((prev) => prev.filter((_, i) => i !== index));
     setOpenIndices((prev) =>
       prev.filter((i) => i !== index).map((i) => (i > index ? i - 1 : i)),
     );
   };
 
-  const handleUpdateBenefit = (index: number, field: keyof WorkBenefit, val: string) => {
-    setBenefits((prev) => {
+  const updateHighlight = (index: number, field: keyof WorkHighlight, value: string) => {
+    setHighlights((prev) => {
       const copy = [...prev];
-      copy[index] = { ...copy[index], [field]: val };
+      copy[index] = { ...copy[index], [field]: value };
       return copy;
     });
   };
 
   const handleSave = async () => {
     setLoading(true);
+    setSaved(false);
     try {
+      const paragraphs = description
+        .split("\n\n")
+        .map((p) => p.trim())
+        .filter(Boolean);
+
       const payload = {
         section: "WhyWorkWithUsSection",
         content: {
           tagline,
           headline,
           scriptAccent,
-          paragraph,
-          benefits,
+          description,
+          paragraphs,
+          highlights,
         },
       };
 
@@ -129,8 +138,8 @@ export function WhyWorkWithUsSection({ initialData }: { initialData?: any }) {
       } else {
         toast.error(json.error || "Failed to save section");
       }
-    } catch (err: any) {
-      toast.error(err?.message || "Network error while saving");
+    } catch {
+      toast.error("Network error while saving");
     } finally {
       setLoading(false);
     }
@@ -139,8 +148,8 @@ export function WhyWorkWithUsSection({ initialData }: { initialData?: any }) {
   return (
     <div className="bg-white rounded-3xl p-6 shadow-sm ring-1 ring-gray-100 flex flex-col gap-6">
       <SectionHeader
-        title="2. Why Work With LFCS (Professional Advantages)"
-        description="Highlights workplace benefits: Purpose-Driven Work, Collaborative Culture, Professional Development, and Stability."
+        title="2. Why Work With LFCS Section"
+        description="Core recruitment appeal, institution philosophy narrative, and 4 highlight benefit pillars."
         badge="Live Section"
         isOpen={isOpen}
         onToggle={() => setIsOpen(!isOpen)}
@@ -150,13 +159,13 @@ export function WhyWorkWithUsSection({ initialData }: { initialData?: any }) {
         <div className="space-y-6 pt-2">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <InputField
-              label="Eyebrow Tag"
+              label="Pre-Heading Tag"
               value={tagline}
               onChange={(e) => setTagline(e.target.value)}
-              placeholder="e.g. WHY WORK WITH LFCS"
+              placeholder="e.g. Why Work With LFCS"
             />
             <InputField
-              label="Headline Lead"
+              label="Main Headline"
               value={headline}
               onChange={(e) => setHeadline(e.target.value)}
               placeholder="e.g. Be Part of Something"
@@ -170,91 +179,73 @@ export function WhyWorkWithUsSection({ initialData }: { initialData?: any }) {
           </div>
 
           <TextAreaField
-            label="Section Narrative"
-            value={paragraph}
-            onChange={(e) => setParagraph(e.target.value)}
-            rows={3}
-            placeholder="e.g. Workplace philosophy and impact overview..."
+            label="Section Narrative (Separate paragraphs with a blank line)"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            rows={5}
+            placeholder="Working in education is an opportunity to make a difference that extends far beyond the classroom...&#10;&#10;As our network continues to grow, we value individuals who bring commitment..."
+            helperText="Separate multiple paragraphs with an empty line (double Enter)."
           />
 
-          {/* DYNAMIC BENEFITS ARRAY */}
-          <div className="border-t border-gray-100 pt-5 space-y-4">
+          {/* Highlights Array */}
+          <div className="space-y-4 pt-4 border-t border-gray-100">
             <div className="flex items-center justify-between">
               <div>
-                <h4 className="text-xs font-bold uppercase tracking-wider text-gray-700 flex items-center gap-2">
-                  Workplace Benefits ({benefits.length})
-                </h4>
-                <p className="text-[11px] text-gray-400 mt-0.5">
-                  Professional development and cultural perks. Can add more perks.
+                <h4 className="text-sm font-bold text-gray-800">Benefit Highlight Cards</h4>
+                <p className="text-xs text-gray-500">
+                  Core advantages shown in grid cards below the narrative.
                 </p>
               </div>
-              <div className="flex items-center gap-2">
-                <button
-                  type="button"
-                  onClick={() => {
-                    if (openIndices.length === benefits.length) {
-                      setOpenIndices([]);
-                    } else {
-                      setOpenIndices(benefits.map((_, i) => i));
-                    }
-                  }}
-                  className="text-xs font-semibold text-slate-500 hover:text-slate-800 px-2 py-1 rounded-lg hover:bg-slate-100 transition-colors cursor-pointer"
-                >
-                  {openIndices.length === benefits.length ? "Collapse All" : "Expand All"}
-                </button>
-                <button
-                  type="button"
-                  onClick={handleAddBenefit}
-                  className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0E5A60] hover:text-[#061C29] bg-[#0E5A60]/10 hover:bg-[#0E5A60]/20 px-3.5 py-1.5 rounded-xl transition-all cursor-pointer shadow-2xs"
-                >
-                  <Plus className="w-3.5 h-3.5" />
-                  <span>Add Benefit</span>
-                </button>
-              </div>
+              <button
+                type="button"
+                onClick={addHighlight}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#0E5A60] text-white text-xs font-semibold rounded-xl hover:bg-[#0b484d] transition-all"
+              >
+                <Plus className="w-3.5 h-3.5" /> Add Benefit Card
+              </button>
             </div>
 
-            {benefits.length === 0 ? (
-              <div
-                onClick={handleAddBenefit}
-                className="p-8 rounded-2xl bg-gray-50/70 border border-dashed border-gray-200 text-center text-xs text-gray-400 cursor-pointer hover:bg-gray-100/70 hover:border-gray-300 transition-all flex flex-col items-center justify-center gap-2"
-              >
-                <Plus className="w-5 h-5 text-gray-400" />
-                <span>No perks added yet. Click to add your first advantage.</span>
-              </div>
-            ) : (
-              <div className="space-y-3">
-                {benefits.map((b, idx) => (
-                  <CollapsibleCard
-                    key={idx}
-                    index={idx}
-                    title={`Advantage ${idx + 1}: ${b.title || "Untitled Advantage"}`}
-                    isOpen={openIndices.includes(idx)}
-                    onToggle={() =>
-                      setOpenIndices((prev) =>
-                        prev.includes(idx) ? prev.filter((i) => i !== idx) : [...prev, idx],
-                      )
-                    }
-                    onDelete={() => handleRemoveBenefit(idx)}
-                    deleteTitle="Delete Advantage"
-                  >
-                    <InputField
-                      label="Benefit Title"
-                      value={b.title}
-                      onChange={(e) => handleUpdateBenefit(idx, "title", e.target.value)}
-                      placeholder="e.g. Purpose-Driven Work"
-                    />
+            <div className="space-y-3">
+              {highlights.map((highlight, idx) => (
+                <CollapsibleCard
+                  key={idx}
+                  index={idx}
+                  title={highlight.title || `Benefit #${idx + 1}`}
+                  subtitle={highlight.text ? highlight.text.slice(0, 50) + "..." : "Benefit card details"}
+                  isOpen={openIndices.includes(idx)}
+                  onToggle={() => toggleCard(idx)}
+                  onDelete={() => removeHighlight(idx)}
+                >
+                  <div className="space-y-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <InputField
+                        label="Card Title"
+                        value={highlight.title}
+                        onChange={(e) => updateHighlight(idx, "title", e.target.value)}
+                        placeholder="e.g. Purpose-Driven Work"
+                      />
+                      <InputField
+                        label="Lucide Icon Name"
+                        value={highlight.icon}
+                        onChange={(e) => updateHighlight(idx, "icon", e.target.value)}
+                        placeholder="e.g. Target, Users, GraduationCap, HeartHandshake"
+                      />
+                    </div>
 
                     <TextAreaField
-                      label="Benefit Description"
-                      value={b.text}
-                      onChange={(e) => handleUpdateBenefit(idx, "text", e.target.value)}
+                      label="Card Description"
+                      value={highlight.text}
+                      onChange={(e) => updateHighlight(idx, "text", e.target.value)}
                       rows={2}
-                      placeholder="e.g. Directly shape character and learning outcomes..."
+                      placeholder="e.g. Contribute to the learning and development of young minds."
                     />
-                  </CollapsibleCard>
-                ))}
-              </div>
-            )}
+                  </div>
+                </CollapsibleCard>
+              ))}
+              {highlights.length === 0 && (
+                <p className="text-xs text-gray-400 italic">No benefit cards added.</p>
+              )}
+            </div>
           </div>
 
           <div className="pt-4 border-t border-gray-100 w-full">

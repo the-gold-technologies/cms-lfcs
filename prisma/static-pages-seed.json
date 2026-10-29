@@ -529,60 +529,140 @@
     }
   },
   "careers": {
-    "CareersFinalCTASection": {
-      "heading": "Your Next Opportunity Could Begin Here",
-      "description": "If you are passionate about education and would like to explore a fulfilling career with Little Flower Group of Schools, submit your CV and profile today.",
-      "buttonText": "Submit Your Profile",
-      "emailText": "careers@lfcsschools.com"
-    },
     "CareersHeroSection": {
       "tagline": "Careers at Little Flower Group of Schools",
       "headline": "Build Your Career. Shape Young",
       "scriptAccent": "Futures.",
-      "description": "At Little Flower, we believe meaningful education begins with passionate educators and professionals. We welcome individuals who want to empower the next generation.",
-      "ctaText": "Explore Open Positions"
-    },
-    "OpportunitiesSection": {
-      "tagline": "CURRENT OPENINGS",
-      "headline": "Explore Opportunities by Domain",
-      "teachTitle": "Teaching Positions (Pre-Primary, PRT, TGT, PGT)",
-      "teachDesc": "We invite passionate subject educators with strong command over CBSE pedagogy, innovative instructional habits, and empathetic classroom presence.",
-      "teachRoles": "PGT Physics/Chemistry/Maths/Biology, PGT Commerce/Economics, TGT English/Hindi, TGT Social Science, PRT All Subjects, Pre-Primary Educator, Physical Education Instructor, Fine Arts & Music Teacher",
-      "adminTitle": "Administrative & Campus Support Roles",
-      "adminDesc": "Operational excellence underpins every great school. We seek experienced professionals dedicated to seamless parent relations and campus logistics.",
-      "adminRoles": "Admissions Counselor, Academic Coordinator, Accountant / Fee In-charge, Front Office Executive, Science Lab Assistant, IT & Network Technician, Transport Supervisor"
+      "description": "At Little Flower, we believe meaningful education begins with passionate educators and professionals. We welcome individuals who want to empower the next generation, grow professionally, and contribute to an environment rooted in excellence, values, and holistic development.",
+      "ctaText": "Explore Opportunities",
+      "ctaLink": "#opportunities",
+      "image1": "https://res.cloudinary.com/dpa93copz/image/upload/v1793254266/lfcs-school/about/approach1_1793254266018.webp",
+      "image2": "https://res.cloudinary.com/dpa93copz/image/upload/v1793254274/lfcs-school/about/values3_1793254274105.webp",
+      "statsNumber": "8",
+      "statsLabel": "Institutions"
     },
     "WhyWorkWithUsSection": {
-      "tagline": "WHY WORK WITH LFCS",
+      "tagline": "Why Work With LFCS",
       "headline": "Be Part of Something",
       "scriptAccent": "Meaningful",
-      "paragraph": "Working in education is an opportunity to make a difference that extends far beyond the classroom. At LFCS, every role contributes to creating a supportive learning environment.",
-      "benefits": [
+      "description": "Working in education is an opportunity to make a difference that extends far beyond the classroom. At LFCS, every role contributes to creating a supportive learning environment and helping students prepare for the future.\n\nAs our network continues to grow, we value individuals who bring commitment, fresh perspectives and a willingness to contribute to the larger educational mission.\n\nWhether you are an experienced educator or a professional looking to contribute your skills to the education sector, LFCS offers an opportunity to be part of a shared purpose.",
+      "paragraphs": [
+        "Working in education is an opportunity to make a difference that extends far beyond the classroom. At LFCS, every role contributes to creating a supportive learning environment and helping students prepare for the future.",
+        "As our network continues to grow, we value individuals who bring commitment, fresh perspectives and a willingness to contribute to the larger educational mission.",
+        "Whether you are an experienced educator or a professional looking to contribute your skills to the education sector, LFCS offers an opportunity to be part of a shared purpose."
+      ],
+      "highlights": [
         {
+          "icon": "Target",
           "title": "Purpose-Driven Work",
-          "text": "Directly shape the character and future trajectories of over 15,000 students."
+          "text": "Contribute to the learning and development of young minds.",
+          "bg": "bg-[#fbeef2]",
+          "color": "text-lf-burgundy"
         },
         {
+          "icon": "Users",
           "title": "Collaborative Environment",
-          "text": "Work alongside supportive peer educators and seasoned mentors."
+          "text": "Work alongside people who share a commitment to education.",
+          "bg": "bg-[#edf1e8]",
+          "color": "text-lf-olive"
         },
         {
+          "icon": "GraduationCap",
           "title": "Continuous Learning",
-          "text": "Regular pedagogical workshops, digital tool training, and CBSE seminars."
+          "text": "Embrace opportunities to strengthen professional knowledge and skills.",
+          "bg": "bg-[#fdf6e3]",
+          "color": "text-lf-gold"
         },
         {
-          "title": "Fair Compensation & Stability",
-          "text": "Competitive compensation packages, performance recognition, and provident fund security."
+          "icon": "HeartHandshake",
+          "title": "Meaningful Contribution",
+          "text": "Support an educational mission focused on academic development, values and holistic growth.",
+          "bg": "bg-[#f8ede4]",
+          "color": "text-lf-orange"
         }
       ]
     },
     "WorkCultureSection": {
-      "tagline": "OUR WORK CULTURE",
-      "headline": "Growing Together Through Learning &",
+      "tagline": "Our Work Culture",
+      "headline": "Growing Together Through Learning and",
       "scriptAccent": "Collaboration",
-      "description": "At Little Flower Group of Schools, we recognise that educators and staff play a defining role in shaping the student experience. We maintain an open, merit-driven environment where ideas are encouraged and achievements celebrated.",
-      "valuesList": "Professionalism, Integrity, Mutual Respect, Responsibility, Willingness to Learn, Child Centricity",
-      "cultureImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170022/lfcs-school/collabrative_1793170021825.webp"
+      "description": "At Little Flower Group of Schools, we recognise that educators and staff play an important role in shaping the student experience.\n\nWe value professionalism, integrity, respect, responsibility and a willingness to learn. Our aim is to foster a working environment where individuals can contribute their strengths, collaborate with colleagues and remain focused on the shared goal of delivering meaningful educational experiences.",
+      "paragraphs": [
+        "At Little Flower Group of Schools, we recognise that educators and staff play an important role in shaping the student experience.",
+        "We value professionalism, integrity, respect, responsibility and a willingness to learn. Our aim is to foster a working environment where individuals can contribute their strengths, collaborate with colleagues and remain focused on the shared goal of delivering meaningful educational experiences."
+      ],
+      "values": [
+        "Professionalism",
+        "Integrity",
+        "Respect",
+        "Responsibility",
+        "Willingness to Learn"
+      ],
+      "valuesList": "Professionalism, Integrity, Respect, Responsibility, Willingness to Learn",
+      "quote": "We believe that when the people within a school continue to learn and improve, the entire learning community benefits.",
+      "cultureImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1793254270/lfcs-school/about/approach4_1793254269293.webp"
+    },
+    "OpportunitiesSection": {
+      "tagline": "Current Openings",
+      "headline": "Explore Opportunities by Domain",
+      "opportunities": [
+        {
+          "label": "Teaching Opportunities",
+          "icon": "BookOpen",
+          "heading": "Inspire Learning.",
+          "script": "Make a Difference.",
+          "description": "Teachers play a vital role in shaping how students understand the world, develop confidence and discover their potential.\n\nLFCS welcomes passionate educators who value strong academic foundations, student engagement and the development of responsible, independent learners.\n\nWe encourage teaching professionals who bring subject knowledge, dedication, curiosity and a student-focused approach to their work.",
+          "paragraphs": [
+            "Teachers play a vital role in shaping how students understand the world, develop confidence and discover their potential.",
+            "LFCS welcomes passionate educators who value strong academic foundations, student engagement and the development of responsible, independent learners.",
+            "We encourage teaching professionals who bring subject knowledge, dedication, curiosity and a student-focused approach to their work."
+          ],
+          "roles": [
+            "Pre-Primary Teachers",
+            "Primary School Teachers",
+            "Subject Teachers",
+            "Senior Secondary Subject Specialists",
+            "Academic Coordinators",
+            "School Leadership and Academic Management"
+          ],
+          "rolesText": "Pre-Primary Teachers\nPrimary School Teachers\nSubject Teachers\nSenior Secondary Subject Specialists\nAcademic Coordinators\nSchool Leadership and Academic Management",
+          "cta": "Express Interest in Teaching Opportunities",
+          "img": "https://res.cloudinary.com/dpa93copz/image/upload/v1793254267/lfcs-school/about/approach2_1793254267246.webp"
+        },
+        {
+          "label": "Administrative Opportunities",
+          "icon": "Briefcase",
+          "heading": "Support the Systems That Make Learning",
+          "script": "Possible",
+          "description": "A successful educational institution depends on more than classroom teaching. Administration, operations and school management help create an organised, efficient and supportive environment for students, parents and educators.\n\nLFCS welcomes capable professionals who can contribute to the effective functioning and continued development of its institutions.",
+          "paragraphs": [
+            "A successful educational institution depends on more than classroom teaching. Administration, operations and school management help create an organised, efficient and supportive environment for students, parents and educators.",
+            "LFCS welcomes capable professionals who can contribute to the effective functioning and continued development of its institutions."
+          ],
+          "roles": [
+            "School Administration",
+            "Admissions and Parent Relations",
+            "Accounts and Finance",
+            "Human Resources",
+            "Operations and Facilities Management",
+            "IT and Technical Support",
+            "School Coordination"
+          ],
+          "rolesText": "School Administration\nAdmissions and Parent Relations\nAccounts and Finance\nHuman Resources\nOperations and Facilities Management\nIT and Technical Support\nSchool Coordination",
+          "cta": "Explore Administrative Opportunities",
+          "img": "https://res.cloudinary.com/dpa93copz/image/upload/v1793254265/lfcs-school/about/story2_1793254265102.webp"
+        }
+      ]
+    },
+    "CareersFinalCTASection": {
+      "heading": "Your Next Opportunity Could Begin Here",
+      "description": "If you are passionate about education and would like to explore a career with Little Flower Group of Schools, we invite you to share your profile with us.\n\nTell us about your experience, skills and area of interest, and our team can consider your profile for relevant opportunities as they arise.",
+      "paragraphs": [
+        "If you are passionate about education and would like to explore a career with Little Flower Group of Schools, we invite you to share your profile with us.",
+        "Tell us about your experience, skills and area of interest, and our team can consider your profile for relevant opportunities as they arise."
+      ],
+      "buttonText": "Submit Your Profile",
+      "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793254261/lfcs-school/about/about-hero_1793254259596.webp"
     }
   },
   "contact": {

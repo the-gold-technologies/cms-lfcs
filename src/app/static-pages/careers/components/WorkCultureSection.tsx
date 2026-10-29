@@ -18,31 +18,49 @@ export function WorkCultureSection({ initialData }: { initialData?: any }) {
   const [scriptAccent, setScriptAccent] = useState("");
   const [description, setDescription] = useState("");
   const [valuesList, setValuesList] = useState("");
+  const [quote, setQuote] = useState("");
   const [cultureImage, setCultureImage] = useState("");
 
   useEffect(() => {
     if (initialData) {
-      setTagline(initialData.tagline ?? "OUR WORK CULTURE");
-      setHeadline(initialData.headline ?? "Growing Together Through Learning &");
-      setScriptAccent(initialData.scriptAccent ?? "Collaboration");
-      setDescription(
-        initialData.description ??
-          "At Little Flower Group of Schools, we recognise that educators and staff play a defining role in shaping the student experience. We maintain an open, merit-driven environment where ideas are encouraged and achievements celebrated.",
-      );
+      setTagline(initialData.tagline ?? "");
+      setHeadline(initialData.headline ?? "");
+      setScriptAccent(initialData.scriptAccent ?? "");
+
+      if (Array.isArray(initialData.paragraphs)) {
+        setDescription(initialData.paragraphs.join("\n\n"));
+      } else if (initialData.paragraph1 && initialData.paragraph2) {
+        setDescription(`${initialData.paragraph1}\n\n${initialData.paragraph2}`);
+      } else if (typeof initialData.description === "string" && initialData.description) {
+        setDescription(initialData.description);
+      } else {
+        setDescription("");
+      }
+
       setValuesList(
-        initialData.valuesList ??
-          "Professionalism, Integrity, Mutual Respect, Responsibility, Willingness to Learn, Child Centricity",
+        Array.isArray(initialData.values)
+          ? initialData.values.join(", ")
+          : (initialData.valuesList ?? ""),
       );
-      setCultureImage(
-        initialData.cultureImage ??
-          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170022/lfcs-school/collabrative_1793170021825.webp",
-      );
+      setQuote(initialData.quote ?? "");
+      setCultureImage(initialData.cultureImage ?? "");
     }
   }, [initialData]);
 
   const handleSave = async () => {
     setLoading(true);
+    setSaved(false);
     try {
+      const valuesArray = valuesList
+        .split(",")
+        .map((s) => s.trim())
+        .filter(Boolean);
+
+      const paragraphs = description
+        .split("\n\n")
+        .map((p) => p.trim())
+        .filter(Boolean);
+
       const payload = {
         section: "WorkCultureSection",
         content: {
@@ -50,7 +68,10 @@ export function WorkCultureSection({ initialData }: { initialData?: any }) {
           headline,
           scriptAccent,
           description,
+          paragraphs,
+          values: valuesArray,
           valuesList,
+          quote,
           cultureImage,
         },
       };
@@ -69,8 +90,8 @@ export function WorkCultureSection({ initialData }: { initialData?: any }) {
       } else {
         toast.error(json.error || "Failed to save section");
       }
-    } catch (err: any) {
-      toast.error(err?.message || "Network error while saving");
+    } catch {
+      toast.error("Network error while saving");
     } finally {
       setLoading(false);
     }
@@ -79,8 +100,8 @@ export function WorkCultureSection({ initialData }: { initialData?: any }) {
   return (
     <div className="bg-white rounded-3xl p-6 shadow-sm ring-1 ring-gray-100 flex flex-col gap-6">
       <SectionHeader
-        title="3. Workplace Culture & Staff Ethos"
-        description="Highlights peer collaboration, professional values, and staff photographs."
+        title="3. Work Culture & Values Section"
+        description="Workplace ethos, shared team values badges, photo of staff, and institutional philosophy quote."
         badge="Live Section"
         isOpen={isOpen}
         onToggle={() => setIsOpen(!isOpen)}
@@ -90,16 +111,16 @@ export function WorkCultureSection({ initialData }: { initialData?: any }) {
         <div className="space-y-6 pt-2">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <InputField
-              label="Eyebrow Tag"
+              label="Pre-Heading Tag"
               value={tagline}
               onChange={(e) => setTagline(e.target.value)}
-              placeholder="e.g. OUR WORK CULTURE"
+              placeholder="e.g. Our Work Culture"
             />
             <InputField
-              label="Headline Lead"
+              label="Main Headline"
               value={headline}
               onChange={(e) => setHeadline(e.target.value)}
-              placeholder="e.g. Growing Together Through Learning &"
+              placeholder="e.g. Growing Together Through Learning and"
             />
             <InputField
               label="Script Accent"
@@ -110,26 +131,36 @@ export function WorkCultureSection({ initialData }: { initialData?: any }) {
           </div>
 
           <TextAreaField
-            label="Culture Description"
+            label="Culture Narrative (Separate paragraphs with a blank line)"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            rows={3}
-            placeholder="e.g. Staff ethos and workplace values..."
+            rows={5}
+            placeholder="At Little Flower Group of Schools, we recognise that educators and staff play an important role in shaping the student experience...&#10;&#10;We value professionalism, integrity, respect, responsibility and a willingness to learn..."
+            helperText="Separate multiple paragraphs with an empty line (double Enter)."
+          />
+
+          <InputField
+            label="Core Values (Comma Separated)"
+            value={valuesList}
+            onChange={(e) => setValuesList(e.target.value)}
+            placeholder="e.g. Professionalism, Integrity, Respect, Responsibility, Willingness to Learn"
+            helperText="Enter values separated by commas. Each item will render as a distinct badge pill."
           />
 
           <TextAreaField
-            label="Core Workplace Values (Comma Separated)"
-            value={valuesList}
-            onChange={(e) => setValuesList(e.target.value)}
+            label="Inspirational Quote"
+            value={quote}
+            onChange={(e) => setQuote(e.target.value)}
             rows={2}
-            placeholder="e.g. Professionalism, Integrity, Mutual Respect..."
+            placeholder="e.g. We believe that when the people within a school continue to learn and improve, the entire learning community benefits."
           />
 
           <ImagePickerField
-            label="Staff Photo / Workplace Visual"
+            label="Work Culture Photo"
             value={cultureImage}
-            onChange={(url) => setCultureImage(url)}
-            placeholder="e.g. Cloudinary staff photo URL"
+            onChange={setCultureImage}
+            folder="lfcs-school/about"
+            helperText="Photo of staff members or school activities (e.g. school band, mentoring)."
           />
 
           <div className="pt-4 border-t border-gray-100 w-full">

@@ -124,3 +124,4 @@ export function AllSchoolsListSection({ initialData }: { initialData?: any }) {
     </div>
   );
 }
+

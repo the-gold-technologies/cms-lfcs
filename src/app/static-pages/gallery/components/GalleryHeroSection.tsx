@@ -19,20 +19,10 @@ export function GalleryHeroSection({ initialData }: { initialData?: any }) {
 
   useEffect(() => {
     if (initialData) {
-      setTagline(initialData.tagline ?? "Photo Gallery");
-      setHeadline(initialData.headline ?? "Moments from");
-      setScriptAccent(initialData.scriptAccent ?? "Our Campuses.");
-      setDescription(
-        initialData.description ??
-          "A look inside Little Flower schools: our classrooms, labs, early years, sports, culture and the events that make school life memorable.",
-      );
-    } else {
-      setTagline("Photo Gallery");
-      setHeadline("Moments from");
-      setScriptAccent("Our Campuses.");
-      setDescription(
-        "A look inside Little Flower schools: our classrooms, labs, early years, sports, culture and the events that make school life memorable.",
-      );
+      setTagline(initialData.tagline ?? "");
+      setHeadline(initialData.headline ?? "");
+      setScriptAccent(initialData.scriptAccent ?? "");
+      setDescription(initialData.description ?? "");
     }
   }, [initialData]);
 
@@ -56,45 +46,45 @@ export function GalleryHeroSection({ initialData }: { initialData?: any }) {
       const json = await res.json();
       if (json.success) {
         setSaved(true);
-        toast.success("Gallery Hero section saved!");
+        toast.success("Gallery Hero section saved successfully!");
         setTimeout(() => setSaved(false), 2500);
       } else {
-        toast.error(json.error || "Failed to save");
+        toast.error(json.error || "Failed to save section");
       }
     } catch {
-      toast.error("Network error saving section");
+      toast.error("Network error while saving");
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="bg-white rounded-3xl p-6 shadow-sm ring-1 ring-gray-100">
+    <div className="bg-white rounded-3xl p-6 shadow-sm ring-1 ring-gray-100 flex flex-col gap-6">
       <SectionHeader
         title="1. Gallery Hero Header"
-        description="The opening banner for the Photo Gallery page with gold pill tag, bold headline, script cursive accent, and descriptive subtitle."
+        description="The opening banner for the Photo Gallery page with eyebrow tag, headline lead, script accent, and descriptive subtitle."
         badge="Live Section"
         isOpen={isOpen}
         onToggle={() => setIsOpen(!isOpen)}
       />
 
       {isOpen && (
-        <div className="space-y-5 pt-2">
+        <div className="space-y-6 pt-2">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <InputField
-              label="Eyebrow Tag"
+              label="Pre-Heading Tag"
               value={tagline}
               onChange={(e) => setTagline(e.target.value)}
               placeholder="e.g. Photo Gallery"
             />
             <InputField
-              label="Main Headline"
+              label="Headline Lead"
               value={headline}
               onChange={(e) => setHeadline(e.target.value)}
               placeholder="e.g. Moments from"
             />
             <InputField
-              label="Script Cursive Accent"
+              label="Script Accent"
               value={scriptAccent}
               onChange={(e) => setScriptAccent(e.target.value)}
               placeholder="e.g. Our Campuses."
@@ -102,11 +92,11 @@ export function GalleryHeroSection({ initialData }: { initialData?: any }) {
           </div>
 
           <TextAreaField
-            label="Hero Description"
+            label="Gallery Introduction Narrative"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             rows={3}
-            placeholder="e.g. A look inside Little Flower schools: our classrooms, labs, early years, sports, culture..."
+            placeholder="e.g. A look inside Little Flower schools: our classrooms, labs, early years, sports, culture and the events that make school life memorable."
           />
 
           <div className="pt-4 border-t border-gray-100 w-full">
@@ -117,4 +107,3 @@ export function GalleryHeroSection({ initialData }: { initialData?: any }) {
     </div>
   );
 }
-

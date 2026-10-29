@@ -110,4 +110,3 @@ export function NewsHeroSection({ initialData }: { initialData?: any }) {
     </div>
   );
 }
-

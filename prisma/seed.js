@@ -159,7 +159,9 @@ async function main() {
         await prisma.academicResult.create({ data: r });
       }
     }
-    console.log(`✓ ${resultsItems.length} Academic Results (Toppers) seeded with Cloudinary images`);
+    console.log(
+      `✓ ${resultsItems.length} Academic Results (Toppers) seeded with Cloudinary images`,
+    );
   }
 
   // 8. Seed All Static Pages and Modular Sections

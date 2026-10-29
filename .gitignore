@@ -33,4 +33,11 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-.prettierrc.json
+# Formatter & Editor Configs (Kept local, excluded from Git)
+.prettierrc*
+.prettierignore
+.editorconfig
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace

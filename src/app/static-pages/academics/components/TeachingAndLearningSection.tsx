@@ -67,16 +67,10 @@ export function TeachingAndLearningSection({ initialData }: { initialData?: any 
 
   const handleRemoveCard = (index: number) => {
     setCards((prev) => prev.filter((_, i) => i !== index));
-    setOpenIndices((prev) =>
-      prev.filter((i) => i !== index).map((i) => (i > index ? i - 1 : i)),
-    );
+    setOpenIndices((prev) => prev.filter((i) => i !== index).map((i) => (i > index ? i - 1 : i)));
   };
 
-  const handleUpdateCard = (
-    index: number,
-    field: keyof MethodologyCard,
-    value: string,
-  ) => {
+  const handleUpdateCard = (index: number, field: keyof MethodologyCard, value: string) => {
     setCards((prev) => {
       const copy = [...prev];
       copy[index] = { ...copy[index], [field]: value };

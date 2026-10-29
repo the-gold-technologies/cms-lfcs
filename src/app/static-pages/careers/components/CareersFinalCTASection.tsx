@@ -97,7 +97,8 @@ export function CareersFinalCTASection({ initialData }: { initialData?: any }) {
               <div>
                 <p className="text-xs font-bold text-gray-800">Direct Candidate Submissions</p>
                 <p className="text-[11px] text-gray-500">
-                  Resumes submitted through this CTA modal are stored in the dedicated Career CVs submissions module.
+                  Resumes submitted through this CTA modal are stored in the dedicated Career CVs
+                  submissions module.
                 </p>
               </div>
             </div>

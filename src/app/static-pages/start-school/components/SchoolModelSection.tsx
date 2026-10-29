@@ -70,16 +70,10 @@ export function SchoolModelSection({ initialData }: { initialData?: any }) {
 
   const handleRemoveArea = (index: number) => {
     setAreas((prev) => prev.filter((_, i) => i !== index));
-    setOpenIndices((prev) =>
-      prev.filter((i) => i !== index).map((i) => (i > index ? i - 1 : i)),
-    );
+    setOpenIndices((prev) => prev.filter((i) => i !== index).map((i) => (i > index ? i - 1 : i)));
   };
 
-  const handleUpdateArea = (
-    index: number,
-    field: keyof ModelArea,
-    value: string,
-  ) => {
+  const handleUpdateArea = (index: number, field: keyof ModelArea, value: string) => {
     setAreas((prev) => {
       const copy = [...prev];
       copy[index] = { ...copy[index], [field]: value };

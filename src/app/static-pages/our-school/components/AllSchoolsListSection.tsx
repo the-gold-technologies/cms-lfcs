@@ -81,7 +81,8 @@ export function AllSchoolsListSection({ initialData }: { initialData?: any }) {
               <div>
                 <p className="text-xs font-bold text-gray-800">Dynamic Campuses Directory</p>
                 <p className="text-[11px] text-gray-500">
-                  Individual branch cards, campus photos, location addresses, social profiles, and website links are managed in the Campuses module.
+                  Individual branch cards, campus photos, location addresses, social profiles, and
+                  website links are managed in the Campuses module.
                 </p>
               </div>
             </div>
@@ -124,4 +125,3 @@ export function AllSchoolsListSection({ initialData }: { initialData?: any }) {
     </div>
   );
 }
-

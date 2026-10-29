@@ -248,7 +248,9 @@ export function ImagePickerField({
                 {uploading ? (
                   <div className="flex flex-col items-center gap-2 py-1">
                     <Loader2 className="w-6 h-6 animate-spin text-[#002B5C]" />
-                    <p className="text-xs font-bold text-slate-700">Compressing & uploading WebP...</p>
+                    <p className="text-xs font-bold text-slate-700">
+                      Compressing & uploading WebP...
+                    </p>
                   </div>
                 ) : (
                   <>
@@ -292,7 +294,9 @@ export function ImagePickerField({
               {uploading ? (
                 <div className="flex flex-col items-center gap-2 py-1">
                   <Loader2 className="w-6 h-6 animate-spin text-[#002B5C]" />
-                  <p className="text-xs font-bold text-slate-700">Compressing & uploading WebP...</p>
+                  <p className="text-xs font-bold text-slate-700">
+                    Compressing & uploading WebP...
+                  </p>
                 </div>
               ) : (
                 <>
@@ -322,7 +326,11 @@ export function ImagePickerField({
                   <div className="flex items-center gap-3 min-w-0">
                     <div className="w-12 h-12 rounded-lg bg-white border border-slate-200 p-0.5 flex items-center justify-center shrink-0 overflow-hidden">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src={imgUrl} alt="Thumbnail" className="w-full h-full object-cover rounded-md" />
+                      <img
+                        src={imgUrl}
+                        alt="Thumbnail"
+                        className="w-full h-full object-cover rounded-md"
+                      />
                     </div>
                     <div className="min-w-0 flex-1">
                       <div className="flex items-center gap-1.5 text-emerald-600 font-bold text-[11px]">

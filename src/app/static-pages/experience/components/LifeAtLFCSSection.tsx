@@ -59,9 +59,7 @@ export function LifeAtLFCSSection({ initialData }: { initialData?: any }) {
 
   const handleRemoveExperience = (index: number) => {
     setExperiences((prev) => prev.filter((_, i) => i !== index));
-    setOpenIndices((prev) =>
-      prev.filter((i) => i !== index).map((i) => (i > index ? i - 1 : i)),
-    );
+    setOpenIndices((prev) => prev.filter((i) => i !== index).map((i) => (i > index ? i - 1 : i)));
   };
 
   const handleUpdateExperience = (index: number, val: string) => {

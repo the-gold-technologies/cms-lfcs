@@ -74,16 +74,10 @@ export function WhyPartnerSection({ initialData }: { initialData?: any }) {
 
   const handleRemoveReason = (index: number) => {
     setReasons((prev) => prev.filter((_, i) => i !== index));
-    setOpenIndices((prev) =>
-      prev.filter((i) => i !== index).map((i) => (i > index ? i - 1 : i)),
-    );
+    setOpenIndices((prev) => prev.filter((i) => i !== index).map((i) => (i > index ? i - 1 : i)));
   };
 
-  const handleUpdateReason = (
-    index: number,
-    field: keyof ReasonCard,
-    value: string,
-  ) => {
+  const handleUpdateReason = (index: number, field: keyof ReasonCard, value: string) => {
     setReasons((prev) => {
       const copy = [...prev];
       copy[index] = { ...copy[index], [field]: value };

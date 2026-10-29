@@ -38,7 +38,12 @@ const STATIC_SEARCH_ITEMS: SearchItem[] = [
   },
   { title: "Careers Page", category: "Pages", url: "/static-pages/careers", icon: FileText },
   { title: "Contact Us Page", category: "Pages", url: "/static-pages/contact", icon: FileText },
-  { title: "News & Events Page", category: "Pages", url: "/static-pages/news-and-events", icon: FileText },
+  {
+    title: "News & Events Page",
+    category: "Pages",
+    url: "/static-pages/news-and-events",
+    icon: FileText,
+  },
   { title: "All School Campuses", category: "Campuses", url: "/campuses", icon: Building },
   { title: "Add New Campus", category: "Campuses", url: "/campuses/create", icon: Building },
   { title: "News & Media Articles", category: "News", url: "/news", icon: Newspaper },

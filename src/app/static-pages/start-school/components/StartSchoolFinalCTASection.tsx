@@ -82,9 +82,12 @@ export function StartSchoolFinalCTASection({ initialData }: { initialData?: any 
                 <Handshake className="w-5 h-5" />
               </div>
               <div>
-                <p className="text-xs font-bold text-gray-800">Franchise & Partner Inquiries Inbox</p>
+                <p className="text-xs font-bold text-gray-800">
+                  Franchise & Partner Inquiries Inbox
+                </p>
                 <p className="text-[11px] text-gray-500">
-                  Investor and institutional enquiries submitted via the website modal are captured in Submissions -&gt; Start a School.
+                  Investor and institutional enquiries submitted via the website modal are captured
+                  in Submissions -&gt; Start a School.
                 </p>
               </div>
             </div>

@@ -60,9 +60,7 @@ export function CTABanners({ initialData }: { initialData?: any }) {
 
   const handleRemoveBanner = (index: number) => {
     setBanners((prev) => prev.filter((_, i) => i !== index));
-    setOpenIndices((prev) =>
-      prev.filter((i) => i !== index).map((i) => (i > index ? i - 1 : i)),
-    );
+    setOpenIndices((prev) => prev.filter((i) => i !== index).map((i) => (i > index ? i - 1 : i)));
   };
 
   const handleUpdateBanner = (index: number, field: keyof BannerItem, val: string) => {

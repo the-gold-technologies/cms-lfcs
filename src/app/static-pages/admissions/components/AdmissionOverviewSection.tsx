@@ -58,9 +58,7 @@ export function AdmissionOverviewSection({ initialData }: { initialData?: any })
 
   const handleRemovePillar = (index: number) => {
     setPillars((prev) => prev.filter((_, i) => i !== index));
-    setOpenIndices((prev) =>
-      prev.filter((i) => i !== index).map((i) => (i > index ? i - 1 : i)),
-    );
+    setOpenIndices((prev) => prev.filter((i) => i !== index).map((i) => (i > index ? i - 1 : i)));
   };
 
   const handleUpdatePillar = (index: number, field: keyof AdmissionPillar, value: string) => {
@@ -173,7 +171,8 @@ export function AdmissionOverviewSection({ initialData }: { initialData?: any })
                   Pillars of Admission ({pillars.length})
                 </h4>
                 <p className="text-[11px] text-gray-400 mt-0.5">
-                  Core value cards displayed beside the narrative (e.g. Structured Learning, Value-Based Education).
+                  Core value cards displayed beside the narrative (e.g. Structured Learning,
+                  Value-Based Education).
                 </p>
               </div>
               <button

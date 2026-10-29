@@ -3,10 +3,7 @@ import { prisma } from "@/lib/prisma";
 import { checkAdminSession } from "@/lib/auth-check";
 
 // GET /api/categories/[type] (e.g. /api/categories/gallery)
-export async function GET(
-  req: Request,
-  { params }: { params: Promise<{ type: string }> },
-) {
+export async function GET(req: Request, { params }: { params: Promise<{ type: string }> }) {
   try {
     const { type } = await params;
 
@@ -23,10 +20,7 @@ export async function GET(
 }
 
 // POST /api/categories/[type] (Add category for this type)
-export async function POST(
-  req: Request,
-  { params }: { params: Promise<{ type: string }> },
-) {
+export async function POST(req: Request, { params }: { params: Promise<{ type: string }> }) {
   try {
     const authCheck = await checkAdminSession();
     if (!authCheck.authorized) return authCheck.response;
@@ -77,10 +71,7 @@ export async function POST(
 }
 
 // PUT /api/categories/[type] (Rename / reorder category)
-export async function PUT(
-  req: Request,
-  { params }: { params: Promise<{ type: string }> },
-) {
+export async function PUT(req: Request, { params }: { params: Promise<{ type: string }> }) {
   try {
     const authCheck = await checkAdminSession();
     if (!authCheck.authorized) return authCheck.response;
@@ -140,10 +131,7 @@ export async function PUT(
 }
 
 // DELETE /api/categories/[type]?id=...&reassignTo=...
-export async function DELETE(
-  req: Request,
-  { params }: { params: Promise<{ type: string }> },
-) {
+export async function DELETE(req: Request, { params }: { params: Promise<{ type: string }> }) {
   try {
     const authCheck = await checkAdminSession();
     if (!authCheck.authorized) return authCheck.response;

@@ -55,9 +55,7 @@ export function AdmissionEnquiryFormSection({ initialData }: { initialData?: any
 
   const handleRemoveStep = (index: number) => {
     setSteps((prev) => prev.filter((_, i) => i !== index));
-    setOpenIndices((prev) =>
-      prev.filter((i) => i !== index).map((i) => (i > index ? i - 1 : i)),
-    );
+    setOpenIndices((prev) => prev.filter((i) => i !== index).map((i) => (i > index ? i - 1 : i)));
   };
 
   const handleUpdateStep = (index: number, field: keyof EnquiryStep, value: string) => {
@@ -125,7 +123,8 @@ export function AdmissionEnquiryFormSection({ initialData }: { initialData?: any
               <div>
                 <p className="text-xs font-bold text-gray-800">Admission Submissions Inbox</p>
                 <p className="text-[11px] text-gray-500">
-                  Parent inquiries submitted via this form are collected in the dedicated Admissions Submissions module.
+                  Parent inquiries submitted via this form are collected in the dedicated Admissions
+                  Submissions module.
                 </p>
               </div>
             </div>
@@ -241,4 +240,3 @@ export function AdmissionEnquiryFormSection({ initialData }: { initialData?: any
     </div>
   );
 }
-

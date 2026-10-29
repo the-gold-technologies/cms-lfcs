@@ -66,16 +66,10 @@ export function TestimonialsSection({ initialData }: { initialData?: any }) {
 
   const handleRemoveTestimonial = (index: number) => {
     setTestimonials((prev) => prev.filter((_, i) => i !== index));
-    setOpenIndices((prev) =>
-      prev.filter((i) => i !== index).map((i) => (i > index ? i - 1 : i)),
-    );
+    setOpenIndices((prev) => prev.filter((i) => i !== index).map((i) => (i > index ? i - 1 : i)));
   };
 
-  const handleUpdateTestimonial = (
-    index: number,
-    field: keyof HomeTestimonial,
-    value: string,
-  ) => {
+  const handleUpdateTestimonial = (index: number, field: keyof HomeTestimonial, value: string) => {
     setTestimonials((prev) => {
       const copy = [...prev];
       copy[index] = { ...copy[index], [field]: value };

@@ -2,11 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { PageHeader } from "@/components/PageHeader";
-import {
-  OurSchoolHeroSection,
-  AllSchoolsListSection,
-  OurSchoolCTASection,
-} from "./components";
+import { OurSchoolHeroSection, AllSchoolsListSection, OurSchoolCTASection } from "./components";
 
 export default function OurSchoolPageEditor() {
   const [pageData, setPageData] = useState<any>(null);
@@ -40,4 +36,3 @@ export default function OurSchoolPageEditor() {
     </section>
   );
 }
-

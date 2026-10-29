@@ -214,7 +214,8 @@ export function HeroSection({ initialData }: { initialData?: any }) {
                   Key Metrics Bar ({stats.length})
                 </h4>
                 <p className="text-[11px] text-gray-400 mt-0.5">
-                  Floating statistics bar displayed prominently under the hero section. Can add more than 4 metrics.
+                  Floating statistics bar displayed prominently under the hero section. Can add more
+                  than 4 metrics.
                 </p>
               </div>
               <button

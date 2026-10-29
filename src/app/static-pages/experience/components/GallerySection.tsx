@@ -83,7 +83,8 @@ export function GallerySection({ initialData }: { initialData?: any }) {
               <div>
                 <p className="text-xs font-bold text-gray-800">Dynamic Cloudinary Photo Gallery</p>
                 <p className="text-[11px] text-gray-500">
-                  Individual campus photos, event albums, and categories (Sports, Annual Days, Workshops) are managed in the Photo Gallery module.
+                  Individual campus photos, event albums, and categories (Sports, Annual Days,
+                  Workshops) are managed in the Photo Gallery module.
                 </p>
               </div>
             </div>

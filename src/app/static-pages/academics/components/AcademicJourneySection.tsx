@@ -71,9 +71,7 @@ export function AcademicJourneySection({ initialData }: { initialData?: any }) {
 
   const handleRemoveStage = (index: number) => {
     setStages((prev) => prev.filter((_, i) => i !== index));
-    setOpenIndices((prev) =>
-      prev.filter((i) => i !== index).map((i) => (i > index ? i - 1 : i)),
-    );
+    setOpenIndices((prev) => prev.filter((i) => i !== index).map((i) => (i > index ? i - 1 : i)));
   };
 
   const handleUpdateStage = (index: number, field: keyof JourneyStage, val: string) => {

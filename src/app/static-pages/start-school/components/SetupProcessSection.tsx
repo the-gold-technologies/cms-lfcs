@@ -63,16 +63,10 @@ export function SetupProcessSection({ initialData }: { initialData?: any }) {
 
   const handleRemoveStep = (index: number) => {
     setSteps((prev) => prev.filter((_, i) => i !== index));
-    setOpenIndices((prev) =>
-      prev.filter((i) => i !== index).map((i) => (i > index ? i - 1 : i)),
-    );
+    setOpenIndices((prev) => prev.filter((i) => i !== index).map((i) => (i > index ? i - 1 : i)));
   };
 
-  const handleUpdateStep = (
-    index: number,
-    field: keyof SetupStep,
-    value: string,
-  ) => {
+  const handleUpdateStep = (index: number, field: keyof SetupStep, value: string) => {
     setSteps((prev) => {
       const copy = [...prev];
       copy[index] = { ...copy[index], [field]: value };

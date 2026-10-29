@@ -65,9 +65,7 @@ export function ExperienceSection({ initialData }: { initialData?: any }) {
 
   const handleRemovePhoto = (index: number) => {
     setPhotos((prev) => prev.filter((_, i) => i !== index));
-    setOpenIndices((prev) =>
-      prev.filter((i) => i !== index).map((i) => (i > index ? i - 1 : i)),
-    );
+    setOpenIndices((prev) => prev.filter((i) => i !== index).map((i) => (i > index ? i - 1 : i)));
   };
 
   const handleUpdatePhoto = (index: number, field: keyof ExperiencePhoto, val: string) => {

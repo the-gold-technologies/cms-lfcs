@@ -67,9 +67,7 @@ export function AwardsSection({ initialData }: { initialData?: any }) {
 
   const handleRemoveAward = (index: number) => {
     setAwards((prev) => prev.filter((_, i) => i !== index));
-    setOpenIndices((prev) =>
-      prev.filter((i) => i !== index).map((i) => (i > index ? i - 1 : i)),
-    );
+    setOpenIndices((prev) => prev.filter((i) => i !== index).map((i) => (i > index ? i - 1 : i)));
   };
 
   const handleUpdateAward = (index: number, field: keyof AwardItem, val: any) => {

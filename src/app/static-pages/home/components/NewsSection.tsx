@@ -90,7 +90,8 @@ export function NewsSection({ initialData }: { initialData?: any }) {
               <div>
                 <p className="text-xs font-bold text-gray-800">Dynamic News & Media Stories</p>
                 <p className="text-[11px] text-gray-500">
-                  Individual news articles, press milestones, images, and coverage links are managed in the dedicated News & Media module.
+                  Individual news articles, press milestones, images, and coverage links are managed
+                  in the dedicated News & Media module.
                 </p>
               </div>
             </div>

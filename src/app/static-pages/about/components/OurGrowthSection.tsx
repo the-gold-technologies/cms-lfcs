@@ -67,16 +67,10 @@ export function OurGrowthSection({ initialData }: { initialData?: any }) {
 
   const handleRemoveMilestone = (index: number) => {
     setMilestones((prev) => prev.filter((_, i) => i !== index));
-    setOpenIndices((prev) =>
-      prev.filter((i) => i !== index).map((i) => (i > index ? i - 1 : i)),
-    );
+    setOpenIndices((prev) => prev.filter((i) => i !== index).map((i) => (i > index ? i - 1 : i)));
   };
 
-  const handleUpdateMilestone = (
-    index: number,
-    field: keyof MilestoneItem,
-    val: string,
-  ) => {
+  const handleUpdateMilestone = (index: number, field: keyof MilestoneItem, val: string) => {
     setMilestones((prev) => {
       const copy = [...prev];
       copy[index] = { ...copy[index], [field]: val };

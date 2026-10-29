@@ -110,4 +110,3 @@ export function OurSchoolHeroSection({ initialData }: { initialData?: any }) {
     </div>
   );
 }
-

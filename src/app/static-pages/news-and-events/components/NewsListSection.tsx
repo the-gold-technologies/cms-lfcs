@@ -89,9 +89,12 @@ export function NewsListSection({ initialData }: { initialData?: any }) {
                 <Newspaper className="w-5 h-5" />
               </div>
               <div>
-                <p className="text-xs font-bold text-gray-800">Dynamic News Articles & Lead Story</p>
+                <p className="text-xs font-bold text-gray-800">
+                  Dynamic News Articles & Lead Story
+                </p>
                 <p className="text-[11px] text-gray-500">
-                  Individual news articles, headlines, excerpts, press photos, and external article URLs are managed in the News & Media module.
+                  Individual news articles, headlines, excerpts, press photos, and external article
+                  URLs are managed in the News & Media module.
                 </p>
               </div>
             </div>
@@ -135,4 +138,3 @@ export function NewsListSection({ initialData }: { initialData?: any }) {
     </div>
   );
 }
-

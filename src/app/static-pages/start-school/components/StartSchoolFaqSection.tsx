@@ -56,16 +56,10 @@ export function StartSchoolFaqSection({ initialData }: { initialData?: any }) {
 
   const handleRemoveFaq = (index: number) => {
     setFaqs((prev) => prev.filter((_, i) => i !== index));
-    setOpenIndices((prev) =>
-      prev.filter((i) => i !== index).map((i) => (i > index ? i - 1 : i)),
-    );
+    setOpenIndices((prev) => prev.filter((i) => i !== index).map((i) => (i > index ? i - 1 : i)));
   };
 
-  const handleUpdateFaq = (
-    index: number,
-    field: keyof FaqItem,
-    value: string,
-  ) => {
+  const handleUpdateFaq = (index: number, field: keyof FaqItem, value: string) => {
     setFaqs((prev) => {
       const copy = [...prev];
       copy[index] = { ...copy[index], [field]: value };

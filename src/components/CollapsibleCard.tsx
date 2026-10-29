@@ -84,10 +84,7 @@ export function CollapsibleCard({
         </div>
 
         {/* Right Actions */}
-        <div
-          className="flex items-center gap-1 shrink-0"
-          onClick={(e) => e.stopPropagation()}
-        >
+        <div className="flex items-center gap-1 shrink-0" onClick={(e) => e.stopPropagation()}>
           <button
             type="button"
             onClick={onDelete}
@@ -120,4 +117,3 @@ export function CollapsibleCard({
     </div>
   );
 }
-

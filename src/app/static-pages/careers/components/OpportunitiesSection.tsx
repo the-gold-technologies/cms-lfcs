@@ -47,9 +47,7 @@ export function OpportunitiesSection({ initialData }: { initialData?: any }) {
             description: Array.isArray(item.paragraphs)
               ? item.paragraphs.join("\n\n")
               : (item.description ?? ""),
-            rolesText: Array.isArray(item.roles)
-              ? item.roles.join("\n")
-              : (item.rolesText ?? ""),
+            rolesText: Array.isArray(item.roles) ? item.roles.join("\n") : (item.rolesText ?? ""),
             cta: item.cta ?? "",
             img: item.img ?? "",
           })),
@@ -85,16 +83,10 @@ export function OpportunitiesSection({ initialData }: { initialData?: any }) {
 
   const removeOpportunity = (index: number) => {
     setOpportunities((prev) => prev.filter((_, i) => i !== index));
-    setOpenIndices((prev) =>
-      prev.filter((i) => i !== index).map((i) => (i > index ? i - 1 : i)),
-    );
+    setOpenIndices((prev) => prev.filter((i) => i !== index).map((i) => (i > index ? i - 1 : i)));
   };
 
-  const updateOpportunity = (
-    index: number,
-    field: keyof OpportunityItem,
-    value: string,
-  ) => {
+  const updateOpportunity = (index: number, field: keyof OpportunityItem, value: string) => {
     setOpportunities((prev) => {
       const copy = [...prev];
       copy[index] = { ...copy[index], [field]: value };
@@ -169,7 +161,8 @@ export function OpportunitiesSection({ initialData }: { initialData?: any }) {
               <div>
                 <p className="text-xs font-bold text-gray-800">Candidate CVs & Applications</p>
                 <p className="text-[11px] text-gray-500">
-                  Resumes submitted by job seekers via the career modal are collected in Submissions &gt; Career CVs.
+                  Resumes submitted by job seekers via the career modal are collected in Submissions
+                  &gt; Career CVs.
                 </p>
               </div>
             </div>
@@ -270,7 +263,9 @@ export function OpportunitiesSection({ initialData }: { initialData?: any }) {
                       value={opp.rolesText}
                       onChange={(e) => updateOpportunity(idx, "rolesText", e.target.value)}
                       rows={4}
-                      placeholder={"Pre-Primary Teachers\nPrimary School Teachers\nSubject Teachers\nAcademic Coordinators"}
+                      placeholder={
+                        "Pre-Primary Teachers\nPrimary School Teachers\nSubject Teachers\nAcademic Coordinators"
+                      }
                       helperText="Enter each role on a new line. It will render as a bulleted checklist."
                     />
 

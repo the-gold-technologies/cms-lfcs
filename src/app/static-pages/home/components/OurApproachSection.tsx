@@ -76,9 +76,7 @@ export function OurApproachSection({ initialData }: { initialData?: any }) {
 
   const handleRemoveCard = (index: number) => {
     setCards((prev) => prev.filter((_, i) => i !== index));
-    setOpenIndices((prev) =>
-      prev.filter((i) => i !== index).map((i) => (i > index ? i - 1 : i)),
-    );
+    setOpenIndices((prev) => prev.filter((i) => i !== index).map((i) => (i > index ? i - 1 : i)));
   };
 
   const handleUpdateCard = (index: number, field: keyof SkillCard, value: string) => {
@@ -191,7 +189,8 @@ export function OurApproachSection({ initialData }: { initialData?: any }) {
                   Life Skill Carousel Cards ({cards.length})
                 </h4>
                 <p className="text-[11px] text-gray-400 mt-0.5">
-                  Interactive carousel cards highlighting character and competencies. Can add more than 4 cards.
+                  Interactive carousel cards highlighting character and competencies. Can add more
+                  than 4 cards.
                 </p>
               </div>
               <div className="flex items-center gap-2">

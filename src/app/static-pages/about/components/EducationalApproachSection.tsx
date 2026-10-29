@@ -70,9 +70,7 @@ export function EducationalApproachSection({ initialData }: { initialData?: any 
 
   const handleRemovePillar = (index: number) => {
     setPillars((prev) => prev.filter((_, i) => i !== index));
-    setOpenIndices((prev) =>
-      prev.filter((i) => i !== index).map((i) => (i > index ? i - 1 : i)),
-    );
+    setOpenIndices((prev) => prev.filter((i) => i !== index).map((i) => (i > index ? i - 1 : i)));
   };
 
   const handleUpdatePillar = (index: number, field: keyof ApproachPillar, val: string) => {

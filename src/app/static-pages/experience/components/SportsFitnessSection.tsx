@@ -61,9 +61,7 @@ export function SportsFitnessSection({ initialData }: { initialData?: any }) {
 
   const handleRemoveActivity = (index: number) => {
     setActivities((prev) => prev.filter((_, i) => i !== index));
-    setOpenIndices((prev) =>
-      prev.filter((i) => i !== index).map((i) => (i > index ? i - 1 : i)),
-    );
+    setOpenIndices((prev) => prev.filter((i) => i !== index).map((i) => (i > index ? i - 1 : i)));
   };
 
   const handleUpdateActivity = (index: number, val: string) => {

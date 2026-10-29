@@ -63,9 +63,7 @@ export function CurriculumSection({ initialData }: { initialData?: any }) {
 
   const handleRemoveSubject = (index: number) => {
     setSubjects((prev) => prev.filter((_, i) => i !== index));
-    setOpenIndices((prev) =>
-      prev.filter((i) => i !== index).map((i) => (i > index ? i - 1 : i)),
-    );
+    setOpenIndices((prev) => prev.filter((i) => i !== index).map((i) => (i > index ? i - 1 : i)));
   };
 
   const handleUpdateSubject = (index: number, field: keyof SubjectGroup, val: string) => {

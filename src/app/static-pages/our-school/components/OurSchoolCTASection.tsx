@@ -75,9 +75,7 @@ export function OurSchoolCTASection({ initialData }: { initialData?: any }) {
 
   const removeFeature = (index: number) => {
     setFeatures((prev) => prev.filter((_, i) => i !== index));
-    setOpenIndices((prev) =>
-      prev.filter((i) => i !== index).map((i) => (i > index ? i - 1 : i)),
-    );
+    setOpenIndices((prev) => prev.filter((i) => i !== index).map((i) => (i > index ? i - 1 : i)));
   };
 
   const updateFeature = (index: number, field: keyof FeatureItem, value: string) => {
@@ -148,7 +146,8 @@ export function OurSchoolCTASection({ initialData }: { initialData?: any }) {
               <div>
                 <p className="text-xs font-bold text-gray-800">Online Admission Enquiries</p>
                 <p className="text-[11px] text-gray-500">
-                  Enquiries submitted through this CTA button are recorded and managed in Admissions Submissions.
+                  Enquiries submitted through this CTA button are recorded and managed in Admissions
+                  Submissions.
                 </p>
               </div>
             </div>
@@ -275,4 +274,3 @@ export function OurSchoolCTASection({ initialData }: { initialData?: any }) {
     </div>
   );
 }
-

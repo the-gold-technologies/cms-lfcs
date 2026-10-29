@@ -64,9 +64,7 @@ export function OurValuesSection({ initialData }: { initialData?: any }) {
 
   const handleRemoveValue = (index: number) => {
     setValues((prev) => prev.filter((_, i) => i !== index));
-    setOpenIndices((prev) =>
-      prev.filter((i) => i !== index).map((i) => (i > index ? i - 1 : i)),
-    );
+    setOpenIndices((prev) => prev.filter((i) => i !== index).map((i) => (i > index ? i - 1 : i)));
   };
 
   const handleUpdateValue = (index: number, field: keyof ValueItem, val: string) => {

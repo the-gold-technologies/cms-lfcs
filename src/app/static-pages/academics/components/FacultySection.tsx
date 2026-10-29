@@ -68,16 +68,10 @@ export function FacultySection({ initialData }: { initialData?: any }) {
 
   const handleRemovePrincipal = (index: number) => {
     setPrincipals((prev) => prev.filter((_, i) => i !== index));
-    setOpenIndices((prev) =>
-      prev.filter((i) => i !== index).map((i) => (i > index ? i - 1 : i)),
-    );
+    setOpenIndices((prev) => prev.filter((i) => i !== index).map((i) => (i > index ? i - 1 : i)));
   };
 
-  const handleUpdatePrincipal = (
-    index: number,
-    field: keyof PrincipalItem,
-    value: string,
-  ) => {
+  const handleUpdatePrincipal = (index: number, field: keyof PrincipalItem, value: string) => {
     setPrincipals((prev) => {
       const copy = [...prev];
       copy[index] = { ...copy[index], [field]: value };
@@ -140,9 +134,12 @@ export function FacultySection({ initialData }: { initialData?: any }) {
                 <GraduationCap className="w-5 h-5" />
               </div>
               <div>
-                <p className="text-xs font-bold text-gray-800">Branch Principals & Campuses Directory</p>
+                <p className="text-xs font-bold text-gray-800">
+                  Branch Principals & Campuses Directory
+                </p>
                 <p className="text-[11px] text-gray-500">
-                  Principal profiles, branch designations, and leadership details can also be inspected in the Campuses module.
+                  Principal profiles, branch designations, and leadership details can also be
+                  inspected in the Campuses module.
                 </p>
               </div>
             </div>

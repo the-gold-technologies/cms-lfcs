@@ -66,16 +66,10 @@ export function NoteOfSupportSection({ initialData }: { initialData?: any }) {
 
   const handleRemoveEndorsement = (index: number) => {
     setEndorsements((prev) => prev.filter((_, i) => i !== index));
-    setOpenIndices((prev) =>
-      prev.filter((i) => i !== index).map((i) => (i > index ? i - 1 : i)),
-    );
+    setOpenIndices((prev) => prev.filter((i) => i !== index).map((i) => (i > index ? i - 1 : i)));
   };
 
-  const handleUpdateEndorsement = (
-    index: number,
-    field: keyof EndorsementItem,
-    val: string,
-  ) => {
+  const handleUpdateEndorsement = (index: number, field: keyof EndorsementItem, val: string) => {
     setEndorsements((prev) => {
       const copy = [...prev];
       copy[index] = { ...copy[index], [field]: val };

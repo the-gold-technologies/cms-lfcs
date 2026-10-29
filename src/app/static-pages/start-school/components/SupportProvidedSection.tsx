@@ -74,16 +74,10 @@ export function SupportProvidedSection({ initialData }: { initialData?: any }) {
 
   const handleRemoveStage = (index: number) => {
     setStages((prev) => prev.filter((_, i) => i !== index));
-    setOpenIndices((prev) =>
-      prev.filter((i) => i !== index).map((i) => (i > index ? i - 1 : i)),
-    );
+    setOpenIndices((prev) => prev.filter((i) => i !== index).map((i) => (i > index ? i - 1 : i)));
   };
 
-  const handleUpdateStage = (
-    index: number,
-    field: keyof SupportStage,
-    value: any,
-  ) => {
+  const handleUpdateStage = (index: number, field: keyof SupportStage, value: any) => {
     setStages((prev) => {
       const copy = [...prev];
       copy[index] = { ...copy[index], [field]: value };

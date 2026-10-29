@@ -64,16 +64,10 @@ export function AcademicFacilitiesSection({ initialData }: { initialData?: any }
 
   const handleRemoveFacility = (index: number) => {
     setFacilities((prev) => prev.filter((_, i) => i !== index));
-    setOpenIndices((prev) =>
-      prev.filter((i) => i !== index).map((i) => (i > index ? i - 1 : i)),
-    );
+    setOpenIndices((prev) => prev.filter((i) => i !== index).map((i) => (i > index ? i - 1 : i)));
   };
 
-  const handleUpdateFacility = (
-    index: number,
-    field: keyof FacilityCard,
-    value: string,
-  ) => {
+  const handleUpdateFacility = (index: number, field: keyof FacilityCard, value: string) => {
     setFacilities((prev) => {
       const copy = [...prev];
       copy[index] = { ...copy[index], [field]: value };

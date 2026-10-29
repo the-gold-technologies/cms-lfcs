@@ -73,16 +73,10 @@ export function AdmissionClassesSection({ initialData }: { initialData?: any }) 
 
   const handleRemoveClass = (index: number) => {
     setClasses((prev) => prev.filter((_, i) => i !== index));
-    setOpenIndices((prev) =>
-      prev.filter((i) => i !== index).map((i) => (i > index ? i - 1 : i)),
-    );
+    setOpenIndices((prev) => prev.filter((i) => i !== index).map((i) => (i > index ? i - 1 : i)));
   };
 
-  const handleUpdateClass = (
-    index: number,
-    field: keyof AdmissionClass,
-    value: string,
-  ) => {
+  const handleUpdateClass = (index: number, field: keyof AdmissionClass, value: string) => {
     setClasses((prev) => {
       const copy = [...prev];
       copy[index] = { ...copy[index], [field]: value };
@@ -201,7 +195,8 @@ export function AdmissionClassesSection({ initialData }: { initialData?: any }) 
                   Learning Stages ({classes.length})
                 </h4>
                 <p className="text-[11px] text-gray-400 mt-0.5">
-                  Educational stages open for admissions (e.g. Early Years, Primary, Middle, Secondary, Senior Secondary).
+                  Educational stages open for admissions (e.g. Early Years, Primary, Middle,
+                  Secondary, Senior Secondary).
                 </p>
               </div>
               <button

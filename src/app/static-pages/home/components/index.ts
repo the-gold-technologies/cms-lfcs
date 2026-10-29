@@ -8,4 +8,3 @@ export { OurSchoolsSection } from "./OurSchoolsSection";
 export { NewsSection } from "./NewsSection";
 export { CTABanners } from "./CTABanners";
 export { TestimonialsSection } from "./TestimonialsSection";
-

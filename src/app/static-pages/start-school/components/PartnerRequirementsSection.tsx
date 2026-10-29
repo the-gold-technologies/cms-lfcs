@@ -93,11 +93,7 @@ export function PartnerRequirementsSection({ initialData }: { initialData?: any 
     );
   };
 
-  const handleUpdateProfile = (
-    index: number,
-    field: keyof PartnerProfileItem,
-    value: string,
-  ) => {
+  const handleUpdateProfile = (index: number, field: keyof PartnerProfileItem, value: string) => {
     setProfile((prev) => {
       const copy = [...prev];
       copy[index] = { ...copy[index], [field]: value };
@@ -228,7 +224,8 @@ export function PartnerRequirementsSection({ initialData }: { initialData?: any 
                   Partner Profile Qualities ({profile.length})
                 </h4>
                 <p className="text-[11px] text-gray-400 mt-0.5">
-                  Core competencies looked for in candidates (e.g. Management Capability, Long-Term Commitment).
+                  Core competencies looked for in candidates (e.g. Management Capability, Long-Term
+                  Commitment).
                 </p>
               </div>
               <button

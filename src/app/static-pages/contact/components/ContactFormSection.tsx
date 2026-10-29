@@ -96,7 +96,8 @@ export function ContactFormSection({ initialData }: { initialData?: any }) {
               <div>
                 <p className="text-xs font-bold text-gray-800">General Enquiries Submissions</p>
                 <p className="text-[11px] text-gray-500">
-                  Messages submitted by website visitors through the contact form are stored in Submissions &gt; General Enquiries.
+                  Messages submitted by website visitors through the contact form are stored in
+                  Submissions &gt; General Enquiries.
                 </p>
               </div>
             </div>

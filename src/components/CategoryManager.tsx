@@ -1,16 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import {
-  Plus,
-  X,
-  Pencil,
-  Trash2,
-  Settings2,
-  Check,
-  Loader2,
-  Tag,
-} from "lucide-react";
+import { Plus, X, Pencil, Trash2, Settings2, Check, Loader2, Tag } from "lucide-react";
 import toast from "react-hot-toast";
 
 export interface CategoryItem {
@@ -179,7 +170,7 @@ export function CategoryManager({
   const handleDeleteCategory = async (cat: CategoryItem) => {
     if (
       !confirm(
-        `Are you sure you want to delete the category "${cat.name}"? Items linked to this category will remain, but the category tab will be removed.`
+        `Are you sure you want to delete the category "${cat.name}"? Items linked to this category will remain, but the category tab will be removed.`,
       )
     ) {
       return;
@@ -187,12 +178,9 @@ export function CategoryManager({
 
     setDeletingId(cat.id);
     try {
-      const res = await fetch(
-        `/api/categories/${encodeURIComponent(type)}?id=${cat.id}`,
-        {
-          method: "DELETE",
-        }
-      );
+      const res = await fetch(`/api/categories/${encodeURIComponent(type)}?id=${cat.id}`, {
+        method: "DELETE",
+      });
       const json = await res.json();
       if (json.success) {
         toast.success(`Category "${cat.name}" removed`);
@@ -291,11 +279,10 @@ export function CategoryManager({
                   <Tag className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="text-sm font-bold text-gray-900">
-                    Manage Categories
-                  </h3>
+                  <h3 className="text-sm font-bold text-gray-900">Manage Categories</h3>
                   <p className="text-xs text-gray-500 mt-0.5">
-                    Add, rename, or delete categories. Renaming automatically updates all associated items.
+                    Add, rename, or delete categories. Renaming automatically updates all associated
+                    items.
                   </p>
                 </div>
               </div>

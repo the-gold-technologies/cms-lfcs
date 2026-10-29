@@ -76,9 +76,7 @@ export function WelcomeSection({ initialData }: { initialData?: any }) {
 
   const handleRemoveCard = (index: number) => {
     setCards((prev) => prev.filter((_, i) => i !== index));
-    setOpenIndices((prev) =>
-      prev.filter((i) => i !== index).map((i) => (i > index ? i - 1 : i)),
-    );
+    setOpenIndices((prev) => prev.filter((i) => i !== index).map((i) => (i > index ? i - 1 : i)));
   };
 
   const handleUpdateCard = (index: number, field: keyof PillarCard, value: string) => {
@@ -191,7 +189,8 @@ export function WelcomeSection({ initialData }: { initialData?: any }) {
                   Signature Pillar Cards ({cards.length})
                 </h4>
                 <p className="text-[11px] text-gray-400 mt-0.5">
-                  Add, edit, or remove signature cards showcasing LFCS educational focus. Can add more than 3 cards.
+                  Add, edit, or remove signature cards showcasing LFCS educational focus. Can add
+                  more than 3 cards.
                 </p>
               </div>
               <div className="flex items-center gap-2">

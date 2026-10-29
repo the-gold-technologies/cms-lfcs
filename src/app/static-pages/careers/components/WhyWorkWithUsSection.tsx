@@ -90,9 +90,7 @@ export function WhyWorkWithUsSection({ initialData }: { initialData?: any }) {
 
   const removeHighlight = (index: number) => {
     setHighlights((prev) => prev.filter((_, i) => i !== index));
-    setOpenIndices((prev) =>
-      prev.filter((i) => i !== index).map((i) => (i > index ? i - 1 : i)),
-    );
+    setOpenIndices((prev) => prev.filter((i) => i !== index).map((i) => (i > index ? i - 1 : i)));
   };
 
   const updateHighlight = (index: number, field: keyof WorkHighlight, value: string) => {
@@ -211,7 +209,9 @@ export function WhyWorkWithUsSection({ initialData }: { initialData?: any }) {
                   key={idx}
                   index={idx}
                   title={highlight.title || `Benefit #${idx + 1}`}
-                  subtitle={highlight.text ? highlight.text.slice(0, 50) + "..." : "Benefit card details"}
+                  subtitle={
+                    highlight.text ? highlight.text.slice(0, 50) + "..." : "Benefit card details"
+                  }
                   isOpen={openIndices.includes(idx)}
                   onToggle={() => toggleCard(idx)}
                   onDelete={() => removeHighlight(idx)}

@@ -70,9 +70,7 @@ export function LeadershipSection({ initialData }: { initialData?: any }) {
 
   const handleRemoveLeader = (index: number) => {
     setLeaders((prev) => prev.filter((_, i) => i !== index));
-    setOpenIndices((prev) =>
-      prev.filter((i) => i !== index).map((i) => (i > index ? i - 1 : i)),
-    );
+    setOpenIndices((prev) => prev.filter((i) => i !== index).map((i) => (i > index ? i - 1 : i)));
   };
 
   const handleUpdateLeader = (index: number, field: keyof LeaderProfile, val: string) => {

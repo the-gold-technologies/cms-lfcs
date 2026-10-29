@@ -8,11 +8,13 @@ import { InputField } from "@/components/InputField";
 import { TextAreaField } from "@/components/TextAreaField";
 import { ImagePickerField } from "@/components/ImagePickerField";
 import { SaveButton } from "@/components/SaveButton";
+import { CategoryManager, CategoryItem } from "@/components/CategoryManager";
 
 export default function TestimonialsPage() {
   const [testimonials, setTestimonials] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
-  const [filterCat, setFilterCat] = useState("ALL");
+  const [filterCat, setFilterCat] = useState("All");
+  const [categories, setCategories] = useState<CategoryItem[]>([]);
   const [modalOpen, setModalOpen] = useState(false);
   const [saving, setSaving] = useState(false);
 
@@ -45,7 +47,7 @@ export default function TestimonialsPage() {
     setEditId(null);
     setName("");
     setRole("Parent of Class VIII Student");
-    setCategory("PARENTS");
+    setCategory(categories[0]?.name || "PARENTS");
     setText("");
     setAvatarImage("");
     setRating(5);
@@ -120,7 +122,9 @@ export default function TestimonialsPage() {
   };
 
   const filtered =
-    filterCat === "ALL" ? testimonials : testimonials.filter((t) => t.category === filterCat);
+    filterCat === "All" || filterCat === "ALL"
+      ? testimonials
+      : testimonials.filter((t) => t.category.toLowerCase() === filterCat.toLowerCase());
 
   return (
     <section className="flex flex-col gap-8 pb-12 max-w-7xl mx-auto">
@@ -135,20 +139,13 @@ export default function TestimonialsPage() {
       />
 
       {/* Filter Tabs */}
-      <div className="flex gap-2 border-b border-gray-200 pb-3">
-        {["ALL", "PARENTS", "TEACHERS", "STUDENTS"].map((tab) => (
-          <button
-            key={tab}
-            onClick={() => setFilterCat(tab)}
-            className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
-              filterCat === tab
-                ? "bg-[#0E5A60] text-white shadow-sm"
-                : "bg-white text-gray-600 hover:bg-gray-100 border border-gray-200"
-            }`}
-          >
-            {tab}
-          </button>
-        ))}
+      <div className="border-b border-gray-200 pb-3">
+        <CategoryManager
+          type="testimonials"
+          activeCategory={filterCat}
+          onSelectCategory={setFilterCat}
+          onCategoriesChange={setCategories}
+        />
       </div>
 
       {loading ? (
@@ -262,9 +259,11 @@ export default function TestimonialsPage() {
                     onChange={(e) => setCategory(e.target.value)}
                     className="w-full px-4 py-3.5 bg-white border border-gray-200 rounded-2xl text-sm focus:ring-1 focus:ring-[#0E5A60] outline-none text-gray-800"
                   >
-                    <option value="PARENTS">Parent</option>
-                    <option value="TEACHERS">Teacher / Faculty</option>
-                    <option value="STUDENTS">Student / Alumnus</option>
+                    {categories.map((c) => (
+                      <option key={c.id} value={c.name}>
+                        {c.name}
+                      </option>
+                    ))}
                   </select>
                 </div>
 

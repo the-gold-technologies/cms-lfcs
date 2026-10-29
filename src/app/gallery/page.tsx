@@ -6,22 +6,13 @@ import { ImagePickerField } from "@/components/ImagePickerField";
 import { InputField } from "@/components/InputField";
 import { SaveButton } from "@/components/SaveButton";
 import { DeleteConfirmModal } from "@/components/DeleteConfirmModal";
+import { CategoryManager, CategoryItem } from "@/components/CategoryManager";
 import { Plus, Trash2, X } from "lucide-react";
 import toast from "react-hot-toast";
 
-const categories = [
-  "All",
-  "Campus & Facilities",
-  "Classrooms",
-  "Science Labs",
-  "Early Years",
-  "Sports & Fitness",
-  "Arts & Culture",
-  "Events & Achievements",
-];
-
 export default function GalleryCMSPage() {
   const [activeCategory, setActiveCategory] = useState("All");
+  const [categories, setCategories] = useState<CategoryItem[]>([]);
   const [images, setImages] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -30,7 +21,7 @@ export default function GalleryCMSPage() {
   const [uploading, setUploading] = useState(false);
   const [newSrc, setNewSrc] = useState("");
   const [newCaption, setNewCaption] = useState("");
-  const [newCategory, setNewCategory] = useState("Campus & Facilities");
+  const [newCategory, setNewCategory] = useState("");
 
   // Deletion modal
   const [deleteId, setDeleteId] = useState<string | null>(null);
@@ -58,6 +49,12 @@ export default function GalleryCMSPage() {
   useEffect(() => {
     fetchImages();
   }, [activeCategory]);
+
+  useEffect(() => {
+    if (categories.length > 0 && !newCategory) {
+      setNewCategory(categories[0].name);
+    }
+  }, [categories, newCategory]);
 
   const handleAddImage = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -133,21 +130,13 @@ export default function GalleryCMSPage() {
       />
 
       {/* Category Tabs */}
-      <div className="flex items-center gap-2 overflow-x-auto pb-2 custom-scrollbar">
-        {categories.map((cat) => (
-          <button
-            key={cat}
-            type="button"
-            onClick={() => setActiveCategory(cat)}
-            className={`px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all cursor-pointer ${
-              activeCategory === cat
-                ? "bg-[#6a2238] text-white shadow-xs"
-                : "bg-white text-gray-600 border border-gray-100 hover:bg-gray-50"
-            }`}
-          >
-            {cat}
-          </button>
-        ))}
+      <div className="pb-2">
+        <CategoryManager
+          type="gallery"
+          activeCategory={activeCategory}
+          onSelectCategory={setActiveCategory}
+          onCategoriesChange={setCategories}
+        />
       </div>
 
       {/* Gallery Grid */}
@@ -242,13 +231,11 @@ export default function GalleryCMSPage() {
                   onChange={(e) => setNewCategory(e.target.value)}
                   className="w-full px-4 py-2.5 bg-white border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#6a2238] text-gray-800"
                 >
-                  {categories
-                    .filter((c) => c !== "All")
-                    .map((cat) => (
-                      <option key={cat} value={cat}>
-                        {cat}
-                      </option>
-                    ))}
+                  {categories.map((cat) => (
+                    <option key={cat.id} value={cat.name}>
+                      {cat.name}
+                    </option>
+                  ))}
                 </select>
               </div>
 

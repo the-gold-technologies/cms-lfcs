@@ -7,11 +7,13 @@ import { PageHeader } from "@/components/PageHeader";
 import { InputField } from "@/components/InputField";
 import { ImagePickerField } from "@/components/ImagePickerField";
 import { SaveButton } from "@/components/SaveButton";
+import { CategoryManager, CategoryItem } from "@/components/CategoryManager";
 
 export default function ResultsPage() {
   const [results, setResults] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
-  const [filterExam, setFilterExam] = useState("ALL");
+  const [filterExam, setFilterExam] = useState("All");
+  const [categories, setCategories] = useState<CategoryItem[]>([]);
   const [modalOpen, setModalOpen] = useState(false);
   const [saving, setSaving] = useState(false);
 
@@ -44,7 +46,7 @@ export default function ResultsPage() {
   const openCreateModal = () => {
     setEditId(null);
     setStudentName("");
-    setExamType("CBSE 10th");
+    setExamType(categories[0]?.name || "CBSE 10th");
     setYear("2024-2025");
     setPercentageOrRank("");
     setCampusName("LFCS Mau");
@@ -123,7 +125,9 @@ export default function ResultsPage() {
   };
 
   const filtered =
-    filterExam === "ALL" ? results : results.filter((r) => r.examType === filterExam);
+    filterExam === "All" || filterExam === "ALL"
+      ? results
+      : results.filter((r) => r.examType.toLowerCase() === filterExam.toLowerCase());
 
   return (
     <section className="flex flex-col gap-8 pb-12 max-w-7xl mx-auto">
@@ -138,20 +142,13 @@ export default function ResultsPage() {
       />
 
       {/* Filter Tabs */}
-      <div className="flex gap-2 border-b border-gray-200 pb-3">
-        {["ALL", "CBSE 10th", "CBSE 12th", "JEE", "NEET"].map((tab) => (
-          <button
-            key={tab}
-            onClick={() => setFilterExam(tab)}
-            className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
-              filterExam === tab
-                ? "bg-[#0E5A60] text-white shadow-sm"
-                : "bg-white text-gray-600 hover:bg-gray-100 border border-gray-200"
-            }`}
-          >
-            {tab}
-          </button>
-        ))}
+      <div className="border-b border-gray-200 pb-3">
+        <CategoryManager
+          type="results"
+          activeCategory={filterExam}
+          onSelectCategory={setFilterExam}
+          onCategoriesChange={setCategories}
+        />
       </div>
 
       {loading ? (
@@ -264,10 +261,11 @@ export default function ResultsPage() {
                     onChange={(e) => setExamType(e.target.value)}
                     className="w-full px-4 py-3.5 bg-white border border-gray-200 rounded-2xl text-sm focus:ring-1 focus:ring-[#0E5A60] outline-none text-gray-800"
                   >
-                    <option value="CBSE 10th">CBSE 10th</option>
-                    <option value="CBSE 12th">CBSE 12th</option>
-                    <option value="JEE">JEE Mains / Advanced</option>
-                    <option value="NEET">NEET Medical</option>
+                    {categories.map((c) => (
+                      <option key={c.id} value={c.name}>
+                        {c.name}
+                      </option>
+                    ))}
                   </select>
                 </div>
 

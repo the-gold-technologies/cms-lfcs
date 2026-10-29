@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 import { SectionHeader } from "@/components/SectionHeader";
 import { InputField } from "@/components/InputField";
 import { TextAreaField } from "@/components/TextAreaField";
+import { ImagePickerField } from "@/components/ImagePickerField";
 import { SaveButton } from "@/components/SaveButton";
 
 export function ExperienceHeroSection({ initialData }: { initialData?: any }) {
@@ -18,23 +19,23 @@ export function ExperienceHeroSection({ initialData }: { initialData?: any }) {
   const [subtitle, setSubtitle] = useState("");
   const [ctaText, setCtaText] = useState("");
   const [ctaLink, setCtaLink] = useState("");
+  const [image, setImage] = useState("");
 
   useEffect(() => {
     if (initialData) {
-      setTagline(initialData.tagline ?? "Life at LFCS");
-      setHeadline(initialData.headline ?? "More than Just a");
-      setScriptAccent(initialData.scriptAccent ?? "School Day.");
-      setSubtitle(
-        initialData.subtitle ??
-          "Life at LFCS is beyond textbooks and classrooms. We cultivate character, teamwork, sportsmanship, and creative expression.",
-      );
-      setCtaText(initialData.ctaText ?? "Explore Life at LFCS");
-      setCtaLink(initialData.ctaLink ?? "#life-at-lfcs");
+      setTagline(initialData.tagline ?? "");
+      setHeadline(initialData.headline ?? "");
+      setScriptAccent(initialData.scriptAccent ?? "");
+      setSubtitle(initialData.subtitle ?? "");
+      setCtaText(initialData.ctaText ?? "");
+      setCtaLink(initialData.ctaLink ?? "");
+      setImage(initialData.image ?? "");
     }
   }, [initialData]);
 
   const handleSave = async () => {
     setLoading(true);
+    setSaved(false);
     try {
       const payload = {
         section: "ExperienceHeroSection",
@@ -45,6 +46,7 @@ export function ExperienceHeroSection({ initialData }: { initialData?: any }) {
           subtitle,
           ctaText,
           ctaLink,
+          image,
         },
       };
 
@@ -83,7 +85,7 @@ export function ExperienceHeroSection({ initialData }: { initialData?: any }) {
         <div className="space-y-6 pt-2">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <InputField
-              label="Eyebrow Tag"
+              label="Pre-Heading Tagline"
               value={tagline}
               onChange={(e) => setTagline(e.target.value)}
               placeholder="e.g. Life at LFCS"
@@ -103,14 +105,14 @@ export function ExperienceHeroSection({ initialData }: { initialData?: any }) {
           </div>
 
           <TextAreaField
-            label="Hero Narrative Subtitle"
+            label="Section Subtitle"
             value={subtitle}
             onChange={(e) => setSubtitle(e.target.value)}
             rows={2}
-            placeholder="e.g. Holistic student growth narrative..."
+            placeholder="e.g. Life at LFCS is beyond textbooks and classrooms..."
           />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <InputField
               label="CTA Button Label"
               value={ctaText}
@@ -125,8 +127,18 @@ export function ExperienceHeroSection({ initialData }: { initialData?: any }) {
             />
           </div>
 
-          <div className="pt-4 border-t border-gray-100 w-full">
-            <SaveButton onClick={handleSave} loading={loading} saved={saved} />
+          <ImagePickerField
+            label="Hero Visual Graphic"
+            value={image}
+            onChange={(url) => setImage(url)}
+            placeholder="e.g. Cloudinary image URL"
+            folder="lfcs-school/experience"
+          />
+
+          <div className="pt-4 border-t border-gray-100 flex justify-end">
+            <div className="w-full">
+              <SaveButton onClick={handleSave} loading={loading} saved={saved} />
+            </div>
           </div>
         </div>
       )}

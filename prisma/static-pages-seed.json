@@ -606,73 +606,177 @@
     }
   },
   "experience": {
-    "ArtsCultureSection": {
-      "tagline": "ARTS & CREATIVE EXPRESSION",
-      "headline": "A Space to Create &",
-      "scriptAccent": "Express",
-      "description": "At LFCS, we nurture creative instincts. Through painting, pottery, theatre, vocal music, instrumental bands, and cultural dance festivals, every child discovers their inner artist.",
-      "image1": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170035/lfcs-school/art1_1793170035130.webp",
-      "image2": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170039/lfcs-school/art2_1793170039436.webp"
-    },
-    "ClubsActivitiesSection": {
-      "tagline": "CLUBS & SOCIETIES",
-      "headline": "Student Clubs & Active Co-Curriculars",
-      "description": "Student-led clubs encourage teamwork, passion exploration, and leadership outside standard periods.",
-      "clubs": [
-        {
-          "name": "Academic Competitions & Olympiads"
-        },
-        {
-          "name": "Quiz & General Knowledge Club"
-        },
-        {
-          "name": "Technology & STEM Coding Lab"
-        },
-        {
-          "name": "Debate & Model United Nations"
-        },
-        {
-          "name": "Literary & Creative Writing Guild"
-        },
-        {
-          "name": "Fine Arts & Craft Studio"
-        }
-      ]
-    },
-    "ExperienceCTASection": {
-      "tagline": "TAKE THE NEXT STEP",
-      "heading": "Ready to Join the LFCS Community?",
-      "buttonText": "Explore Our Schools",
-      "buttonLink": "/our-school"
-    },
     "ExperienceHeroSection": {
       "tagline": "Life at LFCS",
       "headline": "More than Just a",
       "scriptAccent": "School Day.",
-      "subtitle": "Life at LFCS is beyond textbooks and classrooms. We cultivate character, teamwork, sportsmanship, and creative expression.",
+      "subtitle": "Life at LFCS is beyond textbooks and classrooms.",
       "ctaText": "Explore Life at LFCS",
-      "ctaLink": "#life-at-lfcs"
-    },
-    "GallerySection": {
-      "tagline": "CAMPUS GALLERY",
-      "headline": "Moments Captured Across Our Campuses",
-      "subtitle": "A glimpse into everyday life, celebrations, scientific discovery, and sporting triumphs across Little Flower schools."
+      "ctaLink": "#life-at-lfcs",
+      "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793256926/lfcs-school/experience/experience-hero_1793256924181.webp"
     },
     "LifeAtLFCSSection": {
-      "tagline": "LIFE AT LFCS",
+      "tagline": "Life at LFCS",
       "headline": "Upskilling, Participating & Growing",
       "scriptAccent": "EveryDay",
-      "description": "At LFCS, even though academics form the core for the student, these diverse activities and opportunities shape them and make them confident for their future.",
-      "activitiesList": "Classroom learning, Sports & physical training, Cultural festivals, Inter-school competitions, Student clubs, Educational excursions, Annual Day celebrations"
+      "description": "At LFCS, even though academics form the core for the student these different activities & opportunities shape them and make them ready for their future.\n\nRight from Classroom projects to cultural events, sports activities to competitions LFCS provides students with a variety of opportunities where they can participate & engage more with their school life.",
+      "experiencesTitle": "A typical LFCS experience brings together:",
+      "experiences": [
+        {
+          "title": "Classroom learning"
+        },
+        {
+          "title": "Sports and physical activities"
+        },
+        {
+          "title": "Creative and cultural activities"
+        },
+        {
+          "title": "Competitions and events"
+        },
+        {
+          "title": "Clubs and student activities"
+        },
+        {
+          "title": "Educational trips"
+        },
+        {
+          "title": "Celebrations and school programmes"
+        }
+      ],
+      "image1": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170040/lfcs-school/life1_1793170040339.webp",
+      "image2": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170041/lfcs-school/life2_1793170041503.webp"
     },
     "SportsFitnessSection": {
-      "tagline": "SPORTS & ATHLETICS",
-      "headline": "Building Physical Resilience &",
-      "scriptAccent": "Team Spirit",
-      "description": "Physical activity and sportsmanship are integral to life at Little Flower. From cricket pitches, basketball courts, and athletics tracks to Olympic-standard swimming facilities at LFIS, students find ample space to excel.",
-      "calloutText": "Teamwork, discipline, and fair play on every field.",
+      "tagline": "Sports & Fitness",
+      "headline": "An",
+      "scriptAccent": "Active",
+      "description": "Sports and physical activities are an important part of student life at LFCS. Students get opportunities to participate in games, physical activities and sports programmes that encourage regular movement, fitness and participation.\n\nSports also give students the opportunity to practise teamwork, discipline, perseverance and fair play.",
+      "calloutText": "Teamwork, discipline, & fair play",
+      "clientNote": "* Note: Available sports vary by branch. Please contact your local campus for the exact list.",
+      "activities": [
+        {
+          "title": "Outdoor sports"
+        },
+        {
+          "title": "Indoor games"
+        },
+        {
+          "title": "Athletics"
+        },
+        {
+          "title": "Physical education activities"
+        },
+        {
+          "title": "Fitness activities"
+        },
+        {
+          "title": "Inter-house competitions"
+        },
+        {
+          "title": "Inter-school competitions"
+        }
+      ],
       "image1": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170017/lfcs-school/sports1_1793170017007.webp",
       "image2": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170037/lfcs-school/sports2_1793170037412.webp"
+    },
+    "ArtsCultureSection": {
+      "tagline": "Arts, Culture & Creativity",
+      "headline": "A Place to Create &",
+      "scriptAccent": "Express",
+      "description": "At LFCS, we provide students with an opportunity to explore their creative interests. We open doors for various activities such as art, music, dance, cultural programmes, and many other creative activities where students can get a chance to explore their creativity, develop their interests & can participate in these activities during their school life.",
+      "activitiesTitle": "Creative & Cultural Activities",
+      "calloutText": "Creativity, expression, & culture",
+      "activities": [
+        {
+          "title": "Art & Craft"
+        },
+        {
+          "title": "Music"
+        },
+        {
+          "title": "Dance"
+        },
+        {
+          "title": "Drawing & Painting"
+        },
+        {
+          "title": "Cultural performances"
+        },
+        {
+          "title": "Celebrations"
+        },
+        {
+          "title": "Creative competitions"
+        },
+        {
+          "title": "School exhibitions and programmes"
+        }
+      ],
+      "image1": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170035/lfcs-school/art1_1793170035130.webp",
+      "image2": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170039/lfcs-school/art2_1793170039436.webp"
+    },
+    "ClubsActivitiesSection": {
+      "tagline": "Clubs & Activities",
+      "headline": "Discover an Interest. Practice it Further.",
+      "scriptAccent": "Discover",
+      "description": "At LFCS, we introduce our students to various cultural to sports activities - where they learn to participate and explore their interests. Once they discover their interest, we enroll them into these clubs that eventually help them cultivate their interest into a skill.",
+      "clientNote": "* Specific club names and enrollment options vary by campus. Please inquire with the administration.",
+      "clubs": [
+        {
+          "name": "Academic competitions",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793256927/lfcs-school/experience/club-card1_1793256927381.webp",
+          "bg": "#e5a024"
+        },
+        {
+          "name": "Quiz & general knowledge",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793256928/lfcs-school/experience/club-card2_1793256928255.webp",
+          "bg": "#d47087"
+        },
+        {
+          "name": "Technology / STEM activities",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793256929/lfcs-school/experience/club-card3_1793256929178.webp",
+          "bg": "#832646"
+        },
+        {
+          "name": "Debates & communication",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793256930/lfcs-school/experience/club-card4_1793256930078.webp",
+          "bg": "#7949a3"
+        },
+        {
+          "name": "Literary activities",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793256931/lfcs-school/experience/club-card-5_1793256931015.webp",
+          "bg": "#1e9575"
+        },
+        {
+          "name": "Art & creative activities",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793256932/lfcs-school/experience/club-card-6_1793256931963.webp",
+          "bg": "#e87a71"
+        },
+        {
+          "name": "Sports",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793256933/lfcs-school/experience/club-card-7_1793256932889.webp",
+          "bg": "#5b9e59"
+        },
+        {
+          "name": "Cultural activities",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793256934/lfcs-school/experience/club-card-8_1793256933783.webp",
+          "bg": "#d89728"
+        }
+      ]
+    },
+    "GallerySection": {
+      "tagline": "Events, Trips & Celebrations",
+      "headline": "Experiences that Become Part of a",
+      "scriptAccent": "Student Life",
+      "subtitle": "A vibrant visual collage of school celebrations, sports meets, educational tours, and campus events across Little Flower schools."
+    },
+    "ExperienceCTASection": {
+      "tagline": "Take the Next Step",
+      "heading": "Ready to Join the LFCS Community?",
+      "buttonText": "Explore our School",
+      "buttonLink": "/our-school",
+      "bgImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1793254289/lfcs-school/about/cta-bg_1793254289446.webp"
     }
   },
   "home": {

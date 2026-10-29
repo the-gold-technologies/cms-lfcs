@@ -2,14 +2,18 @@
 
 import React, { useState, useEffect } from "react";
 import toast from "react-hot-toast";
-import { Plus, Trash2 } from "lucide-react";
+import { Plus } from "lucide-react";
 import { SectionHeader } from "@/components/SectionHeader";
 import { InputField } from "@/components/InputField";
 import { TextAreaField } from "@/components/TextAreaField";
+import { ImagePickerField } from "@/components/ImagePickerField";
 import { SaveButton } from "@/components/SaveButton";
+import { CollapsibleCard } from "@/components/CollapsibleCard";
 
-interface ClubItem {
+export interface ClubCard {
   name: string;
+  image: string;
+  bg?: string;
 }
 
 export function ClubsActivitiesSection({ initialData }: { initialData?: any }) {
@@ -19,63 +23,67 @@ export function ClubsActivitiesSection({ initialData }: { initialData?: any }) {
 
   const [tagline, setTagline] = useState("");
   const [headline, setHeadline] = useState("");
+  const [scriptAccent, setScriptAccent] = useState("");
   const [description, setDescription] = useState("");
+  const [clientNote, setClientNote] = useState("");
 
-  const [clubs, setClubs] = useState<ClubItem[]>([]);
+  const [clubs, setClubs] = useState<ClubCard[]>([]);
+  const [openIndices, setOpenIndices] = useState<number[]>([0]);
 
   useEffect(() => {
     if (initialData) {
-      setTagline(initialData.tagline ?? "CLUBS & SOCIETIES");
-      setHeadline(initialData.headline ?? "Student Clubs & Active Co-Curriculars");
-      setDescription(
-        initialData.description ??
-          "Student-led clubs encourage teamwork, passion exploration, and leadership outside standard periods.",
-      );
+      setTagline(initialData.tagline ?? "");
+      setHeadline(initialData.headline ?? "");
+      setScriptAccent(initialData.scriptAccent ?? "");
+      setDescription(initialData.description ?? "");
+      setClientNote(initialData.clientNote ?? "");
 
-      if (Array.isArray(initialData.clubs) && initialData.clubs.length > 0) {
+      if (Array.isArray(initialData.clubs)) {
         setClubs(
           initialData.clubs.map((c: any) => ({
-            name: typeof c === "string" ? c : (c.name ?? ""),
+            name: c.name ?? c.title ?? "",
+            image: c.image ?? "",
+            bg: c.bg ?? "",
           })),
         );
       } else {
-        setClubs([
-          { name: initialData.c1Name ?? "Academic Competitions & Olympiads" },
-          { name: initialData.c2Name ?? "Quiz & General Knowledge Club" },
-          { name: initialData.c3Name ?? "Technology & STEM Coding Lab" },
-          { name: initialData.c4Name ?? "Debate & Model United Nations" },
-          { name: initialData.c5Name ?? "Literary & Creative Writing Guild" },
-          { name: initialData.c6Name ?? "Fine Arts & Craft Studio" },
-        ]);
+        setClubs([]);
       }
     }
   }, [initialData]);
 
   const handleAddClub = () => {
-    setClubs((prev) => [...prev, { name: "" }]);
+    setClubs((prev) => [...prev, { name: "", image: "", bg: "" }]);
+    setOpenIndices((prev) => [...prev, clubs.length]);
   };
 
   const handleRemoveClub = (index: number) => {
     setClubs((prev) => prev.filter((_, i) => i !== index));
+    setOpenIndices((prev) =>
+      prev.filter((i) => i !== index).map((i) => (i > index ? i - 1 : i)),
+    );
   };
 
-  const handleUpdateClub = (index: number, val: string) => {
+  const handleUpdateClub = (index: number, field: keyof ClubCard, value: string) => {
     setClubs((prev) => {
       const copy = [...prev];
-      copy[index] = { name: val };
+      copy[index] = { ...copy[index], [field]: value };
       return copy;
     });
   };
 
   const handleSave = async () => {
     setLoading(true);
+    setSaved(false);
     try {
       const payload = {
         section: "ClubsActivitiesSection",
         content: {
           tagline,
           headline,
+          scriptAccent,
           description,
+          clientNote,
           clubs,
         },
       };
@@ -104,8 +112,8 @@ export function ClubsActivitiesSection({ initialData }: { initialData?: any }) {
   return (
     <div className="bg-white rounded-3xl p-6 shadow-sm ring-1 ring-gray-100 flex flex-col gap-6">
       <SectionHeader
-        title="5. Student Clubs & Societies"
-        description="Co-curricular student interest clubs fostering innovation, debate, and creativity."
+        title="5. Clubs, Societies & Co-Curriculars"
+        description="Showcase student-led interest clubs, STEM societies, debate teams, and cultural troupes."
         badge="Live Section"
         isOpen={isOpen}
         onToggle={() => setIsOpen(!isOpen)}
@@ -113,44 +121,57 @@ export function ClubsActivitiesSection({ initialData }: { initialData?: any }) {
 
       {isOpen && (
         <div className="space-y-6 pt-2">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <InputField
-              label="Eyebrow Tag"
+              label="Pre-Heading Tagline"
               value={tagline}
               onChange={(e) => setTagline(e.target.value)}
-              placeholder="e.g. CLUBS & SOCIETIES"
+              placeholder="e.g. Clubs & Activities"
             />
             <InputField
-              label="Section Headline"
+              label="Headline"
               value={headline}
               onChange={(e) => setHeadline(e.target.value)}
-              placeholder="e.g. Student Clubs & Active Co-Curriculars"
+              placeholder="e.g. Discover an Interest. Practice it Further."
+            />
+            <InputField
+              label="Script Accent"
+              value={scriptAccent}
+              onChange={(e) => setScriptAccent(e.target.value)}
+              placeholder="e.g. Discover"
             />
           </div>
 
           <TextAreaField
-            label="Section Narrative"
+            label="Section Description"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            rows={2}
-            placeholder="e.g. Club participation narrative..."
+            rows={3}
+            placeholder="e.g. At LFCS, we introduce our students to various cultural to sports activities..."
           />
 
-          {/* DYNAMIC CLUBS ARRAY */}
+          <InputField
+            label="Campus Disclaimer Note"
+            value={clientNote}
+            onChange={(e) => setClientNote(e.target.value)}
+            placeholder="e.g. * Specific club names and enrollment options vary by campus..."
+          />
+
+          {/* DYNAMIC CLUBS LIST */}
           <div className="border-t border-gray-100 pt-5 space-y-4">
             <div className="flex items-center justify-between">
               <div>
-                <h4 className="text-xs font-bold uppercase tracking-wider text-gray-700 flex items-center gap-2">
-                  Active Student Clubs ({clubs.length})
+                <h4 className="text-xs font-bold uppercase tracking-wider text-gray-500">
+                  Student Clubs & Activities ({clubs.length})
                 </h4>
                 <p className="text-[11px] text-gray-400 mt-0.5">
-                  Co-curricular clubs and activity societies. Can add more than 6 clubs.
+                  Manage club names, illustrations, and badge accent styles.
                 </p>
               </div>
               <button
                 type="button"
                 onClick={handleAddClub}
-                className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0E5A60] hover:text-[#061C29] bg-[#0E5A60]/10 hover:bg-[#0E5A60]/20 px-3.5 py-1.5 rounded-xl transition-all cursor-pointer shadow-2xs"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-[#0E5A60] bg-[#0E5A60]/10 hover:bg-[#0E5A60]/20 rounded-xl transition-colors cursor-pointer"
               >
                 <Plus className="w-3.5 h-3.5" />
                 <span>Add Club</span>
@@ -160,46 +181,60 @@ export function ClubsActivitiesSection({ initialData }: { initialData?: any }) {
             {clubs.length === 0 ? (
               <div
                 onClick={handleAddClub}
-                className="p-8 rounded-2xl bg-gray-50/70 border border-dashed border-gray-200 text-center text-xs text-gray-400 cursor-pointer hover:bg-gray-100/70 hover:border-gray-300 transition-all flex flex-col items-center justify-center gap-2"
+                className="p-8 border-2 border-dashed border-gray-200 rounded-2xl text-center text-gray-400 hover:border-[#0E5A60] hover:text-[#0E5A60] transition-colors cursor-pointer text-xs font-medium flex flex-col items-center gap-2"
               >
-                <Plus className="w-5 h-5 text-gray-400" />
-                <span>No clubs added yet. Click to add your first student club.</span>
+                <Plus className="w-6 h-6 text-gray-300" />
+                <span>No clubs added yet. Click to add the first club card.</span>
               </div>
             ) : (
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-                {clubs.map((c, idx) => (
-                  <div
+              <div className="space-y-3">
+                {clubs.map((club, idx) => (
+                  <CollapsibleCard
                     key={idx}
-                    className="p-3 bg-gray-50/70 hover:bg-gray-50 rounded-2xl border border-gray-200/80 flex items-center gap-2 relative transition-all group"
+                    index={idx}
+                    title={`Club ${idx + 1}: ${club.name || "Untitled Club"}`}
+                    thumbnail={club.image}
+                    isOpen={openIndices.includes(idx)}
+                    onToggle={() =>
+                      setOpenIndices((prev) =>
+                        prev.includes(idx) ? prev.filter((i) => i !== idx) : [...prev, idx],
+                      )
+                    }
+                    onDelete={() => handleRemoveClub(idx)}
+                    deleteTitle="Delete Club"
                   >
-                    <span className="w-6 h-6 rounded-full bg-[#0E5A60]/10 flex items-center justify-center text-[10px] font-black text-[#0E5A60] shrink-0">
-                      {idx + 1}
-                    </span>
-                    <div className="flex-1 min-w-0">
-                      <input
-                        type="text"
-                        value={c.name}
-                        onChange={(e) => handleUpdateClub(idx, e.target.value)}
-                        placeholder={`Club #${idx + 1} Name`}
-                        className="w-full text-xs font-semibold text-gray-800 bg-transparent border-none outline-none focus:ring-0 placeholder:text-gray-400"
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      <InputField
+                        label="Club Name"
+                        value={club.name}
+                        onChange={(e) => handleUpdateClub(idx, "name", e.target.value)}
+                        placeholder="e.g. Academic competitions"
+                      />
+                      <InputField
+                        label="Badge Color Hex (Optional)"
+                        value={club.bg ?? ""}
+                        onChange={(e) => handleUpdateClub(idx, "bg", e.target.value)}
+                        placeholder="e.g. #e5a024"
                       />
                     </div>
-                    <button
-                      type="button"
-                      onClick={() => handleRemoveClub(idx)}
-                      className="p-1 text-gray-400 hover:text-red-600 rounded-lg hover:bg-red-50 transition-colors cursor-pointer shrink-0"
-                      title="Delete Club"
-                    >
-                      <Trash2 className="w-3.5 h-3.5" />
-                    </button>
-                  </div>
+
+                    <ImagePickerField
+                      label="Club Illustration Photo"
+                      value={club.image}
+                      onChange={(url) => handleUpdateClub(idx, "image", url)}
+                      placeholder="e.g. Cloudinary image URL"
+                      folder="lfcs-school/experience"
+                    />
+                  </CollapsibleCard>
                 ))}
               </div>
             )}
           </div>
 
-          <div className="pt-4 border-t border-gray-100 w-full">
-            <SaveButton onClick={handleSave} loading={loading} saved={saved} />
+          <div className="pt-4 border-t border-gray-100 flex justify-end">
+            <div className="w-full">
+              <SaveButton onClick={handleSave} loading={loading} saved={saved} />
+            </div>
           </div>
         </div>
       )}

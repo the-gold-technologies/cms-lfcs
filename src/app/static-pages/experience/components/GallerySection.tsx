@@ -16,27 +16,28 @@ export function GallerySection({ initialData }: { initialData?: any }) {
 
   const [tagline, setTagline] = useState("");
   const [headline, setHeadline] = useState("");
+  const [scriptAccent, setScriptAccent] = useState("");
   const [subtitle, setSubtitle] = useState("");
 
   useEffect(() => {
     if (initialData) {
-      setTagline(initialData.tagline ?? "CAMPUS GALLERY");
-      setHeadline(initialData.headline ?? "Moments Captured Across Our Campuses");
-      setSubtitle(
-        initialData.subtitle ??
-          "A glimpse into everyday life, celebrations, scientific discovery, and sporting triumphs across Little Flower schools.",
-      );
+      setTagline(initialData.tagline ?? "");
+      setHeadline(initialData.headline ?? "");
+      setScriptAccent(initialData.scriptAccent ?? "");
+      setSubtitle(initialData.subtitle ?? "");
     }
   }, [initialData]);
 
   const handleSave = async () => {
     setLoading(true);
+    setSaved(false);
     try {
       const payload = {
         section: "GallerySection",
         content: {
           tagline,
           headline,
+          scriptAccent,
           subtitle,
         },
       };
@@ -66,7 +67,7 @@ export function GallerySection({ initialData }: { initialData?: any }) {
     <div className="bg-white rounded-3xl p-6 shadow-sm ring-1 ring-gray-100 flex flex-col gap-6">
       <SectionHeader
         title="6. Photo Gallery Showcase"
-        description="Header and narrative for the live experience photo gallery. Photos and category tags are managed in the Photo Gallery module."
+        description="Header and narrative for the live experience photo gallery. Photos and category albums are managed in the Photo Gallery module."
         badge="Live Section"
         isOpen={isOpen}
         onToggle={() => setIsOpen(!isOpen)}
@@ -82,8 +83,7 @@ export function GallerySection({ initialData }: { initialData?: any }) {
               <div>
                 <p className="text-xs font-bold text-gray-800">Dynamic Cloudinary Photo Gallery</p>
                 <p className="text-[11px] text-gray-500">
-                  Individual campus photos, captions, and category filters (Sports, Events, Labs,
-                  Arts) are managed in the Photo Gallery module.
+                  Individual campus photos, event albums, and categories (Sports, Annual Days, Workshops) are managed in the Photo Gallery module.
                 </p>
               </div>
             </div>
@@ -95,18 +95,24 @@ export function GallerySection({ initialData }: { initialData?: any }) {
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <InputField
-              label="Eyebrow Tag"
+              label="Pre-Heading Tagline"
               value={tagline}
               onChange={(e) => setTagline(e.target.value)}
-              placeholder="e.g. CAMPUS GALLERY"
+              placeholder="e.g. Events, Trips & Celebrations"
             />
             <InputField
-              label="Section Headline"
+              label="Headline"
               value={headline}
               onChange={(e) => setHeadline(e.target.value)}
-              placeholder="e.g. Moments Captured Across Our Campuses"
+              placeholder="e.g. Experiences that Become Part of a"
+            />
+            <InputField
+              label="Script Accent"
+              value={scriptAccent}
+              onChange={(e) => setScriptAccent(e.target.value)}
+              placeholder="e.g. Student Life"
             />
           </div>
 
@@ -115,11 +121,13 @@ export function GallerySection({ initialData }: { initialData?: any }) {
             value={subtitle}
             onChange={(e) => setSubtitle(e.target.value)}
             rows={2}
-            placeholder="e.g. Narrative introducing the photographic record..."
+            placeholder="e.g. A glimpse into everyday life, celebrations, scientific discovery, and sporting triumphs across Little Flower schools..."
           />
 
-          <div className="pt-4 border-t border-gray-100 w-full">
-            <SaveButton onClick={handleSave} loading={loading} saved={saved} />
+          <div className="pt-4 border-t border-gray-100 flex justify-end">
+            <div className="w-full">
+              <SaveButton onClick={handleSave} loading={loading} saved={saved} />
+            </div>
           </div>
         </div>
       )}

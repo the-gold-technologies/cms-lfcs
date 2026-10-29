@@ -2,11 +2,17 @@
 
 import React, { useState, useEffect } from "react";
 import toast from "react-hot-toast";
+import { Plus } from "lucide-react";
 import { SectionHeader } from "@/components/SectionHeader";
 import { InputField } from "@/components/InputField";
 import { TextAreaField } from "@/components/TextAreaField";
 import { ImagePickerField } from "@/components/ImagePickerField";
 import { SaveButton } from "@/components/SaveButton";
+import { CollapsibleCard } from "@/components/CollapsibleCard";
+
+export interface SportActivity {
+  title: string;
+}
 
 export function SportsFitnessSection({ initialData }: { initialData?: any }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -18,35 +24,59 @@ export function SportsFitnessSection({ initialData }: { initialData?: any }) {
   const [scriptAccent, setScriptAccent] = useState("");
   const [description, setDescription] = useState("");
   const [calloutText, setCalloutText] = useState("");
-
+  const [clientNote, setClientNote] = useState("");
   const [image1, setImage1] = useState("");
   const [image2, setImage2] = useState("");
 
+  const [activities, setActivities] = useState<SportActivity[]>([]);
+  const [openIndices, setOpenIndices] = useState<number[]>([0]);
+
   useEffect(() => {
     if (initialData) {
-      setTagline(initialData.tagline ?? "SPORTS & ATHLETICS");
-      setHeadline(initialData.headline ?? "Building Physical Resilience &");
-      setScriptAccent(initialData.scriptAccent ?? "Team Spirit");
-      setDescription(
-        initialData.description ??
-          "Physical activity and sportsmanship are integral to life at Little Flower. From cricket pitches, basketball courts, and athletics tracks to Olympic-standard swimming facilities at LFIS, students find ample space to excel.",
-      );
-      setCalloutText(
-        initialData.calloutText ?? "Teamwork, discipline, and fair play on every field.",
-      );
-      setImage1(
-        initialData.image1 ??
-          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170017/lfcs-school/sports1_1793170017007.webp",
-      );
-      setImage2(
-        initialData.image2 ??
-          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170037/lfcs-school/sports2_1793170037412.webp",
-      );
+      setTagline(initialData.tagline ?? "");
+      setHeadline(initialData.headline ?? "");
+      setScriptAccent(initialData.scriptAccent ?? "");
+      setDescription(initialData.description ?? "");
+      setCalloutText(initialData.calloutText ?? "");
+      setClientNote(initialData.clientNote ?? "");
+      setImage1(initialData.image1 ?? "");
+      setImage2(initialData.image2 ?? "");
+
+      if (Array.isArray(initialData.activities)) {
+        setActivities(
+          initialData.activities.map((a: any) => ({
+            title: typeof a === "string" ? a : (a.title ?? a.name ?? ""),
+          })),
+        );
+      } else {
+        setActivities([]);
+      }
     }
   }, [initialData]);
 
+  const handleAddActivity = () => {
+    setActivities((prev) => [...prev, { title: "" }]);
+    setOpenIndices((prev) => [...prev, activities.length]);
+  };
+
+  const handleRemoveActivity = (index: number) => {
+    setActivities((prev) => prev.filter((_, i) => i !== index));
+    setOpenIndices((prev) =>
+      prev.filter((i) => i !== index).map((i) => (i > index ? i - 1 : i)),
+    );
+  };
+
+  const handleUpdateActivity = (index: number, val: string) => {
+    setActivities((prev) => {
+      const copy = [...prev];
+      copy[index] = { title: val };
+      return copy;
+    });
+  };
+
   const handleSave = async () => {
     setLoading(true);
+    setSaved(false);
     try {
       const payload = {
         section: "SportsFitnessSection",
@@ -56,6 +86,8 @@ export function SportsFitnessSection({ initialData }: { initialData?: any }) {
           scriptAccent,
           description,
           calloutText,
+          clientNote,
+          activities,
           image1,
           image2,
         },
@@ -96,57 +128,126 @@ export function SportsFitnessSection({ initialData }: { initialData?: any }) {
         <div className="space-y-6 pt-2">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <InputField
-              label="Eyebrow Tag"
+              label="Pre-Heading Tagline"
               value={tagline}
               onChange={(e) => setTagline(e.target.value)}
-              placeholder="e.g. SPORTS & ATHLETICS"
+              placeholder="e.g. Sports & Fitness"
             />
             <InputField
-              label="Headline Lead"
+              label="Headline"
               value={headline}
               onChange={(e) => setHeadline(e.target.value)}
-              placeholder="e.g. Building Physical Resilience &"
+              placeholder="e.g. An Active School Life"
             />
             <InputField
               label="Script Accent"
               value={scriptAccent}
               onChange={(e) => setScriptAccent(e.target.value)}
-              placeholder="e.g. Team Spirit"
+              placeholder="e.g. Active"
             />
           </div>
 
           <TextAreaField
-            label="Section Narrative"
+            label="Section Description (Paragraphs separated by blank lines)"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            rows={3}
-            placeholder="e.g. Sports facilities and tournaments narrative..."
+            rows={4}
+            placeholder="e.g. Sports and physical activities are an important part of student life at LFCS..."
           />
 
-          <InputField
-            label="Highlight Callout Box Text"
-            value={calloutText}
-            onChange={(e) => setCalloutText(e.target.value)}
-            placeholder="e.g. Teamwork, discipline, and fair play on every field."
-          />
-
-          <div className="space-y-4">
-            <ImagePickerField
-              label="Sports Photo 1"
-              value={image1}
-              onChange={(url) => setImage1(url)}
-              placeholder="e.g. Cloudinary sports photo URL"
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <InputField
+              label="Callout Badge Banner Text"
+              value={calloutText}
+              onChange={(e) => setCalloutText(e.target.value)}
+              placeholder="e.g. Teamwork, discipline, & fair play"
             />
-            <ImagePickerField
-              label="Sports Photo 2"
-              value={image2}
-              onChange={(url) => setImage2(url)}
-              placeholder="e.g. Cloudinary sports photo URL"
+            <InputField
+              label="Campus Availability Note"
+              value={clientNote}
+              onChange={(e) => setClientNote(e.target.value)}
+              placeholder="e.g. * Note: Available sports vary by branch..."
             />
           </div>
 
-          <div className="pt-4 border-t border-gray-100 w-full">
-            <SaveButton onClick={handleSave} loading={loading} saved={saved} />
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <ImagePickerField
+              label="Sports Photo 1 (Swimming / Field)"
+              value={image1}
+              onChange={(url) => setImage1(url)}
+              placeholder="e.g. Cloudinary image URL"
+              folder="lfcs-school/experience"
+            />
+            <ImagePickerField
+              label="Sports Photo 2 (Outdoor Sports)"
+              value={image2}
+              onChange={(url) => setImage2(url)}
+              placeholder="e.g. Cloudinary image URL"
+              folder="lfcs-school/experience"
+            />
+          </div>
+
+          {/* DYNAMIC SPORTS ACTIVITIES */}
+          <div className="border-t border-gray-100 pt-5 space-y-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <h4 className="text-xs font-bold uppercase tracking-wider text-gray-500">
+                  Sports & Physical Activities ({activities.length})
+                </h4>
+                <p className="text-[11px] text-gray-400 mt-0.5">
+                  Sport types, athletics, and competitions listed in the activities card.
+                </p>
+              </div>
+              <button
+                type="button"
+                onClick={handleAddActivity}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-[#0E5A60] bg-[#0E5A60]/10 hover:bg-[#0E5A60]/20 rounded-xl transition-colors cursor-pointer"
+              >
+                <Plus className="w-3.5 h-3.5" />
+                <span>Add Activity</span>
+              </button>
+            </div>
+
+            {activities.length === 0 ? (
+              <div
+                onClick={handleAddActivity}
+                className="p-8 border-2 border-dashed border-gray-200 rounded-2xl text-center text-gray-400 hover:border-[#0E5A60] hover:text-[#0E5A60] transition-colors cursor-pointer text-xs font-medium flex flex-col items-center gap-2"
+              >
+                <Plus className="w-6 h-6 text-gray-300" />
+                <span>No activities added yet. Click to add the first activity.</span>
+              </div>
+            ) : (
+              <div className="space-y-3">
+                {activities.map((act, idx) => (
+                  <CollapsibleCard
+                    key={idx}
+                    index={idx}
+                    title={`Activity ${idx + 1}: ${act.title || "Untitled Activity"}`}
+                    isOpen={openIndices.includes(idx)}
+                    onToggle={() =>
+                      setOpenIndices((prev) =>
+                        prev.includes(idx) ? prev.filter((i) => i !== idx) : [...prev, idx],
+                      )
+                    }
+                    onDelete={() => handleRemoveActivity(idx)}
+                    deleteTitle="Delete Activity"
+                  >
+                    <InputField
+                      label="Sport / Activity Name"
+                      value={act.title}
+                      onChange={(e) => handleUpdateActivity(idx, e.target.value)}
+                      placeholder="e.g. Outdoor sports"
+                    />
+                  </CollapsibleCard>
+                ))}
+              </div>
+            )}
+          </div>
+
+          <div className="pt-4 border-t border-gray-100 flex justify-end">
+            <div className="w-full">
+              <SaveButton onClick={handleSave} loading={loading} saved={saved} />
+            </div>
           </div>
         </div>
       )}

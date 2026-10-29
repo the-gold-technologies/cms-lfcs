@@ -86,6 +86,14 @@ const LFCS_PAGES: PageListItem[] = [
     sectionsCount: 3,
   },
   {
+    title: "News & Events",
+    slug: "news-and-events",
+    route: "/news-&-events",
+    editorUrl: "/static-pages/news-and-events",
+    type: "Media & Press",
+    sectionsCount: 2,
+  },
+  {
     title: "Photo Gallery",
     slug: "gallery",
     route: "/gallery",

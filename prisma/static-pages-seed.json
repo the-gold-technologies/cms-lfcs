@@ -1536,5 +1536,40 @@
         }
       ]
     }
+  },
+  "news-and-events": {
+    "NewsHeroSection": {
+      "tagline": "News & Events",
+      "headline": "Little Flower",
+      "scriptAccent": "in the News.",
+      "description": "Announcements, milestones and events from Little Flower schools, and what media houses across India are saying about them."
+    },
+    "NewsListSection": {
+      "marqueeTag": "As Covered By",
+      "marqueeCount": "100+ media outlets",
+      "outlets": [
+        "Google News",
+        "Dailyhunt",
+        "Jio News",
+        "UP 18 News",
+        "Loktej English",
+        "Hindustan Metro",
+        "KBK Times",
+        "Your Bangalore",
+        "Central Herald",
+        "Delhi Morning Tribune",
+        "Deccan Express",
+        "Hola Mumbai",
+        "Allahabad Post",
+        "Awadh Express",
+        "Kashi Chronicle",
+        "Calcutta Current",
+        "Madras Journal",
+        "MP Guardian",
+        "Rajasthan Mirror",
+        "Kanpur Live"
+      ],
+      "outletsList": "Google News, Dailyhunt, Jio News, UP 18 News, Loktej English, Hindustan Metro, KBK Times, Your Bangalore, Central Herald, Delhi Morning Tribune, Deccan Express, Hola Mumbai, Allahabad Post, Awadh Express, Kashi Chronicle, Calcutta Current, Madras Journal, MP Guardian, Rajasthan Mirror, Kanpur Live"
+    }
   }
 }

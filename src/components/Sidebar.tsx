@@ -64,6 +64,7 @@ const sidebarLinks: SidebarLink[] = [
       { title: "Start a School", href: "/static-pages/start-school" },
       { title: "Careers", href: "/static-pages/careers" },
       { title: "Contact Us", href: "/static-pages/contact" },
+      { title: "News & Events", href: "/static-pages/news-and-events" },
       { title: "Photo Gallery", href: "/static-pages/gallery" },
     ],
   },

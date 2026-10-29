@@ -19,18 +19,16 @@ export function ContactHeroSection({ initialData }: { initialData?: any }) {
 
   useEffect(() => {
     if (initialData) {
-      setTagline(initialData.tagline ?? "Contact Us");
-      setHeadline(initialData.headline ?? "We'd Love to");
-      setScriptAccent(initialData.scriptAccent ?? "Hear From You.");
-      setDescription(
-        initialData.description ??
-          "Whether you have a question about admissions, academics, or partnering with us to start a school, the Little Flower Group of Schools team is here to help. Reach out and we'll get back to you soon.",
-      );
+      setTagline(initialData.tagline ?? "");
+      setHeadline(initialData.headline ?? "");
+      setScriptAccent(initialData.scriptAccent ?? "");
+      setDescription(initialData.description ?? "");
     }
   }, [initialData]);
 
   const handleSave = async () => {
     setLoading(true);
+    setSaved(false);
     try {
       const payload = {
         section: "ContactHeroSection",
@@ -56,8 +54,8 @@ export function ContactHeroSection({ initialData }: { initialData?: any }) {
       } else {
         toast.error(json.error || "Failed to save Hero section");
       }
-    } catch (err: any) {
-      toast.error(err?.message || "Network error while saving");
+    } catch {
+      toast.error("Network error while saving");
     } finally {
       setLoading(false);
     }
@@ -66,8 +64,8 @@ export function ContactHeroSection({ initialData }: { initialData?: any }) {
   return (
     <div className="bg-white rounded-3xl p-6 shadow-sm ring-1 ring-gray-100 flex flex-col gap-6">
       <SectionHeader
-        title="1. Contact Page Hero Banner"
-        description="Top header welcoming parents, prospective partners, and visitors to get in touch."
+        title="1. Contact Hero Banner"
+        description="Top header introducing the communication channels for the Little Flower Group of Schools."
         badge="Live Section"
         isOpen={isOpen}
         onToggle={() => setIsOpen(!isOpen)}
@@ -77,7 +75,7 @@ export function ContactHeroSection({ initialData }: { initialData?: any }) {
         <div className="space-y-6 pt-2">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <InputField
-              label="Eyebrow Tag"
+              label="Pre-Heading Tag"
               value={tagline}
               onChange={(e) => setTagline(e.target.value)}
               placeholder="e.g. Contact Us"
@@ -101,7 +99,7 @@ export function ContactHeroSection({ initialData }: { initialData?: any }) {
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             rows={3}
-            placeholder="e.g. Reach out narrative..."
+            placeholder="e.g. Whether you have a question about admissions, academics, or partnering with us to start a school..."
           />
 
           <div className="pt-4 border-t border-gray-100 w-full">

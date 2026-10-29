@@ -666,23 +666,27 @@
     }
   },
   "contact": {
-    "ContactCampusesSection": {
-      "tagline": "OUR CAMPUSES",
-      "headline": "Reach a Campus Near You",
-      "subtitle": "Contact or visit any of our schools directly for campus-specific admissions, principal appointments, and transport routes."
+    "ContactHeroSection": {
+      "tagline": "Contact Us",
+      "headline": "We'd Love to",
+      "scriptAccent": "Hear From You.",
+      "description": "Whether you have a question about admissions, academics, or partnering with us to start a school, the Little Flower Group of Schools team is here to help. Reach out and we'll get back to you soon."
     },
     "ContactFormSection": {
+      "heading": "Get in",
+      "scriptAccent": "Touch",
+      "description": "Reach our central office directly, or send us a message and the right team will respond.",
       "phone1": "+91 83688 38489",
       "phone2": "+91 99999 76959",
       "email": "franchise@lfcsschools.com",
       "address": "B-1/142, Sector-G, Aliganj, Lucknow - 226024, Uttar Pradesh",
       "hours": "Mon - Sat: 8:00 AM - 5:00 PM"
     },
-    "ContactHeroSection": {
-      "tagline": "Contact Us",
-      "headline": "We'd Love to",
-      "scriptAccent": "Hear From You.",
-      "description": "Whether you have a question about admissions, academics, or partnering with us to start a school, the Little Flower Group of Schools team is here to help. Reach out and we'll get back to you soon."
+    "ContactCampusesSection": {
+      "tagline": "Our Campuses",
+      "headline": "Reach a",
+      "scriptAccent": "Campus Near You",
+      "subtitle": "Contact or visit any of our schools directly for campus-specific admissions and information."
     }
   },
   "experience": {

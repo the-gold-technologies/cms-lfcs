@@ -6,6 +6,7 @@ import {
   AdmissionsHeroSection,
   AdmissionOverviewSection,
   AdmissionClassesSection,
+  AdmissionEnquiryFormSection,
 } from "./components";
 
 export default function AdmissionsPageEditor() {
@@ -30,13 +31,14 @@ export default function AdmissionsPageEditor() {
     <section className="flex flex-col gap-8 pb-12 max-w-7xl mx-auto">
       <PageHeader
         title="Admissions Page Sections"
-        description="Manage the live sections of your Admissions page: Hero banner, Admission overview with 4 selection pillars, and Grade eligibility bands from Pre-Primary through Class XII."
+        description="Manage the 4 live sections of the Admissions page: Hero banner, Admission overview with selection pillars, Learning stage grade bands, and Parent enquiry form guidance."
         badge="Enrollment Page"
       />
 
       <AdmissionsHeroSection initialData={pageData?.AdmissionsHeroSection} />
       <AdmissionOverviewSection initialData={pageData?.AdmissionOverviewSection} />
       <AdmissionClassesSection initialData={pageData?.AdmissionClassesSection} />
+      <AdmissionEnquiryFormSection initialData={pageData?.AdmissionEnquiryFormSection} />
     </section>
   );
 }

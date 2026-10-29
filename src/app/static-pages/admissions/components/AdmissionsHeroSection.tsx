@@ -20,27 +20,26 @@ export function AdmissionsHeroSection({ initialData }: { initialData?: any }) {
   const [ctaText, setCtaText] = useState("");
   const [ctaLink, setCtaLink] = useState("");
   const [image, setImage] = useState("");
+  const [statValue, setStatValue] = useState("");
+  const [statLabel, setStatLabel] = useState("");
 
   useEffect(() => {
     if (initialData) {
-      setTagline(initialData.tagline ?? "Admissions at Little Flower Group of Schools");
-      setHeadline(initialData.headline ?? "Take the First Step Towards a");
-      setScriptAccent(initialData.scriptAccent ?? "Brighter Future.");
-      setDescription(
-        initialData.description ??
-          "Every child deserves an environment where learning helps them build knowledge, confidence, and character. At LFCS, our aim is to provide students with a strong academic foundation leading to lifelong opportunities.",
-      );
-      setCtaText(initialData.ctaText ?? "Enquire About Admissions");
-      setCtaLink(initialData.ctaLink ?? "#admission-enquiry");
-      setImage(
-        initialData.image ??
-          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170040/lfcs-school/life1_1793170040339.webp",
-      );
+      setTagline(initialData.tagline ?? "");
+      setHeadline(initialData.headline ?? "");
+      setScriptAccent(initialData.scriptAccent ?? "");
+      setDescription(initialData.description ?? "");
+      setCtaText(initialData.ctaText ?? "");
+      setCtaLink(initialData.ctaLink ?? "");
+      setImage(initialData.image ?? "");
+      setStatValue(initialData.statValue ?? "");
+      setStatLabel(initialData.statLabel ?? "");
     }
   }, [initialData]);
 
   const handleSave = async () => {
     setLoading(true);
+    setSaved(false);
     try {
       const payload = {
         section: "AdmissionsHeroSection",
@@ -52,6 +51,8 @@ export function AdmissionsHeroSection({ initialData }: { initialData?: any }) {
           ctaText,
           ctaLink,
           image,
+          statValue,
+          statLabel,
         },
       };
 
@@ -90,13 +91,13 @@ export function AdmissionsHeroSection({ initialData }: { initialData?: any }) {
         <div className="space-y-6 pt-2">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <InputField
-              label="Eyebrow Tag"
+              label="Pre-Heading Tagline"
               value={tagline}
               onChange={(e) => setTagline(e.target.value)}
               placeholder="e.g. Admissions at Little Flower Group of Schools"
             />
             <InputField
-              label="Headline Lead"
+              label="Headline"
               value={headline}
               onChange={(e) => setHeadline(e.target.value)}
               placeholder="e.g. Take the First Step Towards a"
@@ -110,37 +111,55 @@ export function AdmissionsHeroSection({ initialData }: { initialData?: any }) {
           </div>
 
           <TextAreaField
-            label="Hero Description"
+            label="Section Description"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             rows={3}
-            placeholder="e.g. Admissions philosophy narrative..."
+            placeholder="e.g. Every child deserves an environment where learning helps them build knowledge, confidence & character..."
           />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <InputField
-              label="CTA Button Label"
+              label="CTA Button Text"
               value={ctaText}
               onChange={(e) => setCtaText(e.target.value)}
               placeholder="e.g. Enquire About Admissions"
             />
             <InputField
-              label="CTA Target Anchor"
+              label="CTA Button Link"
               value={ctaLink}
               onChange={(e) => setCtaLink(e.target.value)}
               placeholder="e.g. #admission-enquiry"
             />
           </div>
 
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <InputField
+              label="Stat Badge Number"
+              value={statValue}
+              onChange={(e) => setStatValue(e.target.value)}
+              placeholder="e.g. 8"
+            />
+            <InputField
+              label="Stat Badge Label"
+              value={statLabel}
+              onChange={(e) => setStatLabel(e.target.value)}
+              placeholder="e.g. Institutions"
+            />
+          </div>
+
           <ImagePickerField
-            label="Hero Photo / Illustration"
+            label="Hero Visual Graphic"
             value={image}
             onChange={(url) => setImage(url)}
-            placeholder="e.g. Cloudinary student photo URL"
+            placeholder="e.g. Cloudinary image URL"
+            folder="lfcs-school/admissions"
           />
 
-          <div className="pt-4 border-t border-gray-100 w-full">
-            <SaveButton onClick={handleSave} loading={loading} saved={saved} />
+          <div className="pt-4 border-t border-gray-100 flex justify-end">
+            <div className="w-full">
+              <SaveButton onClick={handleSave} loading={loading} saved={saved} />
+            </div>
           </div>
         </div>
       )}

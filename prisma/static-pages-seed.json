@@ -429,71 +429,103 @@
     }
   },
   "admissions": {
-    "AdmissionClassesSection": {
-      "tagline": "CLASSES OPEN FOR ADMISSION",
-      "headline": "Find the Right Learning Stage",
-      "scriptAccent": "for Your Child",
-      "subtitle": "Little Flower Group of Schools offers admissions across foundational pre-primary, primary, middle, and senior secondary grades.",
-      "classes": [
-        {
-          "name": "Pre-Primary Foundation",
-          "grades": "Nursery, LKG, UKG",
-          "desc": "Play-based motor skills, phonics, socialization, and storytelling."
-        },
-        {
-          "name": "Primary School",
-          "grades": "Classes I to V",
-          "desc": "Foundational numeracy, literacy, hindi, environmental studies, and co-curriculars."
-        },
-        {
-          "name": "Middle School",
-          "grades": "Classes VI to VIII",
-          "desc": "Subject specialization, science labs, computer technology, and sports."
-        },
-        {
-          "name": "Secondary School",
-          "grades": "Classes IX and X",
-          "desc": "Rigorous CBSE Board syllabus, practical experiments, and academic remediation."
-        },
-        {
-          "name": "Senior Secondary",
-          "grades": "Classes XI and XII",
-          "desc": "Science (PCM/PCB), Commerce, and Humanities with integrated competitive coaching."
-        }
-      ]
-    },
-    "AdmissionOverviewSection": {
-      "tagline": "ADMISSION OVERVIEW",
-      "headline": "Begin Your Child's Learning",
-      "scriptAccent": "Journey with LFCS",
-      "overview": "Choosing the right school is an important decision for every family. At Little Flower Group of Schools, we believe that education should prepare children not only for academic success but also for the opportunities and responsibilities ahead.\n\nOur approach combines structured learning, value-based education and opportunities for students to discover their abilities, develop confidence and grow into responsible individuals across our 8 campuses.",
-      "pillars": [
-        {
-          "title": "Structured Learning",
-          "text": "A strong academic base built step by step."
-        },
-        {
-          "title": "Value-Based Education",
-          "text": "Character, ethics, and civic responsibility alongside academics."
-        },
-        {
-          "title": "Room to Discover",
-          "text": "Opportunities to find passions and build genuine self-confidence."
-        },
-        {
-          "title": "8 Premier Campuses",
-          "text": "Quality education accessible for more families and communities."
-        }
-      ]
-    },
     "AdmissionsHeroSection": {
       "tagline": "Admissions at Little Flower Group of Schools",
       "headline": "Take the First Step Towards a",
       "scriptAccent": "Brighter Future.",
-      "description": "Every child deserves an environment where learning helps them build knowledge, confidence, and character. At LFCS, our aim is to provide students with a strong academic foundation leading to lifelong opportunities.",
+      "description": "Every child deserves an environment where learning helps them build knowledge, confidence & character. At LFCS Schools, our aim is to provide students with a strong academic base leading them to opportunities valuable for their future.",
       "ctaText": "Enquire About Admissions",
       "ctaLink": "#admission-enquiry",
-      "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170040/lfcs-school/life1_1793170040339.webp"
+      "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793256270/lfcs-school/admissions/admission-hero_1793256269262.webp",
+      "statValue": "8",
+      "statLabel": "Institutions"
+    },
+    "AdmissionOverviewSection": {
+      "tagline": "Admission Overview",
+      "headline": "Begin Your Child's Learning",
+      "scriptAccent": "Journey with LFCS",
+      "overview": "Choosing the right school is an important decision for every family. At Little Flower Group of Schools, we believe that education should prepare children not only for academic success but also for the opportunities and responsibilities ahead.\n\nOur approach combines structured learning, value-based education and opportunities for students to discover their abilities, develop confidence and grow into responsible individuals.\n\nWith a network of eight educational institutions, LFCS is committed to making quality education accessible to more families and communities.\n\nIf you are considering LFCS for your child, submit an admission enquiry to learn more about the available classes, admission requirements and the next steps at your preferred campus.",
+      "ctaText": "Submit an Enquiry",
+      "ctaLink": "#admission-enquiry",
+      "pillars": [
+        {
+          "title": "Structured Learning",
+          "desc": "A strong academic base built step by step."
+        },
+        {
+          "title": "Value-Based Education",
+          "desc": "Character and responsibility alongside academics."
+        },
+        {
+          "title": "Room to Discover",
+          "desc": "Opportunities to find abilities and build confidence."
+        },
+        {
+          "title": "8 Institutions",
+          "desc": "Quality education for more families and communities."
+        }
+      ]
+    },
+    "AdmissionClassesSection": {
+      "tagline": "Classes Open for Admission",
+      "headline": "Find the Right Learning",
+      "scriptAccent": "Stage for Your Child",
+      "subtitle": "Little Flower Group of Schools offers educational opportunities across different stages of a student's academic journey.",
+      "ctaText": "Enquire About Class Availability",
+      "ctaLink": "#admission-enquiry",
+      "noticeText": "The classes available for admission may vary by campus. Connect with your preferred school to confirm class availability, admission eligibility and the applicable admission process.",
+      "classes": [
+        {
+          "title": "Early Years",
+          "grades": "Nursery — UKG",
+          "desc": "Focus on play-based learning, sensory development, basic language skills, numbers and social interactions in a warm, welcoming environment.",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793255196/lfcs-school/academics/JourneyCard1_1793255195642.webp"
+        },
+        {
+          "title": "Foundational & Primary",
+          "grades": "Classes I — V",
+          "desc": "Core literacy and numeracy are strengthened, introducing subjects systematically while encouraging curiosity, creative expression and group activities.",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793255197/lfcs-school/academics/JourneyCard2_1793255196571.webp"
+        },
+        {
+          "title": "Middle School",
+          "grades": "Classes VI — VIII",
+          "desc": "Deeper subject exploration, scientific temper, analytical thinking, collaborative projects and co-curricular pursuits take center stage.",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793255197/lfcs-school/academics/JourneyCard3_1793255197479.webp"
+        },
+        {
+          "title": "Secondary School",
+          "grades": "Classes IX — X",
+          "desc": "Rigorous CBSE curriculum preparation, critical thinking, board exam readiness and career orientation to help students discover their passions.",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793255198/lfcs-school/academics/JourneyCard4_1793255198478.webp"
+        },
+        {
+          "title": "Senior Secondary",
+          "grades": "Classes XI — XII",
+          "desc": "Specialised streams in Science, Commerce and Humanities with dedicated preparation for board examinations and competitive entrance tests.",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793255200/lfcs-school/academics/JourneyCard5_1793255199496.webp"
+        }
+      ]
+    },
+    "AdmissionEnquiryFormSection": {
+      "tagline": "Admission Enquiry",
+      "headline": "Let's Help You Get",
+      "scriptAccent": "Started",
+      "description": "Interested in admissions at Little Flower Group of Schools? Share a few details, and our team can guide you regarding the admission process and the information relevant to your preferred campus.",
+      "steps": [
+        {
+          "title": "Share a few details",
+          "text": "Tell us about your child and the class you are looking for."
+        },
+        {
+          "title": "We check your campus",
+          "text": "Our team looks at availability at your preferred school."
+        },
+        {
+          "title": "We guide you",
+          "text": "We share the admission process and the next steps."
+        }
+      ]
     }
   },
   "careers": {

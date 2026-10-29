@@ -4,7 +4,6 @@ import React, { useState, useEffect } from "react";
 import toast from "react-hot-toast";
 import { SectionHeader } from "@/components/SectionHeader";
 import { InputField } from "@/components/InputField";
-import { TextAreaField } from "@/components/TextAreaField";
 import { ImagePickerField } from "@/components/ImagePickerField";
 import { SaveButton } from "@/components/SaveButton";
 
@@ -20,18 +19,16 @@ export function AcademicsCTASection({ initialData }: { initialData?: any }) {
 
   useEffect(() => {
     if (initialData) {
-      setHeading(initialData.heading ?? "A Strong Foundation Today, A Brighter Tomorrow.");
-      setButtonText(initialData.buttonText ?? "Enquire Now");
-      setButtonLink(initialData.buttonLink ?? "/contact#contact-form");
-      setBgImage(
-        initialData.bgImage ??
-          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170041/lfcs-school/life2_1793170041503.webp",
-      );
+      setHeading(initialData.heading ?? "");
+      setButtonText(initialData.buttonText ?? "");
+      setButtonLink(initialData.buttonLink ?? "");
+      setBgImage(initialData.bgImage ?? "");
     }
   }, [initialData]);
 
   const handleSave = async () => {
     setLoading(true);
+    setSaved(false);
     try {
       const payload = {
         section: "AcademicsCTASection",
@@ -99,14 +96,17 @@ export function AcademicsCTASection({ initialData }: { initialData?: any }) {
           </div>
 
           <ImagePickerField
-            label="Banner Decorative Graphic"
+            label="Banner Visual Graphic"
             value={bgImage}
             onChange={(url) => setBgImage(url)}
-            placeholder="e.g. Cloudinary background illustration URL"
+            placeholder="e.g. Cloudinary image URL"
+            folder="lfcs-school/academics"
           />
 
-          <div className="pt-4 border-t border-gray-100 w-full">
-            <SaveButton onClick={handleSave} loading={loading} saved={saved} />
+          <div className="pt-4 border-t border-gray-100 flex justify-end">
+            <div className="w-full">
+              <SaveButton onClick={handleSave} loading={loading} saved={saved} />
+            </div>
           </div>
         </div>
       )}

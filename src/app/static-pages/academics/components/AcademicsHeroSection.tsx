@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 import { SectionHeader } from "@/components/SectionHeader";
 import { InputField } from "@/components/InputField";
 import { TextAreaField } from "@/components/TextAreaField";
+import { ImagePickerField } from "@/components/ImagePickerField";
 import { SaveButton } from "@/components/SaveButton";
 
 export function AcademicsHeroSection({ initialData }: { initialData?: any }) {
@@ -18,23 +19,23 @@ export function AcademicsHeroSection({ initialData }: { initialData?: any }) {
   const [description, setDescription] = useState("");
   const [ctaText, setCtaText] = useState("");
   const [ctaLink, setCtaLink] = useState("");
+  const [image, setImage] = useState("");
 
   useEffect(() => {
     if (initialData) {
-      setTagline(initialData.tagline ?? "Academics");
-      setHeadline(initialData.headline ?? "Learning Today, Leading");
-      setScriptAccent(initialData.scriptAccent ?? "Tomorrow.");
-      setDescription(
-        initialData.description ??
-          "At Little Flower, academics go beyond textbooks. We nurture curiosity, build strong foundations, and inspire a love for lifelong learning.",
-      );
-      setCtaText(initialData.ctaText ?? "Explore Our Syllabus");
-      setCtaLink(initialData.ctaLink ?? "#curriculum");
+      setTagline(initialData.tagline ?? "");
+      setHeadline(initialData.headline ?? "");
+      setScriptAccent(initialData.scriptAccent ?? "");
+      setDescription(initialData.description ?? "");
+      setCtaText(initialData.ctaText ?? "");
+      setCtaLink(initialData.ctaLink ?? "");
+      setImage(initialData.image ?? "");
     }
   }, [initialData]);
 
   const handleSave = async () => {
     setLoading(true);
+    setSaved(false);
     try {
       const payload = {
         section: "AcademicsHeroSection",
@@ -45,6 +46,7 @@ export function AcademicsHeroSection({ initialData }: { initialData?: any }) {
           description,
           ctaText,
           ctaLink,
+          image,
         },
       };
 
@@ -73,7 +75,7 @@ export function AcademicsHeroSection({ initialData }: { initialData?: any }) {
     <div className="bg-white rounded-3xl p-6 shadow-sm ring-1 ring-gray-100 flex flex-col gap-6">
       <SectionHeader
         title="1. Academics Hero Banner"
-        description="Top header highlighting the academic motto with golden script accent and jump link."
+        description="Top header highlighting the academic motto with golden script accent, hero image, and jump link."
         badge="Live Section"
         isOpen={isOpen}
         onToggle={() => setIsOpen(!isOpen)}
@@ -86,19 +88,19 @@ export function AcademicsHeroSection({ initialData }: { initialData?: any }) {
               label="Eyebrow Tag"
               value={tagline}
               onChange={(e) => setTagline(e.target.value)}
-              placeholder="e.g. Eyebrow badge (e.g. Academics)"
+              placeholder="e.g. Academics"
             />
             <InputField
               label="Headline Lead"
               value={headline}
               onChange={(e) => setHeadline(e.target.value)}
-              placeholder="e.g. Primary title (e.g. Learning Today, Leading)"
+              placeholder="e.g. Learning Today, Leading"
             />
             <InputField
               label="Script Accent"
               value={scriptAccent}
               onChange={(e) => setScriptAccent(e.target.value)}
-              placeholder="e.g. Cursive word flourish (e.g. Tomorrow.)"
+              placeholder="e.g. Tomorrow."
             />
           </div>
 
@@ -107,7 +109,14 @@ export function AcademicsHeroSection({ initialData }: { initialData?: any }) {
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             rows={3}
-            placeholder="e.g. Paragraph summarizing the academic vision..."
+            placeholder="e.g. At Little Flower, academics go beyond textbooks..."
+          />
+
+          <ImagePickerField
+            label="Hero Illustration / Graphic"
+            value={image}
+            onChange={setImage}
+            folder="lfcs-school/academics"
           />
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

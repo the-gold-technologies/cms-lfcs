@@ -2,17 +2,17 @@
 
 import React, { useState, useEffect } from "react";
 import toast from "react-hot-toast";
+import { Plus } from "lucide-react";
 import { SectionHeader } from "@/components/SectionHeader";
 import { InputField } from "@/components/InputField";
 import { TextAreaField } from "@/components/TextAreaField";
 import { ImagePickerField } from "@/components/ImagePickerField";
 import { SaveButton } from "@/components/SaveButton";
-import { Plus } from "lucide-react";
 import { CollapsibleCard } from "@/components/CollapsibleCard";
 
 export interface FacilityCard {
   title: string;
-  desc: string;
+  description: string;
   image: string;
 }
 
@@ -23,62 +23,29 @@ export function AcademicFacilitiesSection({ initialData }: { initialData?: any }
 
   const [tagline, setTagline] = useState("");
   const [headline, setHeadline] = useState("");
+  const [scriptAccent, setScriptAccent] = useState("");
+  const [subtitle, setSubtitle] = useState("");
 
   const [facilities, setFacilities] = useState<FacilityCard[]>([]);
   const [openIndices, setOpenIndices] = useState<number[]>([0]);
 
   useEffect(() => {
     if (initialData) {
-      setTagline(initialData.tagline ?? "CAMPUS INFRASTRUCTURE");
-      setHeadline(initialData.headline ?? "Modern Academic Facilities");
+      setTagline(initialData.tagline ?? "");
+      setHeadline(initialData.headline ?? "");
+      setScriptAccent(initialData.scriptAccent ?? "");
+      setSubtitle(initialData.subtitle ?? "");
 
-      if (Array.isArray(initialData.facilities) && initialData.facilities.length > 0) {
+      if (Array.isArray(initialData.facilities)) {
         setFacilities(
           initialData.facilities.map((f: any) => ({
             title: f.title ?? "",
-            desc: f.desc ?? f.description ?? "",
+            description: f.description ?? f.desc ?? "",
             image: f.image ?? "",
           })),
         );
       } else {
-        setFacilities([
-          {
-            title: initialData.f1Title ?? "Smart / Digital Classrooms",
-            desc:
-              initialData.f1Desc ??
-              "Interactive flat panels, multimedia audio-visual aids, and high-speed broadband supporting dynamic visual learning.",
-            image:
-              initialData.f1Image ??
-              "https://res.cloudinary.com/dpa93copz/image/upload/v1793170019/lfcs-school/digital-classroom_1793170018820.webp",
-          },
-          {
-            title: initialData.f2Title ?? "Advanced Science Laboratories",
-            desc:
-              initialData.f2Desc ??
-              "Fully equipped Physics, Chemistry, and Biology laboratories adhering strictly to CBSE safety guidelines.",
-            image:
-              initialData.f2Image ??
-              "https://res.cloudinary.com/dpa93copz/image/upload/v1793170032/lfcs-school/Experience4_1793170032205.webp",
-          },
-          {
-            title: initialData.f3Title ?? "High-Tech Computer Labs",
-            desc:
-              initialData.f3Desc ??
-              "Modern terminals with coding IDEs, AI workstations, robotics kits, and digital literacy modules.",
-            image:
-              initialData.f3Image ??
-              "https://res.cloudinary.com/dpa93copz/image/upload/v1793170016/lfcs-school/computer-lab_1793170016129.webp",
-          },
-          {
-            title: initialData.f4Title ?? "Knowledge Resource Center & Library",
-            desc:
-              initialData.f4Desc ??
-              "Vast catalog of 10,000+ fiction, reference volumes, periodicals, and quiet reading pods.",
-            image:
-              initialData.f4Image ??
-              "https://res.cloudinary.com/dpa93copz/image/upload/v1793170015/lfcs-school/library_1793170015178.webp",
-          },
-        ]);
+        setFacilities([]);
       }
     }
   }, [initialData]);
@@ -88,7 +55,7 @@ export function AcademicFacilitiesSection({ initialData }: { initialData?: any }
       ...prev,
       {
         title: "",
-        desc: "",
+        description: "",
         image: "",
       },
     ]);
@@ -102,7 +69,11 @@ export function AcademicFacilitiesSection({ initialData }: { initialData?: any }
     );
   };
 
-  const handleUpdateFacility = (index: number, field: keyof FacilityCard, value: string) => {
+  const handleUpdateFacility = (
+    index: number,
+    field: keyof FacilityCard,
+    value: string,
+  ) => {
     setFacilities((prev) => {
       const copy = [...prev];
       copy[index] = { ...copy[index], [field]: value };
@@ -119,6 +90,8 @@ export function AcademicFacilitiesSection({ initialData }: { initialData?: any }
         content: {
           tagline,
           headline,
+          scriptAccent,
+          subtitle,
           facilities,
         },
       };
@@ -156,73 +129,72 @@ export function AcademicFacilitiesSection({ initialData }: { initialData?: any }
 
       {isOpen && (
         <div className="space-y-6 pt-2">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <InputField
-              label="Eyebrow Tag"
+              label="Pre-Heading Tagline"
               value={tagline}
               onChange={(e) => setTagline(e.target.value)}
-              placeholder="e.g. CAMPUS INFRASTRUCTURE"
+              placeholder="e.g. INFRASTRUCTURE"
             />
             <InputField
-              label="Section Headline"
+              label="Headline"
               value={headline}
               onChange={(e) => setHeadline(e.target.value)}
-              placeholder="e.g. Modern Academic Facilities"
+              placeholder="e.g. Academic"
+            />
+            <InputField
+              label="Script Accent"
+              value={scriptAccent}
+              onChange={(e) => setScriptAccent(e.target.value)}
+              placeholder="e.g. Facilities"
             />
           </div>
 
-          {/* DYNAMIC FACILITIES ARRAY */}
+          <TextAreaField
+            label="Section Subtitle"
+            value={subtitle}
+            onChange={(e) => setSubtitle(e.target.value)}
+            rows={2}
+            placeholder="e.g. At LFCS, the academic facilities are curated to complement classroom learning..."
+          />
+
+          {/* DYNAMIC FACILITIES LIST */}
           <div className="border-t border-gray-100 pt-5 space-y-4">
             <div className="flex items-center justify-between">
               <div>
-                <h4 className="text-xs font-bold uppercase tracking-wider text-gray-700 flex items-center gap-2">
-                  Featured Academic Facilities ({facilities.length})
+                <h4 className="text-xs font-bold uppercase tracking-wider text-gray-500">
+                  Campus Facilities ({facilities.length})
                 </h4>
                 <p className="text-[11px] text-gray-400 mt-0.5">
-                  Infrastructure facilities and modern learning spaces. Can add more than 4 facilities.
+                  Manage facility items displayed in the infrastructure showcase.
                 </p>
               </div>
-              <div className="flex items-center gap-2">
-                <button
-                  type="button"
-                  onClick={() => {
-                    if (openIndices.length === facilities.length) {
-                      setOpenIndices([]);
-                    } else {
-                      setOpenIndices(facilities.map((_, i) => i));
-                    }
-                  }}
-                  className="text-xs font-semibold text-slate-500 hover:text-slate-800 px-2 py-1 rounded-lg hover:bg-slate-100 transition-colors cursor-pointer"
-                >
-                  {openIndices.length === facilities.length ? "Collapse All" : "Expand All"}
-                </button>
-                <button
-                  type="button"
-                  onClick={handleAddFacility}
-                  className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0E5A60] hover:text-[#061C29] bg-[#0E5A60]/10 hover:bg-[#0E5A60]/20 px-3.5 py-1.5 rounded-xl transition-all cursor-pointer shadow-2xs"
-                >
-                  <Plus className="w-3.5 h-3.5" />
-                  <span>Add Facility</span>
-                </button>
-              </div>
+              <button
+                type="button"
+                onClick={handleAddFacility}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-[#0E5A60] bg-[#0E5A60]/10 hover:bg-[#0E5A60]/20 rounded-xl transition-colors cursor-pointer"
+              >
+                <Plus className="w-3.5 h-3.5" />
+                <span>Add Facility</span>
+              </button>
             </div>
 
             {facilities.length === 0 ? (
               <div
                 onClick={handleAddFacility}
-                className="p-8 rounded-2xl bg-gray-50/70 border border-dashed border-gray-200 text-center text-xs text-gray-400 cursor-pointer hover:bg-gray-100/70 hover:border-gray-300 transition-all flex flex-col items-center justify-center gap-2"
+                className="p-8 border-2 border-dashed border-gray-200 rounded-2xl text-center text-gray-400 hover:border-[#0E5A60] hover:text-[#0E5A60] transition-colors cursor-pointer text-xs font-medium flex flex-col items-center gap-2"
               >
-                <Plus className="w-5 h-5 text-gray-400" />
-                <span>No facilities added yet. Click to add your first facility.</span>
+                <Plus className="w-6 h-6 text-gray-300" />
+                <span>No facilities added yet. Click to add the first facility.</span>
               </div>
             ) : (
               <div className="space-y-3">
-                {facilities.map((facility, idx) => (
+                {facilities.map((fac, idx) => (
                   <CollapsibleCard
                     key={idx}
                     index={idx}
-                    title={`Facility ${idx + 1}: ${facility.title || "Untitled Facility"}`}
-                    thumbnail={facility.image}
+                    title={`Facility ${idx + 1}: ${fac.title || "Untitled Facility"}`}
+                    thumbnail={fac.image}
                     isOpen={openIndices.includes(idx)}
                     onToggle={() =>
                       setOpenIndices((prev) =>
@@ -234,24 +206,25 @@ export function AcademicFacilitiesSection({ initialData }: { initialData?: any }
                   >
                     <InputField
                       label="Facility Title"
-                      value={facility.title}
+                      value={fac.title}
                       onChange={(e) => handleUpdateFacility(idx, "title", e.target.value)}
                       placeholder="e.g. Smart / Digital Classrooms"
                     />
 
                     <TextAreaField
-                      label="Description"
-                      value={facility.desc}
-                      onChange={(e) => handleUpdateFacility(idx, "desc", e.target.value)}
+                      label="Facility Description"
+                      value={fac.description}
+                      onChange={(e) => handleUpdateFacility(idx, "description", e.target.value)}
                       rows={2}
-                      placeholder="e.g. Digital learning features and modern AV aids..."
+                      placeholder="e.g. Technology-enabled resources that support classroom instruction..."
                     />
 
                     <ImagePickerField
                       label="Facility Photo"
-                      value={facility.image}
+                      value={fac.image}
                       onChange={(url) => handleUpdateFacility(idx, "image", url)}
-                      placeholder="e.g. Cloudinary photo URL"
+                      placeholder="e.g. Cloudinary image URL"
+                      folder="lfcs-school/academics"
                     />
                   </CollapsibleCard>
                 ))}
@@ -259,8 +232,10 @@ export function AcademicFacilitiesSection({ initialData }: { initialData?: any }
             )}
           </div>
 
-          <div className="pt-4 border-t border-gray-100 w-full">
-            <SaveButton onClick={handleSave} loading={loading} saved={saved} />
+          <div className="pt-4 border-t border-gray-100 flex justify-end">
+            <div className="w-full">
+              <SaveButton onClick={handleSave} loading={loading} saved={saved} />
+            </div>
           </div>
         </div>
       )}

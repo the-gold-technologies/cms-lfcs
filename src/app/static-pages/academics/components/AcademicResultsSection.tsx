@@ -16,29 +16,30 @@ export function AcademicResultsSection({ initialData }: { initialData?: any }) {
 
   const [tagline, setTagline] = useState("");
   const [headline, setHeadline] = useState("");
+  const [scriptAccent, setScriptAccent] = useState("");
   const [subtitle, setSubtitle] = useState("");
   const [badgeText, setBadgeText] = useState("");
 
   useEffect(() => {
     if (initialData) {
-      setTagline(initialData.tagline ?? "ACADEMIC EXCELLENCE");
-      setHeadline(initialData.headline ?? "Consistent Outstanding Board Results");
-      setSubtitle(
-        initialData.subtitle ??
-          "Celebrating our brilliant CBSE Class X and Class XII toppers whose dedication and academic excellence continue to make LFCS proud.",
-      );
-      setBadgeText(initialData.badgeText ?? "100% Board Pass Rate");
+      setTagline(initialData.tagline ?? "");
+      setHeadline(initialData.headline ?? "");
+      setScriptAccent(initialData.scriptAccent ?? "");
+      setSubtitle(initialData.subtitle ?? "");
+      setBadgeText(initialData.badgeText ?? "");
     }
   }, [initialData]);
 
   const handleSave = async () => {
     setLoading(true);
+    setSaved(false);
     try {
       const payload = {
         section: "AcademicResultsSection",
         content: {
           tagline,
           headline,
+          scriptAccent,
           subtitle,
           badgeText,
         },
@@ -98,43 +99,46 @@ export function AcademicResultsSection({ initialData }: { initialData?: any }) {
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <InputField
-              label="Eyebrow Tag"
+              label="Pre-Heading Tagline"
               value={tagline}
               onChange={(e) => setTagline(e.target.value)}
-              placeholder="e.g. ACADEMIC EXCELLENCE"
+              placeholder="e.g. Academic Results"
             />
-            <div className="md:col-span-2">
-              <InputField
-                label="Section Headline"
-                value={headline}
-                onChange={(e) => setHeadline(e.target.value)}
-                placeholder="e.g. Consistent Outstanding Board Results"
-              />
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="md:col-span-2">
-              <TextAreaField
-                label="Section Subtitle"
-                value={subtitle}
-                onChange={(e) => setSubtitle(e.target.value)}
-                rows={2}
-                placeholder="e.g. Narrative celebrating toppers and board achievements..."
-              />
-            </div>
             <InputField
-              label="Highlight Badge Text"
-              value={badgeText}
-              onChange={(e) => setBadgeText(e.target.value)}
-              placeholder="e.g. 100% Board Pass Rate"
+              label="Headline"
+              value={headline}
+              onChange={(e) => setHeadline(e.target.value)}
+              placeholder="e.g. Primary Objective of"
+            />
+            <InputField
+              label="Script Accent"
+              value={scriptAccent}
+              onChange={(e) => setScriptAccent(e.target.value)}
+              placeholder="e.g. Consistent"
             />
           </div>
 
-          <div className="pt-4 border-t border-gray-100 w-full">
-            <SaveButton onClick={handleSave} loading={loading} saved={saved} />
+          <TextAreaField
+            label="Section Subtitle"
+            value={subtitle}
+            onChange={(e) => setSubtitle(e.target.value)}
+            rows={2}
+            placeholder="e.g. At LFCS, we focus on a strong foundation, concept clarity, consistent learning..."
+          />
+
+          <InputField
+            label="Badge Text"
+            value={badgeText}
+            onChange={(e) => setBadgeText(e.target.value)}
+            placeholder="e.g. 100% Board Pass Rate (CBSE)"
+          />
+
+          <div className="pt-4 border-t border-gray-100 flex justify-end">
+            <div className="w-full">
+              <SaveButton onClick={handleSave} loading={loading} saved={saved} />
+            </div>
           </div>
         </div>
       )}

@@ -22,6 +22,7 @@ export function CurriculumSection({ initialData }: { initialData?: any }) {
 
   const [tagline, setTagline] = useState("");
   const [headline, setHeadline] = useState("");
+  const [scriptAccent, setScriptAccent] = useState("");
   const [subtitle, setSubtitle] = useState("");
   const [image, setImage] = useState("");
 
@@ -30,20 +31,13 @@ export function CurriculumSection({ initialData }: { initialData?: any }) {
 
   useEffect(() => {
     if (initialData) {
-      setTagline(initialData.tagline ?? "OUR CURRICULUM");
-      setHeadline(
-        initialData.headline ?? "A Curriculum Designed for Deep Conceptual Understanding",
-      );
-      setSubtitle(
-        initialData.subtitle ??
-          "Affiliated with the Central Board of Secondary Education (CBSE), New Delhi, our curriculum integrates NCERT guidelines with modern experiential inquiry.",
-      );
-      setImage(
-        initialData.image ??
-          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170028/lfcs-school/practical_1793170027731.webp",
-      );
+      setTagline(initialData.tagline ?? "");
+      setHeadline(initialData.headline ?? "");
+      setScriptAccent(initialData.scriptAccent ?? "");
+      setSubtitle(initialData.subtitle ?? "");
+      setImage(initialData.image ?? "");
 
-      if (Array.isArray(initialData.subjects) && initialData.subjects.length > 0) {
+      if (Array.isArray(initialData.subjects)) {
         setSubjects(
           initialData.subjects.map((s: any) => ({
             title: s.title ?? "",
@@ -51,32 +45,7 @@ export function CurriculumSection({ initialData }: { initialData?: any }) {
           })),
         );
       } else {
-        setSubjects([
-          {
-            title: initialData.subj1Title ?? "Language & Literature",
-            desc:
-              initialData.subj1Desc ??
-              "English and Hindi articulation, grammar fluency, and comprehension.",
-          },
-          {
-            title: initialData.subj2Title ?? "Mathematics & Logic",
-            desc:
-              initialData.subj2Desc ??
-              "Conceptual problem-solving, mental arithmetic, and geometry.",
-          },
-          {
-            title: initialData.subj3Title ?? "Science & Inquiry",
-            desc:
-              initialData.subj3Desc ??
-              "Physics, Chemistry, and Biology hands-on lab experimentation.",
-          },
-          {
-            title: initialData.subj4Title ?? "Social Sciences & Civics",
-            desc:
-              initialData.subj4Desc ??
-              "History, Geography, and Democratic Politics understanding.",
-          },
-        ]);
+        setSubjects([]);
       }
     }
   }, [initialData]);
@@ -109,12 +78,14 @@ export function CurriculumSection({ initialData }: { initialData?: any }) {
 
   const handleSave = async () => {
     setLoading(true);
+    setSaved(false);
     try {
       const payload = {
         section: "CurriculumSection",
         content: {
           tagline,
           headline,
+          scriptAccent,
           subtitle,
           image,
           subjects,
@@ -145,8 +116,8 @@ export function CurriculumSection({ initialData }: { initialData?: any }) {
   return (
     <div className="bg-white rounded-3xl p-6 shadow-sm ring-1 ring-gray-100 flex flex-col gap-6">
       <SectionHeader
-        title="2. CBSE Curriculum Overview & Subject Groups"
-        description="Explains the CBSE affiliation, composite illustration, and primary learning subjects."
+        title="2. CBSE Curriculum Overview"
+        description="Comprehensive framework of subjects taught across languages, sciences, social disciplines, mathematics, and IT."
         badge="Live Section"
         isOpen={isOpen}
         onToggle={() => setIsOpen(!isOpen)}
@@ -154,34 +125,40 @@ export function CurriculumSection({ initialData }: { initialData?: any }) {
 
       {isOpen && (
         <div className="space-y-6 pt-2">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <InputField
-              label="Eyebrow Tag"
+              label="Pre-Heading Tag"
               value={tagline}
               onChange={(e) => setTagline(e.target.value)}
               placeholder="e.g. OUR CURRICULUM"
             />
             <InputField
-              label="Section Headline"
+              label="Main Headline"
               value={headline}
               onChange={(e) => setHeadline(e.target.value)}
-              placeholder="e.g. A Curriculum Designed for Deep Understanding"
+              placeholder="e.g. A curriculum applied for"
+            />
+            <InputField
+              label="Script Accent"
+              value={scriptAccent}
+              onChange={(e) => setScriptAccent(e.target.value)}
+              placeholder="e.g. Developmental Learning"
             />
           </div>
 
           <TextAreaField
-            label="Curriculum Overview"
+            label="Section Subtitle"
             value={subtitle}
             onChange={(e) => setSubtitle(e.target.value)}
             rows={2}
-            placeholder="e.g. CBSE affiliation narrative..."
+            placeholder="e.g. Our curriculum is designed to provide students with a structured academic journey..."
           />
 
           <ImagePickerField
             label="Curriculum Feature Illustration"
             value={image}
-            onChange={(url) => setImage(url)}
-            placeholder="e.g. Cloudinary curriculum photo URL"
+            onChange={setImage}
+            folder="lfcs-school/academics"
           />
 
           {/* DYNAMIC SUBJECT GROUPS ARRAY */}
@@ -189,35 +166,20 @@ export function CurriculumSection({ initialData }: { initialData?: any }) {
             <div className="flex items-center justify-between">
               <div>
                 <h4 className="text-xs font-bold uppercase tracking-wider text-gray-700 flex items-center gap-2">
-                  Core Academic Disciplines ({subjects.length})
+                  Academic Subject Areas ({subjects.length})
                 </h4>
                 <p className="text-[11px] text-gray-400 mt-0.5">
-                  Subject groups and instructional focus. Can add more than 4 groups.
+                  Core subject pillars taught under the CBSE framework.
                 </p>
               </div>
-              <div className="flex items-center gap-2">
-                <button
-                  type="button"
-                  onClick={() => {
-                    if (openIndices.length === subjects.length) {
-                      setOpenIndices([]);
-                    } else {
-                      setOpenIndices(subjects.map((_, i) => i));
-                    }
-                  }}
-                  className="text-xs font-semibold text-slate-500 hover:text-slate-800 px-2 py-1 rounded-lg hover:bg-slate-100 transition-colors cursor-pointer"
-                >
-                  {openIndices.length === subjects.length ? "Collapse All" : "Expand All"}
-                </button>
-                <button
-                  type="button"
-                  onClick={handleAddSubject}
-                  className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0E5A60] hover:text-[#061C29] bg-[#0E5A60]/10 hover:bg-[#0E5A60]/20 px-3.5 py-1.5 rounded-xl transition-all cursor-pointer shadow-2xs"
-                >
-                  <Plus className="w-3.5 h-3.5" />
-                  <span>Add Discipline</span>
-                </button>
-              </div>
+              <button
+                type="button"
+                onClick={handleAddSubject}
+                className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0E5A60] hover:text-[#061C29] bg-[#0E5A60]/10 hover:bg-[#0E5A60]/20 px-3.5 py-1.5 rounded-xl transition-all cursor-pointer shadow-2xs"
+              >
+                <Plus className="w-3.5 h-3.5" />
+                <span>Add Subject</span>
+              </button>
             </div>
 
             {subjects.length === 0 ? (
@@ -226,15 +188,15 @@ export function CurriculumSection({ initialData }: { initialData?: any }) {
                 className="p-8 rounded-2xl bg-gray-50/70 border border-dashed border-gray-200 text-center text-xs text-gray-400 cursor-pointer hover:bg-gray-100/70 hover:border-gray-300 transition-all flex flex-col items-center justify-center gap-2"
               >
                 <Plus className="w-5 h-5 text-gray-400" />
-                <span>No disciplines added yet. Click to add your first subject.</span>
+                <span>No subject areas added yet. Click to add your first subject.</span>
               </div>
             ) : (
               <div className="space-y-3">
-                {subjects.map((subj, idx) => (
+                {subjects.map((subject, idx) => (
                   <CollapsibleCard
                     key={idx}
                     index={idx}
-                    title={`Discipline ${idx + 1}: ${subj.title || "Untitled"}`}
+                    title={subject.title || `Subject ${idx + 1}`}
                     isOpen={openIndices.includes(idx)}
                     onToggle={() =>
                       setOpenIndices((prev) =>
@@ -242,21 +204,19 @@ export function CurriculumSection({ initialData }: { initialData?: any }) {
                       )
                     }
                     onDelete={() => handleRemoveSubject(idx)}
-                    deleteTitle="Delete Discipline"
                   >
                     <InputField
                       label="Subject Title"
-                      value={subj.title}
+                      value={subject.title}
                       onChange={(e) => handleUpdateSubject(idx, "title", e.target.value)}
-                      placeholder="e.g. Language & Literature"
+                      placeholder="e.g. Languages"
                     />
 
-                    <TextAreaField
-                      label="Description"
-                      value={subj.desc}
+                    <InputField
+                      label="Short Summary"
+                      value={subject.desc}
                       onChange={(e) => handleUpdateSubject(idx, "desc", e.target.value)}
-                      rows={2}
-                      placeholder="e.g. English, Hindi, and communication fluency..."
+                      placeholder="e.g. English, Hindi & more."
                     />
                   </CollapsibleCard>
                 ))}

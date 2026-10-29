@@ -224,103 +224,115 @@
     }
   },
   "academics": {
-    "AcademicFacilitiesSection": {
-      "tagline": "CAMPUS INFRASTRUCTURE",
-      "headline": "Modern Academic Facilities",
-      "facilities": [
-        {
-          "title": "Smart / Digital Classrooms",
-          "desc": "Interactive flat panels, multimedia audio-visual aids, and high-speed broadband supporting dynamic visual learning.",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170019/lfcs-school/digital-classroom_1793170018820.webp"
-        },
-        {
-          "title": "Advanced Science Laboratories",
-          "desc": "Fully equipped Physics, Chemistry, and Biology laboratories adhering strictly to CBSE safety guidelines.",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170032/lfcs-school/Experience4_1793170032205.webp"
-        },
-        {
-          "title": "High-Tech Computer Labs",
-          "desc": "Modern terminals with coding IDEs, AI workstations, robotics kits, and digital literacy modules.",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170016/lfcs-school/computer-lab_1793170016129.webp"
-        },
-        {
-          "title": "Knowledge Resource Center & Library",
-          "desc": "Vast catalog of 10,000+ fiction, reference volumes, periodicals, and quiet reading pods.",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170015/lfcs-school/library_1793170015178.webp"
-        }
-      ]
-    },
-    "AcademicJourneySection": {
-      "tagline": "LEARNING PATHWAYS",
-      "headline": "The Academic Journey at Little Flower",
-      "stages": [
-        {
-          "title": "Early Years",
-          "grades": "[Nursery – UKG]",
-          "desc": "Play-based exploration, sensory development, phonics, and foundational social skills.",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170030/lfcs-school/independent_1793170030545.webp"
-        },
-        {
-          "title": "Primary School",
-          "grades": "[Classes I – V]",
-          "desc": "Building conceptual numeracy, bilingual literacy, environmental science, and structured habits.",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170034/lfcs-school/activity_1793170034132.webp"
-        },
-        {
-          "title": "Middle School",
-          "grades": "[Classes VI – VIII]",
-          "desc": "Transitioning into rigorous subject disciplines, computer science, and creative projects.",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170020/lfcs-school/Experience6_1793170019770.webp"
-        },
-        {
-          "title": "Secondary & Senior Secondary",
-          "grades": "[Classes IX – XII]",
-          "desc": "Board examination mastery in Science, Commerce, and Humanities with IIT-JEE and NEET coaching support.",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170019/lfcs-school/digital-classroom_1793170018820.webp"
-        }
-      ]
-    },
-    "AcademicResultsSection": {
-      "tagline": "ACADEMIC EXCELLENCE",
-      "headline": "Consistent Outstanding Board Results",
-      "subtitle": "Celebrating our brilliant CBSE Class X and Class XII toppers whose dedication and academic excellence continue to make LFCS proud.",
-      "badgeText": "100% Board Pass Rate"
-    },
-    "AcademicsCTASection": {
-      "heading": "A Strong Foundation Today, A Brighter Tomorrow.",
-      "buttonText": "Enquire Now",
-      "buttonLink": "/contact#contact-form",
-      "bgImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170041/lfcs-school/life2_1793170041503.webp"
-    },
     "AcademicsHeroSection": {
       "tagline": "Academics",
       "headline": "Learning Today, Leading",
       "scriptAccent": "Tomorrow.",
       "description": "At Little Flower, academics go beyond textbooks. We nurture curiosity, build strong foundations, and inspire a love for lifelong learning.",
       "ctaText": "Explore Our Syllabus",
-      "ctaLink": "#curriculum"
+      "ctaLink": "#curriculum",
+      "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793255193/lfcs-school/academics/academics-hero_1793255192058.webp"
     },
     "CurriculumSection": {
       "tagline": "OUR CURRICULUM",
-      "headline": "A Curriculum Designed for Deep Conceptual Understanding",
-      "subtitle": "Affiliated with the Central Board of Secondary Education (CBSE), New Delhi, our curriculum integrates NCERT guidelines with modern experiential inquiry.",
-      "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170028/lfcs-school/practical_1793170027731.webp",
+      "headline": "A Curriculum Designed for Deep",
+      "scriptAccent": "Conceptual Understanding",
+      "subtitle": "Affiliated with the Central Board of Secondary Education (CBSE), New Delhi, our curriculum is carefully crafted from the pre-primary level through Class XII.",
+      "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793255195/lfcs-school/academics/curriculum_1793255194438.webp",
       "subjects": [
         {
-          "title": "Language & Literature",
-          "desc": "English and Hindi articulation, grammar fluency, and comprehension."
+          "title": "Science & Inquiry",
+          "desc": "Physics, Chemistry and Biology taught through hands-on experiments, helping students connect theory to the world around them."
         },
         {
           "title": "Mathematics & Logic",
-          "desc": "Conceptual problem-solving, mental arithmetic, and geometry."
+          "desc": "Building strong foundational numeracy and progressing to advanced problem-solving, analytical reasoning and data handling."
         },
         {
-          "title": "Science & Inquiry",
-          "desc": "Physics, Chemistry, and Biology hands-on lab experimentation."
+          "title": "Languages & Communication",
+          "desc": "English and Hindi language programmes focused on reading comprehension, creative writing, public speaking and critical analysis."
         },
         {
-          "title": "Social Sciences & Civics",
-          "desc": "History, Geography, and Democratic Politics understanding."
+          "title": "Social Studies & Humanities",
+          "desc": "History, Geography, Civics and Economics to nurture informed, responsible citizens with an understanding of global and local cultures."
+        },
+        {
+          "title": "Commerce & Economics",
+          "desc": "Accountancy, Business Studies and Economics for Senior Secondary students, building practical understanding of commerce, finance and entrepreneurship."
+        },
+        {
+          "title": "Information Technology",
+          "desc": "Computer applications and digital literacy from early grades, with coding and informatics practices at the senior level."
+        }
+      ]
+    },
+    "AcademicJourneySection": {
+      "tagline": "ACADEMIC JOURNEY",
+      "headline": "A Journey of Growth,",
+      "scriptAccent": "Stage by Stage",
+      "subtitle": "From their very first day in nursery to the day they graduate, students are guided through five distinct phases of academic development.",
+      "stages": [
+        {
+          "title": "Early Years",
+          "grades": "[ Nursery — UKG ]",
+          "desc": "Focus on play-based learning, sensory development, basic language skills, numbers and social interactions in a warm, welcoming environment.",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793255196/lfcs-school/academics/JourneyCard1_1793255195642.webp"
+        },
+        {
+          "title": "Foundational & Primary",
+          "grades": "[ Classes I — V ]",
+          "desc": "Core literacy and numeracy are strengthened, introducing subjects systematically while encouraging curiosity, creative expression and group activities.",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793255197/lfcs-school/academics/JourneyCard2_1793255196571.webp"
+        },
+        {
+          "title": "Middle School",
+          "grades": "[ Classes VI — VIII ]",
+          "desc": "Deeper subject exploration, scientific temper, analytical thinking, collaborative projects and co-curricular pursuits take center stage.",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793255197/lfcs-school/academics/JourneyCard3_1793255197479.webp"
+        },
+        {
+          "title": "Secondary School",
+          "grades": "[ Classes IX — X ]",
+          "desc": "Rigorous CBSE curriculum preparation, critical thinking, board exam readiness and career orientation to help students discover their passions.",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793255198/lfcs-school/academics/JourneyCard4_1793255198478.webp"
+        },
+        {
+          "title": "Senior Secondary",
+          "grades": "[ Classes XI — XII ]",
+          "desc": "Specialised streams in Science, Commerce and Humanities with dedicated preparation for board examinations and competitive entrance tests.",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793255200/lfcs-school/academics/JourneyCard5_1793255199496.webp"
+        }
+      ]
+    },
+    "TeachingAndLearningSection": {
+      "tagline": "Teaching & Learning",
+      "headline": "From Concepts to",
+      "scriptAccent": "Applying Them",
+      "subtitle": "Learning at LFCS moves beyond books. Our skilled teachers work towards making classroom learning clear, interactive, and relevant.",
+      "cards": [
+        {
+          "title": "Classroom\nLearning",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793255201/lfcs-school/academics/classroom_1793255200659.webp"
+        },
+        {
+          "title": "Activity-Based\nLearning",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170034/lfcs-school/activity_1793170034132.webp"
+        },
+        {
+          "title": "Project &\nPractical",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170028/lfcs-school/practical_1793170027731.webp"
+        },
+        {
+          "title": "Technology\nEnabled",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793255202/lfcs-school/academics/technology_1793255201646.webp"
+        },
+        {
+          "title": "Collaborative\nLearning",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170022/lfcs-school/collabrative_1793170021825.webp"
+        },
+        {
+          "title": "Independent\nLearning",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170030/lfcs-school/independent_1793170030545.webp"
         }
       ]
     },
@@ -328,34 +340,92 @@
       "tagline": "OUR FACULTY",
       "headline": "Meet Our School",
       "scriptAccent": "Principals",
-      "subtitle": "Experienced academic leaders guiding faculty mentors and nurturing student potential across all 8 branches."
-    },
-    "TeachingAndLearningSection": {
-      "tagline": "TEACHING & LEARNING",
-      "headline": "From Concepts to Applying Them",
-      "subtitle": "Learning at LFCS moves beyond books. Our skilled educators make classroom learning interactive, exploratory, and memorable.",
-      "methodologies": [
+      "subtitle": "Each Little Flower campus is led by an experienced principal who brings vision, care and a commitment to excellence, guiding teachers and students alike towards academic and personal growth.",
+      "principals": [
         {
-          "title": "Collaborative Group Inquiry",
-          "desc": "Peer-to-peer discussions, group projects, and team presentations that reinforce communication.",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170022/lfcs-school/collabrative_1793170021825.webp"
+          "name": "Sarita Kedia",
+          "school": "LFCS, Nizamuddinpura",
+          "city": "Mau",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793255203/lfcs-school/academics/sarita-kedia_1793255202686.webp"
         },
         {
-          "title": "Practical Demonstrations",
-          "desc": "Laboratory experiments, real-world models, and tactile math tools to cement abstract formulas.",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170028/lfcs-school/practical_1793170027731.webp"
+          "name": "P. L. Jaishi",
+          "school": "LFCS, Sikatiya",
+          "city": "Mau",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793255204/lfcs-school/academics/pl-jaishi_1793255203547.webp"
         },
         {
-          "title": "Independent Research",
-          "desc": "Self-guided library reading, science fair displays, and research essays fostering intellectual autonomy.",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170030/lfcs-school/independent_1793170030545.webp"
+          "name": "Sanjay Rai",
+          "school": "LFCS, Ghosi",
+          "city": "Ghosi",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793255204/lfcs-school/academics/sanjay-rai_1793255204388.webp"
         },
         {
-          "title": "Active Remediation & Mentorship",
-          "desc": "Targeted one-on-one doubt resolution and tailored guidance to leave no child behind.",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170034/lfcs-school/activity_1793170034132.webp"
+          "name": "Deepa Pal",
+          "school": "LFCS, Ballia",
+          "city": "Mau",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793255205/lfcs-school/academics/deepa-pal_1793255205428.webp"
+        },
+        {
+          "name": "Ekta Singh",
+          "school": "LFCS, Kasimabad Ghazipur",
+          "city": "Kasimabad",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793255206/lfcs-school/academics/ekta-singh_1793255206241.webp"
+        },
+        {
+          "name": "Zeeta Lepcha",
+          "school": "LFIS, Khalishpur Mau",
+          "city": "Mau",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793255207/lfcs-school/academics/zeeta-lepcha_1793255207292.webp"
+        },
+        {
+          "name": "Mahendra Yadav",
+          "school": "Azad Hind Inter College, Khalishpur Mau",
+          "city": "Mau",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793255208/lfcs-school/academics/mahendra-yadav_1793255208136.webp"
         }
       ]
+    },
+    "AcademicResultsSection": {
+      "tagline": "Academic Results",
+      "headline": "Primary Objective of",
+      "scriptAccent": "Consistent",
+      "subtitle": "At LFCS, we focus on a strong foundation, concept clarity, consistent learning & preparation that helps our students perform to the best of their abilities.",
+      "badgeText": "100% Pass Rate (CBSE Board)"
+    },
+    "AcademicFacilitiesSection": {
+      "tagline": "INFRASTRUCTURE",
+      "headline": "Academic",
+      "scriptAccent": "Facilities",
+      "subtitle": "At LFCS, the academic facilities are curated to complement the classroom learning of students where they are provided with more resources to learn, develop & understand better.",
+      "facilities": [
+        {
+          "title": "Smart / Digital Classrooms",
+          "description": "Technology-enabled resources that support classroom instruction and visual learning.",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170019/lfcs-school/digital-classroom_1793170018820.webp"
+        },
+        {
+          "title": "Science Laboratories",
+          "description": "Environment where students can experiment & practically apply their science concepts.",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793255209/lfcs-school/academics/science-lab_1793255209006.webp"
+        },
+        {
+          "title": "Computer Laboratories",
+          "description": "Facilities that help students develop digital and computer skills.",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170016/lfcs-school/computer-lab_1793170016129.webp"
+        },
+        {
+          "title": "Library",
+          "description": "An Independent learning zone that encourages students to understand the world.",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170015/lfcs-school/library_1793170015178.webp"
+        }
+      ]
+    },
+    "AcademicsCTASection": {
+      "heading": "A Strong Foundation Today, A Brighter Tomorrow.",
+      "buttonText": "Enquire Now",
+      "buttonLink": "/contact#contact-form",
+      "bgImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1793254289/lfcs-school/about/cta-bg_1793254289446.webp"
     }
   },
   "admissions": {

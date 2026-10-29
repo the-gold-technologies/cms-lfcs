@@ -31,19 +31,13 @@ export function HowWeEducateSection({ initialData }: { initialData?: any }) {
 
   useEffect(() => {
     if (initialData) {
-      setTagline(initialData.tagline ?? "HOW WE EDUCATE");
-      setHeadline(initialData.headline ?? "Learning Beyond");
-      setScriptAccent(initialData.scriptAccent ?? "Classrooms");
-      setSubtitle(
-        initialData.subtitle ??
-          "We blend strong academics with innovation and creativity to nurture curious minds and confident hearts.",
-      );
-      setMainImage(
-        initialData.mainImage ??
-          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170022/lfcs-school/collabrative_1793170021825.webp",
-      );
+      setTagline(initialData.tagline ?? "");
+      setHeadline(initialData.headline ?? "");
+      setScriptAccent(initialData.scriptAccent ?? "");
+      setSubtitle(initialData.subtitle ?? "");
+      setMainImage(initialData.mainImage ?? "");
 
-      if (Array.isArray(initialData.pillars) && initialData.pillars.length > 0) {
+      if (Array.isArray(initialData.pillars)) {
         setPillars(
           initialData.pillars.map((p: any) => ({
             title: p.title ?? "",
@@ -51,25 +45,7 @@ export function HowWeEducateSection({ initialData }: { initialData?: any }) {
           })),
         );
       } else {
-        setPillars([
-          {
-            title: initialData.pillar1Title ?? "Experiential Learning",
-            desc: initialData.pillar1Desc ?? "Hands-on learning that builds curiosity.",
-          },
-          {
-            title: initialData.pillar2Title ?? "Academic Excellence",
-            desc: initialData.pillar2Desc ?? "Strong foundation with personalized support.",
-          },
-          {
-            title: initialData.pillar3Title ?? "Technology & Innovation",
-            desc: initialData.pillar3Desc ?? "Smart classrooms and digital integration.",
-          },
-          {
-            title: initialData.pillar4Title ?? "Holistic Growth",
-            desc:
-              initialData.pillar4Desc ?? "Sports, arts and life skills for total development.",
-          },
-        ]);
+        setPillars([]);
       }
     }
   }, [initialData]);

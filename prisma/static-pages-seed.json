@@ -520,51 +520,12 @@
     }
   },
   "home": {
-    "CTABanners": {
-      "banners": [
-        {
-          "title": "Admissions Open",
-          "subtitle": "Begin your child's journey of excellence and endless possibilities across our 8 campuses.",
-          "ctaText": "Learn About Admissions",
-          "ctaLink": "/admissions",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170041/lfcs-school/life2_1793170041503.webp"
-        },
-        {
-          "title": "Start a School",
-          "subtitle": "Partner with our 40-year legacy to bring quality, values-based CBSE education to your city.",
-          "ctaText": "Partner With Us",
-          "ctaLink": "/start-school",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170008/lfcs-school/school-associate-launch_1793170008299.webp"
-        }
-      ]
-    },
-    "ExperienceSection": {
-      "tagline": "CAMPUS LIFE",
-      "headline": "An Environment Where",
-      "scriptAccent": "Every Child Thrives",
-      "subtitle": "Beyond classrooms, our campuses buzz with sporting tournaments, science fairs, performing arts, and joyful discovery.",
-      "ctaText": "Explore Student Life",
-      "ctaLink": "/experience",
-      "photos": [
-        {
-          "label": "Sports & Outdoors",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170031/lfcs-school/Experience1_1793170031351.webp"
-        },
-        {
-          "label": "Labs & Tech Integration",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170032/lfcs-school/Experience4_1793170032205.webp"
-        },
-        {
-          "label": "Arts & Performing Culture",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170033/lfcs-school/Experience7_1793170033133.webp"
-        }
-      ]
-    },
     "HeroSection": {
       "headline": "Rooted in Values.",
       "scriptAccent": "Rising with Excellence.",
       "subtitle": "A network of CBSE schools committed to academic excellence, character building and holistic development.",
-      "bgImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170046/lfcs-school/herobg1_1793170046153.webp",
+      "bgImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1793252205/lfcs-school/home/hersection_bg_1793252204132.webp",
+      "overlayImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170046/lfcs-school/herobg1_1793170046153.webp",
       "primaryCtaText": "Explore Our Schools",
       "primaryCtaLink": "/our-school",
       "secondaryCtaText": "Start a School",
@@ -572,44 +533,44 @@
       "stats": [
         {
           "value": "40000+",
-          "label": "Students Enrolled"
+          "label": "Happy Students"
         },
         {
-          "value": "40+",
-          "label": "Years of Excellence"
+          "value": "1000+",
+          "label": "Qualified Teachers"
         },
         {
-          "value": "8",
-          "label": "Schools Across UP"
+          "value": "30+",
+          "label": "Years Of Excellence"
         },
         {
-          "value": "100%",
-          "label": "Pass Rate (CBSE Board)"
+          "value": "150+",
+          "label": "Activities & Achievements"
         }
       ]
     },
-    "HowWeEducateSection": {
-      "tagline": "HOW WE EDUCATE",
-      "headline": "Learning Beyond",
-      "scriptAccent": "Classrooms",
-      "subtitle": "We blend strong academics with innovation and creativity to nurture curious minds and confident hearts.",
-      "mainImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170022/lfcs-school/collabrative_1793170021825.webp",
-      "pillars": [
+    "WelcomeSection": {
+      "tagline": "Welcome To",
+      "headline": "Little Flower Group",
+      "scriptAccent": "of Schools",
+      "description": "Our schools are places where children discover their potential, nurture their dreams and grow into confident, compassionate and responsible global citizens.",
+      "ctaText": "Know More About Us",
+      "ctaLink": "/about",
+      "cards": [
         {
-          "title": "Experiential Learning",
-          "desc": "Hands-on learning that builds curiosity."
-        },
-        {
-          "title": "Academic Excellence",
-          "desc": "Strong foundation with personalized support."
-        },
-        {
-          "title": "Technology & Innovation",
-          "desc": "Smart classrooms and digital integration."
+          "title": "Strong Academics",
+          "desc": "CBSE curriculum with future ready learning.",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793252206/lfcs-school/home/academics_1793252205984.webp"
         },
         {
           "title": "Holistic Growth",
-          "desc": "Sports, arts and life skills for total development."
+          "desc": "Sports, arts, life skills and leadership opportunities.",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793252207/lfcs-school/home/holistic_1793252206993.webp"
+        },
+        {
+          "title": "Future Ready",
+          "desc": "Innovation, technology and 21st century skills.",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793252208/lfcs-school/home/future_1793252207899.webp"
         }
       ]
     },
@@ -633,6 +594,31 @@
         }
       ]
     },
+    "HowWeEducateSection": {
+      "tagline": "HOW WE EDUCATE",
+      "headline": "Learning Beyond",
+      "scriptAccent": "Classrooms",
+      "subtitle": "We blend strong academics with innovation and creativity to nurture curious minds and confident hearts.",
+      "mainImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1793252209/lfcs-school/home/how-we-educate_1793252208803.webp",
+      "pillars": [
+        {
+          "title": "Experiential Learning",
+          "desc": "Hands-on learning that builds curiosity."
+        },
+        {
+          "title": "Academic Excellence",
+          "desc": "Strong foundation with personalized support."
+        },
+        {
+          "title": "Technology & Innovation",
+          "desc": "Smart classrooms and digital integration."
+        },
+        {
+          "title": "Holistic Growth",
+          "desc": "Sports, arts and life skills for total development."
+        }
+      ]
+    },
     "OurApproachSection": {
       "tagline": "OUR APPROACH",
       "headline": "Learning That Builds",
@@ -642,24 +628,56 @@
       "ctaLink": "/academics",
       "cards": [
         {
-          "title": "Communication Skills",
-          "desc": "Public speaking, debate, and bilingual articulate expression.",
+          "title": "Experiential Learning",
+          "desc": "Hands-on discovery and active inquiry in science and life.",
           "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170018/lfcs-school/skills1_1793170017926.webp"
         },
         {
-          "title": "Problem Solving & Logic",
-          "desc": "STEM-oriented scientific enquiry and analytical reasoning.",
+          "title": "Technology & Innovation",
+          "desc": "Smart classrooms, coding, and future-ready digital competencies.",
           "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170029/lfcs-school/skills2_1793170028638.webp"
         },
         {
-          "title": "Emotional Resilience",
-          "desc": "Mindfulness, self-awareness, and value-based moral balance.",
+          "title": "Sports & Physical Growth",
+          "desc": "Athletic training, team sports, endurance, and physical health.",
           "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170036/lfcs-school/skills3_1793170036462.webp"
         },
         {
-          "title": "Leadership & Ethics",
-          "desc": "Student council, community outreach, and peer mentorship.",
+          "title": "Art, Culture & Expression",
+          "desc": "Creative arts, music, dance, theatrical performance, and stage confidence.",
           "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170039/lfcs-school/skills4_1793170038535.webp"
+        },
+        {
+          "title": "Science & Research",
+          "desc": "Hands-on laboratories, scientific methodology, and experimentation.",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170043/lfcs-school/skills5_1793170043003.webp"
+        },
+        {
+          "title": "Academic Excellence",
+          "desc": "Rigorous CBSE curriculum mastery and individual academic mentorship.",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170045/lfcs-school/skills6_1793170044996.webp"
+        }
+      ]
+    },
+    "ExperienceSection": {
+      "tagline": "THE SCHOOL EXPERIENCE",
+      "headline": "Where Learning Comes",
+      "scriptAccent": "Alive",
+      "subtitle": "From world-class infrastructure to vibrant activities, we provide experiences that shape well-rounded individuals.",
+      "ctaText": "Explore Student Life",
+      "ctaLink": "/experience",
+      "photos": [
+        {
+          "label": "Sports & Outdoors",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170031/lfcs-school/Experience1_1793170031351.webp"
+        },
+        {
+          "label": "Labs & Tech Integration",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170032/lfcs-school/Experience4_1793170032205.webp"
+        },
+        {
+          "label": "Arts & Performing Culture",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170033/lfcs-school/Experience7_1793170033133.webp"
         }
       ]
     },
@@ -670,28 +688,91 @@
       "ctaText": "Explore All Campuses",
       "ctaLink": "/our-school"
     },
-    "WelcomeSection": {
-      "tagline": "Welcome To",
-      "headline": "Little Flower Group",
-      "scriptAccent": "of Schools",
-      "description": "Our schools are places where children discover their potential, nurture their dreams and grow into confident, compassionate and responsible global citizens.",
-      "ctaText": "Know More About Us",
-      "ctaLink": "/about",
-      "cards": [
+    "NewsSection": {
+      "tagline": "NEWS & EVENTS",
+      "headline": "Making",
+      "scriptAccent": "Headlines.",
+      "subtitle": "Our latest milestones, as covered by media houses across India.",
+      "ctaText": "View All News",
+      "ctaLink": "/news-&-events"
+    },
+    "CTABanners": {
+      "banners": [
         {
-          "title": "Strong Academics",
-          "desc": "CBSE curriculum with future ready learning.",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170028/lfcs-school/practical_1793170027731.webp"
+          "title": "Admissions Open",
+          "subtitle": "Begin your child's journey of excellence and endless possibilities across our 8 campuses.",
+          "ctaText": "Learn About Admissions",
+          "ctaLink": "/admissions",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170041/lfcs-school/life2_1793170041503.webp"
         },
         {
-          "title": "Holistic Growth",
-          "desc": "Sports, arts, life skills and leadership opportunities.",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170040/lfcs-school/life1_1793170040339.webp"
+          "title": "Start a School",
+          "subtitle": "Partner with our 40-year legacy to bring quality, values-based CBSE education to your city.",
+          "ctaText": "Partner With Us",
+          "ctaLink": "/start-school",
+          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170008/lfcs-school/school-associate-launch_1793170008299.webp"
+        }
+      ]
+    },
+    "TestimonialsSection": {
+      "tagline": "COMMUNITY VOICES",
+      "headline": "Loved by Parents, Trusted for",
+      "scriptAccent": "Generations",
+      "subtitle": "Hear from the wonderful people who make our school a vibrant community of learners and leaders!",
+      "testimonials": [
+        {
+          "name": "Animesh Rai",
+          "role": "Alumnus, Pursuing BBA",
+          "text": "My years at the school gave me a strong foundation for pursuing BBA. The discipline and values I learned here continue to help me in college.",
+          "category": "STUDENTS"
         },
         {
-          "title": "Future Ready",
-          "desc": "Innovation, technology and 21st century skills.",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170019/lfcs-school/digital-classroom_1793170018820.webp"
+          "name": "Aditi Rai",
+          "role": "Alumna, Pursuing MBBS",
+          "text": "The teachers always motivated me to ask questions and understand concepts rather than simply memorising them. Beyond academics, the school taught me responsibility, time management and respect.",
+          "category": "STUDENTS"
+        },
+        {
+          "name": "Suraj Yadav",
+          "role": "Alumnus, Pursuing B.Tech (AI & ML)",
+          "text": "The school provided an environment where curiosity and interest in technology were encouraged. My teachers helped me develop logical thinking and problem-solving skills.",
+          "category": "STUDENTS"
+        },
+        {
+          "name": "Mr. Shashi Bhushan Singh",
+          "role": "PGT Science",
+          "text": "Working at Little Flower Children School has been a rewarding experience.",
+          "category": "TEACHERS"
+        },
+        {
+          "name": "Mr. Umesh Vishwakarma",
+          "role": "TGT Maths",
+          "text": "My experience at LFCS has been enriching and fulfilling.",
+          "category": "TEACHERS"
+        },
+        {
+          "name": "Ms. Wajeeha Parveen",
+          "role": "TGT Teacher",
+          "text": "The school provides a balanced environment for academic learning, creativity, discipline and personality development.",
+          "category": "TEACHERS"
+        },
+        {
+          "name": "Mr. Sarvesh Singh",
+          "role": "Parent",
+          "text": "The teachers are caring, approachable and attentive towards individual students.",
+          "category": "PARENTS"
+        },
+        {
+          "name": "Mr. Banshidhar Yadav",
+          "role": "Parent",
+          "text": "LFCS has provided our child with a safe, disciplined and encouraging learning environment.",
+          "category": "PARENTS"
+        },
+        {
+          "name": "Mr. Rambharat Yadav",
+          "role": "Parent",
+          "text": "We are pleased with the academic and personal development of my child at LFCS. We are thankful to the teachers and management for their sincere efforts.",
+          "category": "PARENTS"
         }
       ]
     }

@@ -31,10 +31,10 @@ export function NoteOfSupportSection({ initialData }: { initialData?: any }) {
 
   useEffect(() => {
     if (initialData) {
-      setTagline(initialData.tagline ?? "Notes of Support");
-      setHeadline(initialData.headline ?? "Voices That Believe in Our Journey");
+      setTagline(initialData.tagline ?? "");
+      setHeadline(initialData.headline ?? "");
 
-      if (Array.isArray(initialData.endorsements) && initialData.endorsements.length > 0) {
+      if (Array.isArray(initialData.endorsements)) {
         setEndorsements(
           initialData.endorsements.map((e: any) => ({
             name: e.name ?? "",
@@ -45,34 +45,7 @@ export function NoteOfSupportSection({ initialData }: { initialData?: any }) {
           })),
         );
       } else {
-        setEndorsements([
-          {
-            name: initialData.person1Name ?? "Sharman Joshi",
-            role: initialData.person1Role ?? "Actor & LFCS Supporter",
-            headline:
-              initialData.person1Headline ??
-              "Some journeys are worth supporting because of the trust behind them.",
-            quote:
-              initialData.person1Quote ??
-              "I am happy to extend my support to Little Flower Children School and its journey towards making quality education accessible to more children and families.",
-            image:
-              initialData.person1Image ??
-              "https://res.cloudinary.com/dpa93copz/image/upload/v1793170012/lfcs-school/sharman-joshi_1793170012349.webp",
-          },
-          {
-            name: initialData.person2Name ?? "Mr. Anand Kumar",
-            role: initialData.person2Role ?? "Mathematician & Founder, Super 30",
-            headline:
-              initialData.person2Headline ??
-              "Education can change the direction of a child's life.",
-            quote:
-              initialData.person2Quote ??
-              "Quality education must reach the children who need it most. I wish LFCS the very best as it takes this important vision across India.",
-            image:
-              initialData.person2Image ??
-              "https://res.cloudinary.com/dpa93copz/image/upload/v1793170011/lfcs-school/anand-kumar_1793170011282.webp",
-          },
-        ]);
+        setEndorsements([]);
       }
     }
   }, [initialData]);

@@ -33,18 +33,14 @@ export function WelcomeSection({ initialData }: { initialData?: any }) {
 
   useEffect(() => {
     if (initialData) {
-      setTagline(initialData.tagline ?? "Welcome To");
-      setHeadline(initialData.headline ?? "Little Flower Group");
-      setScriptAccent(initialData.scriptAccent ?? "of Schools");
-      setDescription(
-        initialData.description ??
-          "Our schools are places where children discover their potential, nurture their dreams and grow into confident, compassionate and responsible global citizens.",
-      );
-      setCtaText(initialData.ctaText ?? "Know More About Us");
-      setCtaLink(initialData.ctaLink ?? "/about");
+      setTagline(initialData.tagline ?? "");
+      setHeadline(initialData.headline ?? "");
+      setScriptAccent(initialData.scriptAccent ?? "");
+      setDescription(initialData.description ?? "");
+      setCtaText(initialData.ctaText ?? "");
+      setCtaLink(initialData.ctaLink ?? "");
 
-      // Load cards from array or fallback to legacy feature1/2/3 keys
-      if (Array.isArray(initialData.cards) && initialData.cards.length > 0) {
+      if (Array.isArray(initialData.cards)) {
         setCards(
           initialData.cards.map((c: any) => ({
             title: c.title ?? "",
@@ -52,7 +48,7 @@ export function WelcomeSection({ initialData }: { initialData?: any }) {
             image: c.image ?? "",
           })),
         );
-      } else if (Array.isArray(initialData.pillars) && initialData.pillars.length > 0) {
+      } else if (Array.isArray(initialData.pillars)) {
         setCards(
           initialData.pillars.map((c: any) => ({
             title: c.title ?? "",
@@ -61,33 +57,7 @@ export function WelcomeSection({ initialData }: { initialData?: any }) {
           })),
         );
       } else {
-        setCards([
-          {
-            title: initialData.feature1Title ?? "Strong Academics",
-            desc: initialData.feature1Desc ?? "CBSE curriculum with future ready learning.",
-            image:
-              initialData.feature1Image ??
-              "https://res.cloudinary.com/dpa93copz/image/upload/v1793170028/lfcs-school/practical_1793170027731.webp",
-          },
-          {
-            title: initialData.feature2Title ?? "Holistic Growth",
-            desc:
-              initialData.feature2Desc ??
-              "Sports, arts, life skills and leadership opportunities.",
-            image:
-              initialData.feature2Image ??
-              "https://res.cloudinary.com/dpa93copz/image/upload/v1793170040/lfcs-school/life1_1793170040339.webp",
-          },
-          {
-            title: initialData.feature3Title ?? "Future Ready",
-            desc:
-              initialData.feature3Desc ??
-              "Innovation, technology and 21st century skills.",
-            image:
-              initialData.feature3Image ??
-              "https://res.cloudinary.com/dpa93copz/image/upload/v1793170019/lfcs-school/digital-classroom_1793170018820.webp",
-          },
-        ]);
+        setCards([]);
       }
     }
   }, [initialData]);

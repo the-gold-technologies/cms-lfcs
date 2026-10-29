@@ -22,14 +22,11 @@ export function OurSchoolsSection({ initialData }: { initialData?: any }) {
 
   useEffect(() => {
     if (initialData) {
-      setTagline(initialData.tagline ?? "OUR CAMPUSES");
-      setHeadline(initialData.headline ?? "8 Campuses Across Eastern Uttar Pradesh");
-      setSubtitle(
-        initialData.subtitle ??
-          "Discover premier CBSE educational institutions established across Mau, Ballia, and Ghazipur districts.",
-      );
-      setCtaText(initialData.ctaText ?? "Explore All Campuses");
-      setCtaLink(initialData.ctaLink ?? "/our-school");
+      setTagline(initialData.tagline ?? "");
+      setHeadline(initialData.headline ?? "");
+      setSubtitle(initialData.subtitle ?? "");
+      setCtaText(initialData.ctaText ?? "");
+      setCtaLink(initialData.ctaLink ?? "");
     }
   }, [initialData]);
 

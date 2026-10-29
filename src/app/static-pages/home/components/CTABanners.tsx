@@ -28,7 +28,7 @@ export function CTABanners({ initialData }: { initialData?: any }) {
 
   useEffect(() => {
     if (initialData) {
-      if (Array.isArray(initialData.banners) && initialData.banners.length > 0) {
+      if (Array.isArray(initialData.banners)) {
         setBanners(
           initialData.banners.map((b: any) => ({
             title: b.title ?? "",
@@ -39,32 +39,7 @@ export function CTABanners({ initialData }: { initialData?: any }) {
           })),
         );
       } else {
-        setBanners([
-          {
-            title: initialData.banner1Title ?? initialData.admissionsCtaTitle ?? "Admissions Open",
-            subtitle:
-              initialData.banner1Subtitle ??
-              initialData.admissionsCtaSubtitle ??
-              "Begin your child's journey of excellence and endless possibilities across our 8 campuses.",
-            ctaText: initialData.banner1CtaText ?? "Learn About Admissions",
-            ctaLink: initialData.banner1CtaLink ?? "/admissions",
-            image:
-              initialData.banner1Image ??
-              "https://res.cloudinary.com/dpa93copz/image/upload/v1793170041/lfcs-school/life2_1793170041503.webp",
-          },
-          {
-            title: initialData.banner2Title ?? initialData.partnerCtaTitle ?? "Start a School",
-            subtitle:
-              initialData.banner2Subtitle ??
-              initialData.partnerCtaSubtitle ??
-              "Partner with our 40-year legacy to bring quality, values-based CBSE education to your city.",
-            ctaText: initialData.banner2CtaText ?? "Partner With Us",
-            ctaLink: initialData.banner2CtaLink ?? "/start-school",
-            image:
-              initialData.banner2Image ??
-              "https://res.cloudinary.com/dpa93copz/image/upload/v1793170008/lfcs-school/school-associate-launch_1793170008299.webp",
-          },
-        ]);
+        setBanners([]);
       }
     }
   }, [initialData]);
@@ -132,7 +107,7 @@ export function CTABanners({ initialData }: { initialData?: any }) {
   return (
     <div className="bg-white rounded-3xl p-6 shadow-sm ring-1 ring-gray-100 flex flex-col gap-6">
       <SectionHeader
-        title="8. Action Promotional Banners"
+        title="9. Action Promotional Banners"
         description="High-conversion promo banners directing prospective parents to admissions and entrepreneurs to partnership."
         badge="Live Section"
         isOpen={isOpen}

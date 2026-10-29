@@ -10,7 +10,9 @@ import {
   OurApproachSection,
   ExperienceSection,
   OurSchoolsSection,
+  NewsSection,
   CTABanners,
+  TestimonialsSection,
 } from "./components";
 
 export default function HomePageEditor() {
@@ -35,7 +37,7 @@ export default function HomePageEditor() {
     <section className="flex flex-col gap-8 pb-12 max-w-7xl mx-auto">
       <PageHeader
         title="Home Page Sections"
-        description="Manage the live sections of your homepage: Hero banner, Welcome narrative, Notes of Support, How We Educate, Our Approach, Campus Experience, School Directory, and Dual CTA Banners."
+        description="Manage the 10 live sections of your homepage: Hero banner, Welcome narrative, Notes of Support, How We Educate, Our Approach, Campus Experience, School Directory, News & Media, Dual CTA Banners, and Community Testimonials."
         badge="Main Landing Page"
       />
 
@@ -46,7 +48,9 @@ export default function HomePageEditor() {
       <OurApproachSection initialData={pageData?.OurApproachSection} />
       <ExperienceSection initialData={pageData?.ExperienceSection} />
       <OurSchoolsSection initialData={pageData?.OurSchoolsSection} />
+      <NewsSection initialData={pageData?.NewsSection} />
       <CTABanners initialData={pageData?.CTABanners} />
+      <TestimonialsSection initialData={pageData?.TestimonialsSection} />
     </section>
   );
 }

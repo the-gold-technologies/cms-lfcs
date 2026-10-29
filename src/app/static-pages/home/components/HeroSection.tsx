@@ -23,6 +23,7 @@ export function HeroSection({ initialData }: { initialData?: any }) {
   const [scriptAccent, setScriptAccent] = useState("");
   const [subtitle, setSubtitle] = useState("");
   const [bgImage, setBgImage] = useState("");
+  const [overlayImage, setOverlayImage] = useState("");
   const [primaryCtaText, setPrimaryCtaText] = useState("");
   const [primaryCtaLink, setPrimaryCtaLink] = useState("");
   const [secondaryCtaText, setSecondaryCtaText] = useState("");
@@ -32,30 +33,24 @@ export function HeroSection({ initialData }: { initialData?: any }) {
 
   useEffect(() => {
     if (initialData) {
-      setHeadline(initialData.headline ?? "Rooted in Values.");
-      setScriptAccent(initialData.scriptAccent ?? "Rising with Excellence.");
-      setSubtitle(
-        initialData.subtitle ??
-          "A network of CBSE schools committed to academic excellence, character building and holistic development.",
-      );
-      setBgImage(
-        initialData.bgImage ??
-          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170046/lfcs-school/herobg1_1793170046153.webp",
-      );
-      setPrimaryCtaText(initialData.primaryCtaText ?? "Explore Our Schools");
-      setPrimaryCtaLink(initialData.primaryCtaLink ?? "/our-school");
-      setSecondaryCtaText(initialData.secondaryCtaText ?? "Start a School");
-      setSecondaryCtaLink(initialData.secondaryCtaLink ?? "/start-school");
+      setHeadline(initialData.headline ?? "");
+      setScriptAccent(initialData.scriptAccent ?? "");
+      setSubtitle(initialData.subtitle ?? "");
+      setBgImage(initialData.bgImage ?? "");
+      setOverlayImage(initialData.overlayImage ?? "");
+      setPrimaryCtaText(initialData.primaryCtaText ?? "");
+      setPrimaryCtaLink(initialData.primaryCtaLink ?? "");
+      setSecondaryCtaText(initialData.secondaryCtaText ?? "");
+      setSecondaryCtaLink(initialData.secondaryCtaLink ?? "");
 
-      // Load stats from array or fallback to individual stat keys
-      if (Array.isArray(initialData.stats) && initialData.stats.length > 0) {
+      if (Array.isArray(initialData.stats)) {
         setStats(
           initialData.stats.map((s: any) => ({
             value: s.value ?? "",
             label: s.label ?? "",
           })),
         );
-      } else if (Array.isArray(initialData.metrics) && initialData.metrics.length > 0) {
+      } else if (Array.isArray(initialData.metrics)) {
         setStats(
           initialData.metrics.map((s: any) => ({
             value: s.value ?? "",
@@ -63,24 +58,7 @@ export function HeroSection({ initialData }: { initialData?: any }) {
           })),
         );
       } else {
-        setStats([
-          {
-            value: initialData.stat1Value ?? "40000+",
-            label: initialData.stat1Label ?? "Students Enrolled",
-          },
-          {
-            value: initialData.stat2Value ?? "40+",
-            label: initialData.stat2Label ?? "Years of Excellence",
-          },
-          {
-            value: initialData.stat3Value ?? "8",
-            label: initialData.stat3Label ?? "Schools Across UP",
-          },
-          {
-            value: initialData.stat4Value ?? "100%",
-            label: initialData.stat4Label ?? "Pass Rate (CBSE Board)",
-          },
-        ]);
+        setStats([]);
       }
     }
   }, [initialData]);
@@ -112,6 +90,7 @@ export function HeroSection({ initialData }: { initialData?: any }) {
           scriptAccent,
           subtitle,
           bgImage,
+          overlayImage,
           primaryCtaText,
           primaryCtaLink,
           secondaryCtaText,
@@ -178,13 +157,22 @@ export function HeroSection({ initialData }: { initialData?: any }) {
             placeholder="e.g. Summarize the institution's commitment to academics and holistic student growth..."
           />
 
-          <ImagePickerField
-            label="Hero Background Image"
-            tooltip="Background graphic or campus photo shown behind the hero banner"
-            value={bgImage}
-            onChange={(url) => setBgImage(url)}
-            placeholder="e.g. Paste a Cloudinary image URL or click below to upload an asset"
-          />
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <ImagePickerField
+              label="Hero Background Photo"
+              tooltip="Main background photo shown behind the hero banner"
+              value={bgImage}
+              onChange={(url) => setBgImage(url)}
+              placeholder="e.g. Cloudinary main hero background photo"
+            />
+            <ImagePickerField
+              label="Hero Overlay Graphic"
+              tooltip="Graphic overlay shown on top of the hero photo"
+              value={overlayImage}
+              onChange={(url) => setOverlayImage(url)}
+              placeholder="e.g. Cloudinary hero overlay graphic"
+            />
+          </div>
 
           <div className="border-t border-gray-100 pt-5">
             <h4 className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-4">

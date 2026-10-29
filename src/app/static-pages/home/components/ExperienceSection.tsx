@@ -32,17 +32,14 @@ export function ExperienceSection({ initialData }: { initialData?: any }) {
 
   useEffect(() => {
     if (initialData) {
-      setTagline(initialData.tagline ?? "CAMPUS LIFE");
-      setHeadline(initialData.headline ?? "An Environment Where");
-      setScriptAccent(initialData.scriptAccent ?? "Every Child Thrives");
-      setSubtitle(
-        initialData.subtitle ??
-          "Beyond classrooms, our campuses buzz with sporting tournaments, science fairs, performing arts, and joyful discovery.",
-      );
-      setCtaText(initialData.ctaText ?? "Explore Student Life");
-      setCtaLink(initialData.ctaLink ?? "/experience");
+      setTagline(initialData.tagline ?? "");
+      setHeadline(initialData.headline ?? "");
+      setScriptAccent(initialData.scriptAccent ?? "");
+      setSubtitle(initialData.subtitle ?? "");
+      setCtaText(initialData.ctaText ?? "");
+      setCtaLink(initialData.ctaLink ?? "");
 
-      if (Array.isArray(initialData.photos) && initialData.photos.length > 0) {
+      if (Array.isArray(initialData.photos)) {
         setPhotos(
           initialData.photos.map((p: any) => ({
             label: p.label ?? "",
@@ -50,26 +47,7 @@ export function ExperienceSection({ initialData }: { initialData?: any }) {
           })),
         );
       } else {
-        setPhotos([
-          {
-            label: "Sports & Outdoors",
-            image:
-              initialData.col1Image ??
-              "https://res.cloudinary.com/dpa93copz/image/upload/v1793170031/lfcs-school/Experience1_1793170031351.webp",
-          },
-          {
-            label: "Labs & Tech Integration",
-            image:
-              initialData.col2Image ??
-              "https://res.cloudinary.com/dpa93copz/image/upload/v1793170032/lfcs-school/Experience4_1793170032205.webp",
-          },
-          {
-            label: "Arts & Performing Culture",
-            image:
-              initialData.col3Image ??
-              "https://res.cloudinary.com/dpa93copz/image/upload/v1793170033/lfcs-school/Experience7_1793170033133.webp",
-          },
-        ]);
+        setPhotos([]);
       }
     }
   }, [initialData]);

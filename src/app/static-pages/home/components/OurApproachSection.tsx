@@ -33,17 +33,14 @@ export function OurApproachSection({ initialData }: { initialData?: any }) {
 
   useEffect(() => {
     if (initialData) {
-      setTagline(initialData.tagline ?? "OUR APPROACH");
-      setHeadline(initialData.headline ?? "Learning That Builds");
-      setScriptAccent(initialData.scriptAccent ?? "Life Skills");
-      setSubtitle(
-        initialData.subtitle ??
-          "Not just academics we prepare children for life, with knowledge, character and curiosity.",
-      );
-      setCtaText(initialData.ctaText ?? "Explore Academics");
-      setCtaLink(initialData.ctaLink ?? "/academics");
+      setTagline(initialData.tagline ?? "");
+      setHeadline(initialData.headline ?? "");
+      setScriptAccent(initialData.scriptAccent ?? "");
+      setSubtitle(initialData.subtitle ?? "");
+      setCtaText(initialData.ctaText ?? "");
+      setCtaLink(initialData.ctaLink ?? "");
 
-      if (Array.isArray(initialData.cards) && initialData.cards.length > 0) {
+      if (Array.isArray(initialData.cards)) {
         setCards(
           initialData.cards.map((c: any) => ({
             title: c.title ?? "",
@@ -51,7 +48,7 @@ export function OurApproachSection({ initialData }: { initialData?: any }) {
             image: c.image ?? "",
           })),
         );
-      } else if (Array.isArray(initialData.skills) && initialData.skills.length > 0) {
+      } else if (Array.isArray(initialData.skills)) {
         setCards(
           initialData.skills.map((c: any) => ({
             title: c.title ?? "",
@@ -60,44 +57,7 @@ export function OurApproachSection({ initialData }: { initialData?: any }) {
           })),
         );
       } else {
-        setCards([
-          {
-            title: initialData.card1Title ?? "Communication Skills",
-            desc:
-              initialData.card1Desc ??
-              "Public speaking, debate, and bilingual articulate expression.",
-            image:
-              initialData.card1Image ??
-              "https://res.cloudinary.com/dpa93copz/image/upload/v1793170018/lfcs-school/skills1_1793170017926.webp",
-          },
-          {
-            title: initialData.card2Title ?? "Problem Solving & Logic",
-            desc:
-              initialData.card2Desc ??
-              "STEM-oriented scientific enquiry and analytical reasoning.",
-            image:
-              initialData.card2Image ??
-              "https://res.cloudinary.com/dpa93copz/image/upload/v1793170029/lfcs-school/skills2_1793170028638.webp",
-          },
-          {
-            title: initialData.card3Title ?? "Emotional Resilience",
-            desc:
-              initialData.card3Desc ??
-              "Mindfulness, self-awareness, and value-based moral balance.",
-            image:
-              initialData.card3Image ??
-              "https://res.cloudinary.com/dpa93copz/image/upload/v1793170036/lfcs-school/skills3_1793170036462.webp",
-          },
-          {
-            title: initialData.card4Title ?? "Leadership & Ethics",
-            desc:
-              initialData.card4Desc ??
-              "Student council, community outreach, and peer mentorship.",
-            image:
-              initialData.card4Image ??
-              "https://res.cloudinary.com/dpa93copz/image/upload/v1793170039/lfcs-school/skills4_1793170038535.webp",
-          },
-        ]);
+        setCards([]);
       }
     }
   }, [initialData]);

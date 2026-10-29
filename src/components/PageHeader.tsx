@@ -36,7 +36,7 @@ export function PageHeader({
         <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 leading-tight flex items-center gap-3">
           {title}
           {badge && (
-            <span className="px-3 py-1 rounded-full text-xs font-bold bg-teal-50 text-[#0E5A60]">
+            <span className="px-3 py-1 rounded-full text-xs font-bold bg-rose-50 text-[#842b46]">
               {badge}
             </span>
           )}
@@ -70,7 +70,7 @@ export function PageHeader({
                 setIsOpen?.(true);
               }
             }}
-            className="inline-flex items-center gap-2 w-fit px-6 bg-[#0B0F29] text-white font-semibold py-3 rounded-full hover:bg-black transition-all hover:border-[#0E5A60] hover:shadow-[0_0_25px_rgba(14,90,96,0.3)] cursor-pointer text-sm"
+            className="inline-flex items-center gap-2 w-fit px-6 bg-[#0B0F29] text-white font-semibold py-3 rounded-full hover:bg-black transition-all hover:border-[#842b46] hover:shadow-[0_0_25px_rgba(132,43,70,0.3)] cursor-pointer text-sm"
           >
             {action.icon ? action.icon : <Plus className="-ml-0.5 h-4 w-4" strokeWidth={3} />}
             {action.label}

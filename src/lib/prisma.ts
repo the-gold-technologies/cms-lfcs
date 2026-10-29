@@ -8,15 +8,13 @@ declare global {
 
 const connectionString = process.env.DATABASE_URL;
 if (!connectionString) {
-  // Graceful fallback for build-time generation
-  process.env.DATABASE_URL = "postgresql://postgres:postgres@localhost:5432/lfcs_school_cms";
+  throw new Error("DATABASE_URL is not defined in environment variables");
 }
 
-const resolvedConnStr = process.env.DATABASE_URL!;
-const isLocal = resolvedConnStr.includes("localhost") || resolvedConnStr.includes("127.0.0.1");
+const isLocal = connectionString.includes("localhost") || connectionString.includes("127.0.0.1");
 
 const pool = new Pool({
-  connectionString: resolvedConnStr,
+  connectionString,
   ssl: isLocal ? false : { rejectUnauthorized: false },
 });
 

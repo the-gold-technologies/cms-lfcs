@@ -162,7 +162,7 @@ export default function ResultsPage() {
           </p>
           <button
             onClick={openCreateModal}
-            className="px-5 py-2.5 bg-[#0E5A60] text-white rounded-xl text-xs font-bold"
+            className="px-5 py-2.5 bg-[#842b46] text-white rounded-xl text-xs font-bold"
           >
             + Add Topper
           </button>
@@ -176,7 +176,7 @@ export default function ResultsPage() {
             >
               <div>
                 <div className="flex items-center justify-between mb-3">
-                  <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-teal-50 text-[#0E5A60]">
+                  <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-rose-50 text-[#842b46]">
                     {item.examType}
                   </span>
                   <span className="text-xs font-bold text-amber-700 bg-amber-50 px-2 py-0.5 rounded-full">
@@ -184,7 +184,7 @@ export default function ResultsPage() {
                   </span>
                 </div>
 
-                <div className="w-20 h-20 rounded-full mx-auto mb-3 overflow-hidden border-2 border-[#0E5A60]/20 bg-gray-100">
+                <div className="w-20 h-20 rounded-full mx-auto mb-3 overflow-hidden border-2 border-[#842b46]/20 bg-gray-100">
                   <img
                     src={
                       item.studentPhoto ||
@@ -259,7 +259,7 @@ export default function ResultsPage() {
                   <select
                     value={examType}
                     onChange={(e) => setExamType(e.target.value)}
-                    className="w-full px-4 py-3.5 bg-white border border-gray-200 rounded-2xl text-sm focus:ring-1 focus:ring-[#0E5A60] outline-none text-gray-800"
+                    className="w-full px-4 py-3.5 bg-white border border-gray-200 rounded-2xl text-sm focus:ring-1 focus:ring-[#842b46] outline-none text-gray-800"
                   >
                     {categories.map((c) => (
                       <option key={c.id} value={c.name}>

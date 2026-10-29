@@ -15,7 +15,6 @@ import {
   Globe,
   Newspaper,
   GraduationCap,
-  Briefcase,
   Compass,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -78,16 +77,8 @@ const sidebarLinks: SidebarLink[] = [
   },
   {
     title: "Toppers & Results",
+    href: "/results",
     icon: GraduationCap,
-    sublinks: [
-      { title: "Board Results", href: "/results" },
-      { title: "Testimonials", href: "/testimonials" },
-    ],
-  },
-  {
-    title: "Job Openings",
-    icon: Briefcase,
-    sublinks: [{ title: "All Careers", href: "/careers" }],
   },
   {
     title: "Submissions",
@@ -147,15 +138,15 @@ export function AdminSidebar() {
   };
 
   return (
-    <div className="flex h-full w-[280px] flex-col bg-[#0B2A3D] text-white overflow-hidden rounded-l-[2.5rem] border-l border-white/5 shrink-0">
+    <div className="flex h-full w-[280px] flex-col bg-[#0a192f] text-white overflow-hidden rounded-l-[2.5rem] border-l border-white/5 shrink-0">
       {/* Logo Area */}
       <div className="flex h-24 items-center px-8">
         <Link href="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
-          <div className="h-10 w-10 rounded-full bg-white flex items-center justify-center text-[#0E5A60] font-black italic shadow-sm text-lg">
+          <div className="h-10 w-10 rounded-full bg-white flex items-center justify-center text-[#842b46] font-black italic shadow-sm text-lg">
             LF
           </div>
           <span className="font-bold text-lg tracking-tight">
-            Little Flower <span className="text-[#D97745] font-semibold">CMS</span>
+            Little Flower <span className="text-[#dfae19] font-semibold">CMS</span>
           </span>
         </Link>
       </div>
@@ -196,7 +187,7 @@ export function AdminSidebar() {
                             className={cn(
                               "block px-4 py-2.5 rounded-2xl text-[13px] font-medium transition-all duration-200",
                               isSubActive
-                                ? "bg-[#0E5A60] text-white shadow-sm transform scale-[1.02]"
+                                ? "bg-[#842b46] text-white shadow-sm transform scale-[1.02]"
                                 : "text-gray-400 hover:bg-white/5 hover:text-white",
                             )}
                           >
@@ -217,7 +208,7 @@ export function AdminSidebar() {
                 className={cn(
                   "flex items-center justify-between px-4 py-3 rounded-2xl text-[14px] font-medium transition-all duration-200 mt-2",
                   isActive
-                    ? "bg-[#0E5A60] text-white shadow-sm transform scale-[1.02]"
+                    ? "bg-[#842b46] text-white shadow-sm transform scale-[1.02]"
                     : "text-gray-400 hover:bg-white/5 hover:text-white",
                 )}
               >
@@ -229,7 +220,7 @@ export function AdminSidebar() {
                   {item.title}
                 </div>
                 {item.badge && (
-                  <div className="flex items-center justify-center w-5 h-5 rounded-full bg-[#0E5A60]/80 text-white text-[10px] font-bold">
+                  <div className="flex items-center justify-center w-5 h-5 rounded-full bg-[#842b46] text-white text-[10px] font-bold">
                     {item.badge}
                   </div>
                 )}

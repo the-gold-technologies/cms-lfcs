@@ -24,7 +24,7 @@ export const TextAreaField: React.FC<TextAreaFieldProps> = ({
   const [linkUrl, setLinkUrl] = useState("");
   const [linkText, setLinkText] = useState("");
 
-  const textareaClass = `w-full px-5 py-3.5 bg-white border border-gray-200 rounded-2xl text-sm focus:ring-2 focus:outline-none focus:border-[#0E5A60] focus:ring-1 focus:ring-[#0E5A60] outline-none transition-all text-gray-800 ${className}`;
+  const textareaClass = `w-full px-5 py-3.5 bg-white border border-gray-200 rounded-2xl text-sm focus:ring-2 focus:outline-none focus:border-[#842b46] focus:ring-1 focus:ring-[#842b46] outline-none transition-all text-gray-800 ${className}`;
 
   const handleOpenLinkModal = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -81,7 +81,7 @@ export const TextAreaField: React.FC<TextAreaFieldProps> = ({
             {label}
             {(tooltip || helperText) && (
               <div className="group relative flex items-center">
-                <HelpCircle className="w-3.5 h-3.5 cursor-help text-gray-300 hover:text-[#0E5A60] transition-colors" />
+                <HelpCircle className="w-3.5 h-3.5 cursor-help text-gray-300 hover:text-[#842b46] transition-colors" />
                 <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 w-max max-w-[280px] px-4 py-3 bg-white text-gray-900 text-[11px] font-medium rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.15)] border border-gray-100 opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none z-50 normal-case tracking-normal text-center leading-relaxed backdrop-blur-sm">
                   {tooltip || helperText}
                   <div className="absolute top-full left-1/2 -translate-x-1/2 border-[6px] border-transparent border-t-white"></div>
@@ -94,7 +94,7 @@ export const TextAreaField: React.FC<TextAreaFieldProps> = ({
         <button
           type="button"
           onClick={handleOpenLinkModal}
-          className="flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider text-[#0E5A60] hover:text-[#0A4347] transition-colors cursor-pointer"
+          className="flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider text-[#842b46] hover:text-[#6a2238] transition-colors cursor-pointer"
           title="Insert link formatting"
         >
           <LinkIcon className="w-3.5 h-3.5" />
@@ -129,7 +129,7 @@ export const TextAreaField: React.FC<TextAreaFieldProps> = ({
                 value={linkText}
                 onChange={(e) => setLinkText(e.target.value)}
                 placeholder="e.g. Visit Campus Page"
-                className="px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg text-xs focus:ring-1 focus:ring-[#0E5A60] focus:border-[#0E5A60] outline-none text-gray-800"
+                className="px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg text-xs focus:ring-1 focus:ring-[#842b46] focus:border-[#842b46] outline-none text-gray-800"
               />
             </div>
 
@@ -142,7 +142,7 @@ export const TextAreaField: React.FC<TextAreaFieldProps> = ({
                 value={linkUrl}
                 onChange={(e) => setLinkUrl(e.target.value)}
                 placeholder="e.g. /campuses or https://lfcs.edu.in"
-                className="px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg text-xs focus:ring-1 focus:ring-[#0E5A60] focus:border-[#0E5A60] outline-none text-gray-800"
+                className="px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg text-xs focus:ring-1 focus:ring-[#842b46] focus:border-[#842b46] outline-none text-gray-800"
                 required
               />
             </div>
@@ -157,7 +157,7 @@ export const TextAreaField: React.FC<TextAreaFieldProps> = ({
               </button>
               <button
                 type="submit"
-                className="px-4 py-1.5 bg-[#0E5A60] text-white rounded-lg text-xs font-semibold hover:bg-[#0A4347] cursor-pointer transition-colors"
+                className="px-4 py-1.5 bg-[#842b46] text-white rounded-lg text-xs font-semibold hover:bg-[#6a2238] cursor-pointer transition-colors"
               >
                 Insert
               </button>

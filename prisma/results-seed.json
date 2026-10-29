@@ -1,0 +1,192 @@
+[
+  {
+    "year": "2025-2026",
+    "examType": "CBSE 10th",
+    "studentName": "Siddhi Vishwakarma",
+    "percentageOrRank": "97%",
+    "campusName": "LFCS Mau",
+    "studentPhoto": "https://res.cloudinary.com/dpa93copz/image/upload/v1793264115/lfcs-school/academics/toppers/x-siddhi-vishwakarma_1793264114787.webp",
+    "stream": "General",
+    "order": 0
+  },
+  {
+    "year": "2025-2026",
+    "examType": "CBSE 10th",
+    "studentName": "Atul Kumar Yadav",
+    "percentageOrRank": "95%",
+    "campusName": "LFCS Mau",
+    "studentPhoto": "https://res.cloudinary.com/dpa93copz/image/upload/v1793264117/lfcs-school/academics/toppers/x-atul-kumar-yadav_1793264116990.webp",
+    "stream": "General",
+    "order": 1
+  },
+  {
+    "year": "2025-2026",
+    "examType": "CBSE 10th",
+    "studentName": "Shruti Singh",
+    "percentageOrRank": "92%",
+    "campusName": "LFCS Mau",
+    "studentPhoto": "https://res.cloudinary.com/dpa93copz/image/upload/v1793264118/lfcs-school/academics/toppers/x-shruti-singh_1793264117908.webp",
+    "stream": "General",
+    "order": 2
+  },
+  {
+    "year": "2025-2026",
+    "examType": "CBSE 10th",
+    "studentName": "Garima Chauhan",
+    "percentageOrRank": "91.6%",
+    "campusName": "LFCS Mau",
+    "studentPhoto": "https://res.cloudinary.com/dpa93copz/image/upload/v1793264119/lfcs-school/academics/toppers/x-garima-chauhan_1793264118830.webp",
+    "stream": "General",
+    "order": 3
+  },
+  {
+    "year": "2025-2026",
+    "examType": "CBSE 10th",
+    "studentName": "Anushka",
+    "percentageOrRank": "91.2%",
+    "campusName": "LFCS Mau",
+    "studentPhoto": "https://res.cloudinary.com/dpa93copz/image/upload/v1793264120/lfcs-school/academics/toppers/x-anushka_1793264119854.webp",
+    "stream": "General",
+    "order": 4
+  },
+  {
+    "year": "2025-2026",
+    "examType": "CBSE 10th",
+    "studentName": "Divyanshu Verma",
+    "percentageOrRank": "91.2%",
+    "campusName": "LFCS Mau",
+    "studentPhoto": "https://res.cloudinary.com/dpa93copz/image/upload/v1793264121/lfcs-school/academics/toppers/x-divyanshu-verma_1793264120668.webp",
+    "stream": "General",
+    "order": 5
+  },
+  {
+    "year": "2025-2026",
+    "examType": "CBSE 10th",
+    "studentName": "Ayushi Singh",
+    "percentageOrRank": "90.4%",
+    "campusName": "LFCS Mau",
+    "studentPhoto": "https://res.cloudinary.com/dpa93copz/image/upload/v1793264122/lfcs-school/academics/toppers/x-ayushi-singh_1793264121596.webp",
+    "stream": "General",
+    "order": 6
+  },
+  {
+    "year": "2025-2026",
+    "examType": "CBSE 10th",
+    "studentName": "Divyanshu Chaurasiya",
+    "percentageOrRank": "90%",
+    "campusName": "LFCS Mau",
+    "studentPhoto": "https://res.cloudinary.com/dpa93copz/image/upload/v1793264123/lfcs-school/academics/toppers/x-divyanshu-chaurasiya_1793264122927.webp",
+    "stream": "General",
+    "order": 7
+  },
+  {
+    "year": "2025-2026",
+    "examType": "CBSE 10th",
+    "studentName": "Saharsh Kannaujiya",
+    "percentageOrRank": "90%",
+    "campusName": "LFCS Mau",
+    "studentPhoto": "https://res.cloudinary.com/dpa93copz/image/upload/v1793264124/lfcs-school/academics/toppers/x-saharsh-kannaujiya_1793264123950.webp",
+    "stream": "General",
+    "order": 8
+  },
+  {
+    "year": "2025-2026",
+    "examType": "CBSE 10th",
+    "studentName": "Anup Priyadarshi",
+    "percentageOrRank": "90%",
+    "campusName": "LFCS Mau",
+    "studentPhoto": "https://res.cloudinary.com/dpa93copz/image/upload/v1793264125/lfcs-school/academics/toppers/x-anup-priyadarshi_1793264124764.webp",
+    "stream": "General",
+    "order": 9
+  },
+  {
+    "year": "2025-2026",
+    "examType": "CBSE 10th",
+    "studentName": "Sushil Yadav",
+    "percentageOrRank": "90%",
+    "campusName": "LFCS Mau",
+    "studentPhoto": "https://res.cloudinary.com/dpa93copz/image/upload/v1793264126/lfcs-school/academics/toppers/x-sushil-yadav_1793264125797.webp",
+    "stream": "General",
+    "order": 10
+  },
+  {
+    "year": "2025-2026",
+    "examType": "CBSE 10th",
+    "studentName": "Anchal Gupta",
+    "percentageOrRank": "90%",
+    "campusName": "LFCS Mau",
+    "studentPhoto": "https://res.cloudinary.com/dpa93copz/image/upload/v1793264127/lfcs-school/academics/toppers/x-anchal-gupta_1793264126718.webp",
+    "stream": "General",
+    "order": 11
+  },
+  {
+    "year": "2025-2026",
+    "examType": "CBSE 12th",
+    "studentName": "Anshika Upadhyay",
+    "percentageOrRank": "95%",
+    "campusName": "LFCS Mau",
+    "studentPhoto": "https://res.cloudinary.com/dpa93copz/image/upload/v1793264128/lfcs-school/academics/toppers/xii-anshika-upadhyay_1793264127746.webp",
+    "stream": "Science (PCM)",
+    "order": 12
+  },
+  {
+    "year": "2025-2026",
+    "examType": "CBSE 12th",
+    "studentName": "Preeti Rajbhar",
+    "percentageOrRank": "93.4%",
+    "campusName": "LFCS Mau",
+    "studentPhoto": "https://res.cloudinary.com/dpa93copz/image/upload/v1793264129/lfcs-school/academics/toppers/xii-preeti-rajbhar-1_1793264128749.webp",
+    "stream": "Science (PCB)",
+    "order": 13
+  },
+  {
+    "year": "2025-2026",
+    "examType": "CBSE 12th",
+    "studentName": "Shivam Gupta",
+    "percentageOrRank": "93%",
+    "campusName": "LFCS Mau",
+    "studentPhoto": "https://res.cloudinary.com/dpa93copz/image/upload/v1793264130/lfcs-school/academics/toppers/xii-shivam-gupta_1793264129676.webp",
+    "stream": "Science (PCM)",
+    "order": 14
+  },
+  {
+    "year": "2025-2026",
+    "examType": "CBSE 12th",
+    "studentName": "Ayushi Yadav",
+    "percentageOrRank": "92%",
+    "campusName": "LFCS Mau",
+    "studentPhoto": "https://res.cloudinary.com/dpa93copz/image/upload/v1793264131/lfcs-school/academics/toppers/xii-ayushi-yadav_1793264130819.webp",
+    "stream": "Science (PCB)",
+    "order": 15
+  },
+  {
+    "year": "2025-2026",
+    "examType": "CBSE 12th",
+    "studentName": "Kajal",
+    "percentageOrRank": "91.2%",
+    "campusName": "LFCS Mau",
+    "studentPhoto": "https://res.cloudinary.com/dpa93copz/image/upload/v1793264132/lfcs-school/academics/toppers/xii-kajal_1793264131709.webp",
+    "stream": "Commerce",
+    "order": 16
+  },
+  {
+    "year": "2025-2026",
+    "examType": "CBSE 12th",
+    "studentName": "Khushi Gupta",
+    "percentageOrRank": "91%",
+    "campusName": "LFCS Mau",
+    "studentPhoto": "https://res.cloudinary.com/dpa93copz/image/upload/v1793264133/lfcs-school/academics/toppers/xii-khushi-gupta_1793264132605.webp",
+    "stream": "Commerce",
+    "order": 17
+  },
+  {
+    "year": "2025-2026",
+    "examType": "CBSE 12th",
+    "studentName": "Preeti Rajbhar",
+    "percentageOrRank": "90%",
+    "campusName": "LFCS Mau",
+    "studentPhoto": "https://res.cloudinary.com/dpa93copz/image/upload/v1793264134/lfcs-school/academics/toppers/xii-preeti-rajbhar-2_1793264133590.webp",
+    "stream": "Science (PCB)",
+    "order": 18
+  }
+]

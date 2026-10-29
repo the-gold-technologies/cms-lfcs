@@ -128,7 +128,7 @@ export function GalleryCurateSection() {
           {/* Header Bar with Action Button */}
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-2 border-b border-gray-100">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-[#0E5A60] text-white flex items-center justify-center shadow-xs shrink-0">
+              <div className="w-10 h-10 rounded-xl bg-[#842b46] text-white flex items-center justify-center shadow-xs shrink-0">
                 <ImageIcon className="w-5 h-5" />
               </div>
               <div>
@@ -144,7 +144,7 @@ export function GalleryCurateSection() {
             <button
               type="button"
               onClick={() => setModalOpen(true)}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-[#0E5A60] hover:bg-[#0A4347] text-white rounded-xl text-xs font-bold transition-all shadow-xs cursor-pointer"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-[#842b46] hover:bg-[#6a2238] text-white rounded-xl text-xs font-bold transition-all shadow-xs cursor-pointer"
             >
               <Plus className="w-4 h-4" />
               <span>Upload New Photo</span>
@@ -154,7 +154,7 @@ export function GalleryCurateSection() {
           {/* Dynamic Category Manager (Pills, Add, Edit, Delete) */}
           <div className="space-y-1.5">
             <p className="text-[11px] font-bold uppercase tracking-wider text-gray-400">
-              Department Categories (Hover to edit / delete)
+              Department Categories
             </p>
             <CategoryManager
               type="gallery"
@@ -173,7 +173,7 @@ export function GalleryCurateSection() {
               <button
                 type="button"
                 onClick={() => setModalOpen(true)}
-                className="inline-flex items-center gap-2 px-4 py-2 mt-3 bg-[#0E5A60] text-white rounded-xl text-xs font-bold cursor-pointer"
+                className="inline-flex items-center gap-2 px-4 py-2 mt-3 bg-[#842b46] text-white rounded-xl text-xs font-bold cursor-pointer"
               >
                 <Plus className="w-3.5 h-3.5" /> Upload Photo
               </button>
@@ -255,7 +255,7 @@ export function GalleryCurateSection() {
                     <select
                       value={newCategory}
                       onChange={(e) => setNewCategory(e.target.value)}
-                      className="w-full px-4 py-2.5 bg-white border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#0E5A60] text-gray-800"
+                      className="w-full px-4 py-2.5 bg-white border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#842b46] text-gray-800"
                     >
                       {categories.map((cat) => (
                         <option key={cat.id} value={cat.name}>

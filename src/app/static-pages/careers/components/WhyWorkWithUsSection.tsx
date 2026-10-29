@@ -199,7 +199,7 @@ export function WhyWorkWithUsSection({ initialData }: { initialData?: any }) {
               <button
                 type="button"
                 onClick={addHighlight}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#0E5A60] text-white text-xs font-semibold rounded-xl hover:bg-[#0b484d] transition-all"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#842b46] text-white text-xs font-semibold rounded-xl hover:bg-[#0b484d] transition-all"
               >
                 <Plus className="w-3.5 h-3.5" /> Add Benefit Card
               </button>

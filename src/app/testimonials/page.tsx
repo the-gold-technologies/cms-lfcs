@@ -159,7 +159,7 @@ export default function TestimonialsPage() {
           </p>
           <button
             onClick={openCreateModal}
-            className="px-5 py-2.5 bg-[#0E5A60] text-white rounded-xl text-xs font-bold cursor-pointer"
+            className="px-5 py-2.5 bg-[#842b46] text-white rounded-xl text-xs font-bold cursor-pointer"
           >
             + Add Testimonial
           </button>
@@ -173,7 +173,7 @@ export default function TestimonialsPage() {
             >
               <div>
                 <div className="flex items-center justify-between mb-4">
-                  <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-teal-50 text-[#0E5A60]">
+                  <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-rose-50 text-[#842b46]">
                     {item.category}
                   </span>
                   <div className="flex gap-0.5 text-amber-400">
@@ -257,7 +257,7 @@ export default function TestimonialsPage() {
                   <select
                     value={category}
                     onChange={(e) => setCategory(e.target.value)}
-                    className="w-full px-4 py-3.5 bg-white border border-gray-200 rounded-2xl text-sm focus:ring-1 focus:ring-[#0E5A60] outline-none text-gray-800"
+                    className="w-full px-4 py-3.5 bg-white border border-gray-200 rounded-2xl text-sm focus:ring-1 focus:ring-[#842b46] outline-none text-gray-800"
                   >
                     {categories.map((c) => (
                       <option key={c.id} value={c.name}>

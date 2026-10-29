@@ -74,7 +74,7 @@ export default function SocialMediaPage() {
   };
 
   return (
-    <div className="flex flex-col gap-6 max-w-4xl mx-auto pb-16">
+    <div className="flex flex-col gap-6 w-full max-w-7xl mx-auto pb-16">
       <PageHeader
         title="Social Media & Brand Channels"
         description="Manage central school telephone helplines, official emails, postal address, and social links."

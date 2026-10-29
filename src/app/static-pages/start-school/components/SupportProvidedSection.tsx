@@ -204,7 +204,7 @@ export function SupportProvidedSection({ initialData }: { initialData?: any }) {
               <button
                 type="button"
                 onClick={handleAddStage}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-[#0E5A60] bg-[#0E5A60]/10 hover:bg-[#0E5A60]/20 rounded-xl transition-colors cursor-pointer"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-[#842b46] bg-[#842b46]/10 hover:bg-[#842b46]/20 rounded-xl transition-colors cursor-pointer"
               >
                 <Plus className="w-3.5 h-3.5" />
                 <span>Add Stage</span>
@@ -214,7 +214,7 @@ export function SupportProvidedSection({ initialData }: { initialData?: any }) {
             {stages.length === 0 ? (
               <div
                 onClick={handleAddStage}
-                className="p-8 border-2 border-dashed border-gray-200 rounded-2xl text-center text-gray-400 hover:border-[#0E5A60] hover:text-[#0E5A60] transition-colors cursor-pointer text-xs font-medium flex flex-col items-center gap-2"
+                className="p-8 border-2 border-dashed border-gray-200 rounded-2xl text-center text-gray-400 hover:border-[#842b46] hover:text-[#842b46] transition-colors cursor-pointer text-xs font-medium flex flex-col items-center gap-2"
               >
                 <Plus className="w-6 h-6 text-gray-300" />
                 <span>No support stages added yet. Click to add your first stage.</span>
@@ -264,7 +264,7 @@ export function SupportProvidedSection({ initialData }: { initialData?: any }) {
                         <button
                           type="button"
                           onClick={() => handleAddItemToStage(sIdx)}
-                          className="text-[11px] font-semibold text-[#0E5A60] hover:underline flex items-center gap-1 cursor-pointer"
+                          className="text-[11px] font-semibold text-[#842b46] hover:underline flex items-center gap-1 cursor-pointer"
                         >
                           <Plus className="w-3 h-3" /> Add Item
                         </button>

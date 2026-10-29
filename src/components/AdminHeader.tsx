@@ -45,7 +45,6 @@ const STATIC_SEARCH_ITEMS: SearchItem[] = [
   { title: "Write News Story", category: "News", url: "/news/create", icon: Newspaper },
   { title: "Photo Gallery", category: "Gallery", url: "/gallery", icon: ImageIcon },
   { title: "Board Results & Toppers", category: "Academics", url: "/results", icon: GraduationCap },
-  { title: "Testimonials", category: "Academics", url: "/testimonials", icon: GraduationCap },
   {
     title: "Admission Enquiries",
     category: "Submissions",
@@ -113,7 +112,7 @@ export function AdminHeader() {
     <section className="flex flex-col gap-6">
       <header className="flex justify-between items-center w-full">
         <h1 className="text-[28px] font-bold tracking-tight text-[#0B0F29] flex items-center gap-2">
-          Welcome back <span className="text-[#0E5A60]">{userName}</span>
+          Welcome back <span className="text-[#842b46]">{userName}</span>
           <span className="text-2xl animate-bounce origin-bottom-right delay-700">👋</span>
         </h1>
 
@@ -139,7 +138,7 @@ export function AdminHeader() {
               setIsOpen(true);
             }}
             placeholder="Search pages, campuses, articles, submissions, or SEO settings..."
-            className="w-full bg-white pl-14 pr-12 py-4 rounded-3xl border border-gray-100 text-sm font-medium shadow-sm focus:outline-none focus:ring-2 focus:ring-[#0E5A60]/20 focus:border-[#0E5A60] text-gray-800 transition-all placeholder:text-gray-400"
+            className="w-full bg-white pl-14 pr-12 py-4 rounded-3xl border border-gray-100 text-sm font-medium shadow-sm focus:outline-none focus:ring-2 focus:ring-[#842b46]/20 focus:border-[#842b46] text-gray-800 transition-all placeholder:text-gray-400"
           />
           {searchQuery && (
             <button
@@ -176,17 +175,17 @@ export function AdminHeader() {
                       className="w-full flex items-center justify-between p-3 rounded-xl hover:bg-gray-50 transition-colors text-left group"
                     >
                       <div className="flex items-center gap-3">
-                        <div className="p-2 rounded-lg bg-gray-50 text-gray-500 group-hover:bg-[#0E5A60]/10 group-hover:text-[#0E5A60] transition-colors">
+                        <div className="p-2 rounded-lg bg-gray-50 text-gray-500 group-hover:bg-[#842b46]/10 group-hover:text-[#842b46] transition-colors">
                           <Icon className="w-4 h-4" />
                         </div>
                         <div>
-                          <p className="text-sm font-semibold text-gray-800 group-hover:text-[#0E5A60] transition-colors">
+                          <p className="text-sm font-semibold text-gray-800 group-hover:text-[#842b46] transition-colors">
                             {item.title}
                           </p>
                           <p className="text-[11px] text-gray-400 font-medium">{item.category}</p>
                         </div>
                       </div>
-                      <span className="text-xs font-semibold text-gray-400 group-hover:text-[#0E5A60] transition-colors">
+                      <span className="text-xs font-semibold text-gray-400 group-hover:text-[#842b46] transition-colors">
                         Go &rarr;
                       </span>
                     </button>

@@ -75,9 +75,9 @@ export function GallerySection({ initialData }: { initialData?: any }) {
 
       {isOpen && (
         <div className="space-y-6 pt-2">
-          <div className="p-4 bg-teal-50/50 border border-teal-100 rounded-2xl flex items-center justify-between">
+          <div className="p-4 bg-rose-50/50 border border-rose-100 rounded-2xl flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="p-2.5 rounded-xl bg-[#0E5A60] text-white">
+              <div className="p-2.5 rounded-xl bg-[#842b46] text-white">
                 <ImageIcon className="w-5 h-5" />
               </div>
               <div>
@@ -89,7 +89,7 @@ export function GallerySection({ initialData }: { initialData?: any }) {
             </div>
             <Link
               href="/gallery"
-              className="px-4 py-2 bg-white text-[#0E5A60] text-xs font-bold rounded-xl border border-teal-200 hover:bg-teal-50 transition-all flex items-center gap-1.5"
+              className="px-4 py-2 bg-white text-[#842b46] text-xs font-bold rounded-xl border border-rose-200 hover:bg-rose-50 transition-all flex items-center gap-1.5"
             >
               Manage Gallery <ArrowRight className="w-3.5 h-3.5" />
             </Link>

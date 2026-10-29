@@ -8,9 +8,13 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-primary: #6a2238; /* LFCS signature burgundy */
+  --color-primary: #842b46; /* LFCS signature burgundy */
+  --color-primary-hover: #6a2238;
   --color-gold: #dfae19;
+  --color-gold-hover: #c49915;
+  --color-navy: #0a192f;
   --color-olive: #66733a;
+  --color-pink: #c76785;
   --font-sans: var(--font-inter);
   --font-serif: var(--font-playfair);
 }

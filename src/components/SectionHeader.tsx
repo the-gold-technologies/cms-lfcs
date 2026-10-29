@@ -27,7 +27,7 @@ export function SectionHeader({
         <h2 className="text-gray-900 text-lg font-bold group-hover:text-[#0B0F29] transition-colors flex items-center gap-2">
           {title}
           {badge && (
-            <span className="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-teal-50 text-[#0E5A60]">
+            <span className="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-rose-50 text-[#842b46]">
               {badge}
             </span>
           )}
@@ -39,7 +39,7 @@ export function SectionHeader({
         <ChevronDown
           onClick={onToggle}
           className={`text-gray-400 h-5 w-5 cursor-pointer transition-transform duration-300 ${
-            isOpen ? "rotate-180 text-[#0E5A60]" : ""
+            isOpen ? "rotate-180 text-[#842b46]" : ""
           }`}
         />
       )}
@@ -48,7 +48,7 @@ export function SectionHeader({
         <button
           type="button"
           onClick={action.onClick}
-          className="bg-[#0B0F29] w-max text-white ml-auto px-6 py-2.5 rounded-full font-semibold tracking-wide hover:bg-black transition-all duration-300 border border-transparent hover:border-[#0E5A60] hover:shadow-[0_0_25px_rgba(14,90,96,0.3)] flex items-center justify-center gap-2 group whitespace-nowrap cursor-pointer text-sm"
+          className="bg-[#0B0F29] w-max text-white ml-auto px-6 py-2.5 rounded-full font-semibold tracking-wide hover:bg-black transition-all duration-300 border border-transparent hover:border-[#842b46] hover:shadow-[0_0_25px_rgba(132,43,70,0.3)] flex items-center justify-center gap-2 group whitespace-nowrap cursor-pointer text-sm"
         >
           <Plus className="w-4 h-4 group-hover:scale-110 transition-transform" /> {action.label}
         </button>

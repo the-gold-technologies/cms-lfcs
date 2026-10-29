@@ -75,7 +75,7 @@ export function NewsForm({ initialData, isEdit = false }: NewsFormProps) {
   return (
     <form
       onSubmit={handleSubmit}
-      className="bg-white rounded-3xl border border-gray-100 p-8 shadow-xs space-y-6"
+      className="bg-white rounded-3xl border border-gray-100 p-8 shadow-xs space-y-6 w-full"
     >
       <InputField
         label="Article Headline / Title *"

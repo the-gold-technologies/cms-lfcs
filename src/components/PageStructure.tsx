@@ -115,7 +115,7 @@ export function PageStructure() {
         </div>
         <Link
           href="/seo/pages"
-          className="text-xs font-bold text-[#0E5A60] hover:text-black flex items-center gap-1 bg-teal-50 px-3 py-1.5 rounded-xl transition-all"
+          className="text-xs font-bold text-[#842b46] hover:text-black flex items-center gap-1 bg-rose-50 px-3 py-1.5 rounded-xl transition-all"
         >
           Manage SEO <ArrowRight className="w-3.5 h-3.5" />
         </Link>
@@ -147,11 +147,11 @@ export function PageStructure() {
               <tr key={page.slug} className="hover:bg-gray-50/50 transition-colors">
                 <td className="py-3.5">
                   <Link href={page.editorUrl} className="flex items-center gap-3 group">
-                    <div className="h-8 w-8 rounded-lg bg-gray-50 flex items-center justify-center text-gray-500 group-hover:bg-[#0E5A60]/10 group-hover:text-[#0E5A60] transition-colors">
+                    <div className="h-8 w-8 rounded-lg bg-gray-50 flex items-center justify-center text-gray-500 group-hover:bg-[#842b46]/10 group-hover:text-[#842b46] transition-colors">
                       <Layout className="w-4 h-4" />
                     </div>
                     <div className="flex flex-col">
-                      <span className="font-bold text-gray-900 group-hover:text-[#0E5A60] transition-colors">
+                      <span className="font-bold text-gray-900 group-hover:text-[#842b46] transition-colors">
                         {page.title}
                       </span>
                       <span className="text-[10px] text-gray-400 uppercase tracking-wider font-semibold">

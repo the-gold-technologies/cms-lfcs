@@ -74,7 +74,7 @@ export function AdminRightSidebar({ stats, loading }: AdminRightSidebarProps) {
         <div className="bg-white rounded-2xl p-4 shadow-sm ring-1 ring-gray-50 space-y-4">
           {activities.map((activity, idx) => (
             <div key={idx} className="flex items-start gap-3 text-xs">
-              <div className="w-2 h-2 rounded-full bg-[#0E5A60] mt-1.5 shrink-0" />
+              <div className="w-2 h-2 rounded-full bg-[#842b46] mt-1.5 shrink-0" />
               <div className="flex-1">
                 <p className="font-semibold text-gray-800 leading-snug">{activity.text}</p>
                 <span className="text-[10px] text-gray-400 mt-0.5 block">{activity.time}</span>

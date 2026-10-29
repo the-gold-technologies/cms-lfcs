@@ -134,9 +134,9 @@ export function FacultySection({ initialData }: { initialData?: any }) {
       {isOpen && (
         <div className="space-y-6 pt-2">
           {/* Campuses module notice */}
-          <div className="p-4 bg-teal-50/50 border border-teal-100 rounded-2xl flex items-center justify-between">
+          <div className="p-4 bg-rose-50/50 border border-rose-100 rounded-2xl flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="p-2.5 rounded-xl bg-[#0E5A60] text-white">
+              <div className="p-2.5 rounded-xl bg-[#842b46] text-white">
                 <GraduationCap className="w-5 h-5" />
               </div>
               <div>
@@ -148,7 +148,7 @@ export function FacultySection({ initialData }: { initialData?: any }) {
             </div>
             <Link
               href="/campuses"
-              className="px-4 py-2 bg-white text-[#0E5A60] text-xs font-bold rounded-xl border border-teal-200 hover:bg-teal-50 transition-all flex items-center gap-1.5"
+              className="px-4 py-2 bg-white text-[#842b46] text-xs font-bold rounded-xl border border-rose-200 hover:bg-rose-50 transition-all flex items-center gap-1.5"
             >
               Campuses Module <ArrowRight className="w-3.5 h-3.5" />
             </Link>
@@ -197,7 +197,7 @@ export function FacultySection({ initialData }: { initialData?: any }) {
               <button
                 type="button"
                 onClick={handleAddPrincipal}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-[#0E5A60] bg-[#0E5A60]/10 hover:bg-[#0E5A60]/20 rounded-xl transition-colors cursor-pointer"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-[#842b46] bg-[#842b46]/10 hover:bg-[#842b46]/20 rounded-xl transition-colors cursor-pointer"
               >
                 <Plus className="w-3.5 h-3.5" />
                 <span>Add Principal</span>
@@ -207,7 +207,7 @@ export function FacultySection({ initialData }: { initialData?: any }) {
             {principals.length === 0 ? (
               <div
                 onClick={handleAddPrincipal}
-                className="p-8 border-2 border-dashed border-gray-200 rounded-2xl text-center text-gray-400 hover:border-[#0E5A60] hover:text-[#0E5A60] transition-colors cursor-pointer text-xs font-medium flex flex-col items-center gap-2"
+                className="p-8 border-2 border-dashed border-gray-200 rounded-2xl text-center text-gray-400 hover:border-[#842b46] hover:text-[#842b46] transition-colors cursor-pointer text-xs font-medium flex flex-col items-center gap-2"
               >
                 <Plus className="w-6 h-6 text-gray-300" />
                 <span>No principals added yet. Click to add the first principal.</span>

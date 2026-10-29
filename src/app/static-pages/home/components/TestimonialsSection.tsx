@@ -188,7 +188,7 @@ export function TestimonialsSection({ initialData }: { initialData?: any }) {
                 <button
                   type="button"
                   onClick={handleAddTestimonial}
-                  className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0E5A60] hover:text-[#061C29] bg-[#0E5A60]/10 hover:bg-[#0E5A60]/20 px-3.5 py-1.5 rounded-xl transition-all cursor-pointer shadow-2xs"
+                  className="inline-flex items-center gap-1.5 text-xs font-bold text-[#842b46] hover:text-[#0a192f] bg-[#842b46]/10 hover:bg-[#842b46]/20 px-3.5 py-1.5 rounded-xl transition-all cursor-pointer shadow-2xs"
                 >
                   <Plus className="w-3.5 h-3.5" />
                   <span>Add Testimonial</span>
@@ -244,7 +244,7 @@ export function TestimonialsSection({ initialData }: { initialData?: any }) {
                           onChange={(e) =>
                             handleUpdateTestimonial(idx, "category", e.target.value as any)
                           }
-                          className="w-full text-xs font-medium text-gray-800 bg-white border border-gray-200 rounded-xl px-3 py-2.5 outline-none focus:border-[#0E5A60] focus:ring-1 focus:ring-[#0E5A60]"
+                          className="w-full text-xs font-medium text-gray-800 bg-white border border-gray-200 rounded-xl px-3 py-2.5 outline-none focus:border-[#842b46] focus:ring-1 focus:ring-[#842b46]"
                         >
                           <option value="PARENTS">PARENTS</option>
                           <option value="TEACHERS">TEACHERS</option>

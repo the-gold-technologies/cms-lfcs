@@ -45,8 +45,8 @@ export function CollapsibleCard({
           <span
             className={`w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-black shrink-0 transition-colors ${
               isOpen
-                ? "bg-[#0E5A60] text-white"
-                : "bg-[#0E5A60]/10 text-[#0E5A60] group-hover:bg-[#0E5A60]/20"
+                ? "bg-[#842b46] text-white"
+                : "bg-[#842b46]/10 text-[#842b46] group-hover:bg-[#842b46]/20"
             }`}
           >
             {index + 1}
@@ -67,7 +67,7 @@ export function CollapsibleCard({
           )}
 
           <div className="min-w-0 flex-1 flex items-center gap-2">
-            <span className="text-xs sm:text-sm font-bold text-gray-800 truncate group-hover:text-[#0E5A60] transition-colors">
+            <span className="text-xs sm:text-sm font-bold text-gray-800 truncate group-hover:text-[#842b46] transition-colors">
               {title || `Item #${index + 1}`}
             </span>
             {badge && (
@@ -104,7 +104,7 @@ export function CollapsibleCard({
           >
             <ChevronDown
               className={`w-4 h-4 transition-transform duration-200 ${
-                isOpen ? "rotate-180 text-[#0E5A60]" : ""
+                isOpen ? "rotate-180 text-[#842b46]" : ""
               }`}
             />
           </button>

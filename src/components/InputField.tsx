@@ -26,7 +26,7 @@ export const InputField: React.FC<InputFieldProps> = ({
   const [showPassword, setShowPassword] = useState(false);
   const inputClass = `w-full ${
     icon ? "pl-12" : "px-5"
-  } py-3.5 bg-white border border-gray-200 rounded-2xl text-sm focus:ring-2 focus:outline-none focus:border-[#0E5A60] focus:ring-1 focus:ring-[#0E5A60] outline-none transition-all text-gray-800 ${
+  } py-3.5 bg-white border border-gray-200 rounded-2xl text-sm focus:ring-2 focus:outline-none focus:border-[#842b46] focus:ring-1 focus:ring-[#842b46] outline-none transition-all text-gray-800 ${
     error ? "border-red-500 focus:border-red-500 focus:ring-red-500" : ""
   } ${className}`;
 
@@ -57,7 +57,7 @@ export const InputField: React.FC<InputFieldProps> = ({
           {label}
           {(tooltip || helperText) && (
             <div className="group relative flex items-center">
-              <HelpCircle className="w-3.5 h-3.5 cursor-help text-gray-300 hover:text-[#0E5A60] transition-colors" />
+              <HelpCircle className="w-3.5 h-3.5 cursor-help text-gray-300 hover:text-[#842b46] transition-colors" />
               {/* Tooltip Bubble */}
               <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 w-max max-w-[280px] px-4 py-3 bg-white text-gray-900 text-[11px] font-medium rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.15)] border border-gray-100 opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none z-50 normal-case tracking-normal text-center leading-relaxed backdrop-blur-sm">
                 {tooltip || helperText}

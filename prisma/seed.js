@@ -7,8 +7,11 @@ const bcrypt = require("bcryptjs");
 
 require("dotenv").config({ path: path.resolve(__dirname, "../.env") });
 
-const connectionString =
-  process.env.DATABASE_URL || "postgresql://sudeeshkumar@localhost:5432/lfcs_school_cms";
+const connectionString = process.env.DATABASE_URL;
+if (!connectionString) {
+  console.error("❌ DATABASE_URL environment variable is required.");
+  process.exit(1);
+}
 
 const isLocal = connectionString.includes("localhost") || connectionString.includes("127.0.0.1");
 const pool = new Pool({
@@ -138,7 +141,28 @@ async function main() {
     console.log(`✓ ${galleryItems.length} Photo Gallery items seeded with Cloudinary images`);
   }
 
-  // 7. Seed All 8 Static Pages and Modular Sections
+  // 7. Academic Results (Toppers) from JSON
+  const resultsFile = path.resolve(__dirname, "results-seed.json");
+  if (fs.existsSync(resultsFile)) {
+    const resultsItems = JSON.parse(fs.readFileSync(resultsFile, "utf-8"));
+    for (const r of resultsItems) {
+      const existing = await prisma.academicResult.findFirst({
+        where: {
+          studentName: r.studentName,
+          examType: r.examType,
+          percentageOrRank: r.percentageOrRank,
+        },
+      });
+      if (existing) {
+        await prisma.academicResult.update({ where: { id: existing.id }, data: r });
+      } else {
+        await prisma.academicResult.create({ data: r });
+      }
+    }
+    console.log(`✓ ${resultsItems.length} Academic Results (Toppers) seeded with Cloudinary images`);
+  }
+
+  // 8. Seed All Static Pages and Modular Sections
   const staticPagesFile = path.resolve(__dirname, "static-pages-seed.json");
   if (fs.existsSync(staticPagesFile)) {
     const staticPages = JSON.parse(fs.readFileSync(staticPagesFile, "utf-8"));
@@ -195,6 +219,33 @@ async function main() {
       );
     }
   }
+
+  // 9. Default Dynamic Categories
+  const defaultCategories = [
+    { type: "gallery", name: "Campus & Facilities", order: 0 },
+    { type: "gallery", name: "Classrooms", order: 1 },
+    { type: "gallery", name: "Science Labs", order: 2 },
+    { type: "gallery", name: "Early Years", order: 3 },
+    { type: "gallery", name: "Sports & Fitness", order: 4 },
+    { type: "gallery", name: "Arts & Culture", order: 5 },
+    { type: "gallery", name: "Events & Achievements", order: 6 },
+    { type: "testimonials", name: "PARENTS", order: 0 },
+    { type: "testimonials", name: "TEACHERS", order: 1 },
+    { type: "testimonials", name: "STUDENTS", order: 2 },
+    { type: "results", name: "CBSE 10th", order: 0 },
+    { type: "results", name: "CBSE 12th", order: 1 },
+    { type: "results", name: "JEE", order: 2 },
+    { type: "results", name: "NEET", order: 3 },
+  ];
+
+  for (const cat of defaultCategories) {
+    await prisma.dynamicCategory.upsert({
+      where: { type_name: { type: cat.type, name: cat.name } },
+      update: { order: cat.order },
+      create: cat,
+    });
+  }
+  console.log(`✓ ${defaultCategories.length} Default Dynamic Categories verified`);
 
   console.log("🎉 Complete database seed with Cloudinary CDN URLs finished successfully!");
 }

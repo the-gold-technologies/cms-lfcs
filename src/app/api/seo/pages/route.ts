@@ -10,7 +10,7 @@ const LFCS_CORE_PAGES = [
     type: "Main Page",
     metaTitle: "About Us | Little Flower Group of Schools",
     metaDescription:
-      "Discover our educational approach, 35+ year heritage, leadership team and foundational values since 1988.",
+      "Founded in 1993, Little Flower Group of Schools is a network of CBSE schools in Uttar Pradesh. Discover our story, values, leadership and achievements.",
     targetKeywords:
       "about Little Flower, LFCS history, school leadership, CBSE curriculum UP, school values",
     canonicalUrl: "https://lfgos.com/about",
@@ -41,9 +41,9 @@ const LFCS_CORE_PAGES = [
     slug: "our-school",
     title: "Our Schools & Campuses",
     type: "Main Page",
-    metaTitle: "Our Schools & Campuses | Little Flower Group of Schools",
+    metaTitle: "Our Schools | Little Flower Group of Schools",
     metaDescription:
-      "A Place to Learn, Grow & Lead. Explore our network of school campuses and world-class facilities across Uttar Pradesh.",
+      "Explore the 8 Little Flower schools across Mau, Ghosi, Ballia, Ghazipur and Azamgarh in Uttar Pradesh, with campus addresses, websites and admissions.",
     targetKeywords:
       "LFCS campuses, Little Flower Mau, LFCS Sikatia, LFCS Ballia, LFCS Ghosi, LFCS Ghazipur",
     canonicalUrl: "https://lfgos.com/our-school",
@@ -52,7 +52,7 @@ const LFCS_CORE_PAGES = [
     slug: "experience",
     title: "Student Experience",
     type: "Main Page",
-    metaTitle: "Experience | Life at LFCS",
+    metaTitle: "Student Life at LFCS | Little Flower Group of Schools",
     metaDescription:
       "Life at LFCS is beyond textbooks and classrooms. Explore sports, creative activities, trips, and more opportunities for students.",
     targetKeywords: "life at LFCS, school sports, extracurricular activities, creative arts, clubs",
@@ -85,7 +85,8 @@ const LFCS_CORE_PAGES = [
     title: "News & Events",
     type: "Media & Press",
     metaTitle: "News & Events | Little Flower Group of Schools",
-    metaDescription: "Latest news, announcements and press coverage from Little Flower schools.",
+    metaDescription:
+      "Latest news, announcements, events and press coverage from Little Flower Group of Schools, including the LFCS School Associate Program launch.",
     targetKeywords: "school news, annual day, LFCS announcements, school events, press release",
     canonicalUrl: "https://lfgos.com/news-&-events",
   },
@@ -106,7 +107,7 @@ const LFCS_CORE_PAGES = [
     type: "Main Page",
     metaTitle: "Contact Us | Little Flower Group of Schools",
     metaDescription:
-      "Get in touch with Little Flower Group of Schools for admissions, academics, partnerships, or general enquiries.",
+      "Contact Little Flower Group of Schools in Lucknow, Uttar Pradesh for admissions, academics, careers, school partnerships or general enquiries.",
     targetKeywords:
       "contact LFCS, school helpline phone, admission inquiry email, campus addresses, office hours",
     canonicalUrl: "https://lfgos.com/contact",

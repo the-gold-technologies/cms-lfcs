@@ -24,6 +24,7 @@ export function SportsFitnessSection({ initialData }: { initialData?: any }) {
   const [scriptAccent, setScriptAccent] = useState("");
   const [description, setDescription] = useState("");
   const [calloutText, setCalloutText] = useState("");
+  const [activitiesTitle, setActivitiesTitle] = useState("");
   const [clientNote, setClientNote] = useState("");
   const [image1, setImage1] = useState("");
   const [image2, setImage2] = useState("");
@@ -38,6 +39,7 @@ export function SportsFitnessSection({ initialData }: { initialData?: any }) {
       setScriptAccent(initialData.scriptAccent ?? "");
       setDescription(initialData.description ?? "");
       setCalloutText(initialData.calloutText ?? "");
+      setActivitiesTitle(initialData.activitiesTitle ?? "");
       setClientNote(initialData.clientNote ?? "");
       setImage1(initialData.image1 ?? "");
       setImage2(initialData.image2 ?? "");
@@ -84,6 +86,7 @@ export function SportsFitnessSection({ initialData }: { initialData?: any }) {
           scriptAccent,
           description,
           calloutText,
+          activitiesTitle,
           clientNote,
           activities,
           image1,
@@ -151,6 +154,13 @@ export function SportsFitnessSection({ initialData }: { initialData?: any }) {
             onChange={(e) => setDescription(e.target.value)}
             rows={4}
             placeholder="e.g. Sports and physical activities are an important part of student life at LFCS..."
+          />
+
+          <InputField
+            label="Activities List Heading"
+            value={activitiesTitle}
+            onChange={(e) => setActivitiesTitle(e.target.value)}
+            placeholder="e.g. Games & Fitness Programmes"
           />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">

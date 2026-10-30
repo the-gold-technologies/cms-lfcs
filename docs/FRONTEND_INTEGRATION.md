@@ -7,7 +7,7 @@ This document explains how the main website (`lfcs-school`) connects to `lfcs-sc
 ## 1. Environment Variables in `lfcs-school/.env.local`
 
 ```env
-NEXT_PUBLIC_CMS_URL="http://localhost:3001"
+CMS_URL="http://localhost:3001"
 CMS_SHARED_SECRET="lfcs-school-secret-key-replace-in-production"
 ```
 
@@ -89,7 +89,7 @@ export async function POST(req: Request) {
   const { tags } = await req.json();
   if (Array.isArray(tags)) {
     for (const tag of tags) {
-      revalidateTag(tag);
+      revalidateTag(tag, { expire: 0 });
       console.log(`[revalidate] Purged cache tag: ${tag}`);
     }
   }

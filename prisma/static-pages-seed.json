@@ -761,7 +761,7 @@
     "SportsFitnessSection": {
       "tagline": "Sports & Fitness",
       "headline": "An",
-      "scriptAccent": "Active",
+      "scriptAccent": "Active School Life",
       "description": "Sports and physical activities are an important part of student life at LFCS. Students get opportunities to participate in games, physical activities and sports programmes that encourage regular movement, fitness and participation.\n\nSports also give students the opportunity to practise teamwork, discipline, perseverance and fair play.",
       "calloutText": "Teamwork, discipline, & fair play",
       "clientNote": "* Note: Available sports vary by branch. Please contact your local campus for the exact list.",
@@ -789,7 +789,8 @@
         }
       ],
       "image1": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170017/lfcs-school/sports1_1793170017007.webp",
-      "image2": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170037/lfcs-school/sports2_1793170037412.webp"
+      "image2": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170037/lfcs-school/sports2_1793170037412.webp",
+      "activitiesTitle": "Sports & Physical Activities"
     },
     "ArtsCultureSection": {
       "tagline": "Arts, Culture & Creativity",
@@ -1148,7 +1149,13 @@
           "label": "School experience"
         }
       ],
-      "features": ["Sports", "Arts & Culture", "Modern Labs", "Clubs & Activities", "Safe Campus"]
+      "features": [
+        "Sports",
+        "Arts & Culture",
+        "Modern Labs",
+        "Clubs & Activities",
+        "Safe Campus"
+      ]
     },
     "OurSchoolsSection": {
       "ctaLink": "/our-school",

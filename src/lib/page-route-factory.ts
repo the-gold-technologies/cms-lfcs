@@ -33,6 +33,8 @@ export function createPageRouteHandlers(slug: string, defaultTitle: string) {
             targetKeywords: page.targetKeywords,
             canonicalUrl: page.canonicalUrl,
             noIndex: page.noIndex,
+            schema: page.schema,
+            headingOptions: page.headingOptions,
           },
         });
       } catch (error) {

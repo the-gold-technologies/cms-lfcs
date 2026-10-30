@@ -161,12 +161,13 @@
 
 ## 🔄 Next Steps / Remaining Roadmap
 
-### Phase 6: Frontend Integration (`lfcs-school`) _(Paused per user request - to be connected later)_
+### ✅ Phase 6: Frontend Integration (`lfcs-school`) (COMPLETED)
 
-1. Create `src/lib/cms.ts` and `src/lib/content.ts` in `lfcs-school` (ready for when connection is enabled).
-2. Add `/api/revalidate/route.ts` to `lfcs-school` using the dedicated `CMS_SHARED_SECRET`.
-3. Connect form server actions in `src/app/actions/enquiries.ts` to forward submissions to `POST /api/submissions` in the CMS.
-4. Connect frontend sections (campuses, news, gallery, testimonials, static pages) to read from CMS data with fallback to existing local files.
+- [x] `src/lib/cms.ts` (CMS client that never throws) and `src/lib/content.ts` (typed getters with fallback to `src/content/cms-snapshot.json`).
+- [x] `src/app/api/revalidate/route.ts` expires cache tags on every CMS save (`x-cms-secret` = `CMS_SHARED_SECRET`).
+- [x] Form server actions in `src/app/actions/enquiries.ts` also file each enquiry via `POST /api/submissions`.
+- [x] Every page, section, header, footer and pop-up form renders from CMS data; refresh the fallback with `node scripts/sync-cms-snapshot.mjs`.
+- [x] SEO: Global SEO drives the home page (title, description, schema), Page SEO drives every other page; JSON-LD, `robots.txt` and `sitemap.xml` are generated from the CMS.
 
 ---
 

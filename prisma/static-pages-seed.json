@@ -1149,13 +1149,7 @@
           "label": "School experience"
         }
       ],
-      "features": [
-        "Sports",
-        "Arts & Culture",
-        "Modern Labs",
-        "Clubs & Activities",
-        "Safe Campus"
-      ]
+      "features": ["Sports", "Arts & Culture", "Modern Labs", "Clubs & Activities", "Safe Campus"]
     },
     "OurSchoolsSection": {
       "ctaLink": "/our-school",

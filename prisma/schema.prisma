@@ -40,6 +40,7 @@ model GlobalConfig {
   socialLinks         Json?
   robotsTxt           String?  @default("User-agent: *\nAllow: /\n\nSitemap: https://lfgos.com/sitemap.xml")
   sitemapEnabled      Boolean  @default(true)
+  sitemapCustomContent String?
   schema              String?
   headingOptions      String?  @default("h1")
   createdAt           DateTime @default(now())

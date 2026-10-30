@@ -79,7 +79,45 @@ async function main() {
   });
   console.log("✓ Admin user created (admin@lfcs.edu.in / Admin@123)");
 
-  // 2. Global Brand Configuration with Cloudinary URLs
+  const GLOBAL_SCHEMA = JSON.stringify(
+    {
+      "@context": "https://schema.org",
+      "@type": "EducationalOrganization",
+      "@id": "https://lfgos.com/#organization",
+      name: "Little Flower Group of Schools",
+      alternateName: "LFCS",
+      url: "https://lfgos.com/",
+      logo: "https://res.cloudinary.com/dpa93copz/image/upload/v1793170044/lfcs-school/logo-header_1793170044344.webp",
+      description:
+        "A network of premier CBSE schools across Uttar Pradesh committed to academic excellence, value-based character building, and holistic student growth.",
+      foundingDate: "1993",
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "Nizamuddinpura",
+        addressLocality: "Mau",
+        addressRegion: "Uttar Pradesh",
+        postalCode: "275101",
+        addressCountry: "IN",
+      },
+      telephone: "+91 83688 38489",
+      email: "franchise@lfcsschools.com",
+      sameAs: [
+        "https://www.facebook.com/people/LFCS-Schools/61594935059542/",
+        "https://www.instagram.com/lfcs_schools/",
+        "https://youtube.com/@lfcsschools?si=TCzIAvIrbwgYA2KY",
+      ],
+    },
+    null,
+    2,
+  );
+
+  const ROBOTS_DIRECTIVES = `User-agent: *
+Allow: /
+Disallow: /api/
+
+Sitemap: https://lfgos.com/sitemap.xml`;
+
+  // 2. Global Brand Configuration with Cloudinary URLs & SEO Directives
   await prisma.globalConfig.upsert({
     where: { id: "global" },
     update: {
@@ -107,8 +145,10 @@ async function main() {
         twitter: "",
         footerColumns: FOOTER_COLUMNS,
       },
-      robotsTxt: "User-agent: *\nAllow: /\n\nSitemap: https://lfgos.com/sitemap.xml",
+      robotsTxt: ROBOTS_DIRECTIVES,
       sitemapEnabled: true,
+      headingOptions: "h1",
+      schema: GLOBAL_SCHEMA,
     },
     create: {
       id: "global",
@@ -136,8 +176,10 @@ async function main() {
         twitter: "",
         footerColumns: FOOTER_COLUMNS,
       },
-      robotsTxt: "User-agent: *\nAllow: /\n\nSitemap: https://lfgos.com/sitemap.xml",
+      robotsTxt: ROBOTS_DIRECTIVES,
       sitemapEnabled: true,
+      headingOptions: "h1",
+      schema: GLOBAL_SCHEMA,
     },
   });
   console.log("✓ Global brand configuration seeded with Cloudinary logos");
@@ -231,37 +273,338 @@ async function main() {
     );
   }
 
-  // 8. Seed All Static Pages and Modular Sections
+  // 8. Seed All Static Pages and Modular Sections with Complete SEO & Schema JSON-LD
+  const PAGE_SEO_DATA = {
+    home: {
+      title: "Home",
+      type: "Main Page",
+      metaTitle: "Little Flower Group of Schools | Rooted in Values. Rising with Excellence.",
+      metaDescription:
+        "A premier network of CBSE-affiliated schools across Uttar Pradesh committed to academic excellence, value-based character building, and holistic student growth.",
+      targetKeywords:
+        "Little Flower schools, CBSE schools UP, best schools in Mau, Little Flower Group of Schools, LFCS, top school Uttar Pradesh",
+      canonicalUrl: "https://lfgos.com/",
+      headingOptions: "h1",
+      schema: GLOBAL_SCHEMA,
+    },
+    about: {
+      title: "About Us",
+      type: "Main Page",
+      metaTitle: "About Us | Little Flower Group of Schools",
+      metaDescription:
+        "Discover our 35+ year educational heritage, founding vision since 1993, dedicated leadership team, and foundational core values.",
+      targetKeywords:
+        "about Little Flower, LFCS history, school leadership, CBSE curriculum UP, school values, Vijay Shankar Yadav",
+      canonicalUrl: "https://lfgos.com/about",
+      headingOptions: "h1",
+      schema: JSON.stringify(
+        {
+          "@context": "https://schema.org",
+          "@type": "AboutPage",
+          name: "About Us | Little Flower Group of Schools",
+          url: "https://lfgos.com/about",
+          description:
+            "Discover our 35+ year educational heritage, founding vision since 1993, dedicated leadership team, and foundational core values.",
+          publisher: {
+            "@type": "EducationalOrganization",
+            name: "Little Flower Group of Schools",
+            url: "https://lfgos.com",
+          },
+        },
+        null,
+        2,
+      ),
+    },
+    academics: {
+      title: "Academics",
+      type: "Main Page",
+      metaTitle: "Academics & CBSE Curriculum | Little Flower Group of Schools",
+      metaDescription:
+        "At LFCS, academics forms the foundation of every student's journey. Explore our structured CBSE curriculum, experiential pedagogy, and developmental learning stages.",
+      targetKeywords:
+        "LFCS academics, CBSE curriculum, board exam results, school stages, experiential learning, STEM education UP",
+      canonicalUrl: "https://lfgos.com/academics",
+      headingOptions: "h1",
+      schema: JSON.stringify(
+        {
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          name: "Academics & CBSE Curriculum | Little Flower Group of Schools",
+          url: "https://lfgos.com/academics",
+          description:
+            "At LFCS, academics forms the foundation of every student's journey with a structured CBSE curriculum and experiential pedagogy.",
+          publisher: {
+            "@type": "EducationalOrganization",
+            name: "Little Flower Group of Schools",
+            url: "https://lfgos.com",
+          },
+        },
+        null,
+        2,
+      ),
+    },
+    admissions: {
+      title: "Admissions",
+      type: "Main Page",
+      metaTitle: "Admissions 2026-2027 | Little Flower Group of Schools",
+      metaDescription:
+        "Admissions at Little Flower Group of Schools. Explore learning stages, fee guidelines, and submit an online admission enquiry for your preferred campus.",
+      targetKeywords:
+        "school admission UP, CBSE school admission Mau, LFCS registration, admission enquiry, school admissions 2026-27",
+      canonicalUrl: "https://lfgos.com/admissions",
+      headingOptions: "h1",
+      schema: JSON.stringify(
+        {
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          name: "Admissions 2026-2027 | Little Flower Group of Schools",
+          url: "https://lfgos.com/admissions",
+          description:
+            "Admissions guidelines, learning stages, and enquiry form for Little Flower Group of Schools campuses across Uttar Pradesh.",
+          publisher: {
+            "@type": "EducationalOrganization",
+            name: "Little Flower Group of Schools",
+            url: "https://lfgos.com",
+          },
+        },
+        null,
+        2,
+      ),
+    },
+    "our-school": {
+      title: "Our Schools & Campuses",
+      type: "Main Page",
+      metaTitle: "Our Schools & Campuses | Little Flower Group of Schools",
+      metaDescription:
+        "A place to learn, grow, and lead. Explore our network of school campuses and world-class educational facilities across Uttar Pradesh.",
+      targetKeywords:
+        "LFCS campuses, Little Flower Mau, LFCS Sikatia, LFCS Ballia, LFCS Ghosi, LFCS Ghazipur, CBSE schools eastern UP",
+      canonicalUrl: "https://lfgos.com/our-school",
+      headingOptions: "h1",
+      schema: JSON.stringify(
+        {
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          name: "Our Schools & Campuses | Little Flower Group of Schools",
+          url: "https://lfgos.com/our-school",
+          description:
+            "Explore our network of school campuses and world-class educational facilities across Uttar Pradesh.",
+          publisher: {
+            "@type": "EducationalOrganization",
+            name: "Little Flower Group of Schools",
+            url: "https://lfgos.com",
+          },
+        },
+        null,
+        2,
+      ),
+    },
+    experience: {
+      title: "Student Experience",
+      type: "Main Page",
+      metaTitle: "Student Experience & Campus Life | Little Flower Group of Schools",
+      metaDescription:
+        "Life at LFCS is beyond textbooks and classrooms. Explore sports, creative arts, leadership opportunities, and vibrant campus life for our students.",
+      targetKeywords:
+        "life at LFCS, school sports, extracurricular activities, creative arts, clubs, student leadership",
+      canonicalUrl: "https://lfgos.com/experience",
+      headingOptions: "h1",
+      schema: JSON.stringify(
+        {
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          name: "Student Experience & Campus Life | Little Flower Group of Schools",
+          url: "https://lfgos.com/experience",
+          description:
+            "Life at LFCS is beyond textbooks: sports, creative arts, excursions, leadership houses, and holistic child development.",
+          publisher: {
+            "@type": "EducationalOrganization",
+            name: "Little Flower Group of Schools",
+            url: "https://lfgos.com",
+          },
+        },
+        null,
+        2,
+      ),
+    },
+    "start-school": {
+      title: "Start an Associate School",
+      type: "Associate Partner",
+      metaTitle: "Start a School | Associate Partnership | LFCS",
+      metaDescription:
+        "Partner with Little Flower Group of Schools to establish and operate a high-performing CBSE associate school in your community.",
+      targetKeywords:
+        "school franchise India, start a CBSE school, educational partnership, LFCS associate affiliate, school franchise UP",
+      canonicalUrl: "https://lfgos.com/start-school",
+      headingOptions: "h1",
+      schema: JSON.stringify(
+        {
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          name: "Start a School | Associate Partnership | LFCS",
+          url: "https://lfgos.com/start-school",
+          description:
+            "Partner with Little Flower Group of Schools to establish and operate a high-performing associate school in your community.",
+          publisher: {
+            "@type": "EducationalOrganization",
+            name: "Little Flower Group of Schools",
+            url: "https://lfgos.com",
+          },
+        },
+        null,
+        2,
+      ),
+    },
+    careers: {
+      title: "Careers & Opportunities",
+      type: "Main Page",
+      metaTitle: "Careers & Faculty Recruitment | Little Flower Group of Schools",
+      metaDescription:
+        "Build your career with Little Flower Group of Schools. Explore teaching and administrative opportunities and submit your profile today.",
+      targetKeywords:
+        "teaching jobs UP, school teacher vacancies, LFCS careers, education jobs, faculty recruitment, PGT TGT PRT jobs",
+      canonicalUrl: "https://lfgos.com/careers",
+      headingOptions: "h1",
+      schema: JSON.stringify(
+        {
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          name: "Careers & Faculty Recruitment | Little Flower Group of Schools",
+          url: "https://lfgos.com/careers",
+          description:
+            "Build your career with Little Flower Group of Schools. Explore teaching and administrative opportunities.",
+          publisher: {
+            "@type": "EducationalOrganization",
+            name: "Little Flower Group of Schools",
+            url: "https://lfgos.com",
+          },
+        },
+        null,
+        2,
+      ),
+    },
+    "news-and-events": {
+      title: "News & Events",
+      type: "Media & Press",
+      metaTitle: "News & Events | Little Flower Group of Schools",
+      metaDescription:
+        "Latest news, press releases, circulars, and announcements from Little Flower Group of Schools campuses across Uttar Pradesh.",
+      targetKeywords:
+        "school news, annual day, LFCS announcements, school events, press release, CBSE circulars",
+      canonicalUrl: "https://lfgos.com/news-&-events",
+      headingOptions: "h1",
+      schema: JSON.stringify(
+        {
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          name: "News & Events | Little Flower Group of Schools",
+          url: "https://lfgos.com/news-&-events",
+          description:
+            "Latest news, press releases, circulars, and announcements from Little Flower Group of Schools campuses across Uttar Pradesh.",
+          publisher: {
+            "@type": "EducationalOrganization",
+            name: "Little Flower Group of Schools",
+            url: "https://lfgos.com",
+          },
+        },
+        null,
+        2,
+      ),
+    },
+    gallery: {
+      title: "Photo Gallery",
+      type: "Media & Press",
+      metaTitle: "Photo Gallery | Little Flower Group of Schools",
+      metaDescription:
+        "Photos from Little Flower campuses: classrooms, modern science labs, early childhood playrooms, sports grounds, arts, culture, and school events.",
+      targetKeywords:
+        "school photos, campus pictures, science exhibition, sports day gallery, Little Flower pictures, LFCS gallery",
+      canonicalUrl: "https://lfgos.com/gallery",
+      headingOptions: "h1",
+      schema: JSON.stringify(
+        {
+          "@context": "https://schema.org",
+          "@type": "ImageGallery",
+          name: "Photo Gallery | Little Flower Group of Schools",
+          url: "https://lfgos.com/gallery",
+          description:
+            "Photos from Little Flower campuses: classrooms, modern science labs, early childhood playrooms, sports grounds, arts, culture, and school events.",
+          publisher: {
+            "@type": "EducationalOrganization",
+            name: "Little Flower Group of Schools",
+            url: "https://lfgos.com",
+          },
+        },
+        null,
+        2,
+      ),
+    },
+    contact: {
+      title: "Contact Us",
+      type: "Main Page",
+      metaTitle: "Contact Us | Little Flower Group of Schools",
+      metaDescription:
+        "Get in touch with Little Flower Group of Schools for admissions, academic enquiries, associate school partnerships, or general assistance.",
+      targetKeywords:
+        "contact LFCS, school helpline phone, admission inquiry email, campus addresses, office hours Mau Lucknow",
+      canonicalUrl: "https://lfgos.com/contact",
+      headingOptions: "h1",
+      schema: JSON.stringify(
+        {
+          "@context": "https://schema.org",
+          "@type": "ContactPage",
+          name: "Contact Us | Little Flower Group of Schools",
+          url: "https://lfgos.com/contact",
+          description:
+            "Get in touch with Little Flower Group of Schools for admissions, academic enquiries, associate school partnerships, or general assistance.",
+          publisher: {
+            "@type": "EducationalOrganization",
+            name: "Little Flower Group of Schools",
+            url: "https://lfgos.com",
+          },
+        },
+        null,
+        2,
+      ),
+    },
+  };
+
   const staticPagesFile = path.resolve(__dirname, "static-pages-seed.json");
-  if (fs.existsSync(staticPagesFile)) {
-    const staticPages = JSON.parse(fs.readFileSync(staticPagesFile, "utf-8"));
-    const pageTitles = {
-      home: "Home",
-      about: "About Us",
-      academics: "Academics",
-      admissions: "Admissions",
-      experience: "Student Experience",
-      "start-school": "Start an Associate School",
-      careers: "Careers",
-      contact: "Contact Us",
-      gallery: "Photo Gallery",
-    };
+  const staticPages = fs.existsSync(staticPagesFile)
+    ? JSON.parse(fs.readFileSync(staticPagesFile, "utf-8"))
+    : {};
 
-    for (const [slug, sections] of Object.entries(staticPages)) {
-      const title = pageTitles[slug] || slug.charAt(0).toUpperCase() + slug.slice(1);
-      const page = await prisma.page.upsert({
-        where: { slug },
-        create: {
-          title,
-          slug,
-          type: "static",
-          visibility: "published",
-        },
-        update: {
-          title,
-        },
-      });
+  for (const [slug, pageSeo] of Object.entries(PAGE_SEO_DATA)) {
+    const page = await prisma.page.upsert({
+      where: { slug },
+      create: {
+        title: pageSeo.title,
+        slug,
+        type: pageSeo.type || "static",
+        visibility: "published",
+        isStatic: true,
+        metaTitle: pageSeo.metaTitle,
+        metaDescription: pageSeo.metaDescription,
+        targetKeywords: pageSeo.targetKeywords,
+        canonicalUrl: pageSeo.canonicalUrl,
+        headingOptions: pageSeo.headingOptions || "h1",
+        schema: pageSeo.schema,
+      },
+      update: {
+        title: pageSeo.title,
+        type: pageSeo.type || "static",
+        isStatic: true,
+        metaTitle: pageSeo.metaTitle,
+        metaDescription: pageSeo.metaDescription,
+        targetKeywords: pageSeo.targetKeywords,
+        canonicalUrl: pageSeo.canonicalUrl,
+        headingOptions: pageSeo.headingOptions || "h1",
+        schema: pageSeo.schema,
+      },
+    });
 
+    const sections = staticPages[slug];
+    if (sections) {
       let order = 0;
       for (const [sectionType, sectionContent] of Object.entries(sections)) {
         await prisma.section.upsert({
@@ -283,10 +626,13 @@ async function main() {
           },
         });
       }
-      console.log(
-        `✓ Static page "${title}" (${slug}) seeded with ${Object.keys(sections).length} sections`,
-      );
     }
+
+    console.log(
+      `✓ Page "${pageSeo.title}" (${slug}) seeded with full SEO, Schema JSON-LD and ${
+        sections ? Object.keys(sections).length : 0
+      } modular sections`,
+    );
   }
 
   // 9. Default Dynamic Categories

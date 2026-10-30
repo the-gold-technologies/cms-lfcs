@@ -5,6 +5,41 @@ import { revalidateWebsite, WebsiteTag } from "@/lib/revalidateWebsite";
 
 export const dynamic = "force-dynamic";
 
+const VALID_GLOBAL_CONFIG_KEYS = new Set([
+  "siteTitle",
+  "siteDescription",
+  "favicon",
+  "logo",
+  "phone",
+  "email",
+  "address",
+  "facebookUrl",
+  "instagramUrl",
+  "youtubeUrl",
+  "linkedinUrl",
+  "googleAnalyticsId",
+  "gtmId",
+  "searchConsoleId",
+  "customHeaderScripts",
+  "customFooterScripts",
+  "socialLinks",
+  "robotsTxt",
+  "sitemapEnabled",
+  "sitemapCustomContent",
+  "schema",
+  "headingOptions",
+]);
+
+function filterConfigPayload(body: Record<string, any>) {
+  const filtered: Record<string, any> = {};
+  for (const [key, value] of Object.entries(body)) {
+    if (VALID_GLOBAL_CONFIG_KEYS.has(key)) {
+      filtered[key] = value;
+    }
+  }
+  return filtered;
+}
+
 export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url);
@@ -58,15 +93,17 @@ export async function PUT(request: Request) {
       return NextResponse.json({ success: true, data: updated });
     }
 
+    const cleanData = filterConfigPayload(body);
+
     const updatedConfig = await prisma.globalConfig.upsert({
       where: { id: "global" },
       create: {
         id: "global",
-        siteTitle: body.siteTitle || "Little Flower Group of Schools",
-        siteDescription: body.siteDescription || "Rooted in Values. Rising with Excellence.",
-        ...body,
+        siteTitle: cleanData.siteTitle || "Little Flower Group of Schools",
+        siteDescription: cleanData.siteDescription || "Rooted in Values. Rising with Excellence.",
+        ...cleanData,
       },
-      update: body,
+      update: cleanData,
     });
 
     // Also sync home page headingOptions and metaTitle/metaDescription if passed

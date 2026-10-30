@@ -14,8 +14,10 @@ export default auth((req) => {
     return NextResponse.next();
   }
 
-  // 2. Public authentication pages
-  const isPublicRoute = ["/login", "/register"].includes(nextUrl.pathname);
+  // 2. Public authentication and crawler endpoint routes
+  const isPublicRoute = ["/login", "/register", "/robots.txt", "/sitemap.xml"].includes(
+    nextUrl.pathname,
+  );
 
   if (isPublicRoute) {
     if (isLoggedIn) {

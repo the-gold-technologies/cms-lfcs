@@ -1,163 +1,323 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { PageHeader } from "@/components/PageHeader";
+import { SaveButton } from "@/components/SaveButton";
 import { InputField } from "@/components/InputField";
 import { TextAreaField } from "@/components/TextAreaField";
 import { ImagePickerField } from "@/components/ImagePickerField";
-import { SaveButton } from "@/components/SaveButton";
+import { Globe, Activity, Shield, Upload } from "lucide-react";
 import toast from "react-hot-toast";
 
-export default function GlobalSeoPage() {
-  const [loading, setLoading] = useState(true);
-  const [saving, setSaving] = useState(false);
+export default function GlobalSEOPage() {
+  const [formData, setFormData] = useState({
+    siteTitle: "",
+    siteDescription: "",
+    favicon: "",
+    googleAnalyticsId: "",
+    gtmId: "",
+    searchConsoleId: "",
+    customHeaderScripts: "",
+    customFooterScripts: "",
+    schema: "",
+    headingOptions: "h1",
+  });
 
-  const [siteTitle, setSiteTitle] = useState("");
-  const [siteDescription, setSiteDescription] = useState("");
-  const [favicon, setFavicon] = useState("");
-  const [logo, setLogo] = useState("");
-  const [googleAnalyticsId, setGoogleAnalyticsId] = useState("");
-  const [gtmId, setGtmId] = useState("");
-  const [searchConsoleId, setSearchConsoleId] = useState("");
-  const [robotsTxt, setRobotsTxt] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
+  const [isSaving, setIsSaving] = useState(false);
+  const schemaInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    async function loadConfig() {
+    async function loadSEOData() {
       try {
         const res = await fetch("/api/seo/global");
         const json = await res.json();
         if (json.success && json.data) {
-          const d = json.data;
-          setSiteTitle(d.siteTitle || "");
-          setSiteDescription(d.siteDescription || "");
-          setFavicon(d.favicon || "");
-          setLogo(d.logo || "");
-          setGoogleAnalyticsId(d.googleAnalyticsId || "");
-          setGtmId(d.gtmId || "");
-          setSearchConsoleId(d.searchConsoleId || "");
-          setRobotsTxt(d.robotsTxt || "");
+          const data = json.data;
+          setFormData({
+            siteTitle: data.siteTitle || "",
+            siteDescription: data.siteDescription || "",
+            favicon: data.favicon || "",
+            googleAnalyticsId: data.googleAnalyticsId || "",
+            gtmId: data.gtmId || "",
+            searchConsoleId: data.searchConsoleId || "",
+            customHeaderScripts: data.customHeaderScripts || "",
+            customFooterScripts: data.customFooterScripts || "",
+            schema:
+              typeof data.schema === "string"
+                ? data.schema
+                : data.schema
+                  ? JSON.stringify(data.schema, null, 2)
+                  : "",
+            headingOptions: data.headingOptions || "h1",
+          });
         }
-      } catch {
-        toast.error("Failed to load SEO configuration");
+      } catch (error) {
+        console.error("Error loading SEO data:", error);
+        toast.error("Failed to load SEO data");
       } finally {
-        setLoading(false);
+        setIsLoading(false);
       }
     }
-    loadConfig();
+    loadSEOData();
   }, []);
 
-  const handleSave = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setSaving(true);
+  const handleSave = async (e?: React.FormEvent) => {
+    if (e) e.preventDefault();
+    setIsSaving(true);
+    const tid = toast.loading("Saving SEO settings...");
     try {
+      let parsedSchema = formData.schema;
+      if (formData.schema.trim()) {
+        try {
+          parsedSchema = JSON.stringify(JSON.parse(formData.schema));
+        } catch {
+          // keep as string if not strict json
+        }
+      }
+
+      const payload = {
+        ...formData,
+        schema: parsedSchema,
+      };
+
       const res = await fetch("/api/seo/global", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          siteTitle,
-          siteDescription,
-          favicon,
-          logo,
-          googleAnalyticsId,
-          gtmId,
-          searchConsoleId,
-          robotsTxt,
-        }),
+        body: JSON.stringify(payload),
       });
+
       const json = await res.json();
       if (json.success) {
-        toast.success("Global SEO settings saved and revalidated!");
+        toast.success("Global SEO settings saved successfully!", { id: tid });
       } else {
-        toast.error(json.error || "Save failed");
+        const errMsg =
+          typeof json.error === "string" ? json.error : json.error?.message || "Save failed.";
+        toast.error(errMsg, { id: tid });
       }
-    } catch {
-      toast.error("Network error while saving settings");
+    } catch (error) {
+      console.error("Error saving global SEO:", error);
+      toast.error("Network error while saving.", { id: tid });
     } finally {
-      setSaving(false);
+      setIsSaving(false);
     }
   };
 
+  const handleSchemaUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = (evt) => {
+      try {
+        const text = evt.target?.result as string;
+        const parsed = JSON.parse(text);
+        setFormData((prev) => ({
+          ...prev,
+          schema: JSON.stringify(parsed, null, 2),
+        }));
+        toast.success("Schema JSON imported successfully!");
+      } catch {
+        toast.error("Invalid JSON file format");
+      }
+    };
+    reader.readAsText(file);
+    if (schemaInputRef.current) schemaInputRef.current.value = "";
+  };
+
+  if (isLoading) {
+    return (
+      <div className="flex h-[60vh] items-center justify-center">
+        <div className="animate-pulse text-gray-400 font-medium">Loading SEO settings...</div>
+      </div>
+    );
+  }
+
   return (
-    <div className="flex flex-col gap-6 w-full max-w-7xl mx-auto pb-16">
-      <PageHeader
-        title="Global SEO & Tracking"
-        description="Configure default meta titles, site description, favicon, Google Analytics GA4, and Google Tag Manager."
-      />
-
-      <form
-        onSubmit={handleSave}
-        className="bg-white rounded-3xl border border-gray-100 p-8 shadow-xs space-y-6"
-      >
-        <InputField
-          label="Default Website Title *"
-          value={siteTitle}
-          onChange={(e) => setSiteTitle(e.target.value)}
-          placeholder="Enter default site title..."
-          required
+    <div className="flex flex-col gap-8 max-w-6xl mx-auto pb-20 animate-in fade-in duration-500">
+      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+        <PageHeader
+          title="Global SEO & Tracking"
+          description="Manage website-wide meta tags, landing page heading hierarchy, tracking codes, and favicon."
         />
-
-        <TextAreaField
-          label="Default Meta Description *"
-          value={siteDescription}
-          onChange={(e) => setSiteDescription(e.target.value)}
-          placeholder="Enter default meta description for search engines..."
-          rows={3}
-          required
-        />
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          <ImagePickerField
-            label="Website Logo"
-            value={logo}
-            onChange={setLogo}
-            folder="lfcs-school/brand"
-          />
-          <ImagePickerField
-            label="Browser Favicon / App Icon"
-            value={favicon}
-            onChange={setFavicon}
-            folder="lfcs-school/brand"
-          />
+        <div className="mb-2 shrink-0">
+          <SaveButton onClick={handleSave} loading={isSaving} className="w-auto px-10" />
         </div>
+      </div>
 
-        <div className="border-t border-gray-100 pt-6">
-          <h3 className="text-sm font-bold text-gray-900 mb-4">Analytics & Search Console</h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <InputField
-              label="Google Analytics GA4 ID"
-              value={googleAnalyticsId}
-              onChange={(e) => setGoogleAnalyticsId(e.target.value)}
-              placeholder="e.g. G-XXXXXXXXXX"
-            />
-            <InputField
-              label="Google Tag Manager (GTM) ID"
-              value={gtmId}
-              onChange={(e) => setGtmId(e.target.value)}
-              placeholder="e.g. GTM-XXXXXXX"
-            />
-            <InputField
-              label="Google Search Console Token"
-              value={searchConsoleId}
-              onChange={(e) => setSearchConsoleId(e.target.value)}
-              placeholder="e.g. google-site-verification=..."
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        {/* Basic Site Info */}
+        <div className="flex flex-col gap-6 bg-white p-8 rounded-[2.5rem] shadow-xs border border-gray-100">
+          <div className="flex items-center gap-3 mb-2">
+            <div className="p-2.5 bg-rose-50 text-[#842b46] rounded-2xl">
+              <Globe className="w-5 h-5" />
+            </div>
+            <h2 className="text-xl font-bold text-gray-900">General Identity</h2>
+          </div>
+
+          <InputField
+            label="Default Site Title"
+            value={formData.siteTitle}
+            onChange={(e) => setFormData({ ...formData, siteTitle: e.target.value })}
+            placeholder="e.g. Little Flower Group of Schools"
+            helperText="The main title of your website. Appears in browser tabs and search results."
+          />
+          <TextAreaField
+            label="Default Site Description"
+            value={formData.siteDescription}
+            onChange={(e) => setFormData({ ...formData, siteDescription: e.target.value })}
+            placeholder="A short summary of what your site is about."
+            rows={3}
+            helperText="A summary of your website (approx. 150-160 characters). Used by search engines for the result snippet."
+          />
+
+          {/* Hero Headline Tag (SEO) for Landing Page */}
+          <div className="flex flex-col gap-2">
+            <label className="text-xs font-bold text-gray-700 uppercase tracking-wider flex items-center gap-1.5">
+              Hero Headline Tag (SEO)
+            </label>
+            <select
+              value={formData.headingOptions || "h1"}
+              onChange={(e) =>
+                setFormData((prev) => ({
+                  ...prev,
+                  headingOptions: e.target.value,
+                }))
+              }
+              className="w-full bg-white border border-gray-200 rounded-2xl px-4 py-3 text-sm text-gray-800 focus:outline-hidden focus:ring-2 focus:ring-[#842b46] transition shadow-xs cursor-pointer"
+            >
+              <option value="">Select heading tag...</option>
+              <option value="h1">H1 (Recommended standard title tag)</option>
+              <option value="h2">H2 (Secondary section tag)</option>
+              <option value="h3">H3 (Subsection tag)</option>
+              <option value="h4">H4 (Minor subsection tag)</option>
+              <option value="h5">H5 (Deep nested tag)</option>
+              <option value="h6">H6 (Smallest heading tag)</option>
+            </select>
+            <p className="text-[11px] text-gray-400">
+              Select the semantic HTML heading tag used for the home landing page hero title.
+            </p>
+          </div>
+
+          <div className="mt-2">
+            <ImagePickerField
+              label="Favicon (.ico or .png)"
+              value={formData.favicon}
+              onChange={(url) => setFormData({ ...formData, favicon: url })}
+              folder="lfcs-school/brand"
+              placeholder="/logo1.webp"
+              helperText="The small icon shown in browser tabs. Use a .ico file or a 32x32px .png for best results."
             />
           </div>
         </div>
 
-        <div className="border-t border-gray-100 pt-6">
-          <TextAreaField
-            label="Robots.txt Directives"
-            value={robotsTxt}
-            onChange={(e) => setRobotsTxt(e.target.value)}
-            placeholder="Enter robots.txt directives..."
-            rows={4}
+        {/* Tracking & Analytics */}
+        <div className="flex flex-col gap-6 bg-white p-8 rounded-[2.5rem] shadow-xs border border-gray-100">
+          <div className="flex items-center gap-3 mb-2">
+            <div className="p-2.5 bg-emerald-50 text-emerald-600 rounded-2xl">
+              <Activity className="w-5 h-5" />
+            </div>
+            <h2 className="text-xl font-bold text-gray-900">Tracking &amp; Analytics</h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <InputField
+              label="Google Analytics ID"
+              value={formData.googleAnalyticsId}
+              onChange={(e) => setFormData({ ...formData, googleAnalyticsId: e.target.value })}
+              placeholder="e.g. G-XXXXXXX"
+              helperText="Your Google Analytics 4 Measurement ID (starts with G-)."
+            />
+            <InputField
+              label="GTM Container ID"
+              value={formData.gtmId}
+              onChange={(e) => setFormData({ ...formData, gtmId: e.target.value })}
+              placeholder="e.g. GTM-XXXXXXX"
+              helperText="Your Google Tag Manager Container ID."
+            />
+          </div>
+
+          <InputField
+            label="Search Console Verification ID"
+            value={formData.searchConsoleId}
+            onChange={(e) => setFormData({ ...formData, searchConsoleId: e.target.value })}
+            placeholder="Enter the google-site-verification code"
+            helperText="The verification token from Google Search Console (HTML tag method)."
           />
         </div>
+      </div>
 
-        <div className="pt-2 w-full">
-          <SaveButton loading={saving} label="Save SEO Settings" />
+      {/* Custom Code Injection */}
+      <div className="flex flex-col gap-6 bg-white p-8 rounded-[2.5rem] shadow-xs border border-gray-100">
+        <div className="flex items-center gap-3 mb-2">
+          <div className="p-2.5 bg-amber-50 text-[#dfae19] rounded-2xl">
+            <Shield className="w-5 h-5" />
+          </div>
+          <h2 className="text-xl font-bold text-gray-900">Custom Code Injection</h2>
         </div>
-      </form>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <TextAreaField
+            label="Custom Header Scripts (<head>)"
+            value={formData.customHeaderScripts}
+            onChange={(e) => setFormData({ ...formData, customHeaderScripts: e.target.value })}
+            placeholder="Paste your scripts to be injected into the head..."
+            rows={5}
+            helperText="HTML or script tags to insert right before </head> on all pages (e.g. Meta Pixel, Heatmaps)."
+          />
+          <TextAreaField
+            label="Custom Footer Scripts (Before </body>)"
+            value={formData.customFooterScripts}
+            onChange={(e) => setFormData({ ...formData, customFooterScripts: e.target.value })}
+            placeholder="Paste your scripts to be injected before the closing body tag..."
+            rows={5}
+            helperText="HTML or script tags to insert right before </body> on all pages (e.g. Live chat widgets)."
+          />
+        </div>
+      </div>
+
+      {/* Schema / JSON-LD Structured Data Card */}
+      <div className="flex flex-col gap-6 bg-white p-8 rounded-[2.5rem] shadow-xs border border-gray-100">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="p-2.5 bg-purple-50 text-purple-600 rounded-2xl">
+              <Globe className="w-5 h-5" />
+            </div>
+            <div>
+              <h2 className="text-xl font-bold text-gray-900">Structured Data (JSON-LD)</h2>
+              <p className="text-xs text-gray-500 mt-0.5">
+                Site-wide organization schema or custom JSON-LD for rich snippets.
+              </p>
+            </div>
+          </div>
+          <div>
+            <input
+              type="file"
+              ref={schemaInputRef}
+              onChange={handleSchemaUpload}
+              accept=".json,application/json"
+              className="hidden"
+            />
+            <button
+              type="button"
+              onClick={() => schemaInputRef.current?.click()}
+              className="flex items-center gap-2 px-4 py-2 bg-purple-50 hover:bg-purple-100 text-purple-700 rounded-xl text-xs font-bold transition shadow-xs cursor-pointer"
+            >
+              <Upload className="w-4 h-4" />
+              Upload Schema (.json)
+            </button>
+          </div>
+        </div>
+
+        <TextAreaField
+          label="JSON-LD Schema Markup"
+          value={formData.schema}
+          onChange={(e) => setFormData({ ...formData, schema: e.target.value })}
+          placeholder='{\n  "@context": "https://schema.org",\n  "@type": "EducationalOrganization",\n  "name": "Little Flower Group of Schools"\n}'
+          rows={6}
+          helperText="Raw JSON-LD markup to provide structured school/organization data to Google."
+        />
+      </div>
     </div>
   );
 }

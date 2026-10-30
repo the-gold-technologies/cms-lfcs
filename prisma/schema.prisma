@@ -41,6 +41,7 @@ model GlobalConfig {
   robotsTxt           String?  @default("User-agent: *\nAllow: /\n\nSitemap: https://lfgos.com/sitemap.xml")
   sitemapEnabled      Boolean  @default(true)
   schema              String?
+  headingOptions      String?  @default("h1")
   createdAt           DateTime @default(now())
   updatedAt           DateTime @updatedAt
 }
@@ -183,13 +184,22 @@ model Page {
   id              String    @id @default(cuid())
   title           String?
   slug            String    @unique
+  parent          String    @default("-")
+  order           Int       @default(0)
   type            String    @default("static")
   visibility      String    @default("published")
+  isStatic        Boolean   @default(false)
   metaTitle       String?
   metaDescription String?
   targetKeywords  String?
   canonicalUrl    String?
   noIndex         Boolean   @default(false)
+  featuredImage   String?
+  ogTitle         String?
+  ogDescription   String?
+  ogImage         String?
+  schema          String?
+  headingOptions  String?   @default("h1")
   createdAt       DateTime  @default(now())
   updatedAt       DateTime  @updatedAt
   sections        Section[]
@@ -209,13 +219,13 @@ model Section {
 }
 
 model NavLink {
-  id          String   @id @default(cuid())
-  label       String
-  url         String
-  type        String   @default("Header") // "Header", "Footer"
-  parent      String   @default("-")
-  order       Int      @default(0)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id        String   @id @default(cuid())
+  label     String
+  url       String
+  type      String   @default("Main Link") // "Main Link", "Dropdown", "Dropdown Item", "Action Button"
+  parent    String   @default("-")
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 

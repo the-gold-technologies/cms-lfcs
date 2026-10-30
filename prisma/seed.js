@@ -43,32 +43,56 @@ async function main() {
     where: { id: "global" },
     update: {
       siteTitle: "Little Flower Group of Schools",
-      siteDescription: "Rooted in Values. Rising with Excellence.",
+      siteDescription:
+        "A network of CBSE schools committed to academic excellence, character building and holistic development.",
       logo: "https://res.cloudinary.com/dpa93copz/image/upload/v1793170044/lfcs-school/logo-header_1793170044344.webp",
       favicon:
         "https://res.cloudinary.com/dpa93copz/image/upload/v1793170045/lfcs-school/logo1_1793170045264.webp",
-      phone: "+91 94508 24500",
-      email: "info@lfgos.com",
-      address: "Nizamuddinpura, Mau, Uttar Pradesh 275101",
+      phone: "+91 83688 38489",
+      email: "franchise@lfcsschools.com",
+      address: "Lucknow, Uttar Pradesh",
       facebookUrl: "https://www.facebook.com/people/LFCS-Schools/61594935059542/",
       instagramUrl: "https://www.instagram.com/lfcs_schools/",
       youtubeUrl: "https://youtube.com/@lfcsschools?si=TCzIAvIrbwgYA2KY",
+      socialLinks: {
+        footerLogo:
+          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170045/lfcs-school/logo1_1793170045264.webp",
+        brandTitle: "Little Flower",
+        brandSubtitle: "Group of Schools",
+        phone2: "+91 99999 76959",
+        operatingHours: "Mon - Sat: 8:00 AM - 5:00 PM",
+        copyrightText: "© 2026 Little Flower Group of Schools. All rights reserved.",
+        whatsapp: "+91 94508 24500",
+        twitter: "",
+      },
       robotsTxt: "User-agent: *\nAllow: /\n\nSitemap: https://lfgos.com/sitemap.xml",
       sitemapEnabled: true,
     },
     create: {
       id: "global",
       siteTitle: "Little Flower Group of Schools",
-      siteDescription: "Rooted in Values. Rising with Excellence.",
+      siteDescription:
+        "A network of CBSE schools committed to academic excellence, character building and holistic development.",
       logo: "https://res.cloudinary.com/dpa93copz/image/upload/v1793170044/lfcs-school/logo-header_1793170044344.webp",
       favicon:
         "https://res.cloudinary.com/dpa93copz/image/upload/v1793170045/lfcs-school/logo1_1793170045264.webp",
-      phone: "+91 94508 24500",
-      email: "info@lfgos.com",
-      address: "Nizamuddinpura, Mau, Uttar Pradesh 275101",
+      phone: "+91 83688 38489",
+      email: "franchise@lfcsschools.com",
+      address: "Lucknow, Uttar Pradesh",
       facebookUrl: "https://www.facebook.com/people/LFCS-Schools/61594935059542/",
       instagramUrl: "https://www.instagram.com/lfcs_schools/",
       youtubeUrl: "https://youtube.com/@lfcsschools?si=TCzIAvIrbwgYA2KY",
+      socialLinks: {
+        footerLogo:
+          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170045/lfcs-school/logo1_1793170045264.webp",
+        brandTitle: "Little Flower",
+        brandSubtitle: "Group of Schools",
+        phone2: "+91 99999 76959",
+        operatingHours: "Mon - Sat: 8:00 AM - 5:00 PM",
+        copyrightText: "© 2026 Little Flower Group of Schools. All rights reserved.",
+        whatsapp: "+91 94508 24500",
+        twitter: "",
+      },
       robotsTxt: "User-agent: *\nAllow: /\n\nSitemap: https://lfgos.com/sitemap.xml",
       sitemapEnabled: true,
     },
@@ -248,6 +272,161 @@ async function main() {
     });
   }
   console.log(`✓ ${defaultCategories.length} Default Dynamic Categories verified`);
+
+  // 10. Navigation Menu Links
+  const navLinksDefault = [
+    {
+      id: "nav-about",
+      label: "About Us",
+      url: "/about",
+      type: "Main Link",
+      parent: "-",
+      order: 1,
+    },
+    {
+      id: "nav-academics",
+      label: "Academics",
+      url: "/academics",
+      type: "Dropdown",
+      parent: "-",
+      order: 2,
+    },
+    {
+      id: "nav-academics-curriculum",
+      label: "Academics",
+      url: "/academics",
+      type: "Dropdown Item",
+      parent: "nav-academics",
+      order: 1,
+    },
+    {
+      id: "nav-academics-experience",
+      label: "Experience",
+      url: "/experience",
+      type: "Dropdown Item",
+      parent: "nav-academics",
+      order: 2,
+    },
+    {
+      id: "nav-academics-news",
+      label: "News & Events",
+      url: "/news-&-events",
+      type: "Dropdown Item",
+      parent: "nav-academics",
+      order: 3,
+    },
+    {
+      id: "nav-admissions",
+      label: "Admissions",
+      url: "/admissions",
+      type: "Main Link",
+      parent: "-",
+      order: 3,
+    },
+    {
+      id: "nav-our-schools",
+      label: "Our Schools",
+      url: "/our-school",
+      type: "Dropdown",
+      parent: "-",
+      order: 4,
+    },
+    {
+      id: "nav-school-mau",
+      label: "LFCS, MAU",
+      url: "https://lfgos.com/",
+      type: "Dropdown Item",
+      parent: "nav-our-schools",
+      order: 1,
+    },
+    {
+      id: "nav-school-sikatiya",
+      label: "LFCS, SIKATIYA",
+      url: "https://lfcsmau.co/",
+      type: "Dropdown Item",
+      parent: "nav-our-schools",
+      order: 2,
+    },
+    {
+      id: "nav-school-ghosi",
+      label: "LFCS, GHOSI",
+      url: "https://www.lfcsghosi.co.in/",
+      type: "Dropdown Item",
+      parent: "nav-our-schools",
+      order: 3,
+    },
+    {
+      id: "nav-school-ballia",
+      label: "LFCS, BALLIA",
+      url: "https://lfcsballia.co.in/",
+      type: "Dropdown Item",
+      parent: "nav-our-schools",
+      order: 4,
+    },
+    {
+      id: "nav-school-kasimabad",
+      label: "LFCS, KASIMABAD GHAZIPUR",
+      url: "https://www.lfcskasimabad.in/",
+      type: "Dropdown Item",
+      parent: "nav-our-schools",
+      order: 5,
+    },
+    {
+      id: "nav-school-azamgarh",
+      label: "LFCS, AZAMGARH",
+      url: "https://lfcsazamgarh.org.in/",
+      type: "Dropdown Item",
+      parent: "nav-our-schools",
+      order: 6,
+    },
+    {
+      id: "nav-school-lfis-mau",
+      label: "LFIS, KHALISHPUR MAU",
+      url: "https://lfismau.co.in/",
+      type: "Dropdown Item",
+      parent: "nav-our-schools",
+      order: 7,
+    },
+    {
+      id: "nav-school-azadhind",
+      label: "AZAD HIND INTER COLLEGE, KHALISHPUR MAU",
+      url: "https://www.facebook.com/azadhindcollege/",
+      type: "Dropdown Item",
+      parent: "nav-our-schools",
+      order: 8,
+    },
+    {
+      id: "nav-contact",
+      label: "Contact Us",
+      url: "/contact",
+      type: "Main Link",
+      parent: "-",
+      order: 5,
+    },
+    {
+      id: "nav-start-school",
+      label: "Start a School",
+      url: "/start-school",
+      type: "Action Button",
+      parent: "-",
+      order: 6,
+    },
+  ];
+
+  await prisma.navLink.deleteMany();
+  for (const item of navLinksDefault) {
+    await prisma.navLink.create({
+      data: {
+        id: item.id,
+        label: item.label,
+        url: item.url,
+        type: item.type,
+        parent: item.parent,
+        order: item.order,
+      },
+    });
+  }
+  console.log(`✓ ${navLinksDefault.length} Header Navigation Menu Links seeded`);
 
   console.log("🎉 Complete database seed with Cloudinary CDN URLs finished successfully!");
 }

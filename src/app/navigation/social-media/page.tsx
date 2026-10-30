@@ -1,23 +1,49 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { PageHeader } from "@/components/PageHeader";
+import React, { useState, useEffect } from "react";
+import {
+  Share2,
+  Image as ImageIcon,
+  FileText,
+  Compass,
+  Info,
+  Loader2,
+  Layers,
+  Sparkles,
+} from "lucide-react";
+import toast from "react-hot-toast";
 import { InputField } from "@/components/InputField";
 import { TextAreaField } from "@/components/TextAreaField";
+import { ImagePickerField } from "@/components/ImagePickerField";
 import { SaveButton } from "@/components/SaveButton";
-import toast from "react-hot-toast";
 
-export default function SocialMediaPage() {
+export default function SocialMediaFooterPage() {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
+  const [saved, setSaved] = useState(false);
 
-  const [phone, setPhone] = useState("");
-  const [email, setEmail] = useState("");
+  // Section 1: Logos & Branding
+  const [headerLogo, setHeaderLogo] = useState("");
+  const [footerLogo, setFooterLogo] = useState("");
+  const [brandTitle, setBrandTitle] = useState("");
+  const [brandSubtitle, setBrandSubtitle] = useState("");
+
+  // Section 2: Footer Details & Contact Information
+  const [footerDescription, setFooterDescription] = useState("");
   const [address, setAddress] = useState("");
+  const [phone, setPhone] = useState("");
+  const [phone2, setPhone2] = useState("");
+  const [email, setEmail] = useState("");
+  const [operatingHours, setOperatingHours] = useState("");
+  const [copyrightText, setCopyrightText] = useState("");
+
+  // Section 3: Centralized Social Media Links
   const [facebookUrl, setFacebookUrl] = useState("");
   const [instagramUrl, setInstagramUrl] = useState("");
   const [youtubeUrl, setYoutubeUrl] = useState("");
   const [linkedinUrl, setLinkedinUrl] = useState("");
+  const [twitter, setTwitter] = useState("");
+  const [whatsapp, setWhatsapp] = useState("");
 
   useEffect(() => {
     async function loadConfig() {
@@ -25,17 +51,35 @@ export default function SocialMediaPage() {
         const res = await fetch("/api/seo/global");
         const json = await res.json();
         if (json.success && json.data) {
-          const d = json.data;
-          setPhone(d.phone || "");
-          setEmail(d.email || "");
-          setAddress(d.address || "");
-          setFacebookUrl(d.facebookUrl || "");
-          setInstagramUrl(d.instagramUrl || "");
-          setYoutubeUrl(d.youtubeUrl || "");
-          setLinkedinUrl(d.linkedinUrl || "");
+          const cfg = json.data;
+          const s = (cfg.socialLinks as Record<string, any>) || {};
+
+          // Section 1: Logos & Branding
+          setHeaderLogo(cfg.logo || "");
+          setFooterLogo(s.footerLogo || "");
+          setBrandTitle(s.brandTitle || "");
+          setBrandSubtitle(s.brandSubtitle || "");
+
+          // Section 2: Footer & Contact
+          setFooterDescription(cfg.siteDescription || "");
+          setAddress(cfg.address || "");
+          setPhone(cfg.phone || "");
+          setPhone2(s.phone2 || "");
+          setEmail(cfg.email || "");
+          setOperatingHours(s.operatingHours || "");
+          setCopyrightText(s.copyrightText || "");
+
+          // Section 3: Social Media
+          setFacebookUrl(cfg.facebookUrl || "");
+          setInstagramUrl(cfg.instagramUrl || "");
+          setYoutubeUrl(cfg.youtubeUrl || "");
+          setLinkedinUrl(cfg.linkedinUrl || "");
+          setTwitter(s.twitter || "");
+          setWhatsapp(s.whatsapp || "");
         }
-      } catch {
-        toast.error("Failed to load contact info");
+      } catch (err) {
+        console.error("Failed to load footer & social config:", err);
+        toast.error("Failed to load settings");
       } finally {
         setLoading(false);
       }
@@ -43,107 +87,354 @@ export default function SocialMediaPage() {
     loadConfig();
   }, []);
 
-  const handleSave = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSave = async (e?: React.FormEvent) => {
+    if (e) e.preventDefault();
     setSaving(true);
+    setSaved(false);
+
     try {
+      const payload = {
+        logo: headerLogo,
+        siteDescription: footerDescription,
+        address,
+        phone,
+        email,
+        facebookUrl,
+        instagramUrl,
+        youtubeUrl,
+        linkedinUrl: linkedinUrl || "",
+        socialLinks: {
+          footerLogo,
+          brandTitle,
+          brandSubtitle,
+          phone2,
+          operatingHours,
+          copyrightText,
+          twitter,
+          whatsapp,
+        },
+      };
+
       const res = await fetch("/api/seo/global", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          phone,
-          email,
-          address,
-          facebookUrl,
-          instagramUrl,
-          youtubeUrl,
-          linkedinUrl,
-        }),
+        body: JSON.stringify(payload),
       });
       const json = await res.json();
+
       if (json.success) {
-        toast.success("Contact channels & social media updated!");
+        setSaved(true);
+        toast.success("Social Media, Brand Logos & Footer settings saved successfully!");
+        setTimeout(() => setSaved(false), 3000);
       } else {
-        toast.error(json.error || "Save failed");
+        toast.error(json.error || "Failed to save settings");
       }
-    } catch {
-      toast.error("Network error while saving settings");
+    } catch (err: any) {
+      console.error("Error saving brand config:", err);
+      toast.error(err?.message || "Failed to save settings");
     } finally {
       setSaving(false);
     }
   };
 
   return (
-    <div className="flex flex-col gap-6 w-full max-w-7xl mx-auto pb-16">
-      <PageHeader
-        title="Social Media & Brand Channels"
-        description="Manage central school telephone helplines, official emails, postal address, and social links."
-      />
-
-      <form
-        onSubmit={handleSave}
-        className="bg-white rounded-3xl border border-gray-100 p-8 shadow-xs space-y-6"
-      >
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          <InputField
-            label="Central Helpline Phone *"
-            value={phone}
-            onChange={(e) => setPhone(e.target.value)}
-            placeholder="Enter contact number with country code..."
-            required
-          />
-          <InputField
-            label="Central Inquiry Email *"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Enter central email address..."
-            required
-          />
-        </div>
-
-        <TextAreaField
-          label="Central Headquarters Address *"
-          value={address}
-          onChange={(e) => setAddress(e.target.value)}
-          placeholder="Enter complete postal address of central administration..."
-          rows={3}
-          required
-        />
-
-        <div className="border-t border-gray-100 pt-6">
-          <h3 className="text-sm font-bold text-gray-900 mb-4">Official Social Media Profiles</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-            <InputField
-              label="Facebook Page URL"
-              value={facebookUrl}
-              onChange={(e) => setFacebookUrl(e.target.value)}
-              placeholder="https://facebook.com/your-page"
-            />
-            <InputField
-              label="Instagram Profile URL"
-              value={instagramUrl}
-              onChange={(e) => setInstagramUrl(e.target.value)}
-              placeholder="https://instagram.com/your-handle"
-            />
-            <InputField
-              label="YouTube Channel URL"
-              value={youtubeUrl}
-              onChange={(e) => setYoutubeUrl(e.target.value)}
-              placeholder="https://youtube.com/@your-channel"
-            />
-            <InputField
-              label="LinkedIn Page URL"
-              value={linkedinUrl}
-              onChange={(e) => setLinkedinUrl(e.target.value)}
-              placeholder="https://linkedin.com/company/your-organization"
-            />
+    <section className="flex flex-col gap-6 pb-20 w-full max-w-6xl mx-auto">
+      {/* Page Header */}
+      <div className="pb-4 border-b border-gray-100">
+        <div className="flex items-center gap-3 mb-1.5">
+          <div className="w-10 h-10 rounded-2xl bg-rose-50 text-[#842b46] flex items-center justify-center font-bold shadow-xs">
+            <Compass className="w-5 h-5" />
+          </div>
+          <div>
+            <h1 className="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight">
+              Social Media &amp; Footer Branding
+            </h1>
           </div>
         </div>
+        <p className="text-xs sm:text-sm text-gray-500 font-medium pl-13">
+          Manage header and footer brand emblems, school titles, telephone helplines, location,
+          operating schedule, and centralized social media links.
+        </p>
+      </div>
 
-        <div className="pt-2 w-full">
-          <SaveButton loading={saving} label="Save Social & Contact Info" />
+      {loading ? (
+        <div className="bg-white rounded-3xl p-16 text-center border border-gray-100 flex flex-col items-center justify-center gap-3">
+          <Loader2 className="w-8 h-8 text-[#842b46] animate-spin" />
+          <p className="text-xs font-semibold text-gray-500">
+            Loading brand &amp; footer settings...
+          </p>
         </div>
-      </form>
-    </div>
+      ) : (
+        <form onSubmit={handleSave} className="flex flex-col gap-8 w-full">
+          {/* Section 1: Logos & Branding */}
+          <div className="w-full border border-gray-100 rounded-3xl bg-white p-6 sm:p-8 shadow-xs flex flex-col gap-6">
+            <div className="flex items-center gap-3.5 border-b border-gray-100 pb-4">
+              <div className="w-10 h-10 rounded-2xl bg-rose-50 text-[#842b46] flex items-center justify-center font-bold">
+                <ImageIcon size={20} />
+              </div>
+              <div>
+                <h3 className="font-bold text-gray-900 text-base sm:text-lg">
+                  1. Website Branding &amp; Logos
+                </h3>
+                <p className="text-xs text-gray-500">
+                  Configure website header navigation logo, footer brand emblem, and brand title.
+                </p>
+              </div>
+            </div>
+
+            {/* Brand Title and Subtitle */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+              <InputField
+                label="Footer Brand Title"
+                value={brandTitle}
+                onChange={(e) => setBrandTitle(e.target.value)}
+                placeholder="Little Flower"
+                helperText="Primary brand heading displayed next to the footer emblem."
+              />
+              <InputField
+                label="Footer Brand Subtitle / Tagline"
+                value={brandSubtitle}
+                onChange={(e) => setBrandSubtitle(e.target.value)}
+                placeholder="Group of Schools"
+                helperText="Uppercase subtitle displayed below the brand title in the footer."
+              />
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+              {/* Header / Navbar Logo */}
+              <div className="bg-gray-50/70 p-5 rounded-2xl border border-gray-100 flex flex-col gap-2">
+                <div className="flex items-center gap-2">
+                  <Layers className="w-4 h-4 text-[#842b46]" />
+                  <span className="text-xs font-bold text-gray-800 uppercase tracking-wide">
+                    Website / Header Logo
+                  </span>
+                </div>
+                <ImagePickerField
+                  label="Navbar Brand Logo"
+                  value={headerLogo}
+                  onChange={(url) => setHeaderLogo(url)}
+                  folder="lfcs-school/brand"
+                  placeholder="/logo-header.webp"
+                  helperText="Displayed in the top navigation header across all pages."
+                />
+              </div>
+
+              {/* Footer Logo */}
+              <div className="bg-gray-50/70 p-5 rounded-2xl border border-gray-100 flex flex-col gap-2">
+                <div className="flex items-center gap-2">
+                  <Sparkles className="w-4 h-4 text-[#dfae19]" />
+                  <span className="text-xs font-bold text-gray-800 uppercase tracking-wide">
+                    Footer Brand Logo
+                  </span>
+                </div>
+                <ImagePickerField
+                  label="Footer Crest / Emblem"
+                  value={footerLogo}
+                  onChange={(url) => setFooterLogo(url)}
+                  folder="lfcs-school/brand"
+                  placeholder="/logo1.webp"
+                  helperText="Prominently displayed in the website footer brand column (70x70)."
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Section 2: Footer Details & Contact Information */}
+          <div className="w-full border border-gray-100 rounded-3xl bg-white p-6 sm:p-8 shadow-xs flex flex-col gap-6">
+            <div className="flex items-center gap-3.5 border-b border-gray-100 pb-4">
+              <div className="w-10 h-10 rounded-2xl bg-amber-50 text-[#dfae19] flex items-center justify-center font-bold">
+                <FileText size={20} />
+              </div>
+              <div>
+                <h3 className="font-bold text-gray-900 text-base sm:text-lg">
+                  2. Footer Details &amp; Helplines
+                </h3>
+                <p className="text-xs text-gray-500">
+                  Mission narrative, telephone helplines, official emails, campus address, and
+                  operating schedule.
+                </p>
+              </div>
+            </div>
+
+            {/* Footer Narrative */}
+            <div>
+              <TextAreaField
+                label="Footer Brand Narrative / Mission Statement"
+                value={footerDescription}
+                onChange={(e) => setFooterDescription(e.target.value)}
+                rows={3}
+                placeholder="A network of CBSE schools committed to academic excellence, character building and holistic development."
+                helperText="Short narrative displayed directly beneath the footer logo in the left column."
+              />
+            </div>
+
+            {/* Address, Phone, Phone2, Email Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+              <div className="space-y-1">
+                <InputField
+                  label="Footer Location / Address"
+                  value={address}
+                  onChange={(e) => setAddress(e.target.value)}
+                  placeholder="e.g. Lucknow, Uttar Pradesh"
+                  helperText="Matches the location pin in the footer contact strip."
+                />
+              </div>
+
+              <div className="space-y-1">
+                <InputField
+                  label="Official Inquiry / Franchise Email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="e.g. franchise@lfcsschools.com"
+                  helperText="Official email displayed in the footer contact bar."
+                />
+              </div>
+
+              <div className="space-y-1">
+                <InputField
+                  label="Primary Helpline Phone"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                  placeholder="e.g. +91 83688 38489"
+                  helperText="First phone number in the footer contact strip."
+                />
+              </div>
+
+              <div className="space-y-1">
+                <InputField
+                  label="Secondary Helpline Phone"
+                  value={phone2}
+                  onChange={(e) => setPhone2(e.target.value)}
+                  placeholder="e.g. +91 99999 76959"
+                  helperText="Second phone number in the footer contact strip."
+                />
+              </div>
+
+              <div className="space-y-1">
+                <InputField
+                  label="Operating / Office Hours"
+                  value={operatingHours}
+                  onChange={(e) => setOperatingHours(e.target.value)}
+                  placeholder="e.g. Mon - Sat: 8:00 AM - 5:00 PM"
+                  helperText="Office timings displayed next to the clock icon in the footer."
+                />
+              </div>
+
+              <div className="space-y-1">
+                <InputField
+                  label="Footer Copyright Notice"
+                  value={copyrightText}
+                  onChange={(e) => setCopyrightText(e.target.value)}
+                  placeholder="© 2026 Little Flower Group of Schools. All rights reserved."
+                  helperText="Displayed in the bottom sub-bar of the website footer."
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Section 3: Centralized Social Media Channels */}
+          <div className="w-full border border-gray-100 rounded-3xl bg-white p-6 sm:p-8 shadow-xs flex flex-col gap-6">
+            <div className="flex items-center gap-3.5 border-b border-gray-100 pb-4">
+              <div className="w-10 h-10 rounded-2xl bg-purple-50 text-purple-700 flex items-center justify-center font-bold">
+                <Share2 size={20} />
+              </div>
+              <div>
+                <h3 className="font-bold text-gray-900 text-base sm:text-lg">
+                  3. Centralized Social Media Profiles
+                </h3>
+                <p className="text-xs text-gray-500">
+                  Single source of truth for all social channels displayed across the entire
+                  website.
+                </p>
+              </div>
+            </div>
+
+            {/* Centralized Hub Info Banner */}
+            <div className="p-4 rounded-2xl bg-rose-50/70 border border-rose-200/60 flex items-start gap-3">
+              <Info className="w-4 h-4 text-[#842b46] shrink-0 mt-0.5" />
+              <p className="text-xs text-gray-700 leading-relaxed">
+                <span className="font-bold text-[#842b46]">Centralized Hub: </span>
+                All social media icons across the website (Header, Footer, and Contact page) read
+                directly from these links. Updating a profile here will keep all pages in sync.
+              </p>
+            </div>
+
+            {/* Social Media Inputs Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+              {/* Facebook */}
+              <div className="space-y-1">
+                <InputField
+                  label="Facebook Page URL"
+                  value={facebookUrl}
+                  onChange={(e) => setFacebookUrl(e.target.value)}
+                  placeholder="https://www.facebook.com/people/LFCS-Schools/..."
+                />
+              </div>
+
+              {/* Instagram */}
+              <div className="space-y-1">
+                <InputField
+                  label="Instagram Profile URL"
+                  value={instagramUrl}
+                  onChange={(e) => setInstagramUrl(e.target.value)}
+                  placeholder="https://www.instagram.com/lfcs_schools/"
+                />
+              </div>
+
+              {/* YouTube */}
+              <div className="space-y-1">
+                <InputField
+                  label="YouTube Channel URL"
+                  value={youtubeUrl}
+                  onChange={(e) => setYoutubeUrl(e.target.value)}
+                  placeholder="https://youtube.com/@lfcsschools?si=..."
+                />
+              </div>
+
+              {/* LinkedIn */}
+              <div className="space-y-1">
+                <InputField
+                  label="LinkedIn Institution URL"
+                  value={linkedinUrl}
+                  onChange={(e) => setLinkedinUrl(e.target.value)}
+                  placeholder="https://linkedin.com/school/lfcs"
+                />
+              </div>
+
+              {/* Twitter / X */}
+              <div className="space-y-1">
+                <InputField
+                  label="Twitter / X Profile URL"
+                  value={twitter}
+                  onChange={(e) => setTwitter(e.target.value)}
+                  placeholder="https://x.com/lfcs_schools"
+                />
+              </div>
+
+              {/* WhatsApp */}
+              <div className="space-y-1">
+                <InputField
+                  label="WhatsApp Helpline / Chat Link"
+                  value={whatsapp}
+                  onChange={(e) => setWhatsapp(e.target.value)}
+                  placeholder="+91 94508 24500 or https://wa.me/..."
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Full-Width Save Bar at Bottom */}
+          <div className="pt-2">
+            <SaveButton
+              loading={saving}
+              saved={saved}
+              onClick={handleSave}
+              label="Save All Social Media &amp; Brand Settings"
+              className="w-full py-4 text-sm font-bold shadow-md hover:shadow-lg"
+            />
+          </div>
+        </form>
+      )}
+    </section>
   );
 }

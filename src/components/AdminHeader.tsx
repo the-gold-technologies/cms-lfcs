@@ -70,7 +70,7 @@ const STATIC_SEARCH_ITEMS: SearchItem[] = [
   },
   { title: "General Enquiries", category: "Submissions", url: "/submissions/contact", icon: Inbox },
   {
-    title: "Social Media & Helpline",
+    title: "Social Media & Footer",
     category: "Navigation",
     url: "/navigation/social-media",
     icon: Settings,

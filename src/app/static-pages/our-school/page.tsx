@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { PageHeader } from "@/components/PageHeader";
+import { FormIntroSection } from "@/components/FormIntroSection";
 import { OurSchoolHeroSection, AllSchoolsListSection, OurSchoolCTASection } from "./components";
 
 export default function OurSchoolPageEditor() {
@@ -26,13 +27,22 @@ export default function OurSchoolPageEditor() {
     <section className="flex flex-col gap-8 pb-12 max-w-7xl mx-auto">
       <PageHeader
         title="Our Schools Page Sections"
-        description="Manage the 3 live sections of the Our Schools directory page: Network Hero banner, Campuses Directory, and Admissions Open Call to Action."
+        description="Manage the live sections of the Our Schools directory page: Network Hero banner, Campuses Directory, Admissions Open Call to Action, and the Admission Enquiry pop-up form."
         badge="Campuses Directory Page"
       />
 
       <OurSchoolHeroSection initialData={pageData?.OurSchoolHeroSection} />
       <AllSchoolsListSection initialData={pageData?.AllSchoolsListSection} />
       <OurSchoolCTASection initialData={pageData?.OurSchoolCTASection} />
+      <FormIntroSection
+        initialData={pageData?.AdmissionEnquiryModalSection}
+        sectionType="AdmissionEnquiryModalSection"
+        apiPath="/api/our-school"
+        title="4. Admission Enquiry Pop-up Form"
+        description="Heading, intro text and thank-you message of the pop-up form opened by the Enquire for Admission button."
+        inboxLabel="Admission Submissions Inbox"
+        inboxHref="/submissions/admissions"
+      />
     </section>
   );
 }

@@ -16,6 +16,7 @@ export function OurSchoolsSection({ initialData }: { initialData?: any }) {
 
   const [tagline, setTagline] = useState("");
   const [headline, setHeadline] = useState("");
+  const [scriptAccent, setScriptAccent] = useState("");
   const [subtitle, setSubtitle] = useState("");
   const [ctaText, setCtaText] = useState("");
   const [ctaLink, setCtaLink] = useState("");
@@ -24,6 +25,7 @@ export function OurSchoolsSection({ initialData }: { initialData?: any }) {
     if (initialData) {
       setTagline(initialData.tagline ?? "");
       setHeadline(initialData.headline ?? "");
+      setScriptAccent(initialData.scriptAccent ?? "");
       setSubtitle(initialData.subtitle ?? "");
       setCtaText(initialData.ctaText ?? "");
       setCtaLink(initialData.ctaLink ?? "");
@@ -38,6 +40,7 @@ export function OurSchoolsSection({ initialData }: { initialData?: any }) {
         content: {
           tagline,
           headline,
+          scriptAccent,
           subtitle,
           ctaText,
           ctaLink,
@@ -98,7 +101,7 @@ export function OurSchoolsSection({ initialData }: { initialData?: any }) {
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <InputField
               label="Eyebrow Tag"
               value={tagline}
@@ -110,6 +113,12 @@ export function OurSchoolsSection({ initialData }: { initialData?: any }) {
               value={headline}
               onChange={(e) => setHeadline(e.target.value)}
               placeholder="e.g. Section title (e.g. 8 Campuses Across Eastern UP)"
+            />
+            <InputField
+              label="Script Accent"
+              value={scriptAccent}
+              onChange={(e) => setScriptAccent(e.target.value)}
+              placeholder="e.g. Highlighted closing word"
             />
           </div>
 

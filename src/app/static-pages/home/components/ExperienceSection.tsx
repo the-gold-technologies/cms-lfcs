@@ -9,6 +9,7 @@ import { InputField } from "@/components/InputField";
 import { TextAreaField } from "@/components/TextAreaField";
 import { ImagePickerField } from "@/components/ImagePickerField";
 import { SaveButton } from "@/components/SaveButton";
+import { StringListEditor } from "@/components/StringListEditor";
 
 interface ExperiencePhoto {
   label: string;
@@ -27,6 +28,7 @@ export function ExperienceSection({ initialData }: { initialData?: any }) {
   const [ctaText, setCtaText] = useState("");
   const [ctaLink, setCtaLink] = useState("");
 
+  const [features, setFeatures] = useState<string[]>([]);
   const [photos, setPhotos] = useState<ExperiencePhoto[]>([]);
   const [openIndices, setOpenIndices] = useState<number[]>([0]);
 
@@ -38,6 +40,7 @@ export function ExperienceSection({ initialData }: { initialData?: any }) {
       setSubtitle(initialData.subtitle ?? "");
       setCtaText(initialData.ctaText ?? "");
       setCtaLink(initialData.ctaLink ?? "");
+      setFeatures(Array.isArray(initialData.features) ? initialData.features : []);
 
       if (Array.isArray(initialData.photos)) {
         setPhotos(
@@ -88,6 +91,7 @@ export function ExperienceSection({ initialData }: { initialData?: any }) {
           subtitle,
           ctaText,
           ctaLink,
+          features,
           photos,
         },
       };
@@ -168,6 +172,14 @@ export function ExperienceSection({ initialData }: { initialData?: any }) {
               placeholder="e.g. /experience"
             />
           </div>
+
+          <StringListEditor
+            label="Feature Highlights"
+            items={features}
+            onChange={setFeatures}
+            placeholder="e.g. Modern Labs"
+            helperText="Short highlight labels shown with icons beside the photo columns."
+          />
 
           {/* DYNAMIC PHOTOS ARRAY */}
           <div className="border-t border-gray-100 pt-5 space-y-4">

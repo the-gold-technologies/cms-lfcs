@@ -10,12 +10,26 @@ import {
   Loader2,
   Layers,
   Sparkles,
+  Link2,
+  Plus,
+  X,
 } from "lucide-react";
 import toast from "react-hot-toast";
 import { InputField } from "@/components/InputField";
 import { TextAreaField } from "@/components/TextAreaField";
 import { ImagePickerField } from "@/components/ImagePickerField";
 import { SaveButton } from "@/components/SaveButton";
+import { CollapsibleCard } from "@/components/CollapsibleCard";
+
+interface FooterLink {
+  label: string;
+  url: string;
+}
+
+interface FooterColumn {
+  title: string;
+  links: FooterLink[];
+}
 
 export default function SocialMediaFooterPage() {
   const [loading, setLoading] = useState(true);
@@ -44,6 +58,10 @@ export default function SocialMediaFooterPage() {
   const [linkedinUrl, setLinkedinUrl] = useState("");
   const [twitter, setTwitter] = useState("");
   const [whatsapp, setWhatsapp] = useState("");
+
+  // Section 4: Footer Link Columns
+  const [footerColumns, setFooterColumns] = useState<FooterColumn[]>([]);
+  const [openColIndices, setOpenColIndices] = useState<number[]>([0]);
 
   useEffect(() => {
     async function loadConfig() {
@@ -76,6 +94,18 @@ export default function SocialMediaFooterPage() {
           setLinkedinUrl(cfg.linkedinUrl || "");
           setTwitter(s.twitter || "");
           setWhatsapp(s.whatsapp || "");
+
+          // Section 4: Footer Link Columns
+          setFooterColumns(
+            Array.isArray(s.footerColumns)
+              ? s.footerColumns.map((c: any) => ({
+                  title: c.title ?? "",
+                  links: Array.isArray(c.links)
+                    ? c.links.map((l: any) => ({ label: l.label ?? "", url: l.url ?? "" }))
+                    : [],
+                }))
+              : [],
+          );
         }
       } catch (err) {
         console.error("Failed to load footer & social config:", err);
@@ -86,6 +116,41 @@ export default function SocialMediaFooterPage() {
     }
     loadConfig();
   }, []);
+
+  const updateColumn = (colIdx: number, update: (col: FooterColumn) => FooterColumn) => {
+    setFooterColumns((prev) => prev.map((c, i) => (i === colIdx ? update(c) : c)));
+  };
+
+  const handleAddColumn = () => {
+    const newIdx = footerColumns.length;
+    setFooterColumns((prev) => [...prev, { title: "", links: [] }]);
+    setOpenColIndices((prev) => [...prev, newIdx]);
+  };
+
+  const handleRemoveColumn = (colIdx: number) => {
+    setFooterColumns((prev) => prev.filter((_, i) => i !== colIdx));
+    setOpenColIndices((prev) =>
+      prev.filter((i) => i !== colIdx).map((i) => (i > colIdx ? i - 1 : i)),
+    );
+  };
+
+  const toggleColumn = (idx: number) => {
+    setOpenColIndices((prev) =>
+      prev.includes(idx) ? prev.filter((i) => i !== idx) : [...prev, idx],
+    );
+  };
+
+  const updateFooterLink = (
+    colIdx: number,
+    linkIdx: number,
+    field: keyof FooterLink,
+    val: string,
+  ) => {
+    updateColumn(colIdx, (c) => ({
+      ...c,
+      links: c.links.map((l, i) => (i === linkIdx ? { ...l, [field]: val } : l)),
+    }));
+  };
 
   const handleSave = async (e?: React.FormEvent) => {
     if (e) e.preventDefault();
@@ -112,6 +177,7 @@ export default function SocialMediaFooterPage() {
           copyrightText,
           twitter,
           whatsapp,
+          footerColumns,
         },
       };
 
@@ -421,6 +487,170 @@ export default function SocialMediaFooterPage() {
                 />
               </div>
             </div>
+          </div>
+
+          {/* Section 4: Footer Link Columns */}
+          <div className="w-full border border-gray-100 rounded-3xl bg-white p-6 sm:p-8 shadow-xs flex flex-col gap-6">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3.5 border-b border-gray-100 pb-4">
+              <div className="flex items-center gap-3.5">
+                <div className="w-10 h-10 rounded-2xl bg-blue-50 text-[#0a192f] flex items-center justify-center font-bold shrink-0">
+                  <Link2 size={20} />
+                </div>
+                <div>
+                  <div className="flex items-center gap-2.5">
+                    <h3 className="font-bold text-gray-900 text-base sm:text-lg">
+                      4. Footer Link Columns
+                    </h3>
+                    <span className="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-blue-50 text-blue-800">
+                      {footerColumns.length} {footerColumns.length === 1 ? "Column" : "Columns"}
+                    </span>
+                  </div>
+                  <p className="text-xs text-gray-500 mt-0.5">
+                    Headed link lists shown in the website footer (e.g. Quick Links, Admissions).
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2.5 self-end sm:self-auto">
+                {footerColumns.length > 0 && (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      if (openColIndices.length === footerColumns.length) {
+                        setOpenColIndices([]);
+                      } else {
+                        setOpenColIndices(footerColumns.map((_, i) => i));
+                      }
+                    }}
+                    className="text-xs font-semibold text-gray-500 hover:text-gray-800 px-2.5 py-1.5 rounded-xl hover:bg-gray-100 transition-colors cursor-pointer"
+                  >
+                    {openColIndices.length === footerColumns.length ? "Collapse All" : "Expand All"}
+                  </button>
+                )}
+                <button
+                  type="button"
+                  onClick={handleAddColumn}
+                  className="inline-flex items-center gap-1.5 text-xs font-bold text-[#842b46] hover:text-[#0a192f] bg-[#842b46]/10 hover:bg-[#842b46]/20 px-3.5 py-1.5 rounded-xl transition-all cursor-pointer shadow-2xs shrink-0"
+                >
+                  <Plus className="w-3.5 h-3.5" />
+                  <span>Add Column</span>
+                </button>
+              </div>
+            </div>
+
+            {footerColumns.length === 0 ? (
+              <div
+                onClick={handleAddColumn}
+                className="p-8 border-2 border-dashed border-gray-200 rounded-2xl text-center text-gray-400 hover:border-[#842b46] hover:text-[#842b46] transition-colors cursor-pointer text-xs font-medium flex flex-col items-center gap-2"
+              >
+                <Plus className="w-6 h-6 text-gray-300" />
+                <span>No footer columns added yet. Click to add your first column.</span>
+              </div>
+            ) : (
+              <div className="space-y-3">
+                {footerColumns.map((col, colIdx) => (
+                  <CollapsibleCard
+                    key={colIdx}
+                    index={colIdx}
+                    title={col.title || `Column ${colIdx + 1}`}
+                    badge={`${col.links.length} ${col.links.length === 1 ? "Link" : "Links"}`}
+                    isOpen={openColIndices.includes(colIdx)}
+                    onToggle={() => toggleColumn(colIdx)}
+                    onDelete={() => handleRemoveColumn(colIdx)}
+                    deleteTitle="Remove Column"
+                  >
+                    <div className="space-y-4">
+                      <InputField
+                        label={`Column ${colIdx + 1} Heading`}
+                        value={col.title}
+                        onChange={(e) =>
+                          updateColumn(colIdx, (c) => ({ ...c, title: e.target.value }))
+                        }
+                        placeholder="e.g. Quick Links, Useful Links, Admissions"
+                      />
+
+                      <div className="space-y-3 pt-1 border-t border-gray-100">
+                        <div className="flex items-center justify-between">
+                          <label className="text-[11px] font-bold uppercase tracking-wider text-gray-500">
+                            Links ({col.links.length})
+                          </label>
+                          <button
+                            type="button"
+                            onClick={() =>
+                              updateColumn(colIdx, (c) => ({
+                                ...c,
+                                links: [...c.links, { label: "", url: "" }],
+                              }))
+                            }
+                            className="inline-flex items-center gap-1 text-[11px] font-bold text-[#842b46] hover:text-[#0a192f] bg-[#842b46]/10 hover:bg-[#842b46]/20 px-2.5 py-1 rounded-lg transition-colors cursor-pointer"
+                          >
+                            <Plus className="w-3 h-3" />
+                            <span>Add Link</span>
+                          </button>
+                        </div>
+
+                        {col.links.length === 0 ? (
+                          <div
+                            onClick={() =>
+                              updateColumn(colIdx, (c) => ({
+                                ...c,
+                                links: [{ label: "", url: "" }],
+                              }))
+                            }
+                            className="p-4 rounded-xl border border-dashed border-gray-200 text-center text-xs text-gray-400 cursor-pointer hover:bg-gray-50 transition-colors"
+                          >
+                            + Click to add your first link to this column
+                          </div>
+                        ) : (
+                          <div className="space-y-2">
+                            {col.links.map((link, linkIdx) => (
+                              <div
+                                key={linkIdx}
+                                className="flex items-end gap-2.5 bg-gray-50/70 p-2.5 rounded-xl border border-gray-200/60"
+                              >
+                                <div className="flex-1">
+                                  <InputField
+                                    label="Link Label"
+                                    value={link.label}
+                                    onChange={(e) =>
+                                      updateFooterLink(colIdx, linkIdx, "label", e.target.value)
+                                    }
+                                    placeholder="e.g. About Us"
+                                  />
+                                </div>
+                                <div className="flex-1">
+                                  <InputField
+                                    label="Link URL"
+                                    value={link.url}
+                                    onChange={(e) =>
+                                      updateFooterLink(colIdx, linkIdx, "url", e.target.value)
+                                    }
+                                    placeholder="e.g. /about"
+                                  />
+                                </div>
+                                <button
+                                  type="button"
+                                  onClick={() =>
+                                    updateColumn(colIdx, (c) => ({
+                                      ...c,
+                                      links: c.links.filter((_, i) => i !== linkIdx),
+                                    }))
+                                  }
+                                  className="mb-1 p-2 rounded-xl text-gray-400 hover:text-red-500 hover:bg-red-50 transition-colors cursor-pointer shrink-0"
+                                  title="Remove Link"
+                                >
+                                  <X className="w-4 h-4" />
+                                </button>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </CollapsibleCard>
+                ))}
+              </div>
+            )}
           </div>
 
           {/* Full-Width Save Bar at Bottom */}

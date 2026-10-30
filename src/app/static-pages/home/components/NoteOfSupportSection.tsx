@@ -16,6 +16,7 @@ interface EndorsementItem {
   headline: string;
   quote: string;
   image: string;
+  link: string;
 }
 
 export function NoteOfSupportSection({ initialData }: { initialData?: any }) {
@@ -42,6 +43,7 @@ export function NoteOfSupportSection({ initialData }: { initialData?: any }) {
             headline: e.headline ?? "",
             quote: e.quote ?? "",
             image: e.image ?? "",
+            link: e.link ?? "",
           })),
         );
       } else {
@@ -59,6 +61,7 @@ export function NoteOfSupportSection({ initialData }: { initialData?: any }) {
         headline: "",
         quote: "",
         image: "",
+        link: "",
       },
     ]);
     setOpenIndices((prev) => [...prev, endorsements.length]);
@@ -232,7 +235,15 @@ export function NoteOfSupportSection({ initialData }: { initialData?: any }) {
                       placeholder="e.g. I am happy to extend my support to Little Flower..."
                     />
 
-                    {/* Row 4: Image (full width) */}
+                    {/* Row 4: Read Note Link */}
+                    <InputField
+                      label="Read Note Link"
+                      value={item.link}
+                      onChange={(e) => handleUpdateEndorsement(idx, "link", e.target.value)}
+                      placeholder="e.g. /about#supporter-note"
+                    />
+
+                    {/* Row 5: Image (full width) */}
                     <ImagePickerField
                       label="Supporter Portrait Photo"
                       value={item.image}

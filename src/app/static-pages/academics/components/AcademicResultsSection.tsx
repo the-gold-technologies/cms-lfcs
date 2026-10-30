@@ -3,11 +3,16 @@
 import React, { useState, useEffect } from "react";
 import toast from "react-hot-toast";
 import Link from "next/link";
-import { Trophy, ArrowRight } from "lucide-react";
+import { Trophy, ArrowRight, Plus, X } from "lucide-react";
 import { SectionHeader } from "@/components/SectionHeader";
 import { InputField } from "@/components/InputField";
 import { TextAreaField } from "@/components/TextAreaField";
 import { SaveButton } from "@/components/SaveButton";
+
+interface ResultStat {
+  value: string;
+  label: string;
+}
 
 export function AcademicResultsSection({ initialData }: { initialData?: any }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -18,7 +23,15 @@ export function AcademicResultsSection({ initialData }: { initialData?: any }) {
   const [headline, setHeadline] = useState("");
   const [scriptAccent, setScriptAccent] = useState("");
   const [subtitle, setSubtitle] = useState("");
+  const [headlineSuffix, setHeadlineSuffix] = useState("");
   const [badgeText, setBadgeText] = useState("");
+  const [stats, setStats] = useState<ResultStat[]>([]);
+  const [achieversHeading, setAchieversHeading] = useState("");
+  const [topperBadge, setTopperBadge] = useState("");
+  const [classXTitle, setClassXTitle] = useState("");
+  const [classXExam, setClassXExam] = useState("");
+  const [classXIITitle, setClassXIITitle] = useState("");
+  const [classXIIExam, setClassXIIExam] = useState("");
 
   useEffect(() => {
     if (initialData) {
@@ -26,9 +39,29 @@ export function AcademicResultsSection({ initialData }: { initialData?: any }) {
       setHeadline(initialData.headline ?? "");
       setScriptAccent(initialData.scriptAccent ?? "");
       setSubtitle(initialData.subtitle ?? "");
+      setHeadlineSuffix(initialData.headlineSuffix ?? "");
       setBadgeText(initialData.badgeText ?? "");
+      setStats(
+        Array.isArray(initialData.stats)
+          ? initialData.stats.map((st: any) => ({ value: st.value ?? "", label: st.label ?? "" }))
+          : [],
+      );
+      setAchieversHeading(initialData.achieversHeading ?? "");
+      setTopperBadge(initialData.topperBadge ?? "");
+      setClassXTitle(initialData.classXTitle ?? "");
+      setClassXExam(initialData.classXExam ?? "");
+      setClassXIITitle(initialData.classXIITitle ?? "");
+      setClassXIIExam(initialData.classXIIExam ?? "");
     }
   }, [initialData]);
+
+  const handleUpdateStat = (index: number, field: keyof ResultStat, val: string) => {
+    setStats((prev) => {
+      const copy = [...prev];
+      copy[index] = { ...copy[index], [field]: val };
+      return copy;
+    });
+  };
 
   const handleSave = async () => {
     setLoading(true);
@@ -40,8 +73,16 @@ export function AcademicResultsSection({ initialData }: { initialData?: any }) {
           tagline,
           headline,
           scriptAccent,
+          headlineSuffix,
           subtitle,
           badgeText,
+          stats,
+          achieversHeading,
+          topperBadge,
+          classXTitle,
+          classXExam,
+          classXIITitle,
+          classXIIExam,
         },
       };
 
@@ -120,6 +161,13 @@ export function AcademicResultsSection({ initialData }: { initialData?: any }) {
             />
           </div>
 
+          <InputField
+            label="Headline Suffix"
+            value={headlineSuffix}
+            onChange={(e) => setHeadlineSuffix(e.target.value)}
+            placeholder="e.g. Text shown after the script accent"
+          />
+
           <TextAreaField
             label="Section Subtitle"
             value={subtitle}
@@ -134,6 +182,96 @@ export function AcademicResultsSection({ initialData }: { initialData?: any }) {
             onChange={(e) => setBadgeText(e.target.value)}
             placeholder="e.g. 100% Board Pass Rate (CBSE)"
           />
+
+          {/* HIGHLIGHT STATS */}
+          <div className="border-t border-gray-100 pt-5 space-y-3">
+            <div className="flex items-center justify-between">
+              <h4 className="text-xs font-bold uppercase tracking-wider text-gray-700">
+                Highlight Stats ({stats.length})
+              </h4>
+              <button
+                type="button"
+                onClick={() => setStats((prev) => [...prev, { value: "", label: "" }])}
+                className="inline-flex items-center gap-1.5 text-xs font-bold text-[#842b46] hover:text-[#0a192f] bg-[#842b46]/10 hover:bg-[#842b46]/20 px-3.5 py-1.5 rounded-xl transition-all cursor-pointer shadow-2xs"
+              >
+                <Plus className="w-3.5 h-3.5" />
+                <span>Add Stat</span>
+              </button>
+            </div>
+            {stats.map((stat, idx) => (
+              <div key={idx} className="flex items-end gap-3">
+                <div className="w-40 shrink-0">
+                  <InputField
+                    label="Value"
+                    value={stat.value}
+                    onChange={(e) => handleUpdateStat(idx, "value", e.target.value)}
+                    placeholder="e.g. 98%"
+                  />
+                </div>
+                <div className="flex-1">
+                  <InputField
+                    label="Label"
+                    value={stat.label}
+                    onChange={(e) => handleUpdateStat(idx, "label", e.target.value)}
+                    placeholder="e.g. Class X Topper"
+                  />
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setStats((prev) => prev.filter((_, i) => i !== idx))}
+                  className="mb-1 p-2 rounded-xl text-gray-400 hover:text-red-500 hover:bg-red-50 transition-colors cursor-pointer"
+                  title="Remove Stat"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              </div>
+            ))}
+          </div>
+
+          {/* TOPPERS SHOWCASE LABELS */}
+          <div className="border-t border-gray-100 pt-5 space-y-4">
+            <h4 className="text-xs font-bold uppercase tracking-wider text-gray-700">
+              Toppers Showcase Labels
+            </h4>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <InputField
+                label="Achievers Heading"
+                value={achieversHeading}
+                onChange={(e) => setAchieversHeading(e.target.value)}
+                placeholder="e.g. Our Star Performers"
+              />
+              <InputField
+                label="Topper Ribbon Label"
+                value={topperBadge}
+                onChange={(e) => setTopperBadge(e.target.value)}
+                placeholder="e.g. Campus Topper"
+              />
+              <InputField
+                label="Class X Block Title"
+                value={classXTitle}
+                onChange={(e) => setClassXTitle(e.target.value)}
+                placeholder="e.g. Class 10 Achievers"
+              />
+              <InputField
+                label="Class X Exam Line"
+                value={classXExam}
+                onChange={(e) => setClassXExam(e.target.value)}
+                placeholder="e.g. Board examination name and session"
+              />
+              <InputField
+                label="Class XII Block Title"
+                value={classXIITitle}
+                onChange={(e) => setClassXIITitle(e.target.value)}
+                placeholder="e.g. Class 12 Achievers"
+              />
+              <InputField
+                label="Class XII Exam Line"
+                value={classXIIExam}
+                onChange={(e) => setClassXIIExam(e.target.value)}
+                placeholder="e.g. Board examination name and session"
+              />
+            </div>
+          </div>
 
           <div className="pt-4 border-t border-gray-100 flex justify-end">
             <div className="w-full">

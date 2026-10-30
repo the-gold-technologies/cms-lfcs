@@ -236,6 +236,13 @@ export default function MenuLinksPage() {
                                     ) : (
                                       <span className="text-gray-300 text-sm shrink-0">↳</span>
                                     )}
+                                    {child.image && (
+                                      <img
+                                        src={child.image}
+                                        alt=""
+                                        className="w-8 h-8 rounded-lg object-cover shrink-0 ring-1 ring-gray-100"
+                                      />
+                                    )}
                                     <div className="min-w-0 flex-1">
                                       <span
                                         className="font-semibold text-xs sm:text-sm text-gray-800 line-clamp-2 leading-snug block"

@@ -3,7 +3,7 @@ import { prisma } from "@/lib/prisma";
 
 export const dynamic = "force-dynamic";
 
-export const LFCS_CORE_PAGES = [
+const LFCS_CORE_PAGES = [
   {
     slug: "about",
     title: "About Us",

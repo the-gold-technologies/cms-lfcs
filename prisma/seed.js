@@ -21,6 +21,47 @@ const pool = new Pool({
 const adapter = new PrismaPg(pool);
 const prisma = new PrismaClient({ adapter });
 
+const FOOTER_COLUMNS = [
+  {
+    title: "Quick Links",
+    links: [
+      { label: "About Us", url: "/about" },
+      { label: "Academics", url: "/academics" },
+      { label: "Experience", url: "/experience" },
+      { label: "Our Schools", url: "/our-school" },
+      { label: "Admissions", url: "/admissions" },
+      { label: "News & Events", url: "/news-&-events" },
+      { label: "Start a School", url: "/start-school" },
+      { label: "Careers", url: "/careers" },
+      { label: "Contact Us", url: "/contact" },
+    ],
+  },
+  {
+    title: "Admissions",
+    links: [
+      { label: "Why Choose Us", url: "/about#our-story" },
+      { label: "Curriculum", url: "/academics#curriculum" },
+      { label: "Teaching Approach", url: "/academics#approach" },
+      { label: "Our Faculty", url: "/academics#faculty" },
+      { label: "Life at LFCS", url: "/experience#life-at-lfcs" },
+      { label: "Our Campuses", url: "/our-school#schools" },
+      { label: "Enquire Now", url: "/contact#contact-form" },
+    ],
+  },
+  {
+    title: "Start A School",
+    links: [
+      { label: "Why Partner With Us", url: "/start-school#why-partner" },
+      { label: "Our School Model", url: "/start-school#model" },
+      { label: "Support & Benefits", url: "/start-school#support" },
+      { label: "Requirements", url: "/start-school#requirements" },
+      { label: "Setup Process", url: "/start-school#process" },
+      { label: "Investment Overview", url: "/start-school#investment" },
+      { label: "FAQs", url: "/start-school#faqs" },
+    ],
+  },
+];
+
 async function main() {
   console.log("🌱 Seeding LFCS School CMS database with 100% verified Cloudinary data...");
 
@@ -64,6 +105,7 @@ async function main() {
         copyrightText: "© 2026 Little Flower Group of Schools. All rights reserved.",
         whatsapp: "+91 94508 24500",
         twitter: "",
+        footerColumns: FOOTER_COLUMNS,
       },
       robotsTxt: "User-agent: *\nAllow: /\n\nSitemap: https://lfgos.com/sitemap.xml",
       sitemapEnabled: true,
@@ -92,6 +134,7 @@ async function main() {
         copyrightText: "© 2026 Little Flower Group of Schools. All rights reserved.",
         whatsapp: "+91 94508 24500",
         twitter: "",
+        footerColumns: FOOTER_COLUMNS,
       },
       robotsTxt: "User-agent: *\nAllow: /\n\nSitemap: https://lfgos.com/sitemap.xml",
       sitemapEnabled: true,

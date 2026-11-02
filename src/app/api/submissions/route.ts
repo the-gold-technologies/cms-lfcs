@@ -67,7 +67,9 @@ function escapeHtml(value: string) {
 /**
  * The website posts multipart form data (so a CV can be attached); admin tools may post JSON
  */
-async function readSubmission(req: Request): Promise<{ fields: SubmissionFields; cv: File | null }> {
+async function readSubmission(
+  req: Request,
+): Promise<{ fields: SubmissionFields; cv: File | null }> {
   const fields: SubmissionFields = {};
   if ((req.headers.get("content-type") || "").includes("multipart/form-data")) {
     const data = await req.formData();
@@ -247,7 +249,9 @@ function renderNotification(fields: SubmissionFields, cvUrl: string | null) {
               }
               ${sectionHeading("Message")}
               <div style="padding:16px 18px;background:#fafafa;border-left:4px solid ${GOLD};border-radius:0 10px 10px 0;font-size:14px;line-height:1.65;color:#2b2b2b;">${
-                message ? escapeHtml(message).replace(/\r?\n/g, "<br />") : `<span style="color:#9a9a9a;font-style:italic;">No message was added.</span>`
+                message
+                  ? escapeHtml(message).replace(/\r?\n/g, "<br />")
+                  : `<span style="color:#9a9a9a;font-style:italic;">No message was added.</span>`
               }</div>
               ${
                 inboxUrl
@@ -413,7 +417,9 @@ export async function POST(req: Request) {
         }
       });
     } else {
-      console.warn("[SMTP Alert] SMTP_HOST/SMTP_USER/SMTP_PASS not set; lead notification not sent");
+      console.warn(
+        "[SMTP Alert] SMTP_HOST/SMTP_USER/SMTP_PASS not set; lead notification not sent",
+      );
     }
 
     return NextResponse.json({ success: true, data: submission });

@@ -110,11 +110,6 @@ export async function PUT(req: Request, { params }: { params: Promise<{ type: st
           where: { category: oldName },
           data: { category: newName },
         });
-      } else if (type === "testimonials") {
-        await prisma.testimonial.updateMany({
-          where: { category: oldName },
-          data: { category: newName },
-        });
       } else if (type === "results") {
         await prisma.academicResult.updateMany({
           where: { examType: oldName },
@@ -162,17 +157,6 @@ export async function DELETE(req: Request, { params }: { params: Promise<{ type:
         });
       } else {
         await prisma.galleryItem.deleteMany({
-          where: { category: current.name },
-        });
-      }
-    } else if (type === "testimonials") {
-      if (reassignTo) {
-        await prisma.testimonial.updateMany({
-          where: { category: current.name },
-          data: { category: reassignTo },
-        });
-      } else {
-        await prisma.testimonial.deleteMany({
           where: { category: current.name },
         });
       }

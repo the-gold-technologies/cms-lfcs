@@ -8,6 +8,7 @@ import { InputField } from "@/components/InputField";
 import { ImagePickerField } from "@/components/ImagePickerField";
 import { SaveButton } from "@/components/SaveButton";
 import { CategoryManager, CategoryItem } from "@/components/CategoryManager";
+import { DeleteConfirmModal } from "@/components/DeleteConfirmModal";
 
 export default function ResultsPage() {
   const [results, setResults] = useState<any[]>([]);
@@ -16,6 +17,8 @@ export default function ResultsPage() {
   const [categories, setCategories] = useState<CategoryItem[]>([]);
   const [modalOpen, setModalOpen] = useState(false);
   const [saving, setSaving] = useState(false);
+  const [deleteId, setDeleteId] = useState<string | null>(null);
+  const [deleting, setDeleting] = useState(false);
 
   const [editId, setEditId] = useState<string | null>(null);
   const [studentName, setStudentName] = useState("");
@@ -110,17 +113,23 @@ export default function ResultsPage() {
     }
   };
 
-  const handleDelete = async (id: string) => {
-    if (!confirm("Are you sure you want to remove this topper record?")) return;
+  const handleDelete = async () => {
+    if (!deleteId) return;
+    setDeleting(true);
     try {
-      const res = await fetch(`/api/results/${id}`, { method: "DELETE" });
+      const res = await fetch(`/api/results/${deleteId}`, { method: "DELETE" });
       const json = await res.json();
       if (json.success) {
         toast.success("Topper record removed");
+        setDeleteId(null);
         loadResults();
+      } else {
+        toast.error(json.error || "Failed to delete");
       }
     } catch {
       toast.error("Failed to delete");
+    } finally {
+      setDeleting(false);
     }
   };
 
@@ -215,7 +224,8 @@ export default function ResultsPage() {
                   <Edit className="w-3.5 h-3.5" /> Edit
                 </button>
                 <button
-                  onClick={() => handleDelete(item.id)}
+                  type="button"
+                  onClick={() => setDeleteId(item.id)}
                   className="p-2 rounded-xl border border-red-100 hover:bg-red-50 text-red-500 text-xs font-semibold cursor-pointer"
                 >
                   <Trash2 className="w-3.5 h-3.5" />
@@ -314,6 +324,16 @@ export default function ResultsPage() {
           </div>
         </div>
       )}
+
+      {/* Custom Delete Confirmation Modal */}
+      <DeleteConfirmModal
+        isOpen={!!deleteId}
+        title="Remove Topper Record"
+        message="Are you sure you want to remove this topper record? This action cannot be undone."
+        loading={deleting}
+        onConfirm={handleDelete}
+        onCancel={() => setDeleteId(null)}
+      />
     </section>
   );
 }

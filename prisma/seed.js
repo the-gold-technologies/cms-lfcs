@@ -214,23 +214,6 @@ Sitemap: https://lfgos.com/sitemap.xml`;
     console.log(`✓ ${newsItems.length} News & press articles seeded with Cloudinary images`);
   }
 
-  // 5. Testimonials from JSON
-  const testimonialsFile = path.resolve(__dirname, "testimonials-seed.json");
-  if (fs.existsSync(testimonialsFile)) {
-    const testimonials = JSON.parse(fs.readFileSync(testimonialsFile, "utf-8"));
-    for (const t of testimonials) {
-      const existing = await prisma.testimonial.findFirst({
-        where: { name: t.name, role: t.role },
-      });
-      if (existing) {
-        await prisma.testimonial.update({ where: { id: existing.id }, data: t });
-      } else {
-        await prisma.testimonial.create({ data: t });
-      }
-    }
-    console.log(`✓ ${testimonials.length} Testimonials seeded`);
-  }
-
   // 6. Gallery Items from JSON
   const galleryFile = path.resolve(__dirname, "gallery-seed.json");
   if (fs.existsSync(galleryFile)) {
@@ -644,9 +627,6 @@ Sitemap: https://lfgos.com/sitemap.xml`;
     { type: "gallery", name: "Sports & Fitness", order: 4 },
     { type: "gallery", name: "Arts & Culture", order: 5 },
     { type: "gallery", name: "Events & Achievements", order: 6 },
-    { type: "testimonials", name: "PARENTS", order: 0 },
-    { type: "testimonials", name: "TEACHERS", order: 1 },
-    { type: "testimonials", name: "STUDENTS", order: 2 },
     { type: "results", name: "CBSE 10th", order: 0 },
     { type: "results", name: "CBSE 12th", order: 1 },
     { type: "results", name: "JEE", order: 2 },

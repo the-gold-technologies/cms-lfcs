@@ -8,7 +8,6 @@ export const WebsiteTag = {
   campuses: "campuses",
   news: "news",
   gallery: "gallery",
-  testimonials: "testimonials",
   results: "results",
   careers: "careers",
   site: "site", // global config & navigation

@@ -14,7 +14,6 @@ export async function GET() {
       newsCount,
       galleryCount,
       toppersCount,
-      testimonialsCount,
       jobsCount,
       submissionsCount,
       recentSubmissions,
@@ -23,7 +22,6 @@ export async function GET() {
       prisma.newsItem.count().catch(() => 0),
       prisma.galleryItem.count().catch(() => 0),
       prisma.academicResult.count().catch(() => 0),
-      prisma.testimonial.count().catch(() => 0),
       prisma.jobOpening.count().catch(() => 0),
       prisma.submission.count().catch(() => 0),
       prisma.submission
@@ -41,7 +39,6 @@ export async function GET() {
         newsCount,
         galleryCount,
         toppersCount,
-        testimonialsCount,
         jobsCount,
         submissionsCount,
         recentSubmissions,

@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Plus, X, Pencil, Trash2, Settings2, Check, Loader2, Tag } from "lucide-react";
 import toast from "react-hot-toast";
+import { DeleteConfirmModal } from "./DeleteConfirmModal";
 
 export interface CategoryItem {
   id: string;
@@ -11,7 +12,7 @@ export interface CategoryItem {
 }
 
 interface CategoryManagerProps {
-  type: string; // e.g. "gallery", "testimonials", "results"
+  type: string; // e.g. "gallery", "results"
   activeCategory: string;
   onSelectCategory: (name: string) => void;
   allowAll?: boolean;
@@ -40,6 +41,7 @@ export function CategoryManager({
 
   // Deleting state
   const [deletingId, setDeletingId] = useState<string | null>(null);
+  const [catToDelete, setCatToDelete] = useState<CategoryItem | null>(null);
 
   const addInputRef = useRef<HTMLInputElement>(null);
 
@@ -166,26 +168,21 @@ export function CategoryManager({
     }
   };
 
-  // Delete category
-  const handleDeleteCategory = async (cat: CategoryItem) => {
-    if (
-      !confirm(
-        `Are you sure you want to delete the category "${cat.name}"? Items linked to this category will remain, but the category tab will be removed.`,
-      )
-    ) {
-      return;
-    }
+  // Delete category confirmation
+  const confirmDeleteCategory = async () => {
+    if (!catToDelete) return;
 
-    setDeletingId(cat.id);
+    setDeletingId(catToDelete.id);
     try {
-      const res = await fetch(`/api/categories/${encodeURIComponent(type)}?id=${cat.id}`, {
+      const res = await fetch(`/api/categories/${encodeURIComponent(type)}?id=${catToDelete.id}`, {
         method: "DELETE",
       });
       const json = await res.json();
       if (json.success) {
-        toast.success(`Category "${cat.name}" removed`);
+        toast.success(`Category "${catToDelete.name}" removed`);
+        setCatToDelete(null);
         await fetchCategories();
-        if (activeCategory === cat.name) {
+        if (activeCategory === catToDelete.name) {
           onSelectCategory(allowAll ? "All" : categories[0]?.name || "");
         }
       } else {
@@ -403,7 +400,7 @@ export function CategoryManager({
 
                               <button
                                 type="button"
-                                onClick={() => handleDeleteCategory(cat)}
+                                onClick={() => setCatToDelete(cat)}
                                 disabled={isDeleting}
                                 className="inline-flex items-center gap-1 px-2 py-1 text-[11px] font-medium text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors cursor-pointer disabled:opacity-50"
                                 title="Delete category"
@@ -437,6 +434,16 @@ export function CategoryManager({
           </div>
         </div>
       )}
+
+      {/* Delete Category Confirmation Modal */}
+      <DeleteConfirmModal
+        isOpen={!!catToDelete}
+        title="Delete Category"
+        message={`Are you sure you want to delete the category "${catToDelete?.name}"? Items linked to this category will remain, but the category tab will be removed.`}
+        loading={!!deletingId}
+        onConfirm={confirmDeleteCategory}
+        onCancel={() => setCatToDelete(null)}
+      />
     </>
   );
 }

@@ -1,213 +1,112 @@
-name: Deploy LFCS CMS
+name: Deploy to VPS
 
-# Safe deploy to the VPS: a failed install, build or migration never takes the live CMS down.
-#
-# 1. CI (build + migration check) runs on GitHub first. If it fails, nothing is uploaded.
-#    Lint is report-only and never blocks a deploy.
-# 2. On the server, the new code is installed and built in a staging folder
-#    ($VPS_APP_DIR/.deploy/build) while the live CMS keeps running untouched.
-#    If anything fails there, the staging folder is discarded and the live CMS is unchanged.
-# 3. Only after a successful build: migrations run, the new files are swapped in (fast renames,
-#    the old files are kept in .deploy/previous), and PM2 restarts.
-# 4. If /api/health does not respond after the restart, the old files are put back and PM2
-#    restarts on them.
-#
-# Required secrets: VPS_HOST, VPS_USER, VPS_SSH_KEY, VPS_APP_DIR. Optional: VPS_PORT, VPS_KNOWN_HOSTS.
-# Optional repository variables: CMS_PM2_APP (default lfcs-cms), CMS_PORT (default 3001).
+# The new version is installed and built in a separate folder (.deploy/build) while the live
+# CMS keeps running. If install, build or migration fails, the live CMS is not touched.
+# Only a successful build is swapped in. If /api/health fails after the restart, the previous
+# version is put back automatically. Lint is never run here, so lint errors never block a deploy.
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
   workflow_dispatch:
-    inputs:
-      baseline:
-        description: >-
-          ONE-TIME ONLY: mark migration 20261114000000_init as already applied (use only if the
-          production database was created with `db push`). Only done if it matches the schema exactly.
-        type: boolean
-        default: false
 
 concurrency:
-  group: lfcs-cms-production
+  group: deploy-lfcs-cms
   cancel-in-progress: false
 
-permissions:
-  contents: read
-
 jobs:
-  ci:
-    name: CI
-    uses: ./.github/workflows/ci.yml
-
   deploy:
-    name: Deploy to VPS
-    needs: ci
     runs-on: ubuntu-latest
-    timeout-minutes: 30
-
-    env:
-      VPS_HOST: ${{ secrets.VPS_HOST }}
-      VPS_USER: ${{ secrets.VPS_USER }}
-      VPS_PORT: ${{ secrets.VPS_PORT || '22' }}
-      VPS_APP_DIR: ${{ secrets.VPS_APP_DIR || '/var/www/lfcscms' }}
-      PM2_APP: ${{ vars.CMS_PM2_APP || 'lfcs-cms' }}
-      CMS_PORT: ${{ vars.CMS_PORT || '3001' }}
-      BASELINE: ${{ inputs.baseline && 'true' || 'false' }}
-      INIT_MIGRATION: 20261114000000_init
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Check required secrets
-        run: |
-          for v in VPS_HOST VPS_USER VPS_APP_DIR; do
-            [ -n "${!v}" ] || { echo "::error::Secret $v is not set"; exit 1; }
-          done
-
-      - name: Setup SSH
-        uses: webfactory/ssh-agent@v0.9.0
+      - name: Build, swap and restart on VPS (rolls back on failure)
+        uses: appleboy/ssh-action@v1.2.0
         with:
-          ssh-private-key: ${{ secrets.VPS_SSH_KEY }}
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          port: ${{ secrets.VPS_PORT || 22 }}
+          command_timeout: 30m
+          script: |
+            set -euo pipefail
+            # Load nvm/node if it's installed per-user
+            export NVM_DIR="$HOME/.nvm"
+            [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
 
-      - name: Add VPS to known hosts
-        env:
-          # Optional: the output of `ssh-keyscan -p <port> <host>`, saved once as a secret.
-          VPS_KNOWN_HOSTS: ${{ secrets.VPS_KNOWN_HOSTS }}
-        run: |
-          mkdir -p ~/.ssh
-          if [ -n "$VPS_KNOWN_HOSTS" ]; then
-            printf '%s\n' "$VPS_KNOWN_HOSTS" >> ~/.ssh/known_hosts
-          else
-            ssh-keyscan -p "$VPS_PORT" "$VPS_HOST" >> ~/.ssh/known_hosts
-          fi
+            APP_DIR="${{ secrets.VPS_APP_DIR || '/var/www/lfcscms' }}"
+            PM2_APP="lfcs-cms"
+            APP_PORT="3001"
+            HEALTH_URL="http://127.0.0.1:$APP_PORT/api/health"
+            STAGE="$APP_DIR/.deploy/build"
+            PREV="$APP_DIR/.deploy/previous"
 
-      - name: Upload application files to the staging folder
-        run: |
-          ssh -p "$VPS_PORT" "$VPS_USER@$VPS_HOST" "mkdir -p '$VPS_APP_DIR/.deploy/build'"
-          rsync -az --delete \
-            -e "ssh -p $VPS_PORT" \
-            --exclude='.git/' \
-            --exclude='.github/' \
-            --exclude='.env*' \
-            --exclude='node_modules/' \
-            --exclude='.next/' \
-            --exclude='*.log' \
-            --exclude='tsconfig.tsbuildinfo' \
-            ./ "$VPS_USER@$VPS_HOST:$VPS_APP_DIR/.deploy/build/"
+            # Before the swap, any failure only removes the staging folder.
+            fail() {
+              echo "::error::$1 - the live CMS was NOT changed and is still running."
+              rm -rf "$STAGE"
+              exit 1
+            }
 
-      - name: Install, build, migrate, swap and restart (rolls back on failure)
-        run: |
-          ssh -p "$VPS_PORT" "$VPS_USER@$VPS_HOST" bash -s -- \
-            "$VPS_APP_DIR" "$PM2_APP" "$CMS_PORT" "$BASELINE" "$INIT_MIGRATION" <<'EOF'
-          set -euo pipefail
-          shopt -s dotglob nullglob
-          APP_DIR="$1"; PM2_APP="$2"; CMS_PORT="$3"; BASELINE="$4"; INIT_MIGRATION="$5"
-          HEALTH_URL="http://127.0.0.1:$CMS_PORT/api/health"
-          BUILD="$APP_DIR/.deploy/build"
-          PREV="$APP_DIR/.deploy/previous"
-          MANIFEST="$APP_DIR/.deploy/swapped.txt"
-
-          # Load nvm/node if it's installed per-user
-          export NVM_DIR="$HOME/.nvm"
-          [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
-
-          # Until the swap, a failure only discards the staging folder. The live CMS is untouched.
-          abort() {
-            echo "::error::$1 - the live CMS was NOT changed and is still running."
-            rm -rf "$BUILD"
-            exit 1
-          }
-
-          [ -f "$APP_DIR/.env" ] || abort "$APP_DIR/.env not found"
-
-          cd "$BUILD"
-          cp "$APP_DIR/.env" .env
-
-          echo "Installing dependencies..."
-          npm ci --no-audit --no-fund || abort "npm ci failed"
-
-          echo "Building Next.js application..."
-          npm run build || abort "Build failed"
-
-          if [ "$BASELINE" = "true" ]; then
-            echo "Baselining: checking the production database matches prisma/schema.prisma..."
-            MIGRATIONS=(prisma/migrations/*/)
-            [ "${#MIGRATIONS[@]}" -eq 1 ] && [ -d "prisma/migrations/$INIT_MIGRATION" ] \
-              || abort "Baseline is only allowed while $INIT_MIGRATION is the only migration"
-            DB_URL="$(node -e 'require("dotenv").config(); process.stdout.write(process.env.DIRECT_URL || process.env.DATABASE_URL || "")')"
-            [ -n "$DB_URL" ] || abort "DIRECT_URL / DATABASE_URL not set in .env"
-            set +e
-            DRIFT="$(npx prisma migrate diff --from-url "$DB_URL" --to-schema-datamodel prisma/schema.prisma --script --exit-code 2>&1)"
-            DIFF_EXIT=$?
-            set -e
-            if [ "$DIFF_EXIT" -ne 0 ]; then
-              echo "$DRIFT"
-              abort "Production database does not match the schema (see SQL above), so it was not baselined"
-            fi
-            echo "Database matches the schema. Marking $INIT_MIGRATION as applied (no SQL is run)..."
-            npx prisma migrate resolve --applied "$INIT_MIGRATION" || abort "prisma migrate resolve failed"
-          fi
-
-          echo "Applying Prisma migrations..."
-          npx prisma migrate deploy || abort "prisma migrate deploy failed (if production was created with db push, re-run this workflow manually with 'baseline' ticked)"
-
-          # ---- Swap: move each new top-level entry into place, keeping the old one in PREV ----
-          echo "Swapping in the new build..."
-          rm -rf "$PREV"; mkdir -p "$PREV"; : > "$MANIFEST"
-          for src in "$BUILD"/*; do
-            name="$(basename "$src")"
-            [ "$name" = ".env" ] && continue
-            if [ -e "$APP_DIR/$name" ]; then mv "$APP_DIR/$name" "$PREV/$name"; fi
-            mv "$src" "$APP_DIR/$name"
-            echo "$name" >> "$MANIFEST"
-          done
-
-          rollback() {
-            while read -r name; do
-              rm -rf "${APP_DIR:?}/$name"
-              if [ -e "$PREV/$name" ]; then mv "$PREV/$name" "$APP_DIR/$name"; fi
-            done < "$MANIFEST"
-          }
-
-          healthy() {
-            for i in $(seq 1 30); do
-              curl -fsS --max-time 5 "$HEALTH_URL" >/dev/null && return 0
-              sleep 2
-            done
-            return 1
-          }
-
-          restart_app() {
             cd "$APP_DIR"
-            if pm2 describe "$PM2_APP" >/dev/null 2>&1; then
-              pm2 restart "$PM2_APP" --update-env
-            else
-              echo "PM2 app '$PM2_APP' not found - starting it on port $CMS_PORT"
-              PORT="$CMS_PORT" pm2 start npm --name "$PM2_APP" --cwd "$APP_DIR" -- start
-            fi
-          }
+            [ -f .env ] || fail "$APP_DIR/.env not found"
 
-          echo "Restarting PM2 application..."
-          restart_app
+            # 1. Copy the latest main into the staging folder
+            git fetch origin main
+            rm -rf "$STAGE" && mkdir -p "$STAGE"
+            git archive origin/main | tar -x -C "$STAGE"
+            cp .env "$STAGE/.env"
 
-          echo "Health check: $HEALTH_URL"
-          if ! healthy; then
-            echo "::error::New version failed the health check. Rolling back to the previous version."
-            pm2 logs "$PM2_APP" --lines 80 --nostream || true
-            rollback
+            # 2. Install, build and migrate in the staging folder
+            cd "$STAGE"
+            npm ci --no-audit --no-fund || fail "npm ci failed"
+            npm run build || fail "Build failed"
+            npx prisma migrate deploy || fail "Database migration failed"
+
+            # 3. Swap in the new build, keeping the old one for rollback
+            cd "$APP_DIR"
+            PREV_COMMIT="$(git rev-parse HEAD)"
+            rm -rf "$PREV" && mkdir -p "$PREV"
+            for d in node_modules .next; do
+              if [ -e "$d" ]; then mv "$d" "$PREV/$d"; fi
+              mv "$STAGE/$d" "$d"
+            done
+            git reset --hard origin/main
+            rm -rf "$STAGE"
+
+            restart_app() {
+              cd "$APP_DIR"
+              if pm2 describe "$PM2_APP" >/dev/null 2>&1; then
+                pm2 reload "$PM2_APP" --update-env
+              else
+                PORT="$APP_PORT" pm2 start npm --name "$PM2_APP" -- start
+              fi
+            }
+
+            healthy() {
+              for i in $(seq 1 30); do
+                curl -fsS --max-time 5 "$HEALTH_URL" >/dev/null && return 0
+                sleep 2
+              done
+              return 1
+            }
+
+            # 4. Restart and check health; roll back if the new version doesn't come up
             restart_app
-            if healthy; then
-              echo "Rolled back. The previous version is serving again."
-            else
-              echo "::error::The previous version is also unhealthy - check the server now (pm2 logs $PM2_APP)."
+            if ! healthy; then
+              echo "::error::New version failed the health check. Rolling back."
+              pm2 logs "$PM2_APP" --lines 80 --nostream || true
+              git reset --hard "$PREV_COMMIT"
+              for d in node_modules .next; do
+                rm -rf "$d"
+                if [ -e "$PREV/$d" ]; then mv "$PREV/$d" "$d"; fi
+              done
+              restart_app
+              if healthy; then
+                echo "Rolled back. The previous version is serving again."
+              else
+                echo "::error::Previous version is also unhealthy - check the server (pm2 logs $PM2_APP)."
+              fi
+              exit 1
             fi
-            rm -rf "$BUILD"
-            exit 1
-          fi
 
-          pm2 save
-          rm -rf "$BUILD"
-          echo "Deployment completed successfully."
-          EOF
+            pm2 save
+            echo "Deployment completed successfully."

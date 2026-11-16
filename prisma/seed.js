@@ -87,7 +87,7 @@ async function main() {
       name: "Little Flower Group of Schools",
       alternateName: "LFCS",
       url: "https://lfgos.com/",
-      logo: "https://res.cloudinary.com/dpa93copz/image/upload/v1793170044/lfcs-school/logo-header_1793170044344.webp",
+      logo: "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814272/lfcs-school/logo-header_1793170044344.webp",
       description:
         "A network of premier CBSE schools across Uttar Pradesh committed to academic excellence, value-based character building, and holistic student growth.",
       foundingDate: "1993",
@@ -124,9 +124,9 @@ Sitemap: https://lfgos.com/sitemap.xml`;
       siteTitle: "Little Flower Group of Schools",
       siteDescription:
         "A network of CBSE schools committed to academic excellence, character building and holistic development.",
-      logo: "https://res.cloudinary.com/dpa93copz/image/upload/v1793170044/lfcs-school/logo-header_1793170044344.webp",
+      logo: "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814272/lfcs-school/logo-header_1793170044344.webp",
       favicon:
-        "https://res.cloudinary.com/dpa93copz/image/upload/v1793170045/lfcs-school/logo1_1793170045264.webp",
+        "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814272/lfcs-school/logo1_1793170045264.webp",
       phone: "+91 83688 38489",
       email: "franchise@lfcsschools.com",
       address: "Lucknow, Uttar Pradesh",
@@ -135,7 +135,7 @@ Sitemap: https://lfgos.com/sitemap.xml`;
       youtubeUrl: "https://youtube.com/@lfcsschools?si=TCzIAvIrbwgYA2KY",
       socialLinks: {
         footerLogo:
-          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170045/lfcs-school/logo1_1793170045264.webp",
+          "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814272/lfcs-school/logo1_1793170045264.webp",
         brandTitle: "Little Flower",
         brandSubtitle: "Group of Schools",
         phone2: "+91 99999 76959",
@@ -155,9 +155,9 @@ Sitemap: https://lfgos.com/sitemap.xml`;
       siteTitle: "Little Flower Group of Schools",
       siteDescription:
         "A network of CBSE schools committed to academic excellence, character building and holistic development.",
-      logo: "https://res.cloudinary.com/dpa93copz/image/upload/v1793170044/lfcs-school/logo-header_1793170044344.webp",
+      logo: "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814272/lfcs-school/logo-header_1793170044344.webp",
       favicon:
-        "https://res.cloudinary.com/dpa93copz/image/upload/v1793170045/lfcs-school/logo1_1793170045264.webp",
+        "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814272/lfcs-school/logo1_1793170045264.webp",
       phone: "+91 83688 38489",
       email: "franchise@lfcsschools.com",
       address: "Lucknow, Uttar Pradesh",
@@ -166,7 +166,7 @@ Sitemap: https://lfgos.com/sitemap.xml`;
       youtubeUrl: "https://youtube.com/@lfcsschools?si=TCzIAvIrbwgYA2KY",
       socialLinks: {
         footerLogo:
-          "https://res.cloudinary.com/dpa93copz/image/upload/v1793170045/lfcs-school/logo1_1793170045264.webp",
+          "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814272/lfcs-school/logo1_1793170045264.webp",
         brandTitle: "Little Flower",
         brandSubtitle: "Group of Schools",
         phone2: "+91 99999 76959",

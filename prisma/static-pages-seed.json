@@ -7,15 +7,15 @@
       "description": "Discover the heart of Little Flower Group of Schools. A legacy of excellence, rooted in values, and dedicated to shaping the leaders of tomorrow.",
       "ctaText": "Explore Our Story",
       "ctaLink": "#our-story",
-      "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793254261/lfcs-school/about/about-hero_1793254259596.webp"
+      "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814247/lfcs-school/about/about-hero_1793254259596.webp"
     },
     "OurStorySection": {
       "tagline": "Our Story",
       "headline": "A Journey of",
       "scriptAccent": "Dedication",
       "story": "Founded in 1993 by Late Shri Vijay Shankar Yadav in a temporary space with just 30 students and a big dream, Little Flower School began its journey with a simple mission: to provide quality, value-based education that goes beyond textbooks.\n\nOver the past three decades, we have grown from a modest neighborhood school into a network of CBSE-affiliated schools across Uttar Pradesh. What hasn't changed is our commitment to fostering a nurturing environment where every child feels valued, encouraged, and challenged to achieve their best.",
-      "storyImage1": "https://res.cloudinary.com/dpa93copz/image/upload/v1793254263/lfcs-school/about/story1_1793254263392.webp",
-      "storyImage2": "https://res.cloudinary.com/dpa93copz/image/upload/v1793254265/lfcs-school/about/story2_1793254265102.webp",
+      "storyImage1": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814251/lfcs-school/about/story1_1793254263392.webp",
+      "storyImage2": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814252/lfcs-school/about/story2_1793254265102.webp",
       "stats": [
         {
           "value": "1993",
@@ -36,22 +36,22 @@
         {
           "title": "Child-Centered Learning",
           "desc": "We focus on nurturing curiosity and encouraging exploration.",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793254266/lfcs-school/about/approach1_1793254266018.webp"
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814248/lfcs-school/about/approach1_1793254266018.webp"
         },
         {
           "title": "Experiential Learning",
           "desc": "Hands-on experiences that make learning meaningful and lasting.",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793254267/lfcs-school/about/approach2_1793254267246.webp"
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814247/lfcs-school/about/approach2_1793254267246.webp"
         },
         {
           "title": "Holistic Development",
           "desc": "We nurture academics, creativity, sports, and life skills equally.",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793254268/lfcs-school/about/approach3_1793254268269.webp"
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814247/lfcs-school/about/approach3_1793254268269.webp"
         },
         {
           "title": "Values & Character",
           "desc": "Building strong values, empathy, and respect for a better tomorrow.",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793254270/lfcs-school/about/approach4_1793254269293.webp"
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814248/lfcs-school/about/approach4_1793254269293.webp"
         }
       ]
     },
@@ -70,32 +70,32 @@
         {
           "title": "Integrity",
           "desc": "We do the right thing at all times, even when no one is watching.",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793254272/lfcs-school/about/values1_1793254272266.webp"
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814251/lfcs-school/about/values1_1793254272266.webp"
         },
         {
           "title": "Respect",
           "desc": "We value every single individual and treat everyone with kindness.",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793254273/lfcs-school/about/values2_1793254273191.webp"
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814253/lfcs-school/about/values2_1793254273191.webp"
         },
         {
           "title": "Excellence",
           "desc": "We consistently strive for the highest standards in all that we do.",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793254274/lfcs-school/about/values3_1793254274105.webp"
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814253/lfcs-school/about/values3_1793254274105.webp"
         },
         {
           "title": "Innovation",
           "desc": "We embrace new ideas and creativity to solve real-world challenges.",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793254275/lfcs-school/about/values4_1793254275130.webp"
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814253/lfcs-school/about/values4_1793254275130.webp"
         },
         {
           "title": "Community",
           "desc": "We build strong, supportive relationships that help us grow together.",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793254276/lfcs-school/about/values5_1793254276052.webp"
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814253/lfcs-school/about/values5_1793254276052.webp"
         },
         {
           "title": "Responsibility",
           "desc": "We take full ownership of our actions and care deeply for our world.",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793254277/lfcs-school/about/values6_1793254277486.webp"
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814253/lfcs-school/about/values6_1793254277486.webp"
         }
       ]
     },
@@ -110,35 +110,35 @@
           "role": "Founder’s Vision",
           "quote": "The foundation of Little Flower's educational journey was laid by Late Shiksha Ratan Vijay Shankar Yadav Ji, whose belief in the importance of education continues to remain part of the institution's identity.",
           "bio": "",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793254279/lfcs-school/about/founder_1793254278510.webp"
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814249/lfcs-school/about/founder_1793254278510.webp"
         },
         {
           "name": "Mr. Muralidhar Yadav",
           "role": "Chairman, Little Flower Group of Schools",
           "quote": "Education That Creates Lasting Impact",
           "bio": "At Little Flower, we believe that the true purpose of education is to prepare children not only for examinations, but for the opportunities and responsibilities that lie ahead.\n\nOur journey has always been guided by a commitment to provide quality education while creating an environment where students can develop knowledge, character, confidence and a sense of responsibility.\n\nWe are proud of the journey Little Flower has undertaken so far, but we also recognise that education is constantly evolving. Our responsibility is to keep learning, improving and creating better opportunities for every student who becomes a part of the Little Flower family.\n\nWe look forward to continuing this journey with the trust and support of our students, parents, educators and communities.",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793254280/lfcs-school/about/chairman_1793254279737.webp"
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814249/lfcs-school/about/chairman_1793254279737.webp"
         },
         {
           "name": "Sharman Joshi",
           "role": "Actor",
           "quote": "Some journeys are worth supporting because of the trust behind them.",
           "bio": "I am happy to extend my support to Little Flower Children School and its journey towards making quality education accessible to more children and families.\n\nOver the years, LFCS has built a foundation of trust and goodwill through its commitment to education and the communities it serves.\n\nWhat encouraged me to be a part of this journey is the purpose behind it to take that experience and commitment to more communities across India.\n\nEducation has the power to shape lives, open possibilities and create a stronger future. Initiatives that work towards making that opportunity more accessible deserve encouragement and support.\n\nI wish the LFCS team the very best as they take this important step forward, and I am glad to be associated with this journey.",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170012/lfcs-school/sharman-joshi_1793170012349.webp"
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814274/lfcs-school/sharman-joshi_1793170012349.webp"
         },
         {
           "name": "Mr. Anand Kumar",
           "role": "Mathematician & Educator",
           "quote": "Education can change the direction of a child's life. But for that change to happen, quality education must reach the children who need it.",
           "bio": "I am happy to support Little Flower Children Schools and its vision of taking accessible and structured education to more communities.\n\nWhat resonates with me is the belief that every child deserves an opportunity to learn, explore & discover their potential and move forward with confidence.\n\nI wish LFCS the very best as it takes this important vision to more children and families across India.",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170011/lfcs-school/anand-kumar_1793170011282.webp"
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814261/lfcs-school/anand-kumar_1793170011282.webp"
         },
         {
           "name": "Ms. Manju Rana",
           "role": "Concort Consultant",
           "quote": "National Award for Teachers, 2018",
           "bio": "Felicitated with the National Award for Teachers by the President of India in 2018 for her contribution in the field of education for over 34 years.\n\nFormer Director of the Seth Anandram Jaipuria Group of Schools, with extensive experience in academics, strategic planning, and administrative management.\n\nWorked closely with premier educational bodies like CBSE, British Council, NPSC, and Sahodaya Schools Complex.\n\nA CBSE expert trainer and auditor, delivering workshops on educational leadership and publishing insightful articles in national publications.",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793254281/lfcs-school/about/manju-rana-full_1793254280783.webp"
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814250/lfcs-school/about/manju-rana-full_1793254280783.webp"
         }
       ]
     },
@@ -152,31 +152,31 @@
           "year": "1993",
           "title": "The Beginning",
           "desc": "Founded by Late Shri Vijay Shankar Yadav in a temporary space with just 30 students.",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793254282/lfcs-school/about/founder-portrait_1793254281990.webp"
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814249/lfcs-school/about/founder-portrait_1793254281990.webp"
         },
         {
           "year": "2012",
           "title": "LFCS Kiriharapur, Ballia",
           "desc": "An exemplary academy established with modern facilities and cutting edge amenities.",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170004/lfcs-school/Khalispur-Balia_1793170003677.webp"
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814270/lfcs-school/Khalispur-Balia_1793170003677.webp"
         },
         {
           "year": "2014",
           "title": "LFIS, Khalishpur Mau",
           "desc": "Our flagship international school in Khalishpur, with high tech facilities and an Olympic standard swimming pool.",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170014/lfcs-school/journey-lfis-mau_1793170014137.webp"
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814270/lfcs-school/journey-lfis-mau_1793170014137.webp"
         },
         {
           "year": "2018",
           "title": "LFCS, Ghosi",
           "desc": "Extending holistic, value based education to the children of remote villages.",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170003/lfcs-school/Ghosi_1793170002814.webp"
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814268/lfcs-school/Ghosi_1793170002814.webp"
         },
         {
           "year": "2022",
           "title": "LFCS, Kasimabad Ghazipur",
           "desc": "A new branch in Kasimabad, Ghazipur, commencing operations in the 2022-23 session.",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170004/lfcs-school/Kasimabad_1793170004532.webp"
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814270/lfcs-school/Kasimabad_1793170004532.webp"
         }
       ]
     },
@@ -189,28 +189,28 @@
         {
           "title": "International Academic Recognition",
           "desc": "Representation at the 1st International & 31st Annual Conference of Sahodaya School Complexes, Dubai (UAE), highlighting the school's global academic engagement and leadership in contemporary education.",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793254283/lfcs-school/about/international-recognition-1_1793254283321.webp",
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814250/lfcs-school/about/international-recognition-1_1793254283321.webp",
           "images": [
-            "https://res.cloudinary.com/dpa93copz/image/upload/v1793254283/lfcs-school/about/international-recognition-1_1793254283321.webp"
+            "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814250/lfcs-school/about/international-recognition-1_1793254283321.webp"
           ]
         },
         {
           "title": "National Leadership Award",
           "desc": "Honoured with the Award for Leading School Chain of Uttar Pradesh at the Education Summit, Lucknow, recognising visionary leadership, quality education, and institutional excellence.",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793254284/lfcs-school/about/national-leadership-award-1_1793254284244.webp",
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814250/lfcs-school/about/national-leadership-award-1_1793254284244.webp",
           "images": [
-            "https://res.cloudinary.com/dpa93copz/image/upload/v1793254284/lfcs-school/about/national-leadership-award-1_1793254284244.webp",
-            "https://res.cloudinary.com/dpa93copz/image/upload/v1793254285/lfcs-school/about/national-leadership-award-2_1793254285145.webp",
-            "https://res.cloudinary.com/dpa93copz/image/upload/v1793254286/lfcs-school/about/national-leadership-award-3_1793254286190.webp"
+            "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814250/lfcs-school/about/national-leadership-award-1_1793254284244.webp",
+            "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814251/lfcs-school/about/national-leadership-award-2_1793254285145.webp",
+            "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814251/lfcs-school/about/national-leadership-award-3_1793254286190.webp"
           ]
         },
         {
           "title": "Prestigious Media Recognition",
           "desc": "Recipient of the Dainik Jagran Award 2022 for being one of the Most Credible Brands in Education, acknowledging trust, consistency, and outstanding educational contribution.",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793254287/lfcs-school/about/media-recognition-1_1793254287351.webp",
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814250/lfcs-school/about/media-recognition-1_1793254287351.webp",
           "images": [
-            "https://res.cloudinary.com/dpa93copz/image/upload/v1793254287/lfcs-school/about/media-recognition-1_1793254287351.webp",
-            "https://res.cloudinary.com/dpa93copz/image/upload/v1793254289/lfcs-school/about/media-recognition-2_1793254288589.webp"
+            "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814250/lfcs-school/about/media-recognition-1_1793254287351.webp",
+            "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814250/lfcs-school/about/media-recognition-2_1793254288589.webp"
           ]
         }
       ]
@@ -220,7 +220,7 @@
       "subtitle": "Admissions open for a brighter tomorrow.",
       "buttonText": "Enquire Now",
       "buttonLink": "/contact#contact-form",
-      "bgImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1793254289/lfcs-school/about/cta-bg_1793254289446.webp"
+      "bgImage": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814249/lfcs-school/about/cta-bg_1793254289446.webp"
     }
   },
   "academics": {
@@ -231,14 +231,14 @@
       "description": "At Little Flower, academics go beyond textbooks. We nurture curiosity, build strong foundations, and inspire a love for lifelong learning to equip students for an ever-changing world.",
       "ctaText": "Explore Our Syllabus",
       "ctaLink": "#approach",
-      "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793255193/lfcs-school/academics/academics-hero_1793255192058.webp"
+      "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814254/lfcs-school/academics/academics-hero_1793255192058.webp"
     },
     "CurriculumSection": {
       "tagline": "OUR CURRICULUM",
       "headline": "A curriculum applied for Developmental",
       "scriptAccent": "Learning",
       "subtitle": "Our curriculum is designed to provide students with a structured academic journey, with learning developing from foundational concepts to deeper subject understanding as they move through different school levels.",
-      "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793255195/lfcs-school/academics/curriculum_1793255194438.webp",
+      "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814254/lfcs-school/academics/curriculum_1793255194438.webp",
       "subjects": [
         {
           "title": "Languages",
@@ -276,31 +276,31 @@
           "title": "Early Years",
           "grades": "[Nursery – UKG]",
           "desc": "Focus on developing foundational skills through play-based learning, classroom activities and guided exploration.",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793255196/lfcs-school/academics/JourneyCard1_1793255195642.webp"
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814255/lfcs-school/academics/JourneyCard1_1793255195642.webp"
         },
         {
           "title": "Primary School",
           "grades": "[I – V]",
           "desc": "Focus expands towards building stronger subject knowledge, reading & writing skills, mathematical understanding & learning habits.",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793255197/lfcs-school/academics/JourneyCard2_1793255196571.webp"
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814256/lfcs-school/academics/JourneyCard2_1793255196571.webp"
         },
         {
           "title": "Middle School",
           "grades": "[VI – VIII]",
           "desc": "Introduces & requires students to gain greater subject depth, think independently and develop stronger problem-solving skills.",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793255197/lfcs-school/academics/JourneyCard3_1793255197479.webp"
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814256/lfcs-school/academics/JourneyCard3_1793255197479.webp"
         },
         {
           "title": "Secondary School",
           "grades": "[IX – X]",
           "desc": "A crucial phase where students apply knowledge & skills, strengthen analytical abilities and prepare for board exams with the right guidance.",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793255198/lfcs-school/academics/JourneyCard4_1793255198478.webp"
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814256/lfcs-school/academics/JourneyCard4_1793255198478.webp"
         },
         {
           "title": "Senior Secondary",
           "grades": "[XI – XII]",
           "desc": "Students work towards academic specialisation, deeper subject understanding and preparation for higher education and future career pathways.",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793255200/lfcs-school/academics/JourneyCard5_1793255199496.webp"
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814256/lfcs-school/academics/JourneyCard5_1793255199496.webp"
         }
       ],
       "ctaText": "Explore Admissions",
@@ -314,27 +314,27 @@
       "cards": [
         {
           "title": "Classroom\nLearning",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793255201/lfcs-school/academics/classroom_1793255200659.webp"
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814254/lfcs-school/academics/classroom_1793255200659.webp"
         },
         {
           "title": "Activity-Based\nLearning",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170034/lfcs-school/activity_1793170034132.webp"
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814261/lfcs-school/activity_1793170034132.webp"
         },
         {
           "title": "Project &\nPractical",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170028/lfcs-school/practical_1793170027731.webp"
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814274/lfcs-school/practical_1793170027731.webp"
         },
         {
           "title": "Technology\nEnabled",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793255202/lfcs-school/academics/technology_1793255201646.webp"
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814258/lfcs-school/academics/technology_1793255201646.webp"
         },
         {
           "title": "Collaborative\nLearning",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170022/lfcs-school/collabrative_1793170021825.webp"
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814263/lfcs-school/collabrative_1793170021825.webp"
         },
         {
           "title": "Independent\nLearning",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170030/lfcs-school/independent_1793170030545.webp"
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814270/lfcs-school/independent_1793170030545.webp"
         }
       ]
     },
@@ -348,43 +348,43 @@
           "name": "Sarita Kedia",
           "school": "LFCS, Nizamuddinpura",
           "city": "Mau",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793255203/lfcs-school/academics/sarita-kedia_1793255202686.webp"
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814257/lfcs-school/academics/sarita-kedia_1793255202686.webp"
         },
         {
           "name": "P. L. Jaishi",
           "school": "LFCS, Sikatiya",
           "city": "Mau",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793255204/lfcs-school/academics/pl-jaishi_1793255203547.webp"
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814256/lfcs-school/academics/pl-jaishi_1793255203547.webp"
         },
         {
           "name": "Sanjay Rai",
           "school": "LFCS, Ghosi",
           "city": "Ghosi",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793255204/lfcs-school/academics/sanjay-rai_1793255204388.webp"
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814257/lfcs-school/academics/sanjay-rai_1793255204388.webp"
         },
         {
           "name": "Deepa Pal",
           "school": "LFCS, Ballia",
           "city": "Mau",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793255205/lfcs-school/academics/deepa-pal_1793255205428.webp"
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814254/lfcs-school/academics/deepa-pal_1793255205428.webp"
         },
         {
           "name": "Ekta Singh",
           "school": "LFCS, Kasimabad Ghazipur",
           "city": "Kasimabad",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793255206/lfcs-school/academics/ekta-singh_1793255206241.webp"
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814254/lfcs-school/academics/ekta-singh_1793255206241.webp"
         },
         {
           "name": "Zeeta Lepcha",
           "school": "LFIS, Khalishpur Mau",
           "city": "Mau",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793255207/lfcs-school/academics/zeeta-lepcha_1793255207292.webp"
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814261/lfcs-school/academics/zeeta-lepcha_1793255207292.webp"
         },
         {
           "name": "Mahendra Yadav",
           "school": "Azad Hind Inter College, Khalishpur Mau",
           "city": "Mau",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793255208/lfcs-school/academics/mahendra-yadav_1793255208136.webp"
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814256/lfcs-school/academics/mahendra-yadav_1793255208136.webp"
         }
       ]
     },
@@ -429,22 +429,22 @@
         {
           "title": "Smart / Digital Classrooms",
           "description": "Technology-enabled resources that support classroom instruction and visual learning.",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170019/lfcs-school/digital-classroom_1793170018820.webp"
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814263/lfcs-school/digital-classroom_1793170018820.webp"
         },
         {
           "title": "Science Laboratories",
           "description": "Environment where students can experiment & practically apply their science concepts.",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793255209/lfcs-school/academics/science-lab_1793255209006.webp"
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814257/lfcs-school/academics/science-lab_1793255209006.webp"
         },
         {
           "title": "Computer Laboratories",
           "description": "Facilities that help students develop digital and computer skills.",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170016/lfcs-school/computer-lab_1793170016129.webp"
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814263/lfcs-school/computer-lab_1793170016129.webp"
         },
         {
           "title": "Library",
           "description": "An Independent learning zone that encourages students to understand the world.",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170015/lfcs-school/library_1793170015178.webp"
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814271/lfcs-school/library_1793170015178.webp"
         }
       ]
     },
@@ -452,7 +452,7 @@
       "heading": "A Strong Foundation Today, A Brighter Tomorrow.",
       "buttonText": "Enquire Now",
       "buttonLink": "/contact#contact-form",
-      "bgImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1793254289/lfcs-school/about/cta-bg_1793254289446.webp"
+      "bgImage": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814249/lfcs-school/about/cta-bg_1793254289446.webp"
     }
   },
   "admissions": {
@@ -463,7 +463,7 @@
       "description": "Every child deserves an environment where learning helps them build knowledge, confidence & character. At LFCS Schools, our aim is to provide students with a strong academic base leading them to opportunities valuable for their future.",
       "ctaText": "Enquire About Admissions",
       "ctaLink": "#admission-enquiry",
-      "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793256270/lfcs-school/admissions/admission-hero_1793256269262.webp",
+      "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814261/lfcs-school/admissions/admission-hero_1793256269262.webp",
       "statValue": "8",
       "statLabel": "Institutions"
     },
@@ -506,31 +506,31 @@
           "title": "Early Years",
           "grades": "Nursery – UKG",
           "desc": "Focus on developing foundational skills through play-based learning, classroom activities and guided exploration.",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793255196/lfcs-school/academics/JourneyCard1_1793255195642.webp"
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814255/lfcs-school/academics/JourneyCard1_1793255195642.webp"
         },
         {
           "title": "Primary School",
           "grades": "I – V",
           "desc": "Focus expands towards building stronger subject knowledge, reading & writing skills, mathematical understanding & learning habits.",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793255197/lfcs-school/academics/JourneyCard2_1793255196571.webp"
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814256/lfcs-school/academics/JourneyCard2_1793255196571.webp"
         },
         {
           "title": "Middle School",
           "grades": "VI – VIII",
           "desc": "Introduces & requires students to gain greater subject depth, think independently and develop stronger problem-solving skills.",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793255197/lfcs-school/academics/JourneyCard3_1793255197479.webp"
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814256/lfcs-school/academics/JourneyCard3_1793255197479.webp"
         },
         {
           "title": "Secondary School",
           "grades": "IX – X",
           "desc": "A crucial phase where students apply knowledge & skills, strengthen analytical abilities and prepare for board exams with the right guidance.",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793255198/lfcs-school/academics/JourneyCard4_1793255198478.webp"
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814256/lfcs-school/academics/JourneyCard4_1793255198478.webp"
         },
         {
           "title": "Senior Secondary",
           "grades": "XI – XII",
           "desc": "Students work towards academic specialisation, deeper subject understanding and preparation for higher education and future career pathways.",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793255200/lfcs-school/academics/JourneyCard5_1793255199496.webp"
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814256/lfcs-school/academics/JourneyCard5_1793255199496.webp"
         }
       ]
     },
@@ -563,8 +563,8 @@
       "description": "At Little Flower Group of Schools, we believe that meaningful education begins with people who are passionate about learning and development. We welcome individuals who want to contribute to an environment where students are encouraged to learn, grow and realise their potential.\n\nExplore opportunities to become part of a team committed to education, collaboration and continuous improvement.",
       "ctaText": "Explore Opportunities",
       "ctaLink": "#opportunities",
-      "image1": "https://res.cloudinary.com/dpa93copz/image/upload/v1793254266/lfcs-school/about/approach1_1793254266018.webp",
-      "image2": "https://res.cloudinary.com/dpa93copz/image/upload/v1793254274/lfcs-school/about/values3_1793254274105.webp",
+      "image1": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814248/lfcs-school/about/approach1_1793254266018.webp",
+      "image2": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814253/lfcs-school/about/values3_1793254274105.webp",
       "statsNumber": "8",
       "statsLabel": "Institutions"
     },
@@ -627,7 +627,7 @@
       ],
       "valuesList": "Professionalism, Integrity, Respect, Responsibility, Willingness to Learn",
       "quote": "We believe that when the people within a school continue to learn and improve, the entire learning community benefits.",
-      "cultureImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1793254270/lfcs-school/about/approach4_1793254269293.webp"
+      "cultureImage": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814248/lfcs-school/about/approach4_1793254269293.webp"
     },
     "OpportunitiesSection": {
       "tagline": "Current Openings",
@@ -654,7 +654,7 @@
           ],
           "rolesText": "Pre-Primary Teachers\nPrimary School Teachers\nSubject Teachers\nSenior Secondary Subject Specialists\nAcademic Coordinators\nSchool Leadership and Academic Management",
           "cta": "Express Interest in Teaching Opportunities",
-          "img": "https://res.cloudinary.com/dpa93copz/image/upload/v1793254267/lfcs-school/about/approach2_1793254267246.webp"
+          "img": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814247/lfcs-school/about/approach2_1793254267246.webp"
         },
         {
           "label": "Administrative Opportunities",
@@ -677,7 +677,7 @@
           ],
           "rolesText": "School Administration\nAdmissions and Parent Relations\nAccounts and Finance\nHuman Resources\nOperations and Facilities Management\nIT and Technical Support\nSchool Coordination",
           "cta": "Explore Administrative Opportunities",
-          "img": "https://res.cloudinary.com/dpa93copz/image/upload/v1793254265/lfcs-school/about/story2_1793254265102.webp"
+          "img": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814252/lfcs-school/about/story2_1793254265102.webp"
         }
       ]
     },
@@ -689,7 +689,7 @@
         "Tell us about your experience, skills and area of interest, and our team can consider your profile for relevant opportunities as they arise."
       ],
       "buttonText": "Submit Your Profile",
-      "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793254261/lfcs-school/about/about-hero_1793254259596.webp"
+      "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814247/lfcs-school/about/about-hero_1793254259596.webp"
     }
   },
   "contact": {
@@ -724,7 +724,7 @@
       "subtitle": "Life at LFCS is beyond textbooks and classrooms.",
       "ctaText": "Explore Life at LFCS",
       "ctaLink": "#life-at-lfcs",
-      "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793256926/lfcs-school/experience/experience-hero_1793256924181.webp"
+      "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814266/lfcs-school/experience/experience-hero_1793256924181.webp"
     },
     "LifeAtLFCSSection": {
       "tagline": "Life at LFCS",
@@ -755,8 +755,8 @@
           "title": "Celebrations and school programmes"
         }
       ],
-      "image1": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170040/lfcs-school/life1_1793170040339.webp",
-      "image2": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170041/lfcs-school/life2_1793170041503.webp"
+      "image1": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814271/lfcs-school/life1_1793170040339.webp",
+      "image2": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814271/lfcs-school/life2_1793170041503.webp"
     },
     "SportsFitnessSection": {
       "tagline": "Sports & Fitness",
@@ -788,8 +788,8 @@
           "title": "Inter-school competitions"
         }
       ],
-      "image1": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170017/lfcs-school/sports1_1793170017007.webp",
-      "image2": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170037/lfcs-school/sports2_1793170037412.webp",
+      "image1": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814276/lfcs-school/sports1_1793170017007.webp",
+      "image2": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814276/lfcs-school/sports2_1793170037412.webp",
       "activitiesTitle": "Sports & Physical Activities"
     },
     "ArtsCultureSection": {
@@ -825,8 +825,8 @@
           "title": "School exhibitions and programmes"
         }
       ],
-      "image1": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170035/lfcs-school/art1_1793170035130.webp",
-      "image2": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170039/lfcs-school/art2_1793170039436.webp"
+      "image1": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814262/lfcs-school/art1_1793170035130.webp",
+      "image2": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814262/lfcs-school/art2_1793170039436.webp"
     },
     "ClubsActivitiesSection": {
       "tagline": "Clubs & Activities",
@@ -837,42 +837,42 @@
       "clubs": [
         {
           "name": "Academic competitions",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793256927/lfcs-school/experience/club-card1_1793256927381.webp",
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814264/lfcs-school/experience/club-card1_1793256927381.webp",
           "bg": "#e5a024"
         },
         {
           "name": "Quiz & general knowledge",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793256928/lfcs-school/experience/club-card2_1793256928255.webp",
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814264/lfcs-school/experience/club-card2_1793256928255.webp",
           "bg": "#d47087"
         },
         {
           "name": "Technology / STEM activities",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793256929/lfcs-school/experience/club-card3_1793256929178.webp",
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814264/lfcs-school/experience/club-card3_1793256929178.webp",
           "bg": "#832646"
         },
         {
           "name": "Debates & communication",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793256930/lfcs-school/experience/club-card4_1793256930078.webp",
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814265/lfcs-school/experience/club-card4_1793256930078.webp",
           "bg": "#7949a3"
         },
         {
           "name": "Literary activities",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793256931/lfcs-school/experience/club-card-5_1793256931015.webp",
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814263/lfcs-school/experience/club-card-5_1793256931015.webp",
           "bg": "#1e9575"
         },
         {
           "name": "Art & creative activities",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793256932/lfcs-school/experience/club-card-6_1793256931963.webp",
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814263/lfcs-school/experience/club-card-6_1793256931963.webp",
           "bg": "#e87a71"
         },
         {
           "name": "Sports",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793256933/lfcs-school/experience/club-card-7_1793256932889.webp",
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814264/lfcs-school/experience/club-card-7_1793256932889.webp",
           "bg": "#5b9e59"
         },
         {
           "name": "Cultural activities",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793256934/lfcs-school/experience/club-card-8_1793256933783.webp",
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814264/lfcs-school/experience/club-card-8_1793256933783.webp",
           "bg": "#d89728"
         }
       ]
@@ -895,59 +895,59 @@
       "photos": [
         {
           "category": "Annual Functions",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170042/lfcs-school/Experience8_1793170042389.webp"
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814268/lfcs-school/Experience8_1793170042389.webp"
         },
         {
           "category": "Sports Days",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170017/lfcs-school/sports1_1793170017007.webp"
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814276/lfcs-school/sports1_1793170017007.webp"
         },
         {
           "category": "School Programmes",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170018/lfcs-school/skills1_1793170017926.webp"
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814274/lfcs-school/skills1_1793170017926.webp"
         },
         {
           "category": "Competitions",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170043/lfcs-school/Experience9_1793170043442.webp"
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814268/lfcs-school/Experience9_1793170043442.webp"
         },
         {
           "category": "Workshops",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170022/lfcs-school/collabrative_1793170021825.webp"
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814263/lfcs-school/collabrative_1793170021825.webp"
         },
         {
           "category": "Educational Trips",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170035/lfcs-school/art1_1793170035130.webp"
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814262/lfcs-school/art1_1793170035130.webp"
         },
         {
           "category": "Celebrations",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170040/lfcs-school/life1_1793170040339.webp"
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814271/lfcs-school/life1_1793170040339.webp"
         },
         {
           "category": "Competitions",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170028/lfcs-school/practical_1793170027731.webp"
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814274/lfcs-school/practical_1793170027731.webp"
         },
         {
           "category": "School Programmes",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170039/lfcs-school/art2_1793170039436.webp"
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814262/lfcs-school/art2_1793170039436.webp"
         },
         {
           "category": "Annual Functions",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170039/lfcs-school/skills4_1793170038535.webp"
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814275/lfcs-school/skills4_1793170038535.webp"
         },
         {
           "category": "Educational Trips",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170032/lfcs-school/Experience4_1793170032205.webp"
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814267/lfcs-school/Experience4_1793170032205.webp"
         },
         {
           "category": "Celebrations",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170041/lfcs-school/life2_1793170041503.webp"
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814271/lfcs-school/life2_1793170041503.webp"
         },
         {
           "category": "Sports Days",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170037/lfcs-school/sports2_1793170037412.webp"
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814276/lfcs-school/sports2_1793170037412.webp"
         },
         {
           "category": "Workshops",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170029/lfcs-school/skills2_1793170028638.webp"
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814275/lfcs-school/skills2_1793170028638.webp"
         }
       ],
       "ctaText": "View Full Gallery",
@@ -959,7 +959,7 @@
       "heading": "Ready to Join the LFCS Community?",
       "buttonText": "Explore our School",
       "buttonLink": "/our-school",
-      "bgImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1793254289/lfcs-school/about/cta-bg_1793254289446.webp"
+      "bgImage": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814249/lfcs-school/about/cta-bg_1793254289446.webp"
     }
   },
   "home": {
@@ -967,8 +967,8 @@
       "headline": "Rooted in Values.",
       "scriptAccent": "Rising with Excellence.",
       "subtitle": "A network of CBSE schools committed to academic excellence, character building and holistic development.",
-      "bgImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1793252205/lfcs-school/home/hersection_bg_1793252204132.webp",
-      "overlayImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170046/lfcs-school/herobg1_1793170046153.webp",
+      "bgImage": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814269/lfcs-school/home/hersection_bg_1793252204132.webp",
+      "overlayImage": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814268/lfcs-school/herobg1_1793170046153.webp",
       "primaryCtaText": "Explore Our Schools",
       "primaryCtaLink": "/our-school",
       "secondaryCtaText": "Start a School",
@@ -1003,17 +1003,17 @@
         {
           "title": "Strong Academics",
           "desc": "CBSE curriculum with future ready learning.",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793252206/lfcs-school/home/academics_1793252205984.webp"
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814268/lfcs-school/home/academics_1793252205984.webp"
         },
         {
           "title": "Holistic Growth",
           "desc": "Sports, arts, life skills and leadership opportunities.",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793252207/lfcs-school/home/holistic_1793252206993.webp"
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814269/lfcs-school/home/holistic_1793252206993.webp"
         },
         {
           "title": "Future Ready",
           "desc": "Innovation, technology and 21st century skills.",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793252208/lfcs-school/home/future_1793252207899.webp"
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814269/lfcs-school/home/future_1793252207899.webp"
         }
       ]
     },
@@ -1026,7 +1026,7 @@
           "role": "Actor",
           "headline": "Some journeys are worth supporting because of the trust behind them.",
           "quote": "I am happy to extend my support to Little Flower Children School and its journey towards making quality education accessible to more children and families.",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170012/lfcs-school/sharman-joshi_1793170012349.webp",
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814274/lfcs-school/sharman-joshi_1793170012349.webp",
           "link": "/about#note-of-support"
         },
         {
@@ -1034,7 +1034,7 @@
           "role": "Mathematician & Educator",
           "headline": "Education can change the direction of a child's life.",
           "quote": "But for that change to happen, quality education must reach the children who need it. I wish LFCS the very best as it takes this important vision to more children and families across India.",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170011/lfcs-school/anand-kumar_1793170011282.webp",
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814261/lfcs-school/anand-kumar_1793170011282.webp",
           "link": "/about#anand-kumar"
         }
       ]
@@ -1044,7 +1044,7 @@
       "headline": "Learning Beyond",
       "scriptAccent": "Classrooms",
       "subtitle": "We blend strong academics with innovation and creativity to nurture curious minds and confident hearts.",
-      "mainImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1793252209/lfcs-school/home/how-we-educate_1793252208803.webp",
+      "mainImage": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814269/lfcs-school/home/how-we-educate_1793252208803.webp",
       "pillars": [
         {
           "title": "Experiential Learning",
@@ -1075,32 +1075,32 @@
         {
           "title": "Experiential Learning",
           "desc": "Hands-on discovery and active inquiry in science and life.",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170018/lfcs-school/skills1_1793170017926.webp"
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814274/lfcs-school/skills1_1793170017926.webp"
         },
         {
           "title": "Technology & Innovation",
           "desc": "Smart classrooms, coding, and future-ready digital competencies.",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170029/lfcs-school/skills2_1793170028638.webp"
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814275/lfcs-school/skills2_1793170028638.webp"
         },
         {
           "title": "Sports & Physical Growth",
           "desc": "Athletic training, team sports, endurance, and physical health.",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170036/lfcs-school/skills3_1793170036462.webp"
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814275/lfcs-school/skills3_1793170036462.webp"
         },
         {
           "title": "Art, Culture & Expression",
           "desc": "Creative arts, music, dance, theatrical performance, and stage confidence.",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170039/lfcs-school/skills4_1793170038535.webp"
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814275/lfcs-school/skills4_1793170038535.webp"
         },
         {
           "title": "Science & Research",
           "desc": "Hands-on laboratories, scientific methodology, and experimentation.",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170043/lfcs-school/skills5_1793170043003.webp"
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814341/lfcs-school/skills5_1793170043003.webp"
         },
         {
           "title": "Academic Excellence",
           "desc": "Rigorous CBSE curriculum mastery and individual academic mentorship.",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170045/lfcs-school/skills6_1793170044996.webp"
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814343/lfcs-school/skills6_1793170044996.webp"
         }
       ]
     },
@@ -1113,39 +1113,39 @@
       "ctaLink": "/experience",
       "photos": [
         {
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170031/lfcs-school/Experience1_1793170031351.webp",
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814265/lfcs-school/Experience1_1793170031351.webp",
           "label": "School experience"
         },
         {
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170025/lfcs-school/Experience2_1793170024535.webp",
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814265/lfcs-school/Experience2_1793170024535.webp",
           "label": "School experience"
         },
         {
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170026/lfcs-school/Experience3_1793170025502.webp",
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814265/lfcs-school/Experience3_1793170025502.webp",
           "label": "School experience"
         },
         {
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170032/lfcs-school/Experience4_1793170032205.webp",
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814267/lfcs-school/Experience4_1793170032205.webp",
           "label": "School experience"
         },
         {
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170027/lfcs-school/Experience5_1793170026591.webp",
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814267/lfcs-school/Experience5_1793170026591.webp",
           "label": "School experience"
         },
         {
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170020/lfcs-school/Experience6_1793170019770.webp",
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814267/lfcs-school/Experience6_1793170019770.webp",
           "label": "School experience"
         },
         {
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170033/lfcs-school/Experience7_1793170033133.webp",
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814267/lfcs-school/Experience7_1793170033133.webp",
           "label": "School experience"
         },
         {
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170042/lfcs-school/Experience8_1793170042389.webp",
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814268/lfcs-school/Experience8_1793170042389.webp",
           "label": "School experience"
         },
         {
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170043/lfcs-school/Experience9_1793170043442.webp",
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814268/lfcs-school/Experience9_1793170043442.webp",
           "label": "School experience"
         }
       ],
@@ -1255,7 +1255,7 @@
       "scriptAccent": "Future.",
       "description": "Become a part of LFCS and bring quality education closer to communities, in partnership with individuals and organisations who share our commitment to learning and growth.",
       "buttonText": "Start Your Enquiry",
-      "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793257755/lfcs-school/start-school/start-school-hero_1793257753045.webp"
+      "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814276/lfcs-school/start-school/start-school-hero_1793257753045.webp"
     },
     "WhyPartnerSection": {
       "tagline": "Why Start an LFCS School?",
@@ -1267,35 +1267,35 @@
           "desc": "Built around the Little Flower identity and values-led philosophy.",
           "color": "#dfae19",
           "bg": "#fcf5de",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793257756/lfcs-school/start-school/lfis-mau-crop_1793257756282.webp"
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814276/lfcs-school/start-school/lfis-mau-crop_1793257756282.webp"
         },
         {
           "title": "A Focus on Quality Education",
           "desc": "A structured environment that supports academic foundations and growth.",
           "color": "#66733a",
           "bg": "#edf1e8",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793255201/lfcs-school/academics/classroom_1793255200659.webp"
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814254/lfcs-school/academics/classroom_1793255200659.webp"
         },
         {
           "title": "Academic & Operational Guidance",
           "desc": "Support across academic planning and school operations, per the partnership scope.",
           "color": "#3b82f6",
           "bg": "#eff6ff",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793254271/lfcs-school/about/story1_1793254270094.webp"
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814345/lfcs-school/about/story1_1793254270094.webp"
         },
         {
           "title": "A Shared Educational Vision",
           "desc": "Be part of an initiative expanding access to quality education.",
           "color": "#c76785",
           "bg": "#fbeff2",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793170035/lfcs-school/art1_1793170035130.webp"
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814262/lfcs-school/art1_1793170035130.webp"
         },
         {
           "title": "Long-Term Institutional Development",
           "desc": "Build a school that grows sustainably and serves its community.",
           "color": "#842b46",
           "bg": "#fbeef1",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793252206/lfcs-school/home/future_1793252205739.webp"
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814344/lfcs-school/home/future_1793252205739.webp"
         }
       ]
     },
@@ -1522,42 +1522,42 @@
           "desc": "Identification of suitable land and location based on the school's proposed size, community needs and applicable requirements.",
           "color": "#dfae19",
           "bg": "#fcf5de",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793257757/lfcs-school/start-school/investment1_1793257757311.webp"
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814275/lfcs-school/start-school/investment1_1793257757311.webp"
         },
         {
           "title": "School Building",
           "desc": "Planning classrooms, administrative spaces and other required areas for school operations.",
           "color": "#66733a",
           "bg": "#edf1e8",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793257759/lfcs-school/start-school/investment2_1793257758660.webp"
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814276/lfcs-school/start-school/investment2_1793257758660.webp"
         },
         {
           "title": "Academic Facilities",
           "desc": "Provision of appropriate learning resources, laboratories, library and other facilities, as applicable.",
           "color": "#3b82f6",
           "bg": "#eff6ff",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793257760/lfcs-school/start-school/investment3_1793257759785.webp"
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814276/lfcs-school/start-school/investment3_1793257759785.webp"
         },
         {
           "title": "Sports & Activity Areas",
           "desc": "Planning spaces for physical education, sports and student activities.",
           "color": "#c76785",
           "bg": "#fbeff2",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793257761/lfcs-school/start-school/investment4_1793257761014.webp"
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814276/lfcs-school/start-school/investment4_1793257761014.webp"
         },
         {
           "title": "Furniture & Equipment",
           "desc": "Arranging classroom furniture, computers, teaching resources and other essential equipment.",
           "color": "#842b46",
           "bg": "#fbeef1",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793257763/lfcs-school/start-school/investment5_1793257762346.webp"
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814276/lfcs-school/start-school/investment5_1793257762346.webp"
         },
         {
           "title": "Operational Resources",
           "desc": "Planning for staffing, technology, administration and ongoing school operations.",
           "color": "#b56f35",
           "bg": "#fdf2e9",
-          "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793257764/lfcs-school/start-school/investment6_1793257763834.webp"
+          "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814276/lfcs-school/start-school/investment6_1793257763834.webp"
         }
       ]
     },
@@ -1614,7 +1614,7 @@
       "heading": "Build a School With a Shared Educational Purpose",
       "buttonText": "Submit Your Enquiry",
       "contactEmail": "franchise@lfcsschools.com",
-      "bgImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1793254289/lfcs-school/about/cta-bg_1793254289446.webp"
+      "bgImage": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814249/lfcs-school/about/cta-bg_1793254289446.webp"
     },
     "EnquiryFormSection": {
       "tagline": "Start a School Enquiry",
@@ -1654,7 +1654,7 @@
       "primaryButtonText": "Enquire for Admission",
       "secondaryButtonText": "Explore Our School",
       "secondaryButtonLink": "/about",
-      "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1793259108/lfcs-school/our-school/our-school-cta_1793259105953.webp",
+      "image": "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814272/lfcs-school/our-school/our-school-cta_1793259105953.webp",
       "features": [
         {
           "title": "Nurturing",

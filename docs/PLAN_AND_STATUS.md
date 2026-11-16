@@ -16,7 +16,7 @@
 - **Default Website Port**: `http://localhost:3000`
 - **Tech Stack**: Next.js 16 (App Router), React 19, Tailwind CSS v4, Prisma ORM, PostgreSQL, NextAuth.js v5 (Auth.js Beta), Sharp (WebP compression), Cloudinary SDK, React Hot Toast, React Quill New, Nodemailer.
 - **Database**: Local PostgreSQL (`postgresql://sudeeshkumar@localhost:5432/lfcs_school_cms`)
-- **Cloud Storage**: Cloudinary (Folder: `lfcs-school`, Cloud Name: `dpa93copz`)
+- **Cloud Storage**: Cloudinary (Folder: `lfcs-school`, Cloud Name: `kdiu9prw`)
 - **SMTP Server**: Zoho SMTP (`smtppro.zoho.in:465`)
 
 ---

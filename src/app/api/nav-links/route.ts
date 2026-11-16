@@ -79,7 +79,7 @@ const LFCS_NAV_DEFAULT = [
     type: "Dropdown Item",
     parent: "nav-our-schools",
     image:
-      "https://res.cloudinary.com/dpa93copz/image/upload/v1793170001/lfcs-school/Nizamuddinpura-Mau_1793169999785.webp",
+      "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814272/lfcs-school/Nizamuddinpura-Mau_1793169999785.webp",
     order: 1,
   },
   {
@@ -89,7 +89,7 @@ const LFCS_NAV_DEFAULT = [
     type: "Dropdown Item",
     parent: "nav-our-schools",
     image:
-      "https://res.cloudinary.com/dpa93copz/image/upload/v1793170002/lfcs-school/Sikatia-Mau_1793170001648.webp",
+      "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814274/lfcs-school/Sikatia-Mau_1793170001648.webp",
     order: 2,
   },
   {
@@ -99,7 +99,7 @@ const LFCS_NAV_DEFAULT = [
     type: "Dropdown Item",
     parent: "nav-our-schools",
     image:
-      "https://res.cloudinary.com/dpa93copz/image/upload/v1793170003/lfcs-school/Ghosi_1793170002814.webp",
+      "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814268/lfcs-school/Ghosi_1793170002814.webp",
     order: 3,
   },
   {
@@ -109,7 +109,7 @@ const LFCS_NAV_DEFAULT = [
     type: "Dropdown Item",
     parent: "nav-our-schools",
     image:
-      "https://res.cloudinary.com/dpa93copz/image/upload/v1793170004/lfcs-school/Khalispur-Balia_1793170003677.webp",
+      "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814270/lfcs-school/Khalispur-Balia_1793170003677.webp",
     order: 4,
   },
   {
@@ -119,7 +119,7 @@ const LFCS_NAV_DEFAULT = [
     type: "Dropdown Item",
     parent: "nav-our-schools",
     image:
-      "https://res.cloudinary.com/dpa93copz/image/upload/v1793170004/lfcs-school/Kasimabad_1793170004532.webp",
+      "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814270/lfcs-school/Kasimabad_1793170004532.webp",
     order: 5,
   },
   {
@@ -129,7 +129,7 @@ const LFCS_NAV_DEFAULT = [
     type: "Dropdown Item",
     parent: "nav-our-schools",
     image:
-      "https://res.cloudinary.com/dpa93copz/image/upload/v1793170005/lfcs-school/lfcs-azamgarh_1793170005461.webp",
+      "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814271/lfcs-school/lfcs-azamgarh_1793170005461.webp",
     order: 6,
   },
   {
@@ -139,7 +139,7 @@ const LFCS_NAV_DEFAULT = [
     type: "Dropdown Item",
     parent: "nav-our-schools",
     image:
-      "https://res.cloudinary.com/dpa93copz/image/upload/v1793170006/lfcs-school/lfis-mau_1793170006474.webp",
+      "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814271/lfcs-school/lfis-mau_1793170006474.webp",
     order: 7,
   },
   {
@@ -149,7 +149,7 @@ const LFCS_NAV_DEFAULT = [
     type: "Dropdown Item",
     parent: "nav-our-schools",
     image:
-      "https://res.cloudinary.com/dpa93copz/image/upload/v1793170007/lfcs-school/azad-hind-inter-college_1793170007381.webp",
+      "https://res.cloudinary.com/kdiu9prw/image/upload/v1794814262/lfcs-school/azad-hind-inter-college_1793170007381.webp",
     order: 8,
   },
 

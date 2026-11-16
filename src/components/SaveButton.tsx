@@ -22,9 +22,9 @@ export const SaveButton: React.FC<SaveButtonProps> = ({
   return (
     <button
       disabled={isDisabled}
-      className={`w-full bg-[#842b46] cursor-pointer text-white px-8 py-3.5 rounded-xl font-semibold tracking-wide hover:bg-[#6a2238] transition-all duration-300 shadow-sm hover:shadow-md flex items-center justify-center gap-2.5 ${
+      className={`w-full bg-[#842b46] cursor-pointer text-white px-8 py-3.5 rounded-xl font-semibold tracking-wide hover:bg-[#6a2238] transition-all duration-300 shadow-md hover:shadow-lg flex items-center justify-center gap-2.5 active:scale-[0.99] select-none ${
         isDisabled ? "opacity-75 cursor-not-allowed" : ""
-      } ${saved ? "bg-emerald-600 hover:bg-emerald-700" : ""} ${className}`}
+      } ${saved ? "bg-emerald-600 hover:bg-emerald-700 shadow-emerald-600/25" : "shadow-[#842b46]/20"} ${className}`}
       {...props}
     >
       {loading ? (

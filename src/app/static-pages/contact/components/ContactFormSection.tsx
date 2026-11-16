@@ -170,7 +170,7 @@ export function ContactFormSection({ initialData }: { initialData?: any }) {
             placeholder="e.g. B-1/142, Sector-G, Aliganj, Lucknow - 226024, Uttar Pradesh"
           />
 
-          <div className="pt-4 border-t border-gray-100 w-full">
+          <div className="sticky bottom-4 z-20 pt-3 pb-1 bg-white/95 backdrop-blur-md border-t border-gray-100 w-full rounded-b-2xl shadow-xs">
             <SaveButton onClick={handleSave} loading={loading} saved={saved} />
           </div>
         </div>

@@ -298,7 +298,7 @@ export function GallerySection({ initialData }: { initialData?: any }) {
             placeholder="e.g. A short note encouraging visitors to browse the full gallery..."
           />
 
-          <div className="pt-4 border-t border-gray-100 flex justify-end">
+          <div className="sticky bottom-4 z-20 pt-3 pb-1 bg-white/95 backdrop-blur-md border-t border-gray-100 flex justify-end w-full rounded-b-2xl shadow-xs">
             <div className="w-full">
               <SaveButton onClick={handleSave} loading={loading} saved={saved} />
             </div>

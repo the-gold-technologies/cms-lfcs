@@ -99,7 +99,7 @@ export function GalleryHeroSection({ initialData }: { initialData?: any }) {
             placeholder="e.g. A look inside Little Flower schools: our classrooms, labs, early years, sports, culture and the events that make school life memorable."
           />
 
-          <div className="pt-4 border-t border-gray-100 w-full">
+          <div className="sticky bottom-4 z-20 pt-3 pb-1 bg-white/95 backdrop-blur-md border-t border-gray-100 w-full rounded-b-2xl shadow-xs">
             <SaveButton onClick={handleSave} loading={loading} saved={saved} />
           </div>
         </div>

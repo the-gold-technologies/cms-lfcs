@@ -332,6 +332,14 @@ export default function GlobalSEOPage() {
           helperText="Raw JSON-LD markup to provide structured school/organization data to Google."
         />
       </div>
+
+      {/* Sticky Bottom Save Bar */}
+      <div className="sticky bottom-4 z-30 p-3 bg-white/95 backdrop-blur-md rounded-2xl border border-gray-100 shadow-xl flex items-center justify-between gap-4">
+        <p className="text-xs text-gray-500 font-medium pl-2 hidden sm:block">
+          All SEO meta tags &amp; scripts will be updated on the live website.
+        </p>
+        <SaveButton onClick={handleSave} loading={isSaving} className="w-full sm:w-auto px-10" />
+      </div>
     </div>
   );
 }

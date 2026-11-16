@@ -102,7 +102,7 @@ export function ContactHeroSection({ initialData }: { initialData?: any }) {
             placeholder="e.g. Whether you have a question about admissions, academics, or partnering with us to start a school..."
           />
 
-          <div className="pt-4 border-t border-gray-100 w-full">
+          <div className="sticky bottom-4 z-20 pt-3 pb-1 bg-white/95 backdrop-blur-md border-t border-gray-100 w-full rounded-b-2xl shadow-xs">
             <SaveButton onClick={handleSave} loading={loading} saved={saved} />
           </div>
         </div>

@@ -264,7 +264,7 @@ export default function ProfileSettingsPage() {
         </div>
 
         {/* Action Button */}
-        <div className="flex items-center justify-end pt-4 border-t border-gray-100">
+        <div className="sticky bottom-4 z-20 flex items-center justify-end pt-3 pb-1 bg-white/95 backdrop-blur-md border-t border-gray-100 rounded-2xl shadow-xs px-2">
           <SaveButton
             loading={loading}
             saved={saved}

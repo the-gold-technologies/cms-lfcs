@@ -654,7 +654,7 @@ export default function SocialMediaFooterPage() {
           </div>
 
           {/* Full-Width Save Bar at Bottom */}
-          <div className="pt-2">
+          <div className="sticky bottom-4 z-20 pt-3 pb-1 bg-white/95 backdrop-blur-md border-t border-gray-100 w-full rounded-2xl shadow-xs">
             <SaveButton
               loading={saving}
               saved={saved}

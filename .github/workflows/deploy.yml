@@ -57,7 +57,14 @@ jobs:
 
             # 2. Install, build and migrate in the staging folder
             cd "$STAGE"
-            npm ci --no-audit --no-fund || fail "npm ci failed"
+            # npm ci is strict about the lock file; if the server's npm version disagrees with the
+            # one that wrote package-lock.json (e.g. optional @emnapi/* deps), fall back to
+            # npm install. Safe: this only touches the staging folder.
+            npm --version
+            npm ci --no-audit --no-fund \
+              || { echo "::warning::npm ci failed (lock file mismatch) - retrying with npm install"; \
+                   rm -rf node_modules; npm install --no-audit --no-fund; } \
+              || fail "Installing dependencies failed"
             npm run build || fail "Build failed"
             npx prisma migrate deploy || fail "Database migration failed"
 

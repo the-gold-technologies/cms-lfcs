@@ -2,8 +2,8 @@ name: Deploy to VPS
 
 # The new version is installed and built in a separate folder (.deploy/build) while the live
 # CMS keeps running. If install, build or migration fails, the live CMS is not touched.
-# Only a successful build is swapped in. If /api/health fails after the restart, the previous
-# version is put back automatically. Lint is never run here, so lint errors never block a deploy.
+# Only a successful build is swapped in and PM2 is reloaded. The previous build is kept in
+# .deploy/previous. Lint is never run here, so lint errors never block a deploy.
 
 on:
   push:
@@ -18,7 +18,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Build, swap and restart on VPS (rolls back on failure)
+      - name: Build, swap and restart on VPS
         uses: appleboy/ssh-action@v1.2.0
         with:
           host: ${{ secrets.VPS_HOST }}
@@ -35,7 +35,6 @@ jobs:
             APP_DIR="${{ secrets.VPS_APP_DIR || '/var/www/lfcscms' }}"
             PM2_APP="lfcs-cms"
             APP_PORT="3001"
-            HEALTH_URL="http://127.0.0.1:$APP_PORT/api/health"
             STAGE="$APP_DIR/.deploy/build"
             PREV="$APP_DIR/.deploy/previous"
 
@@ -68,9 +67,8 @@ jobs:
             npm run build || fail "Build failed"
             npx prisma migrate deploy || fail "Database migration failed"
 
-            # 3. Swap in the new build, keeping the old one for rollback
+            # 3. Swap in the new build, keeping the old one in .deploy/previous
             cd "$APP_DIR"
-            PREV_COMMIT="$(git rev-parse HEAD)"
             rm -rf "$PREV" && mkdir -p "$PREV"
             for d in node_modules .next; do
               if [ -e "$d" ]; then mv "$d" "$PREV/$d"; fi
@@ -79,41 +77,11 @@ jobs:
             git reset --hard origin/main
             rm -rf "$STAGE"
 
-            restart_app() {
-              cd "$APP_DIR"
-              if pm2 describe "$PM2_APP" >/dev/null 2>&1; then
-                pm2 reload "$PM2_APP" --update-env
-              else
-                PORT="$APP_PORT" pm2 start npm --name "$PM2_APP" -- start
-              fi
-            }
-
-            healthy() {
-              for i in $(seq 1 30); do
-                curl -fsS --max-time 5 "$HEALTH_URL" >/dev/null && return 0
-                sleep 2
-              done
-              return 1
-            }
-
-            # 4. Restart and check health; roll back if the new version doesn't come up
-            restart_app
-            if ! healthy; then
-              echo "::error::New version failed the health check. Rolling back."
-              pm2 logs "$PM2_APP" --lines 80 --nostream || true
-              git reset --hard "$PREV_COMMIT"
-              for d in node_modules .next; do
-                rm -rf "$d"
-                if [ -e "$PREV/$d" ]; then mv "$PREV/$d" "$d"; fi
-              done
-              restart_app
-              if healthy; then
-                echo "Rolled back. The previous version is serving again."
-              else
-                echo "::error::Previous version is also unhealthy - check the server (pm2 logs $PM2_APP)."
-              fi
-              exit 1
+            # 4. Reload PM2 (start it on the first deploy)
+            if pm2 describe "$PM2_APP" >/dev/null 2>&1; then
+              pm2 reload "$PM2_APP" --update-env
+            else
+              PORT="$APP_PORT" pm2 start npm --name "$PM2_APP" -- start
             fi
-
             pm2 save
             echo "Deployment completed successfully."

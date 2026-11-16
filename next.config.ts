@@ -1,7 +1,14 @@
 import type { NextConfig } from "next";
 
+// Pin the project root to the folder being built. The deploy builds in a staging folder
+// (.deploy/build) inside the live app folder; without this, Next.js sees the parent's
+// package-lock.json, uses the parent as root, and the build breaks once it is moved into place.
+const projectRoot = process.cwd();
+
 const nextConfig: NextConfig = {
   reactStrictMode: false,
+  turbopack: { root: projectRoot },
+  outputFileTracingRoot: projectRoot,
   images: {
     remotePatterns: [
       { protocol: "https", hostname: "res.cloudinary.com" },

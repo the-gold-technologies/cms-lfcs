@@ -63,8 +63,8 @@ const LFCS_PAGES: PageListItem[] = [
   },
   {
     title: "Start a School (Associate)",
-    slug: "start-school",
-    route: "/start-school",
+    slug: "school-franchise",
+    route: "/school-franchise",
     editorUrl: "/static-pages/start-school",
     type: "Franchise & Partner",
     sectionsCount: 9,

@@ -31,7 +31,7 @@ const FOOTER_COLUMNS = [
       { label: "Our Schools", url: "/our-school" },
       { label: "Admissions", url: "/admissions" },
       { label: "News & Events", url: "/news-&-events" },
-      { label: "Start a School", url: "/start-school" },
+      { label: "Start a School", url: "/school-franchise" },
       { label: "Careers", url: "/careers" },
       { label: "Contact Us", url: "/contact" },
     ],
@@ -51,13 +51,13 @@ const FOOTER_COLUMNS = [
   {
     title: "Start A School",
     links: [
-      { label: "Why Partner With Us", url: "/start-school#why-partner" },
-      { label: "Our School Model", url: "/start-school#model" },
-      { label: "Support & Benefits", url: "/start-school#support" },
-      { label: "Requirements", url: "/start-school#requirements" },
-      { label: "Setup Process", url: "/start-school#process" },
-      { label: "Investment Overview", url: "/start-school#investment" },
-      { label: "FAQs", url: "/start-school#faqs" },
+      { label: "Why Partner With Us", url: "/school-franchise#why-partner" },
+      { label: "Our School Model", url: "/school-franchise#model" },
+      { label: "Support & Benefits", url: "/school-franchise#support" },
+      { label: "Requirements", url: "/school-franchise#requirements" },
+      { label: "Setup Process", url: "/school-franchise#process" },
+      { label: "Investment Overview", url: "/school-franchise#investment" },
+      { label: "FAQs", url: "/school-franchise#faqs" },
     ],
   },
 ];
@@ -410,7 +410,7 @@ Sitemap: https://lfgos.com/sitemap.xml`;
         2,
       ),
     },
-    "start-school": {
+    "school-franchise": {
       title: "Start an Associate School",
       type: "Associate Partner",
       metaTitle: "Start a School | Associate Partnership | LFCS",
@@ -418,14 +418,14 @@ Sitemap: https://lfgos.com/sitemap.xml`;
         "Partner with Little Flower Group of Schools to establish and operate a high-performing CBSE associate school in your community.",
       targetKeywords:
         "school franchise India, start a CBSE school, educational partnership, LFCS associate affiliate, school franchise UP",
-      canonicalUrl: "https://lfgos.com/start-school",
+      canonicalUrl: "https://lfgos.com/school-franchise",
       headingOptions: "h1",
       schema: JSON.stringify(
         {
           "@context": "https://schema.org",
           "@type": "WebPage",
           name: "Start a School | Associate Partnership | LFCS",
-          url: "https://lfgos.com/start-school",
+          url: "https://lfgos.com/school-franchise",
           description:
             "Partner with Little Flower Group of Schools to establish and operate a high-performing associate school in your community.",
           publisher: {
@@ -775,7 +775,7 @@ Sitemap: https://lfgos.com/sitemap.xml`;
     {
       id: "nav-start-school",
       label: "Start a School",
-      url: "/start-school",
+      url: "/school-franchise",
       type: "Action Button",
       parent: "-",
       order: 6,

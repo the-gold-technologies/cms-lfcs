@@ -201,7 +201,7 @@ export function HeroSection({ initialData }: { initialData?: any }) {
                 label="Secondary Button Link"
                 value={secondaryCtaLink}
                 onChange={(e) => setSecondaryCtaLink(e.target.value)}
-                placeholder="e.g. Target route or URL (e.g. /start-school)"
+                placeholder="e.g. Target route or URL (e.g. /school-franchise)"
               />
             </div>
           </div>

@@ -59,7 +59,7 @@ const LFCS_CORE_PAGES = [
     canonicalUrl: "https://lfgos.com/experience",
   },
   {
-    slug: "start-school",
+    slug: "school-franchise",
     title: "Start an Associate School",
     type: "Associate Partner",
     metaTitle: "Start a School | Associate Partnership | LFCS",
@@ -67,7 +67,7 @@ const LFCS_CORE_PAGES = [
       "Partner with Little Flower Group of Schools to establish and operate a high-performing associate school in your community.",
     targetKeywords:
       "school franchise India, start a CBSE school, educational partnership, LFCS associate affiliate",
-    canonicalUrl: "https://lfgos.com/start-school",
+    canonicalUrl: "https://lfgos.com/school-franchise",
   },
   {
     slug: "careers",

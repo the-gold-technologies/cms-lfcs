@@ -6,6 +6,7 @@ import { auth } from "@/auth";
 import { SessionProvider } from "next-auth/react";
 import { AdminSidebar } from "@/components/Sidebar";
 import { Toaster } from "react-hot-toast";
+import { prisma } from "@/lib/prisma";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -17,10 +18,39 @@ const playfair = Playfair_Display({
   variable: "--font-playfair",
 });
 
-export const metadata: Metadata = {
-  title: "LFCS School CMS",
-  description: "Management Portal for Little Flower Group of Schools",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  let faviconUrl = "";
+  let siteTitle = "LFCS School CMS";
+
+  try {
+    const config = await prisma.globalConfig.findUnique({
+      where: { id: "global" },
+      select: { favicon: true, siteTitle: true },
+    });
+    if (config?.favicon) {
+      faviconUrl = config.favicon;
+    }
+    if (config?.siteTitle) {
+      siteTitle = `${config.siteTitle} — CMS`;
+    }
+  } catch (error) {
+    console.error("Error generating CMS metadata:", error);
+  }
+
+  return {
+    title: siteTitle,
+    description: "Management Portal for Little Flower Group of Schools",
+    ...(faviconUrl
+      ? {
+          icons: {
+            icon: faviconUrl,
+            shortcut: faviconUrl,
+            apple: faviconUrl,
+          },
+        }
+      : {}),
+  };
+}
 
 export default async function RootLayout({
   children,
@@ -29,8 +59,28 @@ export default async function RootLayout({
 }>) {
   const session = await auth();
 
+  let faviconUrl = "";
+  try {
+    const config = await prisma.globalConfig.findUnique({
+      where: { id: "global" },
+      select: { favicon: true },
+    });
+    faviconUrl = config?.favicon || "";
+  } catch (error) {
+    console.error("Error loading favicon in RootLayout:", error);
+  }
+
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        {faviconUrl ? (
+          <>
+            <link rel="icon" href={faviconUrl} />
+            <link rel="shortcut icon" href={faviconUrl} />
+            <link rel="apple-touch-icon" href={faviconUrl} />
+          </>
+        ) : null}
+      </head>
       <body
         className={`${inter.variable} ${playfair.variable} antialiased bg-[#f8f9fa]`}
         suppressHydrationWarning
@@ -38,7 +88,7 @@ export default async function RootLayout({
         <SessionProvider session={session}>
           {session ? (
             <div className="flex h-screen overflow-hidden font-sans p-[5px]">
-              <AdminSidebar />
+              <AdminSidebar favicon={faviconUrl} />
               <main className="flex-1 overflow-y-auto custom-scrollbar">
                 <div className="px-10 py-8">{children}</div>
               </main>

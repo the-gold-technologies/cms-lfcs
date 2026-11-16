@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/prisma";
 import { checkAdminSession } from "@/lib/auth-check";
 import { revalidateWebsite, WebsiteTag } from "@/lib/revalidateWebsite";
@@ -72,6 +73,7 @@ export async function PUT(req: Request) {
     });
 
     revalidateWebsite(WebsiteTag.site);
+    revalidatePath("/", "layout");
     return NextResponse.json({ success: true, data: updated });
   } catch (error: any) {
     console.error("Save global SEO error:", error);

@@ -106,7 +106,7 @@ const sidebarLinks: SidebarLink[] = [
   },
 ];
 
-export function AdminSidebar() {
+export function AdminSidebar({ favicon = "" }: { favicon?: string }) {
   const pathname = usePathname();
 
   const [openGroups, setOpenGroups] = useState<string[]>(() => {
@@ -142,8 +142,20 @@ export function AdminSidebar() {
       {/* Logo Area */}
       <div className="flex h-24 items-center px-8">
         <Link href="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
-          <div className="h-10 w-10 rounded-full bg-white flex items-center justify-center text-[#842b46] font-black italic shadow-sm text-lg">
-            LF
+          <div className="h-10 w-10 rounded-full bg-white flex items-center justify-center text-[#842b46] font-black italic shadow-sm text-lg overflow-hidden shrink-0">
+            {favicon ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src={favicon}
+                alt="Logo"
+                className="w-full h-full object-contain p-1"
+                onError={(e) => {
+                  (e.target as HTMLElement).style.display = "none";
+                }}
+              />
+            ) : (
+              "LF"
+            )}
           </div>
           <span className="font-bold text-lg tracking-tight">
             Little Flower <span className="text-[#dfae19] font-semibold">CMS</span>

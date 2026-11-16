@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
@@ -10,7 +10,19 @@ export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [logo, setLogo] = useState("");
   const router = useRouter();
+
+  useEffect(() => {
+    fetch("/api/seo/global")
+      .then((res) => res.json())
+      .then((json) => {
+        if (json.success && json.data) {
+          setLogo(json.data.favicon || json.data.logo || "");
+        }
+      })
+      .catch(() => {});
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -41,8 +53,20 @@ export default function LoginPage() {
     <div className="min-h-screen flex items-center justify-center bg-[#f8f9fa] font-sans p-4">
       <div className="w-full max-w-md p-8 bg-white rounded-3xl shadow-xl border border-gray-100">
         <div className="text-center mb-8">
-          <div className="w-14 h-14 mx-auto mb-4 rounded-2xl bg-[#6a2238] flex items-center justify-center text-white font-bold text-2xl shadow-md">
-            LF
+          <div className="w-14 h-14 mx-auto mb-4 rounded-2xl bg-white border border-gray-100 flex items-center justify-center text-[#6a2238] font-bold text-2xl shadow-md overflow-hidden">
+            {logo ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src={logo}
+                alt="School Logo"
+                className="w-full h-full object-contain p-2"
+                onError={(e) => {
+                  (e.target as HTMLElement).style.display = "none";
+                }}
+              />
+            ) : (
+              <span className="text-white bg-[#6a2238] w-full h-full flex items-center justify-center">LF</span>
+            )}
           </div>
           <h1 className="text-2xl font-bold text-gray-900 tracking-tight">Little Flower Schools</h1>
           <p className="text-gray-500 text-xs mt-1">Sign in to LFCS School Management CMS</p>

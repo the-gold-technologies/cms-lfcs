@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
+import { useRouter } from "next/navigation";
 import { PageHeader } from "@/components/PageHeader";
 import { SaveButton } from "@/components/SaveButton";
 import { InputField } from "@/components/InputField";
@@ -10,6 +11,7 @@ import { Globe, Activity, Shield, Upload } from "lucide-react";
 import toast from "react-hot-toast";
 
 export default function GlobalSEOPage() {
+  const router = useRouter();
   const [formData, setFormData] = useState({
     siteTitle: "",
     siteDescription: "",
@@ -90,6 +92,18 @@ export default function GlobalSEOPage() {
       const json = await res.json();
       if (json.success) {
         toast.success("Global SEO settings saved successfully!", { id: tid });
+        if (formData.favicon) {
+          const links = document.querySelectorAll<HTMLLinkElement>("link[rel*='icon']");
+          if (links.length > 0) {
+            links.forEach((l) => (l.href = formData.favicon));
+          } else {
+            const link = document.createElement("link");
+            link.rel = "icon";
+            link.href = formData.favicon;
+            document.head.appendChild(link);
+          }
+        }
+        router.refresh();
       } else {
         const errMsg =
           typeof json.error === "string" ? json.error : json.error?.message || "Save failed.";

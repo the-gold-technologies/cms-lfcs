@@ -773,7 +773,7 @@ Sitemap: https://lfgos.com/sitemap.xml`;
       order: 5,
     },
     {
-      id: "nav-start-school",
+      id: "nav-school-franchise",
       label: "Start a School",
       url: "/school-franchise",
       type: "Action Button",

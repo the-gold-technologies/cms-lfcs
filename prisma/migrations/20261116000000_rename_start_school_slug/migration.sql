@@ -15,3 +15,7 @@ WHERE "url" LIKE '/start-school%';
 UPDATE "Section"
 SET "content" = REPLACE("content"::text, '"/start-school', '"/school-franchise')::jsonb
 WHERE "content"::text LIKE '%"/start-school%';
+
+UPDATE "NavLink"
+SET "id" = 'nav-school-franchise'
+WHERE "id" = 'nav-start-school';

@@ -165,7 +165,7 @@ const LFCS_NAV_DEFAULT = [
 
   // 6. Action Button: Start a School
   {
-    id: "nav-start-school",
+    id: "nav-school-franchise",
     label: "Start a School",
     url: "/school-franchise",
     type: "Action Button",

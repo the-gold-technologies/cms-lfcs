@@ -1,0 +1,121 @@
+name: CI
+
+# Runs on every pull request. On a push to main it runs inside the deploy workflow
+# (workflow_call), and the deploy only starts if every job here passes.
+# Lint is report-only: lint problems never fail CI or block a deploy.
+
+on:
+  pull_request:
+  workflow_call:
+  workflow_dispatch:
+
+# A newer push to the same pull request cancels the older CI run.
+# Runs started from the deploy workflow are never cancelled here.
+concurrency:
+  group: ${{ github.event_name == 'pull_request' && format('ci-{0}', github.ref) || format('ci-{0}', github.run_id) }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+env:
+  # Keep in sync with the Node version on the VPS (`node -v`).
+  NODE_VERSION: "24"
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    # Placeholder values: the build does not connect to the database or any service.
+    # Real secrets live only in the .env on the VPS.
+    env:
+      DATABASE_URL: postgresql://ci:ci@127.0.0.1:5432/ci
+      DIRECT_URL: postgresql://ci:ci@127.0.0.1:5432/ci
+      AUTH_SECRET: ci-placeholder-secret
+      NEXTAUTH_URL: http://localhost:3001
+      ALLOWED_ORIGIN: http://localhost:3000
+      NEXT_PUBLIC_WEBSITE_URL: http://localhost:3000
+      CMS_SHARED_SECRET: ci-placeholder
+      CLOUDINARY_CLOUD_NAME: ci-placeholder
+      CLOUDINARY_API_KEY: ci-placeholder
+      CLOUDINARY_API_SECRET: ci-placeholder
+      CLOUDINARY_FOLDER: lfcs-school
+      NEXT_TELEMETRY_DISABLED: "1"
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci # also runs `prisma generate` (postinstall)
+
+      - name: Validate Prisma schema
+        run: npx prisma validate
+
+      # Report-only: shown in the log, never fails the run.
+      - name: Lint (report only)
+        continue-on-error: true
+        run: npx eslint .
+
+      # `next build` also type-checks, so type errors fail here.
+      - name: Build
+        run: npm run build
+
+  migrations:
+    name: Migrations match schema
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    # Throwaway database, only for this job.
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: ci
+          POSTGRES_PASSWORD: ci
+          POSTGRES_DB: ci
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U ci"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+
+    env:
+      DATABASE_URL: postgresql://ci:ci@127.0.0.1:5432/ci
+      DIRECT_URL: postgresql://ci:ci@127.0.0.1:5432/ci
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Apply all migrations to an empty database
+        run: npx prisma migrate deploy
+
+      - name: Check schema.prisma has no changes missing a migration
+        run: |
+          if ! npx prisma migrate diff \
+                --from-url "$DIRECT_URL" \
+                --to-schema-datamodel prisma/schema.prisma \
+                --exit-code; then
+            echo "::error::prisma/schema.prisma has changes that are not in a migration. Run 'npx prisma migrate dev --name <change>' locally and commit the new folder in prisma/migrations."
+            exit 1
+          fi

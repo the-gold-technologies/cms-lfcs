@@ -65,7 +65,9 @@ export default function LoginPage() {
                 }}
               />
             ) : (
-              <span className="text-white bg-[#6a2238] w-full h-full flex items-center justify-center">LF</span>
+              <span className="text-white bg-[#6a2238] w-full h-full flex items-center justify-center">
+                LF
+              </span>
             )}
           </div>
           <h1 className="text-2xl font-bold text-gray-900 tracking-tight">Little Flower Schools</h1>
